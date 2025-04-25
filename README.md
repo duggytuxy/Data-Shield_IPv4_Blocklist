@@ -1,6 +1,6 @@
 # Intelligence IPv4 Blocklist
 
-Intelligence Blocklist (IPv4): Botnets, RaT, CVE's RCE, Scanners. DST = France & Belgium
+Intelligence Blocklist (IPv4): Botnets, RaT, CVE's RCE, Scanners. DST = FR🇫🇷 - BE🇧🇪
 
 ✋Since these are malicious IP addresses that are bumping, you need to create rules based on WAN to LAN (for e.g.)
 
