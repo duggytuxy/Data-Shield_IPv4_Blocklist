@@ -30,6 +30,19 @@ Intelligence Blocklist (IPv4): Botnets, RaT, CVE's RCE, Scanners. DST = FR![fr](
 
 Etc.
 
+# CVEs
+
+- CVE-2020-25078
+- CVE-2021-42013
+- CVE-2021-41773
+- CVE-2024-3400
+- CVE-2017-16894
+- CVE-2024-3721
+- CVE-2022-30023
+- CVE-2017-9841
+
+Etc.
+
 PS: this list will be updated every 24/48h
 
 ***Support our work with a donation*** 👉 https://www.paypal.com/donate/?hosted_button_id=YDTWBDBS7CPLN
