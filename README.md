@@ -22,6 +22,7 @@ Bitcoin : 👉 bc1q57u5usqp2z0qqp4w4r4lvwaalf0uypls8quzm6
 - Brute-force Attack
 - Brute-Force SSH Login
 - Directory Busting
+- Credentials Dumping
 - Email Attack
 - FTP Attack
 - IMAP Attack
