@@ -10,7 +10,7 @@ Paypal : 👉 https://www.paypal.com/donate/?hosted_button_id=YDTWBDBS7CPLN
 
 Bitcoin : 👉 bc1q57u5usqp2z0qqp4w4r4lvwaalf0uypls8quzm6
 
-# About this projet
+# About this project
 
 I started this project in June 2023 when I discovered, through logs on specific instances, a number of triggers coming from IPv4 addresses with strong signals whose behaviors appeared to be aggressive scan ports, RCE attempts linked to highly exploited CVEs.
 
