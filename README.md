@@ -20,6 +20,10 @@ And since then, this list has evolved to include data from 24 probes (decoy) dep
 
 This list is guaranteed 0% False Positives (100% of confidence) and I will continue to maintain it in this sense.
 
+# A few figures
+
+According to feedback, more than 47 small and medium-sized companies have already implemented this list in their FW Fortinet, Palo Alto, Checkpoint, etc.
+
 # Single list
 
 ✅agressive_ips_dst_fr_be_blocklist.txt
