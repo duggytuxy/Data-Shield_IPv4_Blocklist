@@ -10,6 +10,20 @@ Paypal : 👉 https://www.paypal.com/donate/?hosted_button_id=YDTWBDBS7CPLN
 
 Bitcoin : 👉 bc1q57u5usqp2z0qqp4w4r4lvwaalf0uypls8quzm6
 
+# About this project
+
+I started this project in June 2023 when I discovered, through logs on specific instances, a number of triggers coming from IPv4 addresses with strong signals whose behaviors appeared to be aggressive scan ports, RCE attempts linked to highly exploited CVEs.
+
+I started retrieving them, analyzing them and then storing them in a txt list (I didn't mess around apparently🤣).
+
+And since then, this list has evolved to include data from 24 probes (decoy) deployed in strategic areas of the French and Belgian network.
+
+This list is guaranteed 0% False Positives (100% of confidence) and I will continue to maintain it in this sense.
+
+# A few figures
+
+According to feedback, more than 47 small and medium-sized companies have already implemented this list in their FW Fortinet, Palo Alto, Checkpoint, etc.
+
 # Single list
 
 ✅agressive_ips_dst_fr_be_blocklist.txt
