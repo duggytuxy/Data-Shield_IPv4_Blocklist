@@ -31,6 +31,8 @@ According to feedback, more than 47 small and medium-sized companies have alread
 # TTPs
 
 - Apache Attack
+- Nginx Attack
+- Wordpress Enumeration
 - Bot
 - Botnet Recruitment
 - Brute-force Attack
