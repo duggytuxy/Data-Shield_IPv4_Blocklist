@@ -18,7 +18,7 @@ I started retrieving them, analyzing them and then storing them in a txt list (I
 
 And since then, this list has evolved to include data from 24 probes (decoy) deployed in strategic areas of the French and Belgian network.
 
-This list is guaranteed 0% False Positives (100% of confidence) and I will continue to maintain it in this sense.
+**I work hard to ensure that you have high-quality data (IPv4) (the most aggressive and malicious and most up-to-date).**
 
 # A few figures
 
