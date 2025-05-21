@@ -2,7 +2,7 @@
 
 Intelligence Blocklist (IPv4): Botnets, RaT, CVE's RCE, Scanners. DST = FR![fr](https://github.com/user-attachments/assets/32761f6d-9980-4dbc-bc90-3a1076ea3891) - BE![be](https://github.com/user-attachments/assets/b1ecb2d5-4358-4c80-8469-d84a4ff0ded8)
 
-✋Since these are malicious IP addresses that are bumping, you need to create rules based on WAN to LAN (for e.g.)
+✋You can easily integrate this list into your FWs under the Inbound/Outbound policy rules, Threat feeds.
 
 **Support my work with a donation**
 
@@ -32,6 +32,7 @@ According to feedback, more than 51 small and medium-sized companies have alread
 
 - Apache Attack
 - Nginx Attack
+- Ransomware Attack
 - Wordpress Enumeration
 - Bot
 - Botnet Recruitment
