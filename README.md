@@ -32,15 +32,15 @@ According to feedback, more than 51 small and medium-sized companies have alread
 
 - Apache Attack
 - Nginx Attack
-- Ransomware Attack
+- WannaCry 2.0 SMB Attack
 - Wordpress Enumeration
-- Bot
 - Botnet Recruitment
 - Brute-force Attack
 - Brute-Force SSH Login
 - Directory Busting
 - Credentials Dumping
 - Email Attack
+- SMB Attack
 - FTP Attack
 - IMAP Attack
 - Information Gathering
@@ -64,6 +64,7 @@ Etc.
 - CVE-2024-3721
 - CVE-2022-30023
 - CVE-2017-9841
+- CVE-2018-10561
 
 Etc.
 
