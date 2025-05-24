@@ -22,7 +22,7 @@ And since then, this list has evolved to include data from 26 probes (decoy) dep
 
 # A few figures
 
-According to feedback, more than 51 small and medium-sized companies have already implemented this list in their FW Fortinet, Palo Alto, Checkpoint, etc.
+According to feedback, more than 52 small and medium-sized companies have already implemented this list in their FW Fortinet, Palo Alto, Checkpoint, etc.
 
 # Single list
 
