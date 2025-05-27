@@ -32,7 +32,11 @@ According to feedback, more than 55 small and medium-sized companies have alread
 
 - Apache Attack
 - Nginx Attack
-- WannaCry 2.0 SMB Attack
+- Ransomware Attack
+- VPN Attack
+- RDP Attack
+- NTLM Attack
+- Kerberos Attack
 - Wordpress Enumeration
 - Botnet Recruitment
 - Brute-force Attack
