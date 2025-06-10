@@ -1,8 +1,4 @@
-<img src="https://img.shields.io/liberapay/receives/Duggy_Tuxy.svg?logo=liberapay"> <form action="https://www.paypal.com/donate" method="post" target="_top">
-<input type="hidden" name="campaign_id" value="88XWURTQHNMK4" />
-<input type="image" src="https://www.paypalobjects.com/fr_FR/BE/i/btn/btn_donate_SM.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
-<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1" />
-</form>
+<img src="https://img.shields.io/liberapay/receives/Duggy_Tuxy.svg?logo=liberapay"> 
 
 # Intelligence IPv4 Blocklist
 
