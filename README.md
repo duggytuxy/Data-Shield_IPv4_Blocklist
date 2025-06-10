@@ -8,7 +8,9 @@ Intelligence Blocklist (IPv4): Botnets, RaT, CVE's RCE, Scanners. DST = FR![fr](
 
 **Support my work with a donation**
 
-Paypal : 👉 https://www.paypal.com/donate/?hosted_button_id=YDTWBDBS7CPLN
+Paypal (Project) : 👉 https://www.paypal.com/donate?campaign_id=88XWURTQHNMK4
+
+Paypal (Oneshot) : 👉 https://www.paypal.com/donate/?hosted_button_id=YDTWBDBS7CPLN
 
 Bitcoin : 👉 bc1q57u5usqp2z0qqp4w4r4lvwaalf0uypls8quzm6
 
