@@ -20,13 +20,13 @@ I started this project in June 2023 when I discovered, through logs on specific 
 
 I started retrieving them, analyzing them and then storing them in a txt list (I didn't mess around apparently🤣).
 
-And since then, this list has evolved to include data from 23 probes (decoy) deployed in strategic areas of the French and Belgian network.
+And since then, this list has evolved to include data from 24 probes (decoy) deployed in strategic areas of the French and Belgian network.
 
 **I work hard to ensure that you have high-quality data (IPv4) (the most aggressive, malicious and most up-to-date).**
 
 # A few figures
 
-According to feedback, more than 60 small and medium-sized companies (Acensi as well) have already implemented this list in their FW Fortinet, Palo Alto, Checkpoint, etc.
+According to feedback, more than 64 small and medium-sized companies (Acensi as well) have already implemented this list in their FW Fortinet, Palo Alto, Checkpoint, etc.
 
 # Single list
 
