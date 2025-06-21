@@ -1,10 +1,19 @@
 <img src="https://img.shields.io/liberapay/receives/Duggy_Tuxy.svg?logo=liberapay"> 
 
-# Intelligence IPv4 Blocklist
+# Intelligence IPv4 Blocklist 🧱
 
 Intelligence Blocklist (IPv4): Botnets, RaT, CVE's RCE, Scanners. DST = FR![fr](https://github.com/user-attachments/assets/32761f6d-9980-4dbc-bc90-3a1076ea3891) - BE![be](https://github.com/user-attachments/assets/b1ecb2d5-4358-4c80-8469-d84a4ff0ded8)
 
 ✋You can easily integrate this list into your FWs under the Inbound/Outbound policy rules, Threat feeds.
+
+# Tips 💡
+
+To add my blocklist to the Fortinet, CheckPoint, Palo Alto and OPNsense FWs, here are some interesting links
+
+- Fortinet : https://docs.fortinet.com/document/fortigate/7.2.0/administration-guide/891236
+- CheckPoint : https://sc1.checkpoint.com/documents/R80.20SP/WebAdminGuides/EN/CP_R80.20SP_Maestro_AdminGuide/Topics-Maestro-AG/IP-Block-Feature.htm
+- Palo Alto : https://docs.paloaltonetworks.com/pan-os/10-2/pan-os-admin/policy/use-an-external-dynamic-list-in-policy/configure-the-firewall-to-access-an-external-dynamic-list
+- OPNsense : https://slash-root.fr/opnsense-block-malicious-ips/
 
 **Support my work with a donation**
 
@@ -14,25 +23,25 @@ Paypal (Oneshot) : 👉 https://www.paypal.com/donate/?hosted_button_id=YDTWBDBS
 
 Bitcoin : 👉 bc1q57u5usqp2z0qqp4w4r4lvwaalf0uypls8quzm6
 
-# About this project
+# About this project 🧪
 
 I started this project in June 2023 when I discovered, through logs on specific instances, a number of triggers coming from IPv4 addresses with strong signals whose behaviors appeared to be aggressive scan ports, RCE attempts linked to highly exploited CVEs.
 
 I started retrieving them, analyzing them and then storing them in a txt list (I didn't mess around apparently🤣).
 
-And since then, this list has evolved to include data from 24 probes (decoy) deployed in strategic areas of the French and Belgian network.
+And since then, this list has evolved to include data from 25 probes (decoy) deployed in strategic areas of the French and Belgian network.
 
 **I work hard to ensure that you have high-quality data (IPv4) (the most aggressive, malicious and most up-to-date).**
 
-# A few figures
+# A few figures 🎖️
 
-According to feedback, more than 64 small and medium-sized companies (Acensi as well) have already implemented this list in their FW Fortinet, Palo Alto, Checkpoint, etc.
+According to feedback, more than 79 small and medium-sized companies (Acensi as well) have already implemented this list in their FW Fortinet, Palo Alto, Checkpoint, etc.
 
-# Single list
+# Single list 📄
 
 ✅agressive_ips_dst_fr_be_blocklist.txt
 
-# TTPs
+# TTPs 🐞
 
 - Apache Attack
 - Nginx Attack
@@ -62,7 +71,7 @@ According to feedback, more than 64 small and medium-sized companies (Acensi as 
 
 Etc.
 
-# CVEs
+# CVEs 🔩
 
 - CVE-2020-25078
 - CVE-2021-42013
