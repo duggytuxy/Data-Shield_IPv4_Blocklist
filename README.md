@@ -15,7 +15,7 @@ To add my blocklist to the Fortinet, CheckPoint, Palo Alto and OPNsense FWs, her
 - Palo Alto : https://docs.paloaltonetworks.com/pan-os/10-2/pan-os-admin/policy/use-an-external-dynamic-list-in-policy/configure-the-firewall-to-access-an-external-dynamic-list
 - OPNsense : https://slash-root.fr/opnsense-block-malicious-ips/
 
-**Support my work with a donation**
+# Support my work with a donation 🙏
 
 Paypal (Project) : 👉 https://www.paypal.com/donate?campaign_id=88XWURTQHNMK4
 
