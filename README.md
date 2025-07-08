@@ -4,23 +4,6 @@ Intelligence Blocklist (IPv4): Botnets, RaT, CVE's RCE, Scanners. DST = FR![fr](
 
 ✋You can easily integrate this list into your FWs under the Inbound/Outbound policy rules, Threat feeds.
 
-# Tips 💡
-
-To add my blocklist to the Fortinet, CheckPoint, Palo Alto and OPNsense FWs, here are some interesting links
-
-- Fortinet : https://docs.fortinet.com/document/fortigate/7.2.0/administration-guide/891236
-- CheckPoint : https://sc1.checkpoint.com/documents/R80.20SP/WebAdminGuides/EN/CP_R80.20SP_Maestro_AdminGuide/Topics-Maestro-AG/IP-Block-Feature.htm
-- Palo Alto : https://docs.paloaltonetworks.com/pan-os/10-2/pan-os-admin/policy/use-an-external-dynamic-list-in-policy/configure-the-firewall-to-access-an-external-dynamic-list
-- OPNsense : https://slash-root.fr/opnsense-block-malicious-ips/
-
-# Support my work with a donation 🙏
-
-Paypal (Project) : 👉 https://www.paypal.com/donate?campaign_id=88XWURTQHNMK4
-
-Paypal (Oneshot) : 👉 https://www.paypal.com/donate/?hosted_button_id=YDTWBDBS7CPLN
-
-Bitcoin : 👉 bc1q57u5usqp2z0qqp4w4r4lvwaalf0uypls8quzm6
-
 # About this project 🧪
 
 I started this project in June 2023 when I discovered, through logs on specific instances, a number of triggers coming from IPv4 addresses with strong signals whose behaviors appeared to be aggressive scan ports, RCE attempts linked to highly exploited CVEs.
@@ -88,5 +71,23 @@ Etc.
 Etc.
 
 PS: this list will be updated every 24/48h
+
+# Tips 💡
+
+To add my blocklist to the Fortinet, CheckPoint, Palo Alto and OPNsense FWs, here are some interesting links
+
+- Fortinet : https://docs.fortinet.com/document/fortigate/7.2.0/administration-guide/891236
+- CheckPoint : https://sc1.checkpoint.com/documents/R80.20SP/WebAdminGuides/EN/CP_R80.20SP_Maestro_AdminGuide/Topics-Maestro-AG/IP-Block-Feature.htm
+- Palo Alto : https://docs.paloaltonetworks.com/pan-os/10-2/pan-os-admin/policy/use-an-external-dynamic-list-in-policy/configure-the-firewall-to-access-an-external-dynamic-list
+- OPNsense : https://slash-root.fr/opnsense-block-malicious-ips/
+
+# Support my work with a donation 🙏
+
+Paypal (Project) : 👉 https://www.paypal.com/donate?campaign_id=88XWURTQHNMK4
+
+Paypal (Oneshot) : 👉 https://www.paypal.com/donate/?hosted_button_id=YDTWBDBS7CPLN
+
+Bitcoin : 👉 bc1q57u5usqp2z0qqp4w4r4lvwaalf0uypls8quzm6
+
 
 Intelligence IPv4 Blocklist © 2023 by Duggy Tuxy is licensed under Creative Commons Attribution-NonCommercial 4.0 International. To view a copy of this license, visit https://creativecommons.org/licenses/by-nc/4.0/
