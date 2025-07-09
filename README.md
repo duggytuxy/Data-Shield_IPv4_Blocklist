@@ -88,6 +88,6 @@ To add my blocklist to the Fortinet, CheckPoint, Palo Alto and OPNsense FWs, her
 | 📍**Site** | 🌍**Link** |
 |---|---|
 | **Ko-Fi** | <div align="center"><a href="https://ko-fi.com/laurentmduggytuxy">🔗</a></div> |
-| **Bitcoin** | <div align="center"><p>bc1q57u5usqp2z0qqp4w4r4lvwaalf0uypls8quzm6</p></div>
+| **Bitcoin** | <div align="center"><p>bc1q57u5usqp2z0qqp4w4r4lvwaalf0uypls8quzm6</p></div> |
 
 Intelligence IPv4 Blocklist © 2023 by Duggy Tuxy is licensed under Creative Commons Attribution-NonCommercial 4.0 International. To view a copy of this license, visit https://creativecommons.org/licenses/by-nc/4.0/
