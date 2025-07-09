@@ -76,7 +76,7 @@ PS: this list will be updated every 24/48h
 
 To add my blocklist to the Fortinet, CheckPoint, Palo Alto and OPNsense FWs, here are some interesting links
 
-| **Vendor** | **Link** |
+| 🧱**Vendor** | 🌍**Link** |
 |---|---|
 | **Fortinet** | <div align="center"><a href="https://docs.fortinet.com/document/fortigate/7.2.0/administration-guide/891236">🔗</a></div> |
 | **Checkpoint** | <div align="center"><a href="https://sc1.checkpoint.com/documents/R80.20SP/WebAdminGuides/EN/CP_R80.20SP_Maestro_AdminGuide/Topics-Maestro-AG/IP-Block-Feature.htm">🔗</a></div> |
@@ -85,8 +85,9 @@ To add my blocklist to the Fortinet, CheckPoint, Palo Alto and OPNsense FWs, her
 
 # Support my work with a donation 🙏
 
-Ko-Fi (Project) : 👉 https://ko-fi.com/laurentmduggytuxy
-
-Bitcoin : 👉 bc1q57u5usqp2z0qqp4w4r4lvwaalf0uypls8quzm6
+| 📍**Site** | 🌍**Link** |
+|---|---|
+| **Ko-Fi** | <div align="center"><a href="https://ko-fi.com/laurentmduggytuxy">🔗</a></div> |
+| **Bitcoin** | <div align="center"><p dir="auto" "bc1q57u5usqp2z0qqp4w4r4lvwaalf0uypls8quzm6"</p></div>
 
 Intelligence IPv4 Blocklist © 2023 by Duggy Tuxy is licensed under Creative Commons Attribution-NonCommercial 4.0 International. To view a copy of this license, visit https://creativecommons.org/licenses/by-nc/4.0/
