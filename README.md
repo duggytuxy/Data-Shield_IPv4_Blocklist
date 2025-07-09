@@ -76,10 +76,12 @@ PS: this list will be updated every 24/48h
 
 To add my blocklist to the Fortinet, CheckPoint, Palo Alto and OPNsense FWs, here are some interesting links
 
-- Fortinet : https://docs.fortinet.com/document/fortigate/7.2.0/administration-guide/891236
-- CheckPoint : https://sc1.checkpoint.com/documents/R80.20SP/WebAdminGuides/EN/CP_R80.20SP_Maestro_AdminGuide/Topics-Maestro-AG/IP-Block-Feature.htm
-- Palo Alto : https://docs.paloaltonetworks.com/pan-os/10-2/pan-os-admin/policy/use-an-external-dynamic-list-in-policy/configure-the-firewall-to-access-an-external-dynamic-list
-- OPNsense : https://slash-root.fr/opnsense-block-malicious-ips/
+| **Vendor** | **Link** |
+|---|---|
+| **Fortinet** | <div align="center"><a href="https://docs.fortinet.com/document/fortigate/7.2.0/administration-guide/891236">🔗</a></div> |
+| **Checkpoint** | <div align="center"><a href="https://sc1.checkpoint.com/documents/R80.20SP/WebAdminGuides/EN/CP_R80.20SP_Maestro_AdminGuide/Topics-Maestro-AG/IP-Block-Feature.htm">🔗</a></div> |
+| **Palo Alto** | <div align="center"><a href="https://docs.paloaltonetworks.com/pan-os/10-2/pan-os-admin/policy/use-an-external-dynamic-list-in-policy/configure-the-firewall-to-access-an-external-dynamic-list">🔗</a></div> |
+| **OPNsense** | <div align="center"><a href="https://slash-root.fr/opnsense-block-malicious-ips/">🔗</a></div> |
 
 # Support my work with a donation 🙏
 
