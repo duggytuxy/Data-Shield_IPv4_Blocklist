@@ -83,11 +83,8 @@ To add my blocklist to the Fortinet, CheckPoint, Palo Alto and OPNsense FWs, her
 
 # Support my work with a donation 🙏
 
-Paypal (Project) : 👉 https://www.paypal.com/donate?campaign_id=88XWURTQHNMK4
-
-Paypal (Oneshot) : 👉 https://www.paypal.com/donate/?hosted_button_id=YDTWBDBS7CPLN
+Ko-Fi (Project) : 👉 https://ko-fi.com/laurentmduggytuxy
 
 Bitcoin : 👉 bc1q57u5usqp2z0qqp4w4r4lvwaalf0uypls8quzm6
-
 
 Intelligence IPv4 Blocklist © 2023 by Duggy Tuxy is licensed under Creative Commons Attribution-NonCommercial 4.0 International. To view a copy of this license, visit https://creativecommons.org/licenses/by-nc/4.0/
