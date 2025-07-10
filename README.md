@@ -56,7 +56,6 @@ Etc.
 
 | **CVE**🐞 | **Description**📜 | **Link**🌍 |
 |---|---|---|
-
 | **CVE-2020-25078** | An issue was discovered on D-Link DCS-2530L... | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2020-25078">🔗</a></div> |
 | **CVE-2021-42013** | It was found that the fix for CVE-2021-41773... | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2021-42013">🔗</a></div> |
 | **CVE-2021-41773** | A flaw was found in a change made to path... | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2021-41773">🔗</a></div> |
