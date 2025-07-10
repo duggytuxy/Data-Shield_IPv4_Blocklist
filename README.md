@@ -1,9 +1,3 @@
-# Intelligence IPv4 Blocklist 🧱
-
-Intelligence Blocklist (IPv4): Botnets, RaT, CVE's RCE, Scanners. DST = FR![fr](https://github.com/user-attachments/assets/32761f6d-9980-4dbc-bc90-3a1076ea3891) - BE![be](https://github.com/user-attachments/assets/b1ecb2d5-4358-4c80-8469-d84a4ff0ded8)
-
-✋You can easily integrate this list into your FWs under the Inbound/Outbound policy rules, Threat feeds.
-
 # About this project 🧪
 
 I started this project in June 2023 when I discovered, through logs on specific instances, a number of triggers coming from IPv4 addresses with strong signals whose behaviors appeared to be aggressive scan ports, RCE attempts linked to highly exploited CVEs.
@@ -14,13 +8,29 @@ And since then, this list has evolved to include data from 16 probes (decoy) dep
 
 **I work hard to ensure that you have high-quality data (IPv4) (the most aggressive, malicious and most up-to-date).**
 
-# A few figures 🎖️
+# Intelligence IPv4 Blocklist 🧱
 
-According to feedback, more than 115 small and medium-sized companies (Acensi as well) have already implemented this list in their FW Fortinet, Palo Alto, Checkpoint, etc.
+- [**Intelligence IPv4 Blocklist**](https://raw.githubusercontent.com/duggytuxy/Intelligence_IPv4_Blocklist/refs/heads/main/agressive_ips_dst_fr_be_blocklist.txt) : target destination 👉 Europa
 
-# Single list 📄
+# CVEs 🔩
 
-✅agressive_ips_dst_fr_be_blocklist.txt
+| **CVE**🐞 | **Description**📜 | **Link**🌍 |
+|---|---|---|
+| **CVE-2020-25078** | An issue was discovered on D-Link DCS-2530L... | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2020-25078">🔗</a></div> |
+| **CVE-2021-42013** | It was found that the fix for CVE-2021-41773... | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2021-42013">🔗</a></div> |
+| **CVE-2021-41773** | A flaw was found in a change made to path... | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2021-41773">🔗</a></div> |
+| **CVE-2024-3400** | PAN-OS : A command injection as a result... | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2024-3400">🔗</a></div> |
+| **CVE-2017-16894** | In Laravel framework through 5.5.21... | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2017-16894">🔗</a></div> |
+| **CVE-2024-3721** | A vulnerability was found in TBK DVR-4104 and DVR-4216... | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2024-3721">🔗</a></div> |
+| **CVE-2022-30023** | Tenda ONT GPON AC1200 Dual band WiFi HG9 v1.0.1... | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-30023">🔗</a></div> |
+| **CVE-2017-9841** | Util/PHP/eval-stdin.php in PHPUnit before 4.8.28... | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2017-9841">🔗</a></div> |
+| **CVE-2018-10561** | An issue was discovered on Dasan GPON home routers... | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2018-10561">🔗</a></div> |
+| **CVE-2018-20062** | An issue was discovered in NoneCms V1.3... | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2018-20062">🔗</a></div> |
+| **CVE-2022-44808** | Vulnerability has been found on D-Link DIR-823G devices... | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-44808">🔗</a></div> |
+| **CVE-2022-41040** | Microsoft Exchange Server Elevation of PV** | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-41040">🔗</a></div> |
+| **CVE-2022-41082**| Microsoft Exchange Server RCE Vulnerability** | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-41082">🔗</a></div> |
+
+Etc.
 
 # TTPs 🐞
 
@@ -52,29 +62,11 @@ According to feedback, more than 115 small and medium-sized companies (Acensi as
 
 Etc.
 
-# CVEs 🔩
-
-| **CVE**🐞 | **Description**📜 | **Link**🌍 |
-|---|---|---|
-| **CVE-2020-25078** | An issue was discovered on D-Link DCS-2530L... | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2020-25078">🔗</a></div> |
-| **CVE-2021-42013** | It was found that the fix for CVE-2021-41773... | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2021-42013">🔗</a></div> |
-| **CVE-2021-41773** | A flaw was found in a change made to path... | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2021-41773">🔗</a></div> |
-| **CVE-2024-3400** | PAN-OS : A command injection as a result... | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2024-3400">🔗</a></div> |
-| **CVE-2017-16894** | In Laravel framework through 5.5.21... | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2017-16894">🔗</a></div> |
-| **CVE-2024-3721** | A vulnerability was found in TBK DVR-4104 and DVR-4216... | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2024-3721">🔗</a></div> |
-| **CVE-2022-30023** | Tenda ONT GPON AC1200 Dual band WiFi HG9 v1.0.1... | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-30023">🔗</a></div> |
-| **CVE-2017-9841** | Util/PHP/eval-stdin.php in PHPUnit before 4.8.28... | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2017-9841">🔗</a></div> |
-| **CVE-2018-10561** | An issue was discovered on Dasan GPON home routers... | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2018-10561">🔗</a></div> |
-| **CVE-2018-20062** | An issue was discovered in NoneCms V1.3... | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2018-20062">🔗</a></div> |
-| **CVE-2022-44808** | Vulnerability has been found on D-Link DIR-823G devices... | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-44808">🔗</a></div> |
-| **CVE-2022-41040** | Microsoft Exchange Server Elevation of PV** | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-41040">🔗</a></div> |
-| **CVE-2022-41082**| Microsoft Exchange Server RCE Vulnerability** | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-41082">🔗</a></div> |
-
-Etc.
-
-PS: this list will be updated every 24/48h
+PS: this list will be updated every 4/24h
 
 # Tips 💡
+
+✋You can easily integrate this list into your FWs under the Inbound/Outbound policy rules, Threat feeds.
 
 To add my blocklist to the Fortinet, CheckPoint, Palo Alto and OPNsense FWs, here are some interesting links
 
@@ -84,6 +76,10 @@ To add my blocklist to the Fortinet, CheckPoint, Palo Alto and OPNsense FWs, her
 | **Checkpoint** | IP Block Feature | <div align="center"><a href="https://sc1.checkpoint.com/documents/R80.20SP/WebAdminGuides/EN/CP_R80.20SP_Maestro_AdminGuide/Topics-Maestro-AG/IP-Block-Feature.htm">🔗</a></div> |
 | **Palo Alto** | Configure the Firewall to Access an External Dynamic List | <div align="center"><a href="https://docs.paloaltonetworks.com/pan-os/10-2/pan-os-admin/policy/use-an-external-dynamic-list-in-policy/configure-the-firewall-to-access-an-external-dynamic-list">🔗</a></div> |
 | **OPNsense** | OPNsense : Block malicious IPs | <div align="center"><a href="https://slash-root.fr/opnsense-block-malicious-ips/">🔗</a></div> |
+
+# A few figures 🎖️
+
+According to feedback, more than 127 small and medium-sized companies (Acensi as well) have already implemented this list in their FW Fortinet, Palo Alto, Checkpoint, etc.
 
 # Support my work with a donation 🙏
 
