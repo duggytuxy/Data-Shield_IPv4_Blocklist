@@ -57,19 +57,19 @@ Etc.
 | **CVE**🐞 | **Description**📜 | **Link**🌍 |
 |---|---|---|
 
-| **CVE-2020-25078** | **An issue was discovered on D-Link DCS-2530L before 1.06.01 Hotfix and DCS-2670L through 2.02 devices**  | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2020-25078">🔗</a></div> |
-| **CVE-2021-42013** | **It was found that the fix for CVE-2021-41773 in Apache HTTP Server 2.4.50 was insufficient** | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2021-42013">🔗</a></div> |
-| **CVE-2021-41773** | **A flaw was found in a change made to path normalization in Apache HTTP Server 2.4.49**  | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2021-41773">🔗</a></div> |
-| **CVE-2024-3400** | **A command injection as a result of arbitrary file creation vulnerability in the GP feature PAN-OS software**  | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2024-3400">🔗</a></div> |
-| **CVE-2017-16894** | **In Laravel framework through 5.5.21, remote attackers can obtain sensitive information...**  | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2017-16894">🔗</a></div> |
-| **CVE-2024-3721** | **A vulnerability was found in TBK DVR-4104 and DVR-4216 up to 20240412...**  | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2024-3721">🔗</a></div> |
-| **CVE-2022-30023** | **Tenda ONT GPON AC1200 Dual band WiFi HG9 v1.0.1 is vulnerable to Command Injection via the Ping function**  | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-30023">🔗</a></div> |
-| **CVE-2017-9841** | **Util/PHP/eval-stdin.php in PHPUnit before 4.8.28 and 5.x before 5.6.3 allows remote attackers...**  | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2017-9841">🔗</a></div> |
+| **CVE-2020-25078** | **An issue was discovered on D-Link DCS-2530L...**  | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2020-25078">🔗</a></div> |
+| **CVE-2021-42013** | **It was found that the fix for CVE-2021-41773...** | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2021-42013">🔗</a></div> |
+| **CVE-2021-41773** | **A flaw was found in a change made to path...**  | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2021-41773">🔗</a></div> |
+| **CVE-2024-3400** | **PAN-OS : A command injection as a result...**  | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2024-3400">🔗</a></div> |
+| **CVE-2017-16894** | **In Laravel framework through 5.5.21...**  | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2017-16894">🔗</a></div> |
+| **CVE-2024-3721** | **A vulnerability was found in TBK DVR-4104 and DVR-4216...**  | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2024-3721">🔗</a></div> |
+| **CVE-2022-30023** | **Tenda ONT GPON AC1200 Dual band WiFi HG9 v1.0.1...**  | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-30023">🔗</a></div> |
+| **CVE-2017-9841** | **Util/PHP/eval-stdin.php in PHPUnit before 4.8.28...**  | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2017-9841">🔗</a></div> |
 | **CVE-2018-10561** | **An issue was discovered on Dasan GPON home routers...**  | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2018-10561">🔗</a></div> |
-| **CVE-2018-20062** | **An issue was discovered in NoneCms V1.3. thinkphp/library/think/App.php allows remote attackers...**  | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2018-20062">🔗</a></div> |
-| **CVE-2022-44808** | **A command injection vulnerability has been found on D-Link DIR-823G devices with firmware version 1.02B03...**  | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-44808">🔗</a></div> |
-| **CVE-2022-41040** | **Microsoft Exchange Server Elevation of Privilege Vulnerability**  | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-41040">🔗</a></div> |
-| **CVE-2022-41082**| **Microsoft Exchange Server Remote Code Execution Vulnerability**  | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-41082">🔗</a></div> |
+| **CVE-2018-20062** | **An issue was discovered in NoneCms V1.3...**  | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2018-20062">🔗</a></div> |
+| **CVE-2022-44808** | **Vulnerability has been found on D-Link DIR-823G devices...**  | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-44808">🔗</a></div> |
+| **CVE-2022-41040** | **Microsoft Exchange Server Elevation of PV**  | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-41040">🔗</a></div> |
+| **CVE-2022-41082**| **Microsoft Exchange Server RCE Vulnerability**  | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-41082">🔗</a></div> |
 
 Etc.
 
