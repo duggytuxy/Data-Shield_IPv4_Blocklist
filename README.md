@@ -1,3 +1,11 @@
+<p align="center">
+
+
+  ![Open Source](https://img.shields.io/badge/Open%20Source-100%25-brightgreen?style=for-the-badge&logo=opensourceinitiative)
+  ![License CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)
+  ![Made with ❤️](https://img.shields.io/badge/Made%20with-%E2%9D%A4-red?style=for-the-badge)
+  </p>
+
 # About this project 🧪
 
 I started this project in June 2023 when I discovered, through logs on specific instances, a number of triggers coming from IPv4 addresses with strong signals whose behaviors appeared to be aggressive scan ports, RCE attempts linked to highly exploited CVEs.
