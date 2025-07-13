@@ -10,7 +10,7 @@
 
 This project (blocking list) aims to reduce the number of attacks by inserting IP addresses known to be abusive, aggressive and malicious (confidence of abuse 100%).
 
-This blocklist is made up of reliable, high-quality data from decoys placed geolocally in public and private infrastructures such as:
+**This blocklist is made up of reliable, high-quality data from decoys placed geolocally in public and private infrastructures such as :**
 
 > - **Belgium**
 > - **Germany**
