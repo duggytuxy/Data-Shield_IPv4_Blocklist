@@ -12,29 +12,29 @@ This project (blocking list) aims to reduce the number of attacks by inserting I
 
 This blocklist is made up of reliable, high-quality data from decoys placed geolocally in public and private infrastructures such as:
 
-> - **Belgium**
-> - **Germany**
-> - **Austria**
-> - **Netherlands**
-> - **France**
-> - **Spain**
-> - **Portugal**
-> - **Italy**
-> - **Greece**
-> - **Switzerland**
-> - **Lithuania**
+| **Belgium**
+| **Germany**
+| **Austria**
+| **Netherlands**
+| **France**
+| **Spain**
+| **Portugal**
+| **Italy**
+| **Greece**
+| **Switzerland**
+| **Lithuania**
 
 **What's special about these decoys is that they contain several configurations, depending on the IS mapping and the specific needs of the customer or the data I want to collect, so I can correlate them with other CTI platforms**
 
-> - To give you a few figures, I collect (on average) over 1970 IP addresses alone, and after analysis and feedback, once they're really reliable, I add them to this blocking list, which is closely monitored 24/7.
-> - For the deletion part, the policy in force is that I keep these IP addresses for 30 days: if no activity has been reported within this period, these IP addresses are removed from the blocking list to be inserted in a “Whitelist” also monitored.
+| To give you a few figures, I collect (on average) over 1970 IP addresses alone, and after analysis and feedback, once they're really reliable, I add them to this blocking list, which is closely monitored 24/7.
+| For the deletion part, the policy in force is that I keep these IP addresses for 30 days: if no activity has been reported within this period, these IP addresses are removed from the blocking list to be inserted in a “Whitelist” also monitored.
 
 # A few highlights 🧱
 
 - [**Intelligence IPv4 Blocklist**](https://raw.githubusercontent.com/duggytuxy/Intelligence_IPv4_Blocklist/refs/heads/main/agressive_ips_dst_fr_be_blocklist.txt) : target destination 👉 Europa
 
-> - **Some IP addresses have a relatively short lifespan (such as APTs, groups that deploy infostealers and malware, etc.)**.
-> - 👇Here are some of the vectors and types of attack these IP addresses can inflict at any given time👇.
+| **Some IP addresses have a relatively short lifespan (such as APTs, groups that deploy infostealers and malware, etc.)**.
+| 👇Here are some of the vectors and types of attack these IP addresses can inflict at any given time👇.
 
 # CVEs 🔩
 
@@ -58,31 +58,33 @@ Etc.
 
 # TTPs 🐞
 
-> - [**Apache Attack**](https://attack.mitre.org/techniques/T1190/)
-> - [**Nginx Attack**](https://attack.mitre.org/techniques/T1102/)
-> - [**Ransomware Attack**](https://attack.mitre.org/techniques/T1486/)
-> - [**VPN Attack**](https://attack.mitre.org/techniques/T1133/)
-> - [**RDP Attack**](https://attack.mitre.org/techniques/T1021/001/)
-> - [**NTLM Attack**](https://attack.mitre.org/techniques/T1187/)
-> - [**Kerberos Attack**](https://attack.mitre.org/techniques/T1558/003/)
-> - [**Wordpress Enumeration**](https://attack.mitre.org/techniques/T1087/)
-> - [**Botnet Recruitment**](https://attack.mitre.org/techniques/T1583/005/)
-> - [**Brute-force Attack**](https://attack.mitre.org/techniques/T1110/)
-> - [**Brute-Force SSH Login**](https://attack.mitre.org/techniques/T1110/)
-> - [**Directory Busting**](https://attack.mitre.org/techniques/T1083/)
-> - [**Credentials Dumping**](https://attack.mitre.org/techniques/T1003/)
-> - [**Email Attack**](https://attack.mitre.org/techniques/T1114/)
-> - [**SMB Attack**](https://attack.mitre.org/techniques/T1021/002/)
-> - [**FTP Attack**](https://attack.mitre.org/techniques/T1105/)
-> - [**IMAP Attack**](https://attack.mitre.org/techniques/T1071/003/)
-> - [**Information Gathering**](https://attack.mitre.org/techniques/T1591/)
-> - [**Remote Code Execution**](https://attack.mitre.org/techniques/T1210/)
-> - [**Scanning**](https://attack.mitre.org/techniques/T1595/)
-> - [**SSH Attack**](https://attack.mitre.org/techniques/T1021/004/)
-> - [**Tor Exit Node**](https://attack.mitre.org/software/S0183/)
-> - [**Tor Node**](https://attack.mitre.org/software/S0183/)
-> - [**VOIP Attack**](https://attack.mitre.org/techniques/T1616/)
-> - [**Web Traversal**](https://capec.mitre.org/data/definitions/139.html)
+| **TTPs**🥷 | **Average number of IP addresses (per day)**🛜 |
+|---|---|
+| [**Apache Attack**](https://attack.mitre.org/techniques/T1190/) | 1540 |
+| [**Nginx Attack**](https://attack.mitre.org/techniques/T1102/) | 2490 |
+| [**Ransomware Attack**](https://attack.mitre.org/techniques/T1486/) | 7 |
+| [**VPN Attack**](https://attack.mitre.org/techniques/T1133/) | 1670 |
+| [**RDP Attack**](https://attack.mitre.org/techniques/T1021/001/) | 3410 |
+| [**NTLM Attack**](https://attack.mitre.org/techniques/T1187/) | 940 |
+| [**Kerberos Attack**](https://attack.mitre.org/techniques/T1558/003/) | 730 |
+| [**Wordpress Enumeration**](https://attack.mitre.org/techniques/T1087/) | 4180 |
+| [**Botnet Recruitment**](https://attack.mitre.org/techniques/T1583/005/) | NC |
+| [**Brute-force Attack**](https://attack.mitre.org/techniques/T1110/) | 7980 |
+| [**Brute-Force SSH Login**](https://attack.mitre.org/techniques/T1110/) | 6710 |
+| [**Directory Busting**](https://attack.mitre.org/techniques/T1083/) | 3610 |
+| [**Credentials Dumping**](https://attack.mitre.org/techniques/T1003/) | 390 |
+| [**Email Attack**](https://attack.mitre.org/techniques/T1114/) | 1100 |
+| [**SMB Attack**](https://attack.mitre.org/techniques/T1021/002/) | 4190 |
+| [**FTP Attack**](https://attack.mitre.org/techniques/T1105/) | 560 |
+| [**IMAP Attack**](https://attack.mitre.org/techniques/T1071/003/) | 980 |
+| [**Information Gathering**](https://attack.mitre.org/techniques/T1591/) | NC |
+| [**Remote Code Execution**](https://attack.mitre.org/techniques/T1210/) | 650 |
+| [**Scanning**](https://attack.mitre.org/techniques/T1595/) | 10540 |
+| [**SSH Attack**](https://attack.mitre.org/techniques/T1021/004/) | 6710 |
+| [**Tor Exit Node**](https://attack.mitre.org/software/S0183/) | 200 |
+| [**Tor Node**](https://attack.mitre.org/software/S0183/) | 220 |
+| [**VOIP Attack**](https://attack.mitre.org/techniques/T1616/) | 70 |
+| [**Web Traversal**](https://capec.mitre.org/data/definitions/139.html) | 2100 |
 
 Etc.
 
@@ -112,4 +114,4 @@ According to feedback, more than 127 small and medium-sized companies (Acensi as
 | **Ko-Fi** | Join all types of creators getting donations, memberships, etc. from their fans! | [**Thank you !!!**](https://ko-fi.com/laurentmduggytuxy) |
 | **Liberapay** | Liberapay is a recurring donation platform. | [**Thank you !!!**](https://liberapay.com/Duggy_Tuxy) |
 
-Intelligence IPv4 Blocklist © 2023 by Duggy Tuxy is licensed under Creative Commons Attribution-NonCommercial 4.0 International. To view a copy of this license, visit https://creativecommons.org/licenses/by-nc/4.0/
+Intelligence IPv4 Blocklist © 2023 by Duggy Tuxy is licensed under Creative Commons Attribution-NonCommercial 4.0 International. To view a copy of this license, visit [**the official website**](https://creativecommons.org/licenses/by-nc/4.0/)
