@@ -35,7 +35,7 @@ This project (blocking list) aims to reduce the number of attacks by inserting I
 > - **Reduce the possibility of mapping your exposed assets (public IPs)**
 > - **Slightly reduce the attack surface (e.g. Recon)**
 
-*But under no circumstances will it replace all the best practices in your security posture.*
+🫸***But under no circumstances will it replace all the best practices in your security posture.***
 
 # A few highlights 🧱
 
