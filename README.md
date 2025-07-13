@@ -24,19 +24,19 @@ And since then, this list has evolved to include data from 16 probes (decoy) dep
 
 | **CVE**🐞 | **Description**📜 | **Link**🌍 |
 |---|---|---|
-| **CVE-2020-25078** | An issue was discovered on D-Link DCS-2530L... | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2020-25078">🔗</a></div> |
-| **CVE-2021-42013** | It was found that the fix for CVE-2021-41773... | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2021-42013">🔗</a></div> |
-| **CVE-2021-41773** | A flaw was found in a change made to path... | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2021-41773">🔗</a></div> |
-| **CVE-2024-3400** | PAN-OS : A command injection as a result... | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2024-3400">🔗</a></div> |
-| **CVE-2017-16894** | In Laravel framework through 5.5.21... | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2017-16894">🔗</a></div> |
-| **CVE-2024-3721** | A vulnerability was found in TBK DVR-4104 and DVR-4216... | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2024-3721">🔗</a></div> |
-| **CVE-2022-30023** | Tenda ONT GPON AC1200 Dual band WiFi HG9 v1.0.1... | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-30023">🔗</a></div> |
-| **CVE-2017-9841** | Util/PHP/eval-stdin.php in PHPUnit before 4.8.28... | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2017-9841">🔗</a></div> |
-| **CVE-2018-10561** | An issue was discovered on Dasan GPON home routers... | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2018-10561">🔗</a></div> |
-| **CVE-2018-20062** | An issue was discovered in NoneCms V1.3... | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2018-20062">🔗</a></div> |
-| **CVE-2022-44808** | Vulnerability has been found on D-Link DIR-823G devices... | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-44808">🔗</a></div> |
-| **CVE-2022-41040** | Microsoft Exchange Server Elevation of PV** | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-41040">🔗</a></div> |
-| **CVE-2022-41082**| Microsoft Exchange Server RCE Vulnerability** | <div align="center"><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-41082">🔗</a></div> |
+| **CVE-2020-25078** | An issue was discovered on D-Link DCS-2530L... | [**NIST Website**](https://nvd.nist.gov/vuln/detail/CVE-2020-25078) |
+| **CVE-2021-42013** | It was found that the fix for CVE-2021-41773... | [**NIST Website**](https://nvd.nist.gov/vuln/detail/CVE-2021-42013) |
+| **CVE-2021-41773** | A flaw was found in a change made to path... | [**NIST Website**](https://nvd.nist.gov/vuln/detail/CVE-2021-41773) |
+| **CVE-2024-3400** | PAN-OS : A command injection as a result... | [**NIST Website**](https://nvd.nist.gov/vuln/detail/CVE-2024-3400) |
+| **CVE-2017-16894** | In Laravel framework through 5.5.21... | [**NIST Website**](https://nvd.nist.gov/vuln/detail/CVE-2017-16894) |
+| **CVE-2024-3721** | A vulnerability was found in TBK DVR-4104 and DVR-4216... | [**NIST Website**](https://nvd.nist.gov/vuln/detail/CVE-2024-3721) |
+| **CVE-2022-30023** | Tenda ONT GPON AC1200 Dual band WiFi HG9 v1.0.1... | [**NIST Website**](https://nvd.nist.gov/vuln/detail/CVE-2022-30023) |
+| **CVE-2017-9841** | Util/PHP/eval-stdin.php in PHPUnit before 4.8.28... | [**NIST Website**](https://nvd.nist.gov/vuln/detail/CVE-2017-9841) |
+| **CVE-2018-10561** | An issue was discovered on Dasan GPON home routers... | [**NIST Website**](https://nvd.nist.gov/vuln/detail/CVE-2018-10561) |
+| **CVE-2018-20062** | An issue was discovered in NoneCms V1.3... | [**NIST Website**](https://nvd.nist.gov/vuln/detail/CVE-2018-20062) |
+| **CVE-2022-44808** | Vulnerability has been found on D-Link DIR-823G devices... | [**NIST Website**](https://nvd.nist.gov/vuln/detail/CVE-2022-44808) |
+| **CVE-2022-41040** | Microsoft Exchange Server Elevation of PV** | [**NIST Website**](https://nvd.nist.gov/vuln/detail/CVE-2022-41040) |
+| **CVE-2022-41082**| Microsoft Exchange Server RCE Vulnerability** | [**NIST Website**](https://nvd.nist.gov/vuln/detail/CVE-2022-41082) |
 
 Etc.
 
@@ -80,10 +80,10 @@ To add my blocklist to the Fortinet, CheckPoint, Palo Alto and OPNsense FWs, her
 
 | **Vendor**🧱 | **Description**📜 | **Link**🌍 |
 |---|---|---|
-| **Fortinet** | External blocklist policy | <div align="center"><a href="https://docs.fortinet.com/document/fortigate/7.2.0/administration-guide/891236">🔗</a></div> |
-| **Checkpoint** | IP Block Feature | <div align="center"><a href="https://sc1.checkpoint.com/documents/R80.20SP/WebAdminGuides/EN/CP_R80.20SP_Maestro_AdminGuide/Topics-Maestro-AG/IP-Block-Feature.htm">🔗</a></div> |
-| **Palo Alto** | Configure the Firewall to Access an External Dynamic List | <div align="center"><a href="https://docs.paloaltonetworks.com/pan-os/10-2/pan-os-admin/policy/use-an-external-dynamic-list-in-policy/configure-the-firewall-to-access-an-external-dynamic-list">🔗</a></div> |
-| **OPNsense** | OPNsense : Block malicious IPs | <div align="center"><a href="https://slash-root.fr/opnsense-block-malicious-ips/">🔗</a></div> |
+| **Fortinet** | External blocklist policy | [**Fortinet Website**](https://docs.fortinet.com/document/fortigate/7.2.0/administration-guide/891236) |
+| **Checkpoint** | IP Block Feature | [**Checkpoint Website**](https://sc1.checkpoint.com/documents/R80.20SP/WebAdminGuides/EN/CP_R80.20SP_Maestro_AdminGuide/Topics-Maestro-AG/IP-Block-Feature.htm) |
+| **Palo Alto** | Configure the Firewall to Access an External Dynamic List | [**Palo Alto Website**](https://docs.paloaltonetworks.com/pan-os/10-2/pan-os-admin/policy/use-an-external-dynamic-list-in-policy/configure-the-firewall-to-access-an-external-dynamic-list) |
+| **OPNsense** | OPNsense : Block malicious IPs | [**Slash-Root Website**](https://slash-root.fr/opnsense-block-malicious-ips/) |
 
 # A few figures 🎖️
 
@@ -93,7 +93,7 @@ According to feedback, more than 127 small and medium-sized companies (Acensi as
 
 | **Site**📍 | **Description**📜 | **Link**🌍 |
 |---|---|---|
-| **Ko-Fi** | Join all types of creators getting donations, memberships, etc. from their fans! | <div align="center"><a href="https://ko-fi.com/laurentmduggytuxy">🔗</a></div> |
-| **Liberapay** | Liberapay is a recurring donation platform. | <div align="center"><a href="https://liberapay.com/Duggy_Tuxy">🔗</a></div> |
+| **Ko-Fi** | Join all types of creators getting donations, memberships, etc. from their fans! | [**Thank you !!!**](https://ko-fi.com/laurentmduggytuxy) |
+| **Liberapay** | Liberapay is a recurring donation platform. | [**Thank you !!!**](https://liberapay.com/Duggy_Tuxy) |
 
 Intelligence IPv4 Blocklist © 2023 by Duggy Tuxy is licensed under Creative Commons Attribution-NonCommercial 4.0 International. To view a copy of this license, visit https://creativecommons.org/licenses/by-nc/4.0/
