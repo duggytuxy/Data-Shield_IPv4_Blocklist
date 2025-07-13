@@ -33,8 +33,8 @@ This blocklist is made up of reliable, high-quality data from decoys placed geol
 
 - [**Intelligence IPv4 Blocklist**](https://raw.githubusercontent.com/duggytuxy/Intelligence_IPv4_Blocklist/refs/heads/main/agressive_ips_dst_fr_be_blocklist.txt) : target destination 👉 Europa
 
-| **Some IP addresses have a relatively short lifespan (such as APTs, groups that deploy infostealers and malware, etc.)**.
-| 👇Here are some of the vectors and types of attack these IP addresses can inflict at any given time👇.
+> - **Some IP addresses have a relatively short lifespan (such as APTs, groups that deploy infostealers and malware, etc.)**.
+> - 👇Here are some of the vectors and types of attack these IP addresses can inflict at any given time👇.
 
 # CVEs 🔩
 
@@ -88,7 +88,7 @@ Etc.
 
 Etc.
 
-PS: this list will be updated every 4/24h
+**PS: this list will be updated every 4/24h**
 
 # Tips 💡
 
