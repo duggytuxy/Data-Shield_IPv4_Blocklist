@@ -8,15 +8,28 @@
 
 # About this project 🧪
 
-I started this project in June 2023 when I discovered, through logs on specific instances, a number of triggers coming from IPv4 addresses with strong signals whose behaviors appeared to be aggressive scan ports, RCE attempts linked to highly exploited CVEs.
+This project (blocking list) aims to reduce the number of attacks by inserting IP addresses known to be abusive, aggressive and malicious (confidence of abuse 100%).
 
-I started retrieving them, analyzing them and then storing them in a txt list (I didn't mess around apparently🤣).
+This blocklist is made up of reliable, high-quality data from decoys placed geolocally in public and private infrastructures such as:
 
-And since then, this list has evolved to include data from 16 probes (decoy) deployed in strategic areas of the French and Belgian network.
+> - **Belgium**
+> - **Germany**
+> - **Austria**
+> - **Netherlands**
+> - **France**
+> - **Spain**
+> - **Portugal**
+> - **Italy**
+> - **Greece**
+> - **Switzerland**
+> - **Lithuania**
 
-**I work hard to ensure that you have high-quality data (IPv4) (the most aggressive, malicious and most up-to-date).**
+**What's special about these decoys is that they contain several configurations, depending on the IS mapping and the specific needs of the customer or the data I want to collect, so I can correlate them with other CTI platforms**
 
-# Intelligence IPv4 Blocklist 🧱
+> - To give you a few figures, I collect (on average) over 1970 IP addresses alone, and after analysis and feedback, once they're really reliable, I add them to this blocking list, which is closely monitored 24/7.
+> - For the deletion part, the policy in force is that I keep these IP addresses for 30 days: if no activity has been reported within this period, these IP addresses are removed from the blocking list to be inserted in a “Whitelist” also monitored.
+
+# A few highlights 🧱
 
 - [**Intelligence IPv4 Blocklist**](https://raw.githubusercontent.com/duggytuxy/Intelligence_IPv4_Blocklist/refs/heads/main/agressive_ips_dst_fr_be_blocklist.txt) : target destination 👉 Europa
 
