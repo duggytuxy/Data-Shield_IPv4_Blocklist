@@ -58,33 +58,33 @@ Etc.
 
 # TTPs 🐞
 
-| **TTPs**🥷 | **Average number of IP addresses (per day)**🛜 |
-|---|---|
-| [**Apache Attack**](https://attack.mitre.org/techniques/T1190/) | 1540 |
-| [**Nginx Attack**](https://attack.mitre.org/techniques/T1102/) | 2490 |
-| [**Ransomware Attack**](https://attack.mitre.org/techniques/T1486/) | 7 |
-| [**VPN Attack**](https://attack.mitre.org/techniques/T1133/) | 1670 |
-| [**RDP Attack**](https://attack.mitre.org/techniques/T1021/001/) | 3410 |
-| [**NTLM Attack**](https://attack.mitre.org/techniques/T1187/) | 940 |
-| [**Kerberos Attack**](https://attack.mitre.org/techniques/T1558/003/) | 730 |
-| [**Wordpress Enumeration**](https://attack.mitre.org/techniques/T1087/) | 4180 |
-| [**Botnet Recruitment**](https://attack.mitre.org/techniques/T1583/005/) | NC |
-| [**Brute-force Attack**](https://attack.mitre.org/techniques/T1110/) | 7980 |
-| [**Brute-Force SSH Login**](https://attack.mitre.org/techniques/T1110/) | 6710 |
-| [**Directory Busting**](https://attack.mitre.org/techniques/T1083/) | 3610 |
-| [**Credentials Dumping**](https://attack.mitre.org/techniques/T1003/) | 390 |
-| [**Email Attack**](https://attack.mitre.org/techniques/T1114/) | 1100 |
-| [**SMB Attack**](https://attack.mitre.org/techniques/T1021/002/) | 4190 |
-| [**FTP Attack**](https://attack.mitre.org/techniques/T1105/) | 560 |
-| [**IMAP Attack**](https://attack.mitre.org/techniques/T1071/003/) | 980 |
-| [**Information Gathering**](https://attack.mitre.org/techniques/T1591/) | NC |
-| [**Remote Code Execution**](https://attack.mitre.org/techniques/T1210/) | 650 |
-| [**Scanning**](https://attack.mitre.org/techniques/T1595/) | 10540 |
-| [**SSH Attack**](https://attack.mitre.org/techniques/T1021/004/) | 6710 |
-| [**Tor Exit Node**](https://attack.mitre.org/software/S0183/) | 200 |
-| [**Tor Node**](https://attack.mitre.org/software/S0183/) | 220 |
-| [**VOIP Attack**](https://attack.mitre.org/techniques/T1616/) | 70 |
-| [**Web Traversal**](https://capec.mitre.org/data/definitions/139.html) | 2100 |
+| **TTPs**🥷 | **Avg IP addr per day**🛜 | **A few countries of origin**🌍 |
+|---|---|---|
+| [**Apache Attack**](https://attack.mitre.org/techniques/T1190/) | 1540 | **Belgium, UK, Poland, Russia** |
+| [**Nginx Attack**](https://attack.mitre.org/techniques/T1102/) | 2490 | **Brazil, USA, France, China** |
+| [**Ransomware Attack**](https://attack.mitre.org/techniques/T1486/) | 7 | **Brazil, Lithuania, Russia** |
+| [**VPN Attack**](https://attack.mitre.org/techniques/T1133/) | 1670 | **Belgium, UK, Poland, Russia** |
+| [**RDP Attack**](https://attack.mitre.org/techniques/T1021/001/) | 3410 | **USA, Brazil, Peru, Morocco** |
+| [**NTLM Attack**](https://attack.mitre.org/techniques/T1187/) | 940 | **China, UK, Poland, Belgium** |
+| [**Kerberos Attack**](https://attack.mitre.org/techniques/T1558/003/) | 730 | **Venezuela, Brazil, Poland, Algeria** |
+| [**Wordpress Enumeration**](https://attack.mitre.org/techniques/T1087/) | 4180 | **USA, China, Russia, UK** |
+| [**Botnet Recruitment**](https://attack.mitre.org/techniques/T1583/005/) | NC | **USA, China, Brazil, Chile** |
+| [**Brute-force Attack**](https://attack.mitre.org/techniques/T1110/) | 7980 | **USA, China, UK, France** |
+| [**Brute-Force SSH Login**](https://attack.mitre.org/techniques/T1110/) | 6710 | **USA, China, Poland, Netherlands** |
+| [**Directory Busting**](https://attack.mitre.org/techniques/T1083/) | 3610 | **USA, China, Italy, India** |
+| [**Credentials Dumping**](https://attack.mitre.org/techniques/T1003/) | 390 | **India, Japan, UK, Netherlands** |
+| [**Email Attack**](https://attack.mitre.org/techniques/T1114/) | 1100 | **USA, China, India, Spain** |
+| [**SMB Attack**](https://attack.mitre.org/techniques/T1021/002/) | 4190 | **USA, China, Poland, France** |
+| [**FTP Attack**](https://attack.mitre.org/techniques/T1105/) | 560 | **UK, France, Poland, Vietnam** |
+| [**IMAP Attack**](https://attack.mitre.org/techniques/T1071/003/) | 980 | **USA, China, Poland, France** |
+| [**Information Gathering**](https://attack.mitre.org/techniques/T1591/) | NC | **USA, China, India, Lithuania** |
+| [**Remote Code Execution**](https://attack.mitre.org/techniques/T1210/) | 650 | **USA, India, Pakistan, Iran** |
+| [**Scanning**](https://attack.mitre.org/techniques/T1595/) | 10540 | **USA, China, India, Indonesia** |
+| [**SSH Attack**](https://attack.mitre.org/techniques/T1021/004/) | 6710 | **USA, China, India, France** |
+| [**Tor Exit Node**](https://attack.mitre.org/software/S0183/) | 200 | **Switzerland, France, Germany** |
+| [**Tor Node**](https://attack.mitre.org/software/S0183/) | 220 | **Switzerland, France, Germany** |
+| [**VOIP Attack**](https://attack.mitre.org/techniques/T1616/) | 70 | **Belgium, India, Vietnam, Indonesia** |
+| [**Web Traversal**](https://capec.mitre.org/data/definitions/139.html) | 2100 | **USA, China, Lithuania, France** |
 
 Etc.
 
