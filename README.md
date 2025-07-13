@@ -12,22 +12,22 @@ This project (blocking list) aims to reduce the number of attacks by inserting I
 
 This blocklist is made up of reliable, high-quality data from decoys placed geolocally in public and private infrastructures such as:
 
-| **Belgium**
-| **Germany**
-| **Austria**
-| **Netherlands**
-| **France**
-| **Spain**
-| **Portugal**
-| **Italy**
-| **Greece**
-| **Switzerland**
-| **Lithuania**
+> - **Belgium**
+> - **Germany**
+> - **Austria**
+> - **Netherlands**
+> - **France**
+> - **Spain**
+> - **Portugal**
+> - **Italy**
+> - **Greece**
+> - **Switzerland**
+> - **Lithuania**
 
 **What's special about these decoys is that they contain several configurations, depending on the IS mapping and the specific needs of the customer or the data I want to collect, so I can correlate them with other CTI platforms**
 
-| To give you a few figures, I collect (on average) over 1970 IP addresses alone, and after analysis and feedback, once they're really reliable, I add them to this blocking list, which is closely monitored 24/7.
-| For the deletion part, the policy in force is that I keep these IP addresses for 30 days: if no activity has been reported within this period, these IP addresses are removed from the blocking list to be inserted in a “Whitelist” also monitored.
+> - To give you a few figures, I collect (on average) over 1970 IP addresses alone, and after analysis and feedback, once they're really reliable, I add them to this blocking list, which is closely monitored 24/7.
+> - For the deletion part, the policy in force is that I keep these IP addresses for 30 days: if no activity has been reported within this period, these IP addresses are removed from the blocking list to be inserted in a “Whitelist” also monitored.
 
 # A few highlights 🧱
 
@@ -92,9 +92,8 @@ PS: this list will be updated every 4/24h
 
 # Tips 💡
 
-✋You can easily integrate this list into your FWs under the Inbound/Outbound policy rules, Threat feeds.
-
-To add my blocklist to the Fortinet, CheckPoint, Palo Alto and OPNsense FWs, here are some interesting links
+> - ✋You can easily integrate this list into your FWs under the Inbound/Outbound policy rules, Threat feeds.
+> - To add my blocklist to the Fortinet, CheckPoint, Palo Alto and OPNsense FWs, here are some interesting links
 
 | **Vendor**🧱 | **Description**📜 | **Link**🌍 |
 |---|---|---|
@@ -105,7 +104,7 @@ To add my blocklist to the Fortinet, CheckPoint, Palo Alto and OPNsense FWs, her
 
 # A few figures 🎖️
 
-According to feedback, more than 127 small and medium-sized companies (Acensi as well) have already implemented this list in their FW Fortinet, Palo Alto, Checkpoint, etc.
+> - According to feedback, more than 127 small and medium-sized companies (Acensi as well) have already implemented this list in their FW Fortinet, Palo Alto, Checkpoint, etc.
 
 # Support my work with a donation 🙏
 
