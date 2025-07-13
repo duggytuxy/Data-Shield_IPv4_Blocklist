@@ -29,6 +29,14 @@ This project (blocking list) aims to reduce the number of attacks by inserting I
 > - To give you a few figures, I collect (on average) over 1970 IP addresses alone, and after analysis and feedback, once they're really reliable, I add them to this blocking list, which is closely monitored 24/7.
 > - For the deletion part, the policy in force is that I keep these IP addresses for 30 days: if no activity has been reported within this period, these IP addresses are removed from the blocking list to be inserted in a “Whitelist” also monitored.
 
+**PS: I want to make it clear that this block list is an additional layer of protection to :**
+
+> - **Reduce the number of attacks**
+> - **Reduce the possibility of mapping your exposed assets (public IPs)**
+> - **Slightly reduce the attack surface (e.g. Recon)**
+
+*But under no circumstances will it replace all the best practices in your security posture.*
+
 # A few highlights 🧱
 
 - [**Intelligence IPv4 Blocklist**](https://raw.githubusercontent.com/duggytuxy/Intelligence_IPv4_Blocklist/refs/heads/main/agressive_ips_dst_fr_be_blocklist.txt) : target destination 👉 Europa
@@ -104,7 +112,7 @@ Etc.
 
 # A few figures 🎖️
 
-> - According to feedback, more than 127 small and medium-sized companies (Acensi as well) have already implemented this list in their FW Fortinet, Palo Alto, Checkpoint, etc.
+> According to feedback, more than 127 small and medium-sized companies (Acensi as well) have already implemented this list in their FW Fortinet, Palo Alto, Checkpoint, etc.
 
 # Support my work with a donation 🙏
 
