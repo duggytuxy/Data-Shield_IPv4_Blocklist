@@ -21,7 +21,6 @@ This project (blocking list) aims to reduce the number of attacks by inserting I
 > - **Portugal**
 > - **Italy**
 > - **Greece**
-> - **Switzerland**
 > - **Lithuania**
 
 **What's special about these decoys is that they contain several configurations, depending on the IS mapping and the specific needs of the customer or the data I want to collect, so I can correlate them with other CTI platforms**
