@@ -15,14 +15,14 @@ This project (blocking list) aims to reduce the number of attacks by inserting I
 | **Country**🌍 | **OS**🖥️ | **Technologies**🎛️ | Online🛜 |
 |---|---|---|---|
 | **Belgium** | GNU/Linux | SMB, Apache, Wordpress, VPN-SSL | **On** |
-| **Germany** | GNU/Linux | VPN-SSL, Nginx, Squid, SMB | **In maintenance** |
+| **Germany** | GNU/Linux | VPN-SSL, Nginx, Squid, SMB | **On** |
 | **Austria** | WinSrv 2022 | Apache, IIS, SMB, DC | **On** |
-| **Netherlands** | WinSrv 2022 | Apache, SMB, DC | **On** |
+| **Netherlands** | WinSrv 2022 | Apache, SMB, DC | **Maintenance** |
 | **France** | GNU/Linux | VPN-SSL, SMB, CVEs, Wordpress | **On** |
-| **Spain** | WinSrv 2025 | IIS, Apache, SMB, DC | **In maintenance** |
+| **Spain** | WinSrv 2025 | IIS, Apache, SMB, DC | **On** |
 | **Portugal** | GNU/Linux | DNS, Squid, Wireguard | **On** |
 | **Italy** | GNU/Linux | Apache, Nginx, Wordpress, Webmin | **On** |
-| **Greece** | GNU/Linux | VPN-SSL, CVEs | **In maintenance** |
+| **Greece** | GNU/Linux | VPN-SSL, CVEs | **On** |
 | **Lithuania** | GNU/Linux | CVEs, SMB, Squid, OpenVPN | **On** |
 
 <p align="center">
