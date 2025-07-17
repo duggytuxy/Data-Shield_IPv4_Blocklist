@@ -17,7 +17,7 @@ This project (blocking list) aims to reduce the number of attacks by inserting I
 | **Belgium** | GNU/Linux | SMB, Apache, Wordpress, VPN-SSL | **On** |
 | **Germany** | GNU/Linux | VPN-SSL, Nginx, Squid, SMB | **On** |
 | **Austria** | WinSrv 2022 | Apache, IIS, SMB, DC | **On** |
-| **Netherlands** | WinSrv 2022 | Apache, SMB, DC | **Maintenance** |
+| **Netherlands** | WinSrv 2022 | Apache, SMB, DC | **On** |
 | **France** | GNU/Linux | VPN-SSL, SMB, CVEs, Wordpress | **On** |
 | **Spain** | WinSrv 2025 | IIS, Apache, SMB, DC | **On** |
 | **Portugal** | GNU/Linux | DNS, Squid, Wireguard | **On** |
