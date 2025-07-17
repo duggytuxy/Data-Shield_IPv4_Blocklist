@@ -33,7 +33,7 @@ This project (blocking list) aims to reduce the number of attacks by inserting I
 
 **What's special about these decoys is that they contain several configurations, depending on the IS mapping and the specific needs of the customer or the data I want to collect, so I can correlate them with other CTI platforms**
 
-> - To give you a few figures, I collect (on average) over 1970 IP addresses alone, and after analysis and feedback, once they're really reliable, I add them to this blocking list, which is closely monitored 24/7.
+> - To give you a few figures, I collect (on average) over 12790 IP addresses unique per day, and after analysis and feedback, once they're really reliable, I add them to this blocking list, which is closely monitored 24/7.
 > - For the deletion part, the policy in force is that I keep these IP addresses for 30 days: if no activity has been reported within this period, these IP addresses are removed from the blocking list to be inserted in a “Whitelist” also monitored.
 
 **PS: I want to make it clear that this block list is an additional layer of protection to :**
@@ -119,7 +119,7 @@ Etc.
 
 # A few figures 🎖️
 
-> According to feedback, more than 127 small and medium-sized companies (Acensi as well) have already implemented this list in their FW Fortinet, Palo Alto, Checkpoint, etc.
+> According to feedback, more than 70 small and medium-sized companies (Acensi as well) have already implemented this list in their FW Fortinet, Palo Alto, Checkpoint, etc.
 
 # Support my work with a donation 🙏
 
