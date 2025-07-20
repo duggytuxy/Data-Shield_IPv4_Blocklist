@@ -3,7 +3,7 @@
 
   ![Open Source](https://img.shields.io/badge/Open%20Source-100%25-brightgreen?style=for-the-badge&logo=opensourceinitiative)
   ![Made with ❤️](https://img.shields.io/badge/Made%20with-%E2%9D%A4-red?style=for-the-badge)
-  ![No False Positive](https://img.shields.io/badge/No_False_Positive-100%25-brightgreen?style=for-the-badge) 
+  ![No False Positive](https://img.shields.io/badge/No_False_Positive-100%25-green?style=for-the-badge) 
   ![Last update](https://img.shields.io/github/last-commit/duggytuxy/Intelligence_IPv4_Blocklist?label=Last%20update&color=informational&style=for-the-badge&logo=github)
   </p>
 
