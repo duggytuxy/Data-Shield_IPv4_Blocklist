@@ -128,4 +128,4 @@ Etc.
 | **Ko-Fi** | Join all types of creators getting donations, memberships, etc. from their fans! | [**Thank you !!!**](https://ko-fi.com/laurentmduggytuxy) |
 | **Liberapay** | Liberapay is a recurring donation platform. | [**Thank you !!!**](https://liberapay.com/Duggy_Tuxy) |
 
-Intelligence IPv4 Blocklist © 2023 by Duggy Tuxy is licensed under Creative Commons Attribution-NonCommercial 4.0 International. To view a copy of this license, visit [**the official website**](https://creativecommons.org/licenses/by-nc/4.0/)
+Intelligence IPv4 Blocklist © 2023 by Duggy Tuxy is licensed [**License File**](/LICENSE)
