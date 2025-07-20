@@ -8,7 +8,6 @@
   ![pfSense](https://img.shields.io/badge/pfSense-100%25-%23212121?style=for-the-badge&logo=pfsense)
   ![OPNsense](https://img.shields.io/badge/OPNsense-100%25-%23E44A20?style=for-the-badge&logo=opnsense)
   ![No False Positive](https://img.shields.io/badge/No_False_Positive-100%25-green?style=for-the-badge&logo=cachet)
-  ![Github Sponsors](https://img.shields.io/badge/Github_Sponsors-100%25-%23EA4AAA?style=for-the-badge&logo=githubsponsors)
   ![Last update](https://img.shields.io/github/last-commit/duggytuxy/Intelligence_IPv4_Blocklist?label=Last%20update&color=informational&style=for-the-badge&logo=github)
   </p>
 
