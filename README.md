@@ -3,6 +3,10 @@
 
   ![Open Source](https://img.shields.io/badge/Open%20Source-100%25-brightgreen?style=for-the-badge&logo=opensourceinitiative)
   ![Made with ❤️](https://img.shields.io/badge/Made%20with-%E2%9D%A4-red?style=for-the-badge)
+  ![Fortinet](https://img.shields.io/badge/Fortinet-100%25-%23EE3124?style=for-the-badge)
+  ![Palo Alto](https://img.shields.io/badge/Palo_Alto-100%25-%23%23F04E23?style=for-the-badge)
+  ![pfSense](https://img.shields.io/badge/pfSense-100%25-%23212121?style=for-the-badge)
+  ![OPNsense](https://img.shields.io/badge/OPNsense-100%25-%23E44A20?style=for-the-badge)
   ![No False Positive](https://img.shields.io/badge/No_False_Positive-100%25-green?style=for-the-badge) 
   ![Last update](https://img.shields.io/github/last-commit/duggytuxy/Intelligence_IPv4_Blocklist?label=Last%20update&color=informational&style=for-the-badge&logo=github)
   </p>
