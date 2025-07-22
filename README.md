@@ -1,4 +1,4 @@
-# Data-Shield(EU) IPv4 Blocklist - Block malicious IP addresses
+# Data-Shield IPv4 Blocklist - Block malicious IP addresses
 
 <p align="center">
 
@@ -47,7 +47,7 @@ This project (blocking list) aims to reduce the number of attacks by inserting I
 
 # A few highlights 🧱
 
-- [**Data-Shield(EU) IPv4 Blocklist**](https://raw.githubusercontent.com/duggytuxy/Intelligence_IPv4_Blocklist/refs/heads/main/agressive_ips_dst_fr_be_blocklist.txt) : target destination 👉 Europa
+- [**Data-Shield IPv4 Blocklist**](https://raw.githubusercontent.com/duggytuxy/Intelligence_IPv4_Blocklist/refs/heads/main/agressive_ips_dst_fr_be_blocklist.txt) : target destination 👉 Europa
 
 > - **Some IP addresses have a relatively short lifespan (such as APTs, groups that deploy infostealers and malware, etc.)**.
 > - 👇Here are some of the vectors and types of attack these IP addresses can inflict at any given time👇.
@@ -129,4 +129,4 @@ Etc.
 | **Ko-Fi** | Join all types of creators getting donations, memberships, etc. from their fans! | [**Thank you !!!**](https://ko-fi.com/laurentmduggytuxy) |
 | **Liberapay** | Liberapay is a recurring donation platform. | [**Thank you !!!**](https://liberapay.com/Duggy_Tuxy) |
 
-Data-Shield(EU) IPv4 Blocklist © 2023 by Duggy Tuxy is licensed [**License File**](/LICENSE)
+Data-Shield IPv4 Blocklist © 2023 by Duggy Tuxy is licensed [**License File**](/LICENSE)
