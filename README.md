@@ -47,7 +47,7 @@ This project (blocking list) aims to reduce the number of attacks by inserting I
 
 # A few highlights 🧱
 
-- [**Data-Shield IPv4 Blocklist**](https://raw.githubusercontent.com/duggytuxy/Intelligence_IPv4_Blocklist/refs/heads/main/agressive_ips_dst_fr_be_blocklist.txt) : target destination 👉 Europa
+- [**Data-Shield IPv4 Blocklist**](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_data-shield_ipv4_blocklist.txt) : target destination 👉 Europa
 
 > - **Some IP addresses have a relatively short lifespan (such as APTs, groups that deploy infostealers and malware, etc.)**.
 > - 👇Here are some of the vectors and types of attack these IP addresses can inflict at any given time👇.
