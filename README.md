@@ -32,12 +32,6 @@ This project (blocking list) aims to reduce the number of attacks by inserting I
 | **Greece** | GNU/Linux | VPN-SSL, CVEs | **On** |
 | **Lithuania** | GNU/Linux | CVEs, SMB, Squid, OpenVPN | **On** |
 
-<p align="center">
-
-
-  ![Europa map](/images/europa.png)
-  </p>
-
 **What's special about these decoys is that they contain several configurations, depending on the IS mapping and the specific needs of the customer or the data I want to collect, so I can correlate them with other CTI platforms**
 
 > - To give you a few figures, I collect (on average) over 7195 IP addresses unique per day, and after analysis and feedback, once they're really reliable, I add them to this blocking list, which is closely monitored 24/7.
