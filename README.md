@@ -108,7 +108,7 @@ Etc.
 
 # Tips 💡
 
-> - You can easily integrate this list into your FWs under the Inbound/Outbound policy rules, Threat feeds.
+> - You can easily integrate this list into your FWs under the Inbound (e.g. Wan to Lan) policy rules, Threat feeds.
 > - To add my blocklist to the Fortinet, CheckPoint, Palo Alto and OPNsense FWs, here are some interesting links
 
 | **Vendor**🧱 | **Description**📜 | **Link**🌍 |
