@@ -97,6 +97,8 @@ Etc.
 | [**Remote Code Execution**](https://attack.mitre.org/techniques/T1210/) | **USA, India, Pakistan, Iran** | NC |
 | [**Scanning**](https://attack.mitre.org/techniques/T1595/) | **USA, China, India, Indonesia** | NC |
 | [**SSH Attack**](https://attack.mitre.org/techniques/T1021/004/) | **USA, China, India, France** | NC |
+| [**OT/ICS Attack**](https://attack.mitre.org/techniques/ics/) | **China, India, Vietnam, USA** | NC |
+| [**IoT Attack**](https://attack.mitre.org/campaigns/C0053/) | **China, Japan, Vietnam, UK** | NC |
 | [**Tor Exit Node**](https://attack.mitre.org/software/S0183/) | **Switzerland, France, Germany** | NC |
 | [**Tor Node**](https://attack.mitre.org/software/S0183/) | **Switzerland, France, Germany** | NC |
 | [**VOIP Attack**](https://attack.mitre.org/techniques/T1616/) | **Belgium, India, Vietnam, Indonesia** | NC |
