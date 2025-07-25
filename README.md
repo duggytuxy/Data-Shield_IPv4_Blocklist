@@ -19,7 +19,7 @@ This project (blocking list) aims to reduce the number of attacks by inserting I
 
 **This blocklist is made up of reliable, high-quality data from decoys placed geolocally in public and private infrastructures such as :**
 
-| **Country**🌍 | **OS**🖥️ | **Technologies**🎛️ | Online🛜 |
+| **Country**🌍 | **OS**🖥️ | **Technologies/Services**🎛️ | Online🛜 |
 |---|---|---|---|
 | **Belgium** | GNU/Linux | SMB, Apache, Wordpress, VPN-SSL | **On** |
 | **Germany** | GNU/Linux | VPN-SSL, Nginx, Squid, SMB | **On** |
