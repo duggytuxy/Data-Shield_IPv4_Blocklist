@@ -57,19 +57,19 @@ This project (blocking list) aims to reduce the number of attacks by inserting I
 
 | **CVE**🐞 | **Description**📜 | **Link**🌍 |
 |---|---|---|
-| **CVE-2020-25078** | An issue was discovered on D-Link DCS-2530L... | [**NIST Website**](https://nvd.nist.gov/vuln/detail/CVE-2020-25078) |
-| **CVE-2021-42013** | It was found that the fix for CVE-2021-41773... | [**NIST Website**](https://nvd.nist.gov/vuln/detail/CVE-2021-42013) |
-| **CVE-2021-41773** | A flaw was found in a change made to path... | [**NIST Website**](https://nvd.nist.gov/vuln/detail/CVE-2021-41773) |
-| **CVE-2024-3400** | PAN-OS : A command injection as a result... | [**NIST Website**](https://nvd.nist.gov/vuln/detail/CVE-2024-3400) |
-| **CVE-2017-16894** | In Laravel framework through 5.5.21... | [**NIST Website**](https://nvd.nist.gov/vuln/detail/CVE-2017-16894) |
-| **CVE-2024-3721** | A vulnerability was found in TBK DVR-4104 and DVR-4216... | [**NIST Website**](https://nvd.nist.gov/vuln/detail/CVE-2024-3721) |
-| **CVE-2022-30023** | Tenda ONT GPON AC1200 Dual band WiFi HG9 v1.0.1... | [**NIST Website**](https://nvd.nist.gov/vuln/detail/CVE-2022-30023) |
-| **CVE-2017-9841** | Util/PHP/eval-stdin.php in PHPUnit before 4.8.28... | [**NIST Website**](https://nvd.nist.gov/vuln/detail/CVE-2017-9841) |
-| **CVE-2018-10561** | An issue was discovered on Dasan GPON home routers... | [**NIST Website**](https://nvd.nist.gov/vuln/detail/CVE-2018-10561) |
-| **CVE-2018-20062** | An issue was discovered in NoneCms V1.3... | [**NIST Website**](https://nvd.nist.gov/vuln/detail/CVE-2018-20062) |
-| **CVE-2022-44808** | Vulnerability has been found on D-Link DIR-823G devices... | [**NIST Website**](https://nvd.nist.gov/vuln/detail/CVE-2022-44808) |
-| **CVE-2022-41040** | Microsoft Exchange Server Elevation of PV** | [**NIST Website**](https://nvd.nist.gov/vuln/detail/CVE-2022-41040) |
-| **CVE-2022-41082**| Microsoft Exchange Server RCE Vulnerability** | [**NIST Website**](https://nvd.nist.gov/vuln/detail/CVE-2022-41082) |
+| **CVE-2020-25078** | An issue was discovered on D-Link DCS-2530L... | [**Wazuh CTI Website**](https://cti.wazuh.com/vulnerabilities/cves/CVE-2020-25078) |
+| **CVE-2021-42013** | It was found that the fix for CVE-2021-41773... | [**Wazuh CTI Website**](https://cti.wazuh.com/vulnerabilities/cves/CVE-2021-42013) |
+| **CVE-2021-41773** | A flaw was found in a change made to path... | [**Wazuh CTI Website**](https://cti.wazuh.com/vulnerabilities/cves/CVE-2021-41773) |
+| **CVE-2024-3400** | PAN-OS : A command injection as a result... | [**Wazuh CTI Website**](https://cti.wazuh.com/vulnerabilities/cves/CVE-2024-3400) |
+| **CVE-2017-16894** | In Laravel framework through 5.5.21... | [**Wazuh CTI Website**](https://cti.wazuh.com/vulnerabilities/cves/CVE-2017-16894) |
+| **CVE-2024-3721** | A vulnerability was found in TBK DVR-4104 and DVR-4216... | [**Wazuh CTI Website**](https://cti.wazuh.com/vulnerabilities/cves/CVE-2024-3721) |
+| **CVE-2022-30023** | Tenda ONT GPON AC1200 Dual band WiFi HG9 v1.0.1... | [**Wazuh CTI Website**](https://cti.wazuh.com/vulnerabilities/cves/CVE-2022-30023) |
+| **CVE-2017-9841** | Util/PHP/eval-stdin.php in PHPUnit before 4.8.28... | [**NWazuh CTI Website**](https://cti.wazuh.com/vulnerabilities/cves/CVE-2017-9841) |
+| **CVE-2018-10561** | An issue was discovered on Dasan GPON home routers... | [**NWazuh CTI Website**](https://cti.wazuh.com/vulnerabilities/cves/CVE-2018-10561) |
+| **CVE-2018-20062** | An issue was discovered in NoneCms V1.3... | [**Wazuh CTI Website**](https://cti.wazuh.com/vulnerabilities/cves/CVE-2018-20062) |
+| **CVE-2022-44808** | Vulnerability has been found on D-Link DIR-823G devices... | [**Wazuh CTI Website**](https://cti.wazuh.com/vulnerabilities/cves/CVE-2022-44808) |
+| **CVE-2022-41040** | Microsoft Exchange Server Elevation of PV** | [**Wazuh CTI Website**](https://cti.wazuh.com/vulnerabilities/cves/CVE-2022-41040) |
+| **CVE-2022-41082**| Microsoft Exchange Server RCE Vulnerability** | [**Wazuh CTI Website**](https://cti.wazuh.com/vulnerabilities/cves/CVE-2022-41082) |
 
 Etc.
 
