@@ -21,18 +21,18 @@ This project (blocking list) aims to reduce the number of attacks by inserting I
 
 | **Country**🌍 | **OS**🖥️ | **Technologies/Services**🎛️ | Online🛜 |
 |---|---|---|---|
-| **Belgium** | GNU/Linux | Scada-LTS, CVEs, Wireguard | **On** |
-| **Germany** | GNU/Linux | VPN-SSL, Nginx, Squid, SMB | **On** |
+| **Belgium** | Debian 12 | Scada-LTS, CVEs, Wireguard | **On** |
+| **Germany** | Ubuntu 24.04 | VPN-SSL, Nginx, Squid, SMB | **On** |
 | **Austria** | WinSrv 2022 | Apache, IIS, SMB, DC | **On** |
 | **Netherlands** | WinSrv 2022 | Apache, SMB, DC | **On** |
-| **France** | GNU/Linux | VPN-SSL, SMB, CVEs, Wordpress | **On** |
-| **France** | GNU/Linux | Scada-LTS, CVEs, Wireguard | **On** |
+| **France** | Ubuntu 22.04 | VPN-SSL, SMB, CVEs, Wordpress | **On** |
+| **France** | Ubuntu 22.04 | Scada-LTS, CVEs, Wireguard | **On** |
 | **Spain** | WinSrv 2025 | IIS, Apache, SMB, DC | **On** |
-| **Portugal** | GNU/Linux | DNS, Squid, Wireguard | **On** |
-| **Italy** | GNU/Linux | Apache, Nginx, Wordpress, Webmin | **On** |
-| **Greece** | GNU/Linux | VPN-SSL, CVEs | **On** |
-| **Lithuania** | GNU/Linux | CVEs, SMB, Squid, OpenVPN | **On** |
-| **Poland**| GNU/Linux | Scada-LTS, CVEs, Wireguard | **On** |
+| **Portugal** | Ubuntu 24.04 | DNS, Squid, Wireguard | **On** |
+| **Italy** | Debian 12 | Apache, Nginx, Wordpress, Webmin | **On** |
+| **Greece** | Ubuntu 20.04 | VPN-SSL, CVEs | **On** |
+| **Lithuania** | Ubuntu 20.04 | CVEs, SMB, Squid, OpenVPN | **On** |
+| **Poland**| NC | Scada-LTS, CVEs, Wireguard | **On** |
 
 **What's special about these decoys is that they contain several configurations, depending on the IS mapping and the specific needs of the customer or the data I want to collect, so I can correlate them with other CTI platforms**
 
