@@ -1,5 +1,5 @@
 # GRC COMPLIANCE - Document for Implementing Data-Shield IPv4 Blocklist
-Version : 0.1
+Version : 0.2
 Owner : Laurent M.
 
 **Introduction**
@@ -18,7 +18,7 @@ Outline the policies that govern the implementation of the blocklist.
 ***Roles and Responsibilities***
 Use the RACI model to define roles and responsibilities.
 
-**Risk Assessment**
+# Risk Assessment
 
 ***Identify Risks***
 List potential risks associated with implementing the blocklist.
@@ -29,7 +29,7 @@ Analyze the likelihood and impact of each identified risk.
 ***Risk Mitigation***
 Propose mitigation strategies for each risk.
 
-**Compliance Requirements**
+# Compliance Requirements
 
 ***Regulatory Compliance***
 Ensure that the implementation complies with relevant regulations and standards.
@@ -37,7 +37,7 @@ Ensure that the implementation complies with relevant regulations and standards.
 ***Internal Compliance***
 Align the implementation with internal policies and procedures.
 
-**Implementation Plan**
+# Implementation Plan
 
 ***Project Timeline***
 Provide a timeline for the implementation process.
@@ -48,7 +48,7 @@ Detail the resources required for the implementation.
 ***Communication Plan***
 Outline how communication will be managed throughout the project.
 
-**Monitoring and Review**
+# Monitoring and Review
 
 ***Monitoring Mechanisms***
 Describe how the implementation will be monitored.
@@ -56,7 +56,7 @@ Describe how the implementation will be monitored.
 ***Review Process***
 Establish a process for reviewing the effectiveness of the blocklist.
 
-**Appendices**
+# Appendices
 
 ***RACI Model***
 Include a detailed RACI model chart.
@@ -64,7 +64,7 @@ Include a detailed RACI model chart.
 ***Additional Documentation***
 Provide links to additional documentation, such as your GitHub repository.
 
-**Example RACI Model**
+# Example RACI Model
 
 | **Task** | **Responsible** | **Accountable** | **Consulted** | **Informed** |
 |---|---|---|---|---|
@@ -74,7 +74,7 @@ Provide links to additional documentation, such as your GitHub repository.
 | Blocklist Integration | IT Team | CISO | Security Team | Management |
 | Monitoring and Reporting | Security Team | CISO |	IT Team | All Stakeholders |
 
-**Next Steps**
+# Next Steps
 
 ***Create the Document***
 Use a word processing tool like Microsoft Word to create the document.
