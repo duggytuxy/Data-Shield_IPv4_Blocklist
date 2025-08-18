@@ -17,27 +17,8 @@
 
 This project (blocking list) aims to reduce the number of attacks by inserting IP addresses known to be abusive, aggressive and malicious (confidence of abuse 100%).
 
-**This blocklist is made up of reliable, high-quality data from decoys placed geolocally in public and private infrastructures such as :**
-
-| **Country**🌍 | **OS**🖥️ | **Technologies/Services**🎛️ | Online🛜 |
-|---|---|---|---|
-| **Belgium** | Debian 12 | Scada-LTS, CVEs, Wireguard | **On** |
-| **Germany** | Ubuntu 24.04 | VPN-SSL, Nginx, Squid, SMB | **On** |
-| **Austria** | WinSrv 2022 | Apache, IIS, SMB, DC | **On** |
-| **Netherlands** | WinSrv 2022 | Apache, SMB, DC | **On** |
-| **France** | Ubuntu 22.04 | VPN-SSL, SMB, CVEs, Wordpress | **On** |
-| **France** | Ubuntu 22.04 | Scada-LTS, CVEs, Wireguard | **On** |
-| **Spain** | WinSrv 2025 | IIS, Apache, SMB, DC | **On** |
-| **Portugal** | Ubuntu 24.04 | DNS, Squid, Wireguard | **On** |
-| **Italy** | Debian 12 | Apache, Nginx, Wordpress, Webmin | **On** |
-| **Greece** | Ubuntu 20.04 | VPN-SSL, CVEs | **On** |
-| **Lithuania** | Ubuntu 20.04 | CVEs, SMB, Squid, OpenVPN | **On** |
-| **Poland**| NC | Scada-LTS, CVEs, Wireguard | **On** |
-
-**What's special about these decoys is that they contain several configurations, depending on the IS mapping and the specific needs of the customer or the data I want to collect, so I can correlate them with other CTI platforms**
-
 > - To give you a few figures, I collect (on average) over 7195 IP addresses unique per day, and after analysis and feedback, once they're really reliable, I add them to this blocking list, which is closely monitored 24/7.
-> - For the deletion part, the policy in force is that I keep these IP addresses for 30 days: if no activity has been reported within this period, these IP addresses are removed from the blocking list to be inserted in a “Whitelist” also monitored.
+> - For the deletion part, the policy in force is that I keep these IP addresses for 30 days max : if no activity has been reported within this period, these IP addresses are removed from the blocking list to be inserted in a “Whitelist” also monitored.
 
 **PS: I want to make it clear that this block list is an additional layer of protection to :**
 
