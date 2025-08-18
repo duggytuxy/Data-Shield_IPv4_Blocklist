@@ -17,8 +17,6 @@
 
 This project (blocking list) aims to reduce the number of attacks by inserting IP addresses known to be abusive, aggressive and malicious. 
 
-**This list will be updated every 4/24h**
-
 > - To give you a few figures, I collect (on average) over 7195 IP addresses unique per day, and after analysis and feedback, once they're really reliable, I add them to this blocking list, which is closely monitored 24/7.
 > - For the deletion part, the policy in force is that I keep these IP addresses for 30 days max : if no activity has been reported within this period, these IP addresses are removed from the blocking list to be inserted in a “Whitelist” also monitored.
 
@@ -27,6 +25,7 @@ This project (blocking list) aims to reduce the number of attacks by inserting I
 > - **Reduce the number of attacks**
 > - **Reduce the possibility of mapping your exposed assets (public IPs)**
 > - **Slightly reduce the attack surface (e.g. Recon)**
+> - **This list will be updated every 4/24h**
 
 🫸***But under no circumstances will it replace all the best practices in your security posture.***
 
@@ -55,41 +54,37 @@ This project (blocking list) aims to reduce the number of attacks by inserting I
 | **CVE-2022-41040** | Microsoft Exchange Server Elevation of PV** | [**Wazuh CTI Website**](https://cti.wazuh.com/vulnerabilities/cves/CVE-2022-41040) |
 | **CVE-2022-41082**| Microsoft Exchange Server RCE Vulnerability** | [**Wazuh CTI Website**](https://cti.wazuh.com/vulnerabilities/cves/CVE-2022-41082) |
 
-Etc.
-
 # TTPs 🐞
 
-| **TTPs**🥷 | **A few countries of origin**🌍 | **Avg IP addr per day**🛜 |
+| **TTPs**🥷 | **A few countries of origin**🌍 | **Indicator of Risk (%)**⚠️ |
 |---|---|---|
-| [**Apache Attack**](https://attack.mitre.org/techniques/T1190/) | **Belgium, UK, Poland, Russia** | NC |
-| [**Nginx Attack**](https://attack.mitre.org/techniques/T1102/) | **Brazil, USA, France, China** | NC |
-| [**Ransomware Attack**](https://attack.mitre.org/techniques/T1486/) | **Brazil, Lithuania, Russia** | NC |
-| [**VPN Attack**](https://attack.mitre.org/techniques/T1133/) | **Belgium, UK, Poland, Russia** | NC |
-| [**RDP Attack**](https://attack.mitre.org/techniques/T1021/001/) | **USA, Brazil, Peru, Morocco** | NC |
-| [**NTLM Attack**](https://attack.mitre.org/techniques/T1187/) | **China, UK, Poland, Belgium** | NC |
-| [**Kerberos Attack**](https://attack.mitre.org/techniques/T1558/003/) | **Venezuela, Brazil, Poland, Algeria** | NC | 
-| [**Wordpress Enumeration**](https://attack.mitre.org/techniques/T1087/) | **USA, China, Russia, UK** | NC |
-| [**Botnet Recruitment**](https://attack.mitre.org/techniques/T1583/005/) | **USA, China, Brazil, Chile** | NC |
-| [**Brute-force Attack**](https://attack.mitre.org/techniques/T1110/) | **USA, China, UK, France** | NC |
-| [**Brute-Force SSH Login**](https://attack.mitre.org/techniques/T1110/) | **USA, China, Poland, Netherlands** | NC |
-| [**Directory Busting**](https://attack.mitre.org/techniques/T1083/) | **USA, China, Italy, India** | NC |
-| [**Credentials Dumping**](https://attack.mitre.org/techniques/T1003/) | **India, Japan, UK, Netherlands** | NC |
-| [**Email Attack**](https://attack.mitre.org/techniques/T1114/) | **USA, China, India, Spain** | NC |
-| [**SMB Attack**](https://attack.mitre.org/techniques/T1021/002/) | **USA, China, Poland, France** | NC |
-| [**FTP Attack**](https://attack.mitre.org/techniques/T1105/) | **UK, France, Poland, Vietnam** | NC |
-| [**IMAP Attack**](https://attack.mitre.org/techniques/T1071/003/) | **USA, China, Poland, France** | NC |
-| [**Information Gathering**](https://attack.mitre.org/techniques/T1591/) | **USA, China, India, Lithuania** | NC |
-| [**Remote Code Execution**](https://attack.mitre.org/techniques/T1210/) | **USA, India, Pakistan, Iran** | NC |
-| [**Scanning**](https://attack.mitre.org/techniques/T1595/) | **USA, China, India, Indonesia** | NC |
-| [**SSH Attack**](https://attack.mitre.org/techniques/T1021/004/) | **USA, China, India, France** | NC |
-| [**OT/ICS Attack**](https://attack.mitre.org/techniques/ics/) | **China, India, Vietnam, USA** | NC |
-| [**IoT Attack**](https://attack.mitre.org/campaigns/C0053/) | **China, Japan, Vietnam, UK** | NC |
-| [**Tor Exit Node**](https://attack.mitre.org/software/S0183/) | **Switzerland, France, Germany** | NC |
-| [**Tor Node**](https://attack.mitre.org/software/S0183/) | **Switzerland, France, Germany** | NC |
-| [**VOIP Attack**](https://attack.mitre.org/techniques/T1616/) | **Belgium, India, Vietnam, Indonesia** | NC |
-| [**Web Traversal**](https://capec.mitre.org/data/definitions/139.html) | **USA, China, Lithuania, France** | NC |
-
-Etc.
+| [**Apache Attack**](https://attack.mitre.org/techniques/T1190/) | **Belgium, UK, Poland, Russia** | 80 |
+| [**Nginx Attack**](https://attack.mitre.org/techniques/T1102/) | **Brazil, USA, France, China** | 80 |
+| [**Ransomware Attack**](https://attack.mitre.org/techniques/T1486/) | **Brazil, Lithuania, Russia** | 90 |
+| [**VPN Attack**](https://attack.mitre.org/techniques/T1133/) | **Belgium, UK, Poland, Russia** | 80 |
+| [**RDP Attack**](https://attack.mitre.org/techniques/T1021/001/) | **USA, Brazil, Peru, Morocco** | 90 |
+| [**NTLM Attack**](https://attack.mitre.org/techniques/T1187/) | **China, UK, Poland, Belgium** | 80 |
+| [**Kerberos Attack**](https://attack.mitre.org/techniques/T1558/003/) | **Venezuela, Brazil, Poland, Algeria** | 85 | 
+| [**Wordpress Enumeration**](https://attack.mitre.org/techniques/T1087/) | **USA, China, Russia, UK** | 50 |
+| [**Botnet Recruitment**](https://attack.mitre.org/techniques/T1583/005/) | **USA, China, Brazil, Chile** | 50 |
+| [**Brute-force Attack**](https://attack.mitre.org/techniques/T1110/) | **USA, China, UK, France** | 80 |
+| [**Brute-Force SSH Login**](https://attack.mitre.org/techniques/T1110/) | **USA, China, Poland, Netherlands** | 80 |
+| [**Directory Busting**](https://attack.mitre.org/techniques/T1083/) | **USA, China, Italy, India** | 60 |
+| [**Credentials Dumping**](https://attack.mitre.org/techniques/T1003/) | **India, Japan, UK, Netherlands** | 90 |
+| [**Email Attack**](https://attack.mitre.org/techniques/T1114/) | **USA, China, India, Spain** | 80 |
+| [**SMB Attack**](https://attack.mitre.org/techniques/T1021/002/) | **USA, China, Poland, France** | 75 |
+| [**FTP Attack**](https://attack.mitre.org/techniques/T1105/) | **UK, France, Poland, Vietnam** | 70 |
+| [**IMAP Attack**](https://attack.mitre.org/techniques/T1071/003/) | **USA, China, Poland, France** | 80 |
+| [**Information Gathering**](https://attack.mitre.org/techniques/T1591/) | **USA, China, India, Lithuania** | 70 |
+| [**Remote Code Execution**](https://attack.mitre.org/techniques/T1210/) | **USA, India, Pakistan, Iran** | 80 |
+| [**Scanning**](https://attack.mitre.org/techniques/T1595/) | **USA, China, India, Indonesia** | 50 |
+| [**SSH Attack**](https://attack.mitre.org/techniques/T1021/004/) | **USA, China, India, France** | 80 |
+| [**OT/ICS Attack**](https://attack.mitre.org/techniques/ics/) | **China, India, Vietnam, USA** | 90 |
+| [**IoT Attack**](https://attack.mitre.org/campaigns/C0053/) | **China, Japan, Vietnam, UK** | 80 |
+| [**Tor Exit Node**](https://attack.mitre.org/software/S0183/) | **Switzerland, France, Germany** | 60 |
+| [**Tor Node**](https://attack.mitre.org/software/S0183/) | **Switzerland, France, Germany** | 60 |
+| [**VOIP Attack**](https://attack.mitre.org/techniques/T1616/) | **Belgium, India, Vietnam, Indonesia** | 70 |
+| [**Web Traversal**](https://capec.mitre.org/data/definitions/139.html) | **USA, China, Lithuania, France** | 75 |
 
 # Tips 💡
 
@@ -105,7 +100,7 @@ Etc.
 
 # A few figures 🎖️
 
-> According to feedback, more than 70 small and medium-sized companies (Acensi as well) have already implemented this list in their FW Fortinet, Palo Alto, Checkpoint, etc.
+> According to feedback, more than 74 small and medium-sized companies (Acensi as well) have already implemented this list in their FW Fortinet, Palo Alto, Checkpoint, etc.
 
 # Support my work with a donation 🙏
 
