@@ -1,4 +1,4 @@
-# GRC COMPLIANCE - Document for Implementing Data-Shield IPv4 Blocklist
+# GRC COMPLIANCE TEMPLATE - Document for Implementing Data-Shield IPv4 Blocklist
 Version : 0.2
 Owner : Laurent M.
 
