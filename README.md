@@ -17,7 +17,7 @@
 
 This project (blocking list) aims to reduce the number of attacks by inserting IP addresses known to be abusive, aggressive and malicious. 
 
-> - To give you a few figures, I collect (on average) over 8000 IP addresses unique per day, and after analysis and feedback, once they're really reliable, I add them to this blocking list, which is closely monitored 24/7.
+> - To give you a few figures, through my 16 decoys deployed in strategic areas of European cyberspace, I collect (on average) over 8000 IP addresses unique per day, and after analysis and feedback, once they're really reliable, I add them to this blocking list, which is closely monitored 24/7.
 > - For the deletion part, the policy in force is that I keep these IP addresses for 30 days max : if no activity has been reported within this period, these IP addresses are removed from the blocking list to be inserted in a “Whitelist” also monitored.
 
 **PS: I want to make it clear that this block list is an additional layer of protection to :**
