@@ -4,64 +4,64 @@ Propriétaire : Laurent M.
 
 **Introduction**
 
-***Objectif***
+### Objectif
 Expliquer l'objectif du document et l'importance de l'intégration de la liste de blocage pour la sécurité de l'entreprise.
 
-***Portée***
+### Portée
 Définir la portée du projet, y compris les systèmes et les réseaux qui seront concernés.
 
 # Cadre de gouvernance
 
-***Déclaration de politique générale***
+### Déclaration de politique générale
 Présentez les grandes lignes des politiques qui régissent l'intégration de la liste noire.
 
-***Rôles et responsabilités***
+### Rôles et responsabilités
 Utilisez le modèle RACI pour définir les rôles et les responsabilités.
 
 # Évaluation des risques
 
-***Identifier les risques***
+### Identifier les risques
 Énumérer les risques potentiels associés à l'intégration de la liste noire.
 
-***Analyse des risques***
+### Analyse des risques
 Analysez la probabilité et l'impact de chaque risque identifié.
 
-***Atténuation des risques***
+### Atténuation des risques
 Proposer des stratégies d'atténuation pour chaque risque.
 
 # Exigences en matière de conformité
 
-***Conformité réglementaire***
+### Conformité réglementaire
 Veillez à ce que l'intégration soit conforme aux réglementations et normes applicables.
 
-***Conformité interne***
+### Conformité interne
 Alignez la mise en œuvre sur les politiques et procédures internes.
 
 # Plan d'intégration
 
-***Calendrier du projet***
+### Calendrier du projet
 Fournissez un calendrier pour le processus d'intégration.
 
-***Allocation des ressources*** 
+### Allocation des ressources
 Précisez les ressources nécessaires à l'intégration.
 
-***Plan de communication***
+### Plan de communication
 Décrivez comment la communication sera gérée tout au long du projet.
 
 # Suivi et révision
 
-***Mécanismes de suivi***
+### Mécanismes de suivi
 Décrivez comment l'intégration sera suivie.
 
-***Processus d'examen***
+### Processus d'examen
 Mettez en place un processus permettant d'examiner l'efficacité de la liste de blocage.
 
 # Annexes
 
-***Modèle RACI***
+### Modèle RACI
 Incluez un tableau détaillé du modèle RACI.
 
-***Documentation supplémentaire***
+### Documentation supplémentaire
 Fournissez des liens vers de la documentation supplémentaire, telle que votre référentiel GitHub.
 
 # Exemple de modèle RACI
@@ -76,14 +76,14 @@ Fournissez des liens vers de la documentation supplémentaire, telle que votre r
 
 # Prochaines étapes
 
-***Créer le document***
+### Créer le document
 Utilisez un outil de traitement de texte tel que Microsoft Word pour créer le document.
 
-***Remplir les sections***
+### Remplir les sections
 Remplissez chaque section en suivant les instructions fournies.
 
-***Révision et approbation***
+### Révision et approbation
 Faites réviser et approuver le document par les parties prenantes concernées.
 
-***Mise en œuvre***
+### Mise en œuvre
 Suivez le plan d'intégration décrit dans le document.
