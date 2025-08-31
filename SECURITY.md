@@ -37,7 +37,7 @@ Veillez à ce que l'intégration soit conforme aux réglementations et normes ap
 ***Conformité interne***
 Alignez la mise en œuvre sur les politiques et procédures internes.
 
-# Plan d'intégration'
+# Plan d'intégration
 
 ***Calendrier du projet***
 Fournissez un calendrier pour le processus d'intégration.
