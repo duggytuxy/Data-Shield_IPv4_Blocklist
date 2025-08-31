@@ -31,21 +31,21 @@ Les adresses IP sont conservées pendant **60 jours maximum**. Si aucune activit
 
 # Types d’attaques identifiées
 
-| **CVE** | **URL** | **TTPs** | **Pays les plus ciblés** |
-|---|---|---|---|
-| **CVE-2020-25078** | [**Site Web Wazuh CTI**](https://cti.wazuh.com/vulnerabilities/cves/CVE-2020-25078) | [**Apache Attack**](https://attack.mitre.org/techniques/T1190/) | FR, BE, NL, GE |
-| **CVE-2021-42013** | [**Site Web Wazuh CTI**](https://cti.wazuh.com/vulnerabilities/cves/CVE-2021-42013) | [**Nginx Attack**](https://attack.mitre.org/techniques/T1102/) | BE, IT, NL, PL |
-| **CVE-2021-41773** | [**Site Web Wazuh CTI**](https://cti.wazuh.com/vulnerabilities/cves/CVE-2021-41773) | [**VPN Attack**](https://attack.mitre.org/techniques/T1133/) | FR, BE, NL, GE |
-| **CVE-2024-3400** | [**Site Web Wazuh CTI**](https://cti.wazuh.com/vulnerabilities/cves/CVE-2024-3400) | [**RDP Attack**](https://attack.mitre.org/techniques/T1021/001/) | FR, BE, IT, ES |
-| **CVE-2017-16894** | [**Site Web Wazuh CTI**](https://cti.wazuh.com/vulnerabilities/cves/CVE-2017-16894) | [**Brute-Force SSH Login**](https://attack.mitre.org/techniques/T1110/) | PL, BE, NL, FR |
-| **CVE-2024-3721** | [**Site Web Wazuh CTI**](https://cti.wazuh.com/vulnerabilities/cves/CVE-2024-3721) | [**Credentials Dumping**](https://attack.mitre.org/techniques/T1003/) | FR, BE, ES, PT |
-| **CVE-2022-30023** | [**Site Web Wazuh CTI**](https://cti.wazuh.com/vulnerabilities/cves/CVE-2022-30023) | [**Information Gathering**](https://attack.mitre.org/techniques/T1591/) | FR, BE, NL, LU |
-| **CVE-2017-9841** | [**Site Web Wazuh CTI**](https://cti.wazuh.com/vulnerabilities/cves/CVE-2017-9841) | [**Remote Code Execution**](https://attack.mitre.org/techniques/T1210/) | FR, BE, LU, GE |
-| **CVE-2018-10561** | [**Site Web Wazuh CTI**](https://cti.wazuh.com/vulnerabilities/cves/CVE-2018-10561) | [**Ransomware Attack**](https://attack.mitre.org/techniques/T1486/) | FR, BE, ES, PT |
-| **CVE-2018-20062** | [**Site Web Wazuh CTI**](https://cti.wazuh.com/vulnerabilities/cves/CVE-2018-20062) | [**OT/ICS Attack**](https://attack.mitre.org/techniques/ics/) | FR, BE, NL, GE |
-| **CVE-2022-44808** | [**Site Web Wazuh CTI**](https://cti.wazuh.com/vulnerabilities/cves/CVE-2022-44808) | [**Tor Exit Node**](https://attack.mitre.org/software/S0183/) | GE, FR, NL, PL |
-| **CVE-2022-41040** | [**Site Web Wazuh CTI**](https://cti.wazuh.com/vulnerabilities/cves/CVE-2022-41040) | [**Web Traversal**](https://capec.mitre.org/data/definitions/139.html) | BE, FR, NL, AT |
-| **CVE-2022-41082**| [**Site Web Wazuh CTI**](https://cti.wazuh.com/vulnerabilities/cves/CVE-2022-41082) | [**IMAP Attack**](https://attack.mitre.org/techniques/T1071/003/) | FR, BE, NL, GE |
+| **CVE** | **TTPs** | **Pays les plus ciblés** |
+|---|---|---|
+| [**CVE-2020-25078**](https://cti.wazuh.com/vulnerabilities/cves/CVE-2020-25078) | [**Apache Attack**](https://attack.mitre.org/techniques/T1190/) | FR, BE, NL, GE |
+| [**CVE-2021-42013**](https://cti.wazuh.com/vulnerabilities/cves/CVE-2021-42013) | [**Nginx Attack**](https://attack.mitre.org/techniques/T1102/) | BE, IT, NL, PL |
+| [**CVE-2021-41773**](https://cti.wazuh.com/vulnerabilities/cves/CVE-2021-41773) | [**VPN Attack**](https://attack.mitre.org/techniques/T1133/) | FR, BE, NL, GE |
+| [**CVE-2024-3400**](https://cti.wazuh.com/vulnerabilities/cves/CVE-2024-3400) | [**RDP Attack**](https://attack.mitre.org/techniques/T1021/001/) | FR, BE, IT, ES |
+| [**CVE-2017-16894**](https://cti.wazuh.com/vulnerabilities/cves/CVE-2017-16894) | [**Brute-Force SSH Login**](https://attack.mitre.org/techniques/T1110/) | PL, BE, NL, FR |
+| [**CVE-2024-3721**](https://cti.wazuh.com/vulnerabilities/cves/CVE-2024-3721) | [**Credentials Dumping**](https://attack.mitre.org/techniques/T1003/) | FR, BE, ES, PT |
+| [**CVE-2022-30023**](https://cti.wazuh.com/vulnerabilities/cves/CVE-2022-30023) | [**Information Gathering**](https://attack.mitre.org/techniques/T1591/) | FR, BE, NL, LU |
+| [**CVE-2017-9841**](https://cti.wazuh.com/vulnerabilities/cves/CVE-2017-9841) | [**Remote Code Execution**](https://attack.mitre.org/techniques/T1210/) | FR, BE, LU, GE |
+| [**CVE-2018-10561**](https://cti.wazuh.com/vulnerabilities/cves/CVE-2018-10561) | [**Ransomware Attack**](https://attack.mitre.org/techniques/T1486/) | FR, BE, ES, PT |
+| [**CVE-2018-20062**](https://cti.wazuh.com/vulnerabilities/cves/CVE-2018-20062) | [**OT/ICS Attack**](https://attack.mitre.org/techniques/ics/) | FR, BE, NL, GE |
+| [**CVE-2022-44808**](https://cti.wazuh.com/vulnerabilities/cves/CVE-2022-44808) | [**Tor Exit Node**](https://attack.mitre.org/software/S0183/) | GE, FR, NL, PL |
+| [**CVE-2022-41040**](https://cti.wazuh.com/vulnerabilities/cves/CVE-2022-41040) | [**Web Traversal**](https://capec.mitre.org/data/definitions/139.html) | BE, FR, NL, AT |
+| [**CVE-2022-41082**](https://cti.wazuh.com/vulnerabilities/cves/CVE-2022-41082) | [**IMAP Attack**](https://attack.mitre.org/techniques/T1071/003/) | FR, BE, NL, GE |
 
 ## Intégration dans les pare-feux
 
