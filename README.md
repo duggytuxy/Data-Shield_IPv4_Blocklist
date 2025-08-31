@@ -49,11 +49,18 @@ Les adresses IP sont conservées pendant **60 jours maximum**. Si aucune activit
 
 ## Intégration dans les pare-feux
 
+**4 listes sont à votre disposition**
+
+- [**prod_data-shield_ipv4_blocklist.txt**](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_data-shield_ipv4_blocklist.txt) (liste complète) pour les pare-feux dont la limitation est de 130.000 IPs
+- [**prod_aa_data-shield_ipv4_blocklist.txt**](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_aa_data-shield_ipv4_blocklist.txt) (liste splittée) pour les pare-feux ayant une limite inférieure à 50.000 IPs
+- [**prod_ab_data-shield_ipv4_blocklist.txt**](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ab_data-shield_ipv4_blocklist.txt) (liste splittée) pour les pare-feux ayant une limite inférieure à 50.000 IPs
+- [**prod_ac_data-shield_ipv4_blocklist.txt**](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ac_data-shield_ipv4_blocklist.txt) (liste splittée) pour les pare-feux ayant une limite inférieure à 50.000 IPs
+
 | **Fournisseur** | **URL** |
 |---|---|
 | **Fortinet** | [**Lien vers l'intégration**](https://docs.fortinet.com/document/fortigate/7.2.0/administration-guide/891236) |
 | **Checkpoint** | [**Lien vers l'intégration**](https://sc1.checkpoint.com/documents/R80.20SP/WebAdminGuides/EN/CP_R80.20SP_Maestro_AdminGuide/Topics-Maestro-AG/IP-Block-Feature.htm) |
-| **Palo Alto** | [**Lien vers l'intégration**](https://docs.paloaltonetworks.com/pan-os/10-2/pan-os-admin/policy/use-an-external-dynamic-list-in-policy/configure-the-firewall-to-access-an-external-dynamic-list) |
+| **Palo Alto** | [**Lien vers l'intégration**](https://www.youtube.com/watch?v=JOJaa_ibN8Q) |
 | **OPNsense** | [**Lien vers l'intégration**](https://slash-root.fr/opnsense-block-malicious-ips/) |
 
 # Quelques retours notables
