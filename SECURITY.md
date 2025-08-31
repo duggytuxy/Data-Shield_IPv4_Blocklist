@@ -1,89 +1,89 @@
-# GRC COMPLIANCE TEMPLATE - Document for Implementing Data-Shield IPv4 Blocklist
+# MODÈLE DE CONFORMITÉ GRC - Document pour l'intégration de la liste noire IPv4 Data-Shield
 Version : 0.2
-Owner : Laurent M.
+Propriétaire : Laurent M.
 
 **Introduction**
 
-***Purpose***
-Explain the purpose of the document and the importance of implementing the blocklist for enterprise security.
+***Objectif***
+Expliquer l'objectif du document et l'importance de l'intégration de la liste de blocage pour la sécurité de l'entreprise.
 
-***Scope***
-Define the scope of the project, including the systems and networks that will be affected.
+***Portée***
+Définir la portée du projet, y compris les systèmes et les réseaux qui seront concernés.
 
-# Governance Framework
+# Cadre de gouvernance
 
-***Policy Statement***
-Outline the policies that govern the implementation of the blocklist.
+***Déclaration de politique générale***
+Présentez les grandes lignes des politiques qui régissent l'intégration de la liste noire.
 
-***Roles and Responsibilities***
-Use the RACI model to define roles and responsibilities.
+***Rôles et responsabilités***
+Utilisez le modèle RACI pour définir les rôles et les responsabilités.
 
-# Risk Assessment
+# Évaluation des risques
 
-***Identify Risks***
-List potential risks associated with implementing the blocklist.
+***Identifier les risques***
+Énumérer les risques potentiels associés à l'intégration de la liste noire.
 
-***Risk Analysis***
-Analyze the likelihood and impact of each identified risk.
+***Analyse des risques***
+Analysez la probabilité et l'impact de chaque risque identifié.
 
-***Risk Mitigation***
-Propose mitigation strategies for each risk.
+***Atténuation des risques***
+Proposer des stratégies d'atténuation pour chaque risque.
 
-# Compliance Requirements
+# Exigences en matière de conformité
 
-***Regulatory Compliance***
-Ensure that the implementation complies with relevant regulations and standards.
+***Conformité réglementaire***
+Veillez à ce que l'intégration soit conforme aux réglementations et normes applicables.
 
-***Internal Compliance***
-Align the implementation with internal policies and procedures.
+***Conformité interne***
+Alignez la mise en œuvre sur les politiques et procédures internes.
 
-# Implementation Plan
+# Plan d'intégration'
 
-***Project Timeline***
-Provide a timeline for the implementation process.
+***Calendrier du projet***
+Fournissez un calendrier pour le processus d'intégration.
 
-***Resource Allocation*** 
-Detail the resources required for the implementation.
+***Allocation des ressources*** 
+Précisez les ressources nécessaires à l'intégration.
 
-***Communication Plan***
-Outline how communication will be managed throughout the project.
+***Plan de communication***
+Décrivez comment la communication sera gérée tout au long du projet.
 
-# Monitoring and Review
+# Suivi et révision
 
-***Monitoring Mechanisms***
-Describe how the implementation will be monitored.
+***Mécanismes de suivi***
+Décrivez comment l'intégration sera suivie.
 
-***Review Process***
-Establish a process for reviewing the effectiveness of the blocklist.
+***Processus d'examen***
+Mettez en place un processus permettant d'examiner l'efficacité de la liste de blocage.
 
-# Appendices
+# Annexes
 
-***RACI Model***
-Include a detailed RACI model chart.
+***Modèle RACI***
+Incluez un tableau détaillé du modèle RACI.
 
-***Additional Documentation***
-Provide links to additional documentation, such as your GitHub repository.
+***Documentation supplémentaire***
+Fournissez des liens vers de la documentation supplémentaire, telle que votre référentiel GitHub.
 
-# Example RACI Model
+# Exemple de modèle RACI
 
-| **Task** | **Responsible** | **Accountable** | **Consulted** | **Informed** |
+| **Tâche** | **Responsable** | **Approbateur** | **Consulté** | **Informé** |
 |---|---|---|---|---|
-| Policy Development | IT Team | CISO | Legal |	Management |
-| Risk Assessment |	Risk Team |	CISO | IT Team | Management |
-| Implementation Planning |	Project Manager | CIO | IT Team | All Stakeholders |
-| Blocklist Integration | IT Team | CISO | Security Team | Management |
-| Monitoring and Reporting | Security Team | CISO |	IT Team | All Stakeholders |
+| Élaboration des politiques | Équipe informatique | RSSI | Service juridique | Direction |
+| Évaluation des risques | Équipe chargée des risques | Responsable de la sécurité des systèmes d'information | Équipe informatique | Direction |
+| Planification de l'intégration | Chef de projet | Directeur informatique | Équipe informatique | Toutes les parties prenantes |
+| Intégration de la liste noire | Équipe informatique | RSSI | Équipe de sécurité | Direction |
+| Surveillance et rapports | Équipe de sécurité | RSSI | Équipe informatique | Toutes les parties prenantes |
 
-# Next Steps
+# Prochaines étapes
 
-***Create the Document***
-Use a word processing tool like Microsoft Word to create the document.
+***Créer le document***
+Utilisez un outil de traitement de texte tel que Microsoft Word pour créer le document.
 
-***Populate Sections***
-Fill in each section based on the guidelines provided.
+***Remplir les sections***
+Remplissez chaque section en suivant les instructions fournies.
 
-***Review and Approve***
-Have the document reviewed and approved by relevant stakeholders.
+***Révision et approbation***
+Faites réviser et approuver le document par les parties prenantes concernées.
 
-***Implement***
-Follow the implementation plan outlined in the document.
+***Mise en œuvre***
+Suivez le plan d'intégration décrit dans le document.
