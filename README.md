@@ -49,12 +49,14 @@ Les adresses IP sont conservées pendant **60 jours maximum**. Si aucune activit
 
 ## Intégration dans les pare-feux
 
-**4 listes sont à votre disposition**
+4 listes sont à votre disposition
 
-- [**prod_data-shield_ipv4_blocklist.txt**](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_data-shield_ipv4_blocklist.txt) (liste complète) pour les pare-feux dont la limitation est de 130.000 IPs
-- [**prod_aa_data-shield_ipv4_blocklist.txt**](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_aa_data-shield_ipv4_blocklist.txt) (liste splittée) pour les pare-feux ayant une limite inférieure à 50.000 IPs
-- [**prod_ab_data-shield_ipv4_blocklist.txt**](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ab_data-shield_ipv4_blocklist.txt) (liste splittée) pour les pare-feux ayant une limite inférieure à 50.000 IPs
-- [**prod_ac_data-shield_ipv4_blocklist.txt**](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ac_data-shield_ipv4_blocklist.txt) (liste splittée) pour les pare-feux ayant une limite inférieure à 50.000 IPs
+- [**prod_data-shield_ipv4_blocklist.txt**](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_data-shield_ipv4_blocklist.txt) (liste complète) pour les pare-feux dont la limitation est de 130.000 IPs par liste externe
+- [**prod_aa_data-shield_ipv4_blocklist.txt**](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_aa_data-shield_ipv4_blocklist.txt) (liste splittée) pour les pare-feux dont la limitation est de 50.000 IPs par liste externe
+- [**prod_ab_data-shield_ipv4_blocklist.txt**](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ab_data-shield_ipv4_blocklist.txt) (liste splittée) pour les pare-feux dont la limitation est de 50.000 IPs par liste externe
+- [**prod_ac_data-shield_ipv4_blocklist.txt**](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ac_data-shield_ipv4_blocklist.txt) (liste splittée) pour les pare-feux dont la limitation est de 50.000 IPs par liste externe
+
+### Tutoriels en provenance de quelques fournisseurs pour l'intégration
 
 | **Fournisseur** | **URL** |
 |---|---|
