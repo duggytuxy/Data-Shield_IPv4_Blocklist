@@ -58,12 +58,21 @@ Les adresses IP sont conservées pendant **60 jours maximum**. Si aucune activit
 
 # Quelques retours notables
 
-D'après les informations reccueillies sur **Linkedin** à travers mon réseau professionnel, ce sont plus de 85 petites et moyennes entreprises (dont **Acensi**) ont déjà intégré cette liste dans leur pare-feux Fortinet, Palo Alto, Checkpoint, etc.
+D'après les informations reccueillies sur **Linkedin** à travers mon réseau professionnel, 157 petites, moyennes entreprises (dont **Acensi**), des particuliers et freelances ont déjà intégré cette liste dans leur pare-feux Fortinet, Palo Alto, Checkpoint, etc.
 
 # Soutenir le projet
+
+Ce projet peut sembler être d'une facilité déconcertante à maintenir mais il représente du temps de travail et du financement :
+
+- Hébergement des leurres (VPS)
+- APIs
+- Corrélation de données
+- Vérification, qualification, intégration et mise en production continue
+
+Grâce à votre soutien et aux dons, ce projet sera maintenu et perdurera son existance !
 
 | **Site de donations** | **Description** | **URL** |
 |---|---|---|
 | **Ko-Fi** | Rejoignez tous les types de créateurs qui reçoivent des dons, des adhésions, etc. de la part de leurs fans ! | [**Merci à vous !!!**](https://ko-fi.com/laurentmduggytuxy) |
 
-Data-Shield IPv4 Blocklist © 2023 by Duggy Tuxy is licensed [**License File**](/LICENSE)
+Data-Shield IPv4 Blocklist © 2023 par Duggy Tuxy (Laurent Minne) est sous licence [**License File**](/LICENSE)
