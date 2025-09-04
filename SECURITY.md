@@ -1,5 +1,5 @@
 # MODÈLE DE CONFORMITÉ GRC - Document pour l'intégration de la liste noire IPv4 Data-Shield
-Version : 0.2
+Version : 0.4
 Propriétaire : Laurent M.
 
 **Introduction**
