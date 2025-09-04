@@ -3,7 +3,7 @@ Version : 0.5
 
 ***Propriétaire : Laurent Minne***
 
-**Introduction**
+# Introduction
 
 ### Objectif
 - Expliquer l'objectif du document et l'importance de l'intégration de la liste de blocage pour la sécurité de l'entreprise.
