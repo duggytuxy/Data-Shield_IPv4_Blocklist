@@ -67,7 +67,7 @@ Les adresses IP sont conservées pendant **60 jours maximum**. Si aucune activit
 
 # Quelques retours notables
 
-D'après les informations reccueillies sur **Linkedin** à travers mon réseau professionnel, 157 petites, moyennes entreprises (dont **Acensi**), des particuliers et freelances ont déjà intégré cette liste dans leur pare-feux Fortinet, Palo Alto, Checkpoint, etc.
+D'après les informations reccueillies sur **Linkedin** à travers mon réseau professionnel, 162 petites, moyennes entreprises (dont **Acensi**), des particuliers et freelances ont déjà intégré cette liste dans leur pare-feux Fortinet, Palo Alto, Checkpoint, etc.
 
 # Soutenir le projet
 
