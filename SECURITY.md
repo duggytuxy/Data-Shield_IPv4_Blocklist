@@ -1,12 +1,12 @@
-# MODÈLE DE CONFORMITÉ GRC - Document pour l'intégration de la liste noire IPv4 Data-Shield
-Version : 0.5
+# MODÈLE DE CONFORMITÉ GRC - Document pour l'intégration de la Blocklist IPv4 Data-Shield
+Version : 0.6
 
 ***Propriétaire : Laurent Minne***
 
 # Introduction
 
 ### Objectif
-- Expliquer l'objectif du document et l'importance de l'intégration de la liste de blocage pour la sécurité de l'entreprise.
+- Expliquer l'objectif du document et l'importance de l'intégration de la Blocklist pour la sécurité de l'entreprise.
 
 ### Portée
 - Définir la portée du projet, y compris les systèmes et les réseaux qui seront concernés.
@@ -14,7 +14,7 @@ Version : 0.5
 # Cadre de gouvernance
 
 ### Déclaration de politique générale
-- Présentez les grandes lignes des politiques qui régissent l'intégration de la liste noire.
+- Présentez les grandes lignes des politiques qui régissent l'intégration de la Blocklist.
 
 ### Rôles et responsabilités
 - Utilisez le modèle RACI pour définir les rôles et les responsabilités.
@@ -22,7 +22,7 @@ Version : 0.5
 # Évaluation des risques
 
 ### Identifier les risques
-- Énumérer les risques potentiels associés à l'intégration de la liste noire.
+- Énumérer les risques potentiels associés à l'intégration de la Blocklist.
 
 ### Analyse des risques
 - Analysez la probabilité et l'impact de chaque risque identifié.
@@ -55,7 +55,7 @@ Version : 0.5
 - Décrivez comment l'intégration sera suivie.
 
 ### Processus d'examen
-- Mettez en place un processus permettant d'examiner l'efficacité de la liste de blocage.
+- Mettez en place un processus permettant d'examiner l'efficacité de la Blocklist.
 
 # Annexes
 
