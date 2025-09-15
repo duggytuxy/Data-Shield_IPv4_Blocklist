@@ -1,5 +1,5 @@
-# MODÈLE DE CONFORMITÉ GRC - Document pour l'intégration de la Blocklist IPv4 Data-Shield
-Version : 0.6
+# MODÈLE DE CONFORMITÉ GRC - Document pour l'intégration de la Data-Shield IPv4 Blocklist
+Version : 0.7
 
 ***Propriétaire : Laurent Minne***
 
