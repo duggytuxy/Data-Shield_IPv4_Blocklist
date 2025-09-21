@@ -10,7 +10,7 @@
 
 # Présentation du projet
 
-Ce projet vise à réduire le nombre d'attaques en bloquant les adresses IP identifiées comme abusives, agressives ou malveillantes. Grâce à un réseau de 24 leurres déployés dans des zones stratégiques du cyberespace européen, plus de **9150 adresses IP uniques** sont collectées quotidiennement. Après analyse et validation, les adresses IP sont ajoutées à cette liste de blocage, surveillée en continu. Je rappelle que cette liste ne remplace en aucun cas les bonnes pratiques de sécurité, elle y contribue et mise à journée toutes les **24 heures**
+Ce projet vise à réduire le nombre d'attaques en bloquant les adresses IP identifiées comme abusives, agressives ou malveillantes. Grâce à un réseau de 26 leurres déployés dans des zones stratégiques du cyberespace, plus de **9240 adresses IP uniques** sont collectées quotidiennement. Après analyse et validation, les adresses IP sont ajoutées à cette liste de blocage, surveillée en continu. Je rappelle que cette liste ne remplace en aucun cas les bonnes pratiques de sécurité, elle y contribue et mise à journée toutes les **24 heures**
 
 ### Objectif
 
@@ -26,7 +26,7 @@ Les adresses IP sont conservées pendant **60 jours maximum**. Si aucune activit
 
 # Points clés 
 
-- **Destination principale** : Europe  
+- **Destination** : World  
 - Certaines adresses IP ont une durée de vie courte (APT, infostealers, malwares, etc.)
 
 # Types d’attaques identifiées
@@ -67,7 +67,7 @@ Les adresses IP sont conservées pendant **60 jours maximum**. Si aucune activit
 
 # Quelques retours notables
 
-D'après les informations reccueillies sur **Linkedin** à travers mon réseau professionnel, 162 petites, moyennes entreprises (dont **Acensi**), des particuliers et freelances ont déjà intégré cette liste dans leur pare-feux Fortinet, Palo Alto, Checkpoint, etc.
+D'après les informations reccueillies sur **Linkedin** à travers mon réseau professionnel, 165 petites, moyennes entreprises (dont **Acensi**), des particuliers et freelances ont déjà intégré cette liste dans leur pare-feux Fortinet, Palo Alto, Checkpoint, etc.
 
 # Soutenir le projet
 
