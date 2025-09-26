@@ -1,5 +1,5 @@
 # MODÈLE DE CONFORMITÉ GRC - Document pour l'intégration de la Data-Shield IPv4 Blocklist
-Version : 0.7
+Version : 0.8
 
 ***Propriétaire : Laurent Minne***
 
@@ -28,15 +28,15 @@ Version : 0.7
 - Analysez la probabilité et l'impact de chaque risque identifié.
 
 ### Atténuation des risques
-- Proposer des stratégies d'atténuation pour chaque risque.
+- Proposer des stratégies d'atténuation pour chaque risque (Tests, contrôles, etc.)
 
 # Exigences en matière de conformité
 
 ### Conformité réglementaire
-- Veillez à ce que l'intégration soit conforme aux réglementations et normes applicables.
+- Veillez à ce que l'intégration soit conforme aux réglementations et normes applicables (ISO27001, NIS2, etc.).
 
 ### Conformité interne
-- Alignez la mise en œuvre sur les politiques et procédures internes.
+- Alignez la mise en œuvre sur les politiques et procédures internes (PSSI, instructions, etc.).
 
 # Plan d'intégration
 
