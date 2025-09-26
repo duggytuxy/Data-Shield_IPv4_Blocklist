@@ -2,7 +2,7 @@
 Version : 0.8
 
 - ***Propriétaire : Laurent Minne***
-- ***Contributeur : ***
+- ***Contributeur :***
 
 # Introduction
 
