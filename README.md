@@ -10,7 +10,7 @@
 
 # Présentation du projet
 
-Ce projet vise à réduire le nombre d'attaques en bloquant les adresses IP identifiées comme étant des sources d'activités dangereuses. Grâce à un réseau de 36 leurres déployés dans des zones stratégiques du cyberespace, plus de **9240 adresses IP uniques** sont collectées quotidiennement. Après analyse et validation, les adresses IP sont ajoutées à cette liste de blocage, surveillée en continu. Je rappelle que cette liste ne remplace en aucun cas les bonnes pratiques de sécurité, elle y contribue et mise à journée toutes les **24 heures**
+Ce projet vise à réduire le nombre d'attaques en bloquant les adresses IP identifiées comme étant des sources d'activités dangereuses. Grâce à un réseau de ```36``` leurres déployés dans des zones stratégiques du cyberespace, plus de **```9240``` adresses IP uniques** sont collectées quotidiennement. Après analyse et validation, les adresses IP sont ajoutées à cette liste de blocage, surveillée en continu. Je rappelle que cette liste ne remplace en aucun cas les bonnes pratiques de sécurité, elle y contribue et mise à journée toutes les **```24 heures```**
 
 ### Objectif
 
@@ -22,7 +22,7 @@ Cette liste constitue une **couche de protection supplémentaire** visant à :
 
 ### Politique de rétention
 
-Les adresses IP sont conservées pendant **60 jours maximum**. Si aucune activité n’est détectée durant cette période, elles sont retirées de la liste de blocage et transférées dans une **liste blanche** également surveillée.
+Les adresses IP sont conservées pendant **```60 jours maximum```**. Si aucune activité n’est détectée durant cette période, elles sont retirées de la liste de blocage et transférées dans une **liste blanche** également surveillée.
 
 # Points clés 
 
@@ -52,10 +52,10 @@ Les adresses IP sont conservées pendant **60 jours maximum**. Si aucune activit
 
 4 listes sont à votre disposition
 
-- [**prod_data-shield_ipv4_blocklist.txt**](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_data-shield_ipv4_blocklist.txt) (liste complète) pour les pare-feux dont la limitation est de 130.000 IPs par liste externe
-- [**prod_aa_data-shield_ipv4_blocklist.txt**](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_aa_data-shield_ipv4_blocklist.txt) (liste splittée) pour les pare-feux dont la limitation est de 50.000 IPs par liste externe
-- [**prod_ab_data-shield_ipv4_blocklist.txt**](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ab_data-shield_ipv4_blocklist.txt) (liste splittée) pour les pare-feux dont la limitation est de 50.000 IPs par liste externe
-- [**prod_ac_data-shield_ipv4_blocklist.txt**](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ac_data-shield_ipv4_blocklist.txt) (liste splittée) pour les pare-feux dont la limitation est de 50.000 IPs par liste externe
+- [**prod_data-shield_ipv4_blocklist.txt**](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_data-shield_ipv4_blocklist.txt) (liste complète) pour les pare-feux dont la limitation est de ```130.000 IPs``` par liste externe
+- [**prod_aa_data-shield_ipv4_blocklist.txt**](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_aa_data-shield_ipv4_blocklist.txt) (liste splittée) pour les pare-feux dont la limitation est de ```50.000 IPs``` par liste externe
+- [**prod_ab_data-shield_ipv4_blocklist.txt**](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ab_data-shield_ipv4_blocklist.txt) (liste splittée) pour les pare-feux dont la limitation est de ```50.000 IPs``` par liste externe
+- [**prod_ac_data-shield_ipv4_blocklist.txt**](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ac_data-shield_ipv4_blocklist.txt) (liste splittée) pour les pare-feux dont la limitation est de ```50.000 IPs``` par liste externe
 
 ### Tutoriels en provenance de quelques fournisseurs pour l'intégration
 
