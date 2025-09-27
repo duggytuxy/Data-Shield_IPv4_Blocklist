@@ -46,6 +46,7 @@ Les adresses IP sont conservées pendant **60 jours maximum**. Si aucune activit
 | [**CVE-2022-44808**](https://cti.wazuh.com/vulnerabilities/cves/CVE-2022-44808) | [**Tor Exit Node**](https://attack.mitre.org/software/S0183/) | GE, FR, NL, PL |
 | [**CVE-2022-41040**](https://cti.wazuh.com/vulnerabilities/cves/CVE-2022-41040) | [**Web Traversal**](https://capec.mitre.org/data/definitions/139.html) | BE, FR, NL, AT |
 | [**CVE-2022-41082**](https://cti.wazuh.com/vulnerabilities/cves/CVE-2022-41082) | [**IMAP Attack**](https://attack.mitre.org/techniques/T1071/003/) | FR, BE, NL, GE |
+| [**CVE-2024-4577**](https://cti.wazuh.com/vulnerabilities/cves/CVE-2024-4577) | [**Phishing Attack**](https://attack.mitre.org/techniques/T1566/) | BE, US, FR, NL |
 
 ## Intégration dans les pare-feux
 
