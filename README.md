@@ -64,6 +64,7 @@ Les adresses IP sont conservées pendant **60 jours maximum**. Si aucune activit
 | **Checkpoint** | [**Lien vers l'intégration**](https://sc1.checkpoint.com/documents/R80.20SP/WebAdminGuides/EN/CP_R80.20SP_Maestro_AdminGuide/Topics-Maestro-AG/IP-Block-Feature.htm) | TBD |
 | **Palo Alto** | [**Lien vers l'intégration**](https://docs.paloaltonetworks.com/network-security/security-policy/administration/objects/external-dynamic-lists/configure-the-firewall-to-access-an-external-dynamic-list#configure-the-firewall-to-access-an-external-dynamic-list-panorama) | TBD |
 | **OPNsense** | [**Lien vers l'intégration**](https://slash-root.fr/opnsense-block-malicious-ips/) | TBD |
+| **Stormshield**| [**Bloquer les IP et pays à risque**](https://www.youtube.com/watch?v=yT2oas7M2UM) | TBD |
 
 # Quelques retours notables
 
