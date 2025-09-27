@@ -60,7 +60,7 @@ Les adresses IP sont conservées pendant **60 jours maximum**. Si aucune activit
 
 | **Fournisseur** | **URL** | **Taille des tables** |
 |---|---|---|
-| **Fortinet** | [**Lien vers l'intégration**](https://docs.fortinet.com/document/fortigate/7.2.0/administration-guide/891236) | Tailles augmentées depuis [**le firmware 7.4.9**](https://docs.fortinet.com/document/fortigate/7.4.9/fortios-release-notes/626946/changes-in-table-size)
+| **Fortinet** | [**Lien vers l'intégration**](https://docs.fortinet.com/document/fortigate/7.4.9/administration-guide/379433/configuring-a-threat-feed#threat-ext) | Tailles augmentées depuis [**le firmware 7.4.9**](https://docs.fortinet.com/document/fortigate/7.4.9/fortios-release-notes/626946/changes-in-table-size)
 | **Checkpoint** | [**Lien vers l'intégration**](https://sc1.checkpoint.com/documents/R80.20SP/WebAdminGuides/EN/CP_R80.20SP_Maestro_AdminGuide/Topics-Maestro-AG/IP-Block-Feature.htm) | TBD |
 | **Palo Alto** | [**Lien vers l'intégration**](https://www.youtube.com/watch?v=JOJaa_ibN8Q) | TBD |
 | **OPNsense** | [**Lien vers l'intégration**](https://slash-root.fr/opnsense-block-malicious-ips/) | TBD |
