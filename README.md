@@ -1,4 +1,4 @@
-# Data-Shield IPv4 Blocklist - Bloquez les adresses IP malveillantes
+# Data-Shield IPv4 Blocklist - Bloquez les adresses IP dangereuses
 
 <p align="center">
 
