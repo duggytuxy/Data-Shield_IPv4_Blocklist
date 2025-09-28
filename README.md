@@ -66,6 +66,7 @@ Les adresses IP sont conservées pendant **```60 jours maximum```**. Si aucune a
 | **Palo Alto** | [**Lien vers l'intégration**](https://docs.paloaltonetworks.com/network-security/security-policy/administration/objects/external-dynamic-lists/configure-the-firewall-to-access-an-external-dynamic-list#configure-the-firewall-to-access-an-external-dynamic-list-panorama) | TBD |
 | **OPNsense** | [**Lien vers l'intégration**](https://slash-root.fr/opnsense-block-malicious-ips/) | TBD |
 | **Stormshield**| [**Bloquer les IP et pays à risque**](https://www.youtube.com/watch?v=yT2oas7M2UM) | TBD |
+| **F5 BIG-IP** | [**Tutoriel pour l'implémentation**](https://my.f5.com/manage/s/article/K10978895) | TBD |
 
 # Quelques retours notables
 
