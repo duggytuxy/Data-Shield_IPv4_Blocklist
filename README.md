@@ -61,10 +61,10 @@ Les adresses IP sont conservées pendant **```60 jours maximum```**. Si aucune a
 
 | **Fournisseur** | **URL** | **Taille des tables** |
 |---|---|---|
-| **Fortinet** | [**Lien vers l'intégration**](https://docs.fortinet.com/document/fortigate/7.4.9/administration-guide/379433/configuring-a-threat-feed#threat-ext) | Tailles augmentées depuis [**le firmware 7.4.9**](https://docs.fortinet.com/document/fortigate/7.4.9/fortios-release-notes/626946/changes-in-table-size)
-| **Checkpoint** | [**Lien vers l'intégration**](https://sc1.checkpoint.com/documents/R80.20SP/WebAdminGuides/EN/CP_R80.20SP_Maestro_AdminGuide/Topics-Maestro-AG/IP-Block-Feature.htm) | TBD |
-| **Palo Alto** | [**Lien vers l'intégration**](https://docs.paloaltonetworks.com/network-security/security-policy/administration/objects/external-dynamic-lists/configure-the-firewall-to-access-an-external-dynamic-list#configure-the-firewall-to-access-an-external-dynamic-list-panorama) | TBD |
-| **OPNsense** | [**Lien vers l'intégration**](https://slash-root.fr/opnsense-block-malicious-ips/) | TBD |
+| **Fortinet** | [**Tutoriel officiel du constructeur**](https://docs.fortinet.com/document/fortigate/7.4.9/administration-guide/379433/configuring-a-threat-feed#threat-ext) | Tailles augmentées depuis [**le firmware 7.4.9**](https://docs.fortinet.com/document/fortigate/7.4.9/fortios-release-notes/626946/changes-in-table-size)
+| **Checkpoint** | [**Tutoriel officiel du constructeur**](https://sc1.checkpoint.com/documents/R80.20SP/WebAdminGuides/EN/CP_R80.20SP_Maestro_AdminGuide/Topics-Maestro-AG/IP-Block-Feature.htm) | TBD |
+| **Palo Alto** | [**Tutoriel officiel du constructeur**](https://docs.paloaltonetworks.com/network-security/security-policy/administration/objects/external-dynamic-lists/configure-the-firewall-to-access-an-external-dynamic-list#configure-the-firewall-to-access-an-external-dynamic-list-panorama) | TBD |
+| **OPNsense** | [**Tutoriel pour l'implémentation par Julien Louis de Slash-Root**](https://slash-root.fr/opnsense-block-malicious-ips/) | TBD |
 | **Stormshield**| [**Bloquer les IP et pays à risque**](https://www.youtube.com/watch?v=yT2oas7M2UM) | TBD |
 | **F5 BIG-IP** | [**Tutoriel pour l'implémentation**](https://my.f5.com/manage/s/article/K10978895) | TBD |
 | **IPTables** | [**Tutoriel pour l'implémentation par Xavier Bellekens de Lupovis**](https://www.linkedin.com/posts/activity-7125481101728313345-b8jM?utm_source=share&utm_medium=member_desktop&rcm=ACoAADJ9YewBc1fr8fd-5mpMe1Y5NVm1XEF4ZG) | TBD |
