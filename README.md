@@ -87,5 +87,6 @@ Grâce à votre soutien et aux dons, ce projet sera maintenu et perdurera son ex
 | **Site de donations** | **Description** | **URL** |
 |---|---|---|
 | **Ko-Fi** | Rejoignez tous les types de créateurs qui reçoivent des dons, des adhésions, etc. de la part de leurs fans ! | [**Merci à vous !!!**](https://ko-fi.com/laurentmduggytuxy) |
+| **Duggy Tuxy Store** | Boutique officielle de goodies pour contribuer au projet Data-Shield IPv4 Blocklist | [**Visitez la boutique**](https://duggy-tuxy.myspreadshop.be/) |
 
 Data-Shield IPv4 Blocklist © 2023-2025 par Duggy Tuxy (Laurent Minne) est sous licence [**License File**](/LICENSE)
