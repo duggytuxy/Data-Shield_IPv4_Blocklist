@@ -7,7 +7,7 @@ Version : 1.0
 # Introduction
 
 ### Objectif
-- Décrire les politiques, responsabilités et contrôles permettant d'intégrer la Data-Shield IPv4 Blocklist comme source de renseignement de menace protégeant l'infrastructure réseau de l'entreprise. La liste alimente les pare-feux et systèmes de prévention pour bloquer automatiquement les adresses IP identifiées comme malveillantes à partir du réseau de 36 leurres Data-Shield mis à jour toutes les 24 heures.【F:README.md†L12-L31】
+- Décrire les politiques, responsabilités et contrôles permettant d'intégrer la Data-Shield IPv4 Blocklist comme source de renseignement de menace protégeant l'infrastructure réseau de l'entreprise. La liste alimente les pare-feux et systèmes de prévention pour bloquer automatiquement les adresses IP identifiées comme malveillantes à partir du réseau de 36 leurres Data-Shield mis à jour toutes les 24 heures.[**README**](https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist?tab=readme-ov-file#pr%C3%A9sentation-du-projet)
 
 ### Portée
 - Ce document couvre la consommation sécurisée de la blocklist (versions complète et segmentées) dans les pare-feux Fortinet, Check Point, Palo Alto, OPNsense, Stormshield, F5 et infrastructures IPTables, ainsi que les processus internes de validation, de déploiement automatisé et de suivi continu des 9 240 IP malicieuses collectées quotidiennement.【F:README.md†L33-L82】
