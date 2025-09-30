@@ -7,15 +7,15 @@ Version : 1.0
 # Introduction
 
 ### Objectif
-- Décrire les politiques, responsabilités et contrôles permettant d'intégrer la Data-Shield IPv4 Blocklist comme source de renseignement de menace protégeant l'infrastructure réseau de l'entreprise. La liste alimente les pare-feux et systèmes de prévention pour bloquer automatiquement les adresses IP identifiées comme malveillantes à partir du réseau de 36 leurres Data-Shield mis à jour toutes les 24 heures.[**README**](https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist?tab=readme-ov-file#pr%C3%A9sentation-du-projet)
+- Décrire les politiques, responsabilités et contrôles permettant d'intégrer la Data-Shield IPv4 Blocklist comme source de renseignement de menace protégeant l'infrastructure réseau de l'entreprise. La liste alimente les pare-feux et systèmes de prévention pour bloquer automatiquement les adresses IP identifiées comme malveillantes à partir du réseau de 36 leurres Data-Shield mis à jour toutes les 24 heures.
 
 ### Portée
-- Ce document couvre la consommation sécurisée de la blocklist (versions complète et segmentées) dans les pare-feux Fortinet, Check Point, Palo Alto, OPNsense, Stormshield, F5 et infrastructures IPTables, ainsi que les processus internes de validation, de déploiement automatisé et de suivi continu des 9 240 IP malicieuses collectées quotidiennement.【F:README.md†L33-L82】
+- Ce document couvre la consommation sécurisée de la blocklist (versions complète et segmentées) dans les pare-feux Fortinet, Check Point, Palo Alto, OPNsense, Stormshield, F5 et infrastructures IPTables, ainsi que les processus internes de validation, de déploiement automatisé et de suivi continu des 9 240 IP malicieuses collectées quotidiennement.
 
 # Cadre de gouvernance
 
 ### Déclaration de politique générale
-- La blocklist Data-Shield doit être intégrée comme flux externe approuvé, synchronisé toutes les 24 heures, avec conservation locale limitée à 60 jours. Toute modification des règles d’ingestion ou de distribution doit être approuvée par le Responsable Sécurité Systèmes d’Information (RSSI) et documentée dans le référentiel de configuration des pare-feux. La politique impose la vérification de l’intégrité du flux, la traçabilité des mises à jour et la possibilité de désactivation contrôlée en cas d’incident.【F:README.md†L20-L43】【F:README.md†L84-L113】
+- La blocklist Data-Shield doit être intégrée comme flux externe approuvé, synchronisé toutes les 24 heures, avec conservation locale limitée à 60 jours. Toute modification des règles d’ingestion ou de distribution doit être approuvée par le Responsable Sécurité Systèmes d’Information (RSSI) et documentée dans le référentiel de configuration des pare-feux. La politique impose la vérification de l’intégrité du flux, la traçabilité des mises à jour et la possibilité de désactivation contrôlée en cas d’incident.
 
 ### Rôles et responsabilités
 - Le modèle RACI défini en annexe précise :
@@ -51,7 +51,7 @@ Version : 1.0
 # Exigences en matière de conformité
 
 ### Conformité réglementaire
-- S’aligner sur les contrôles ISO/IEC 27001 Annexe A (A.8.16 Surveillance, A.5.7 Partenariats externes) en documentant l’usage du flux Data-Shield comme mesure de sécurité. Respecter les obligations NIS2 concernant la détection et la prévention des cybermenaces, et garantir la conformité GDPR pour le traitement d’adresses IP en s’appuyant sur l’intérêt légitime de sécurité et la limitation de conservation à 60 jours.【F:README.md†L45-L65】
+- S’aligner sur les contrôles ISO/IEC 27001 Annexe A (A.8.16 Surveillance, A.5.7 Partenariats externes) en documentant l’usage du flux Data-Shield comme mesure de sécurité. Respecter les obligations NIS2 concernant la détection et la prévention des cybermenaces, et garantir la conformité GDPR pour le traitement d’adresses IP en s’appuyant sur l’intérêt légitime de sécurité et la limitation de conservation à 60 jours.
 
 ### Conformité interne
 - Aligner la mise en œuvre sur la Politique de Sécurité des Systèmes d’Information (PSSI) et sur les procédures de gestion des changements réseau. Chaque mise à jour doit être enregistrée dans l’outil ITSM, revue par le Change Advisory Board (CAB) sécurité et validée par le RSSI ; les procédures de rollback doivent être testées trimestriellement.
@@ -67,7 +67,7 @@ Version : 1.0
 ### Allocation des ressources
 - 1 Mainteneur Data-Shield (fournisseur de la blocklist) pour la coordination et la communication des mises à jour.
 - 2 Ingénieurs Opérations Sécurité pour l’automatisation et la supervision du déploiement.
-- 1 Ingénieur Réseau pour l’optimisation des performances et des limites de taille de tables (50k/130k IP selon équipement).【F:README.md†L69-L99】
+- 1 Ingénieur Réseau pour l’optimisation des performances et des limites de taille de tables (50k/130k IP selon équipement).
 - Support conformité/GDPR pour la documentation réglementaire et les audits.
 - Infrastructure : référentiel Git interne, serveurs d’automatisation (Ansible/GitLab CI), monitoring (Prometheus, SIEM).
 
@@ -81,7 +81,7 @@ Version : 1.0
 ### Mécanismes de suivi
 - Tableau de bord SIEM consolidant les tentatives bloquées par la blocklist et comparant les statistiques avant/après intégration.
 - Surveillance continue des jobs d’ingestion (retour code, taille des fichiers, empreinte) avec alerting 24/7.
-- Revue hebdomadaire des IP exclues pour s’assurer du respect de la politique de rétention de 60 jours.【F:README.md†L37-L57】
+- Revue hebdomadaire des IP exclues pour s’assurer du respect de la politique de rétention de 60 jours.
 
 ### Processus d'examen
 - Revue trimestrielle par le RSSI et le Responsable Conformité pour évaluer l’efficacité du flux, ajuster les politiques de blocage et mettre à jour les procédures.
@@ -102,7 +102,7 @@ Version : 1.0
 
 ### Documentation supplémentaire
 - Référentiel GitHub Data-Shield IPv4 Blocklist : https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist
-- Tutoriels d’intégration par fournisseur (Fortinet, Check Point, Palo Alto, etc.) listés dans le README du projet.【F:README.md†L101-L132】
+- Tutoriels d’intégration par fournisseur (Fortinet, Check Point, Palo Alto, etc.) listés dans le README du projet.
 
 # Prochaines étapes
 
