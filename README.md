@@ -56,6 +56,7 @@ Les adresses IP sont conservées pendant **```60 jours maximum```**. Si aucune a
 - [**prod_aa_data-shield_ipv4_blocklist.txt**](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_aa_data-shield_ipv4_blocklist.txt) (liste splittée) pour les pare-feux dont la limitation est de ```50.000 IPs``` par liste externe
 - [**prod_ab_data-shield_ipv4_blocklist.txt**](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ab_data-shield_ipv4_blocklist.txt) (liste splittée) pour les pare-feux dont la limitation est de ```50.000 IPs``` par liste externe
 - [**prod_ac_data-shield_ipv4_blocklist.txt**](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ac_data-shield_ipv4_blocklist.txt) (liste splittée) pour les pare-feux dont la limitation est de ```50.000 IPs``` par liste externe
+- [**prod_critical_assets_data-shield_ipv4_blocklist.txt**](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_critical_assets_data-shield_ipv4_blocklist.txt) (liste complète pour les assets critiques)
 
 ### Tutoriels en provenance de quelques fournisseurs pour l'intégration
 
