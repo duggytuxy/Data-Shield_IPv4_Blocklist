@@ -10,7 +10,7 @@
 
 # Présentation du projet
 
-Ce projet vise à réduire le nombre d'attaques en bloquant les adresses IP identifiées comme étant des sources d'activités dangereuses. Grâce à un réseau de ```36``` leurres déployés dans des zones stratégiques du cyberespace, plus de **```9240``` adresses IP uniques** sont collectées quotidiennement. Après analyse et validation, les adresses IP sont ajoutées à cette liste de blocage, surveillée en continu. Je rappelle que cette liste ne remplace en aucun cas les bonnes pratiques de sécurité, elle y contribue et mise à journée toutes les **```24 heures```**
+Ce projet vise à réduire le nombre d'attaques en bloquant les adresses IP identifiées comme étant des sources d'activités dangereuses. Grâce à un réseau de ```42``` leurres déployés dans des zones stratégiques du cyberespace, plus de **```9480``` adresses IP uniques** sont collectées quotidiennement. Après analyse et validation, les adresses IP sont ajoutées à cette liste de blocage, surveillée en continu. Je rappelle que cette liste ne remplace en aucun cas les bonnes pratiques de sécurité, elle y contribue et mise à journée toutes les **```24 heures```**
 
 ### Objectif
 
