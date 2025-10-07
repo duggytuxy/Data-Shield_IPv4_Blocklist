@@ -1,139 +1,142 @@
-name: ❗ Signalement - Faux positif
-description: Signaler une adresse IP présente dans la blocklist que vous considérez comme légitime / non-malveillante.
+name: "❗ Signalement - Faux positif"
+description: "Signaler une adresse IP présente dans la blocklist que vous considérez comme légitime / non-malveillante."
 title: "[FALSE-POSITIVE] {ip} - {contexte}"
-labels: ['false-positive', 'triage']
+labels: ["false-positive","triage"]
 assignees: []
 body:
   - type: markdown
     attributes:
-      value: >
+      value: |
         ## 🧾 Résumé
         Merci de remplir ce formulaire pour signaler un **faux positif**. Fournissez autant d'éléments de preuve que possible (logs anonymisés, ASN, reverse DNS, captures). N'attachez pas d'informations personnelles non anonymisées.
+
   - type: input
     id: ip
     attributes:
-      label: Adresse IP concernée (obligatoire)
-      description: Ex : `203.0.113.45`
-      placeholder: 203.0.113.45
-      required: true
+      label: "Adresse IP concernée"
+      description: "Ex : 203.0.113.45"
+      placeholder: "203.0.113.45"
+
   - type: input
     id: file_list
     attributes:
-      label: Fichier / liste (ex : prod_data-shield_ipv4_blocklist.txt)
-      description: Indiquez précisément la liste où l'IP apparaît.
-      placeholder: prod_data-shield_ipv4_blocklist.txt
-      required: true
+      label: "Fichier / liste"
+      description: "Ex : prod_data-shield_ipv4_blocklist.txt"
+      placeholder: "prod_data-shield_ipv4_blocklist.txt"
+
   - type: input
     id: observed_at
     attributes:
-      label: Date / heure observée (UTC)
-      description: Format recommandé : YYYY-MM-DD HH:MM (UTC). Si inconnu, laissez vide.
-      placeholder: 2025-10-06 09:12
-      required: false
+      label: "Date / heure observée (UTC)"
+      description: "Format recommandé : YYYY-MM-DD HH:MM (UTC)"
+      placeholder: "2025-10-06 09:12"
+
   - type: markdown
     attributes:
-      value: >
+      value: |
         ---
         ## 🔍 Contexte & preuve (indiquez ici autant d'éléments que possible)
+
   - type: textarea
     id: contexte_utilisation
     attributes:
-      label: Contexte d’utilisation de l’IP
-      description: ex : serveur web hébergé chez OVH, serveur mail Azure, appliance entreprise, box résidentielle, etc.
-      placeholder: ex: serveur mail hébergé chez OVH (mx.example.com)
-      required: false
+      label: "Contexte d’utilisation de l’IP"
+      description: "ex : serveur web hébergé chez OVH, serveur mail Azure, appliance entreprise, box résidentielle, etc."
+      placeholder: "ex: serveur mail hébergé chez OVH (mx.example.com)"
+
   - type: textarea
     id: pourquoi_fp
     attributes:
-      label: Pourquoi vous pensez que c’est un faux positif
-      description: Expliquez en quelques lignes (activité normale, service légitime, erreurs d'analyse, etc.).
-      placeholder: ex: IP correspondant à notre serveur MX, trafic légitime observé
-      required: false
+      label: "Pourquoi vous pensez que c’est un faux positif"
+      description: "Expliquez en quelques lignes (activité normale, service légitime, erreurs d'analyse, etc.)"
+      placeholder: "ex: IP correspondant à notre serveur MX, trafic légitime observé"
+
   - type: textarea
     id: preuves
     attributes:
-      label: Preuves (logs anonymisés / extraits) (obligatoire)
-      description: Collez des extraits de logs anonymisés, timestamps (UTC), fréquence d'attaques. Joindre également des captures via l'interface "Attach files" si besoin.
-      placeholder: ex: 2025-10-06T09:10:12 mail postfix/smtpd[1234]: connect from mail.example.com[203.0.113.45]
-      required: true
+      label: "Preuves (logs anonymisés / extraits)"
+      description: "Collez des extraits de logs anonymisés, timestamps (UTC), fréquence d'attaques. Joindre également des captures via 'Attach files' si besoin."
+      placeholder: "ex: 2025-10-06T09:10:12 mail postfix/smtpd[1234]: connect from mail.example.com[203.0.113.45]"
+
   - type: input
     id: asn_fai
     attributes:
-      label: ASN / FAI (si connu)
-      description: ex: ASXXXXX - OVH SAS
-      placeholder: ASXXXXX - OVH SAS
-      required: false
+      label: "ASN / FAI (si connu)"
+      description: "ex: ASXXXXX - OVH SAS"
+      placeholder: "ASXXXXX - OVH SAS"
+
   - type: input
     id: reverse_dns
     attributes:
-      label: reverse DNS (si connu)
-      description: ex: mail.example.com
-      required: false
+      label: "reverse DNS (si connu)"
+      description: "ex: mail.example.com"
+      placeholder: "mail.example.com"
+
   - type: markdown
     attributes:
-      value: >
+      value: |
         ---
         ## ℹ️ Détails techniques utiles
+
   - type: input
     id: cidr
     attributes:
-      label: Plage CIDR associée (si applicable)
-      description: ex: `203.0.113.0/24`
-      required: false
+      label: "Plage CIDR associée (si applicable)"
+      description: "ex: 203.0.113.0/24"
+      placeholder: "203.0.113.0/24"
+
   - type: input
     id: ports_services
     attributes:
-      label: Ports & services observés
-      description: ex: `80 (http), 443 (https), 25 (smtp)`
-      placeholder: 25 (smtp)
-      required: false
+      label: "Ports & services observés"
+      description: "ex: 80 (http), 443 (https), 25 (smtp)"
+      placeholder: "25 (smtp)"
+
   - type: input
     id: last_activity
     attributes:
-      label: Dernière activité observée (UTC)
-      description: YYYY-MM-DD HH:MM
-      required: false
+      label: "Dernière activité observée (UTC)"
+      description: "YYYY-MM-DD HH:MM"
+      placeholder: "2025-10-06 09:12"
+
   - type: textarea
     id: impact
     attributes:
-      label: Impact opérationnel
-      description: Décrivez l'impact (ex: blocage d’accès, interruption service, monitoring affecté).
-      required: false
+      label: "Impact opérationnel"
+      description: "Décrivez l'impact (ex: blocage d’accès, interruption service, monitoring affecté)."
+
   - type: markdown
     attributes:
-      value: >
+      value: |
         ---
         ## ✅ Action demandée (cochez la/les options souhaitées)
+
   - type: checkboxes
     id: actions
     attributes:
-      label: Mesure(s) demandée(s)
+      label: "Mesure(s) demandée(s)"
       options:
-        - label: Supprimer immédiatement l'IP de la blocklist (urgence)
-          value: remove_immediately
-        - label: Mettre en quarantaine / déplacer vers liste de vérification manuelle avant suppression
-          value: quarantine_for_review
-        - label: Requalifier comme "whitelisted" (surveillance passive)
-          value: requalify_whitelist
-        - label: Autre (préciser dans "Informations additionnelles")
-          value: other
-      required: true
+        - "Supprimer immédiatement l'IP de la blocklist (urgence)"
+        - "Mettre en quarantaine / déplacer vers liste de vérification manuelle avant suppression"
+        - "Requalifier comme 'whitelisted' (surveillance passive)"
+        - "Autre (préciser dans 'Informations additionnelles')"
+
   - type: textarea
     id: additional_info
     attributes:
-      label: Informations additionnelles / précisions
-      description: Utilisez ce champ pour préciser une option "Autre" ou donner des détails complémentaires.
-      required: false
+      label: "Informations additionnelles / précisions"
+      description: "Utilisez ce champ pour préciser une option 'Autre' ou donner des détails complémentaires."
+
   - type: markdown
     attributes:
-      value: >
+      value: |
         ---
         ## 🔐 Confidentialité / note importante
-        - Si vous fournissez des logs contenant des données personnelles, **veuillez supprimer/anonymiser** les éléments sensibles (noms, e-mails, tokens).  
-        - Pour toute information sensible, utilisez la voie privée (contact via GitHub) après prise de contact public initial.  
-        - Les signalements manifestement abusifs (fausses déclarations visant un concurrent, représailles, etc.) seront documentés et peuvent entraîner des mesures (rejet, blocage de soumissions, signalement à GitHub).
+        - Si vous fournissez des logs contenant des données personnelles, veuillez anonymiser (supprimer noms, e-mails, tokens).
+        - Pour toute information sensible, utilisez la voie privée (contact via GitHub) après prise de contact public initial.
+        - Les signalements manifestement abusifs seront documentés et peuvent entraîner des mesures (rejet, blocage de soumissions, signalement à GitHub).
+
   - type: markdown
     attributes:
-      value: >
-        ---
+      value: |
         Merci — notre équipe va examiner la demande et répondre sous 48h (souvent plus vite).
