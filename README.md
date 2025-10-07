@@ -1,7 +1,7 @@
 # 🛡️ Data-Shield IPv4 Blocklist  
 _"Bloquez les adresses IP dangereuses et réduisez la surface d’attaque."_
 
-<p align="center">
+<p align="left">
   <img src="https://img.shields.io/badge/Open%20Source-100%25-brightgreen?style=for-the-badge&logo=opensourceinitiative">
   <img src="https://img.shields.io/badge/No_False_Positive-100%25-green?style=for-the-badge&logo=cachet">
   <img src="https://img.shields.io/github/last-commit/duggytuxy/Intelligence_IPv4_Blocklist?label=Last%20update&color=informational&style=for-the-badge&logo=github">
