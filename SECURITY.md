@@ -1,5 +1,5 @@
 # MODÈLE DE CONFORMITÉ GRC - Document pour l'intégration de la Data-Shield IPv4 Blocklist
-Version : 1.1
+Version : 1.2
 
 - ***Propriétaire : Laurent Minne (Mainteneur Data-Shield)***
 - ***Contributeurs clés :*** Équipe Opérations Sécurité, Équipe Réseau, Responsable Conformité IT
@@ -7,10 +7,10 @@ Version : 1.1
 # Introduction
 
 ### Objectif
-- Décrire les politiques, responsabilités et contrôles permettant d'intégrer la Data-Shield IPv4 Blocklist comme source de renseignement de menace protégeant l'infrastructure réseau de l'entreprise. La liste alimente les pare-feux et systèmes de prévention pour bloquer automatiquement les adresses IP identifiées comme malveillantes à partir du réseau de 36 leurres Data-Shield mis à jour toutes les 24 heures.
+- Décrire les politiques, responsabilités et contrôles permettant d'intégrer la Data-Shield IPv4 Blocklist comme source de renseignement de menace protégeant l'infrastructure réseau de l'entreprise. La liste alimente les pare-feux et systèmes de prévention pour bloquer automatiquement les adresses IP identifiées comme malveillantes à partir du réseau de 42 leurres Data-Shield mis à jour toutes les 24 heures.
 
 ### Portée
-- Ce document couvre la consommation sécurisée de la blocklist (versions complète et segmentées) dans les pare-feux Fortinet, Check Point, Palo Alto, OPNsense, Stormshield, F5 et infrastructures IPTables, ainsi que les processus internes de validation, de déploiement automatisé et de suivi continu des 9 240 IP malicieuses collectées quotidiennement.
+- Ce document couvre la consommation sécurisée de la blocklist (versions complète et segmentées) dans les pare-feux Fortinet, Check Point, Palo Alto, OPNsense, Stormshield, F5 et infrastructures IPTables, ainsi que les processus internes de validation, de déploiement automatisé et de suivi continu des 9 480 IP malicieuses collectées quotidiennement.
 
 # Cadre de gouvernance
 
