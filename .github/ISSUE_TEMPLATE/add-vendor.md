@@ -1,8 +1,8 @@
 ---
-name: 🔧 Demande d'ajout - Nouvel éditeur / vendor
-about: Demande pour ajouter le support d'un nouvel éditeur (ex : Ubiquiti, MikroTik, ...)
+name: "🔧 Demande d'ajout - Nouvel éditeur / vendor"
+about: "Demande pour ajouter le support d'un nouvel éditeur (ex : Ubiquiti, MikroTik, ...)"
 title: "[VENDOR REQUEST] <vendor> - <usage>"
-labels: vendor-request, triage
+labels: ["vendor-request", "triage"]
 ---
 
 ## 🧾 Informations générales
@@ -13,11 +13,14 @@ Ex : `Ubiquiti`
 Ex : `EDL HTTP / import dynamique d'IPs`
 
 **Motivation (pourquoi l'ajout est nécessaire)** :  
-- Impact opérationnel :
-- Nombre d'installations / utilisateurs concernés :
+- Impact opérationnel :  
+- Nombre d'installations / utilisateurs concernés :  
 - Exemple d'usage dans l'infra :
 
 **Lien(s) vers la doc officielle / API / guide** :  
 - https://...
 
 **Exemple de configuration / snippet (facultatif)** :  
+```text
+# collez ici un extrait de config si vous en avez
+# (n'oubliez pas de fermer ce bloc avec ``` à la fin)

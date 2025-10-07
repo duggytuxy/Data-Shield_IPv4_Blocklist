@@ -1,8 +1,8 @@
 ---
-name: 🚨 Signalement - IP malveillante (communauté)
-about: Signalez une IP non listée qui vous attaque. Fournissez preuves et ID ticket abuse du FAI (obligatoire pour traitement).
+name: "🚨 Signalement - IP malveillante (communautaire)"
+about: "Signalez une IP non listée qui vous attaque. Fournissez preuves et ID ticket abuse du FAI (obligatoire pour traitement)."
 title: "[REPORT] <IP> - <service_cible>"
-labels: community-blacklist, triage
+labels: ["community-blacklist", "triage"]
 ---
 
 ## 🧾 Informations essentielles
@@ -31,7 +31,7 @@ Ex : Ticket #1234567 ou capture : abuse_ticket.png
 
 ## 🔒 Consentement
 En déposant ce signalement vous certifiez que :
-- Vous avez signalé l'IP au FAI ou fournis une preuve externe ;  
+- Vous avez signalé l'IP au FAI ou fourni une preuve externe ;  
 - Vous n'utiliserez pas ce signalement à des fins malveillantes ;  
 - Les logs fournis sont anonymisés ;  
 - Vous acceptez que la demande soit triée publiquement sur GitHub.
