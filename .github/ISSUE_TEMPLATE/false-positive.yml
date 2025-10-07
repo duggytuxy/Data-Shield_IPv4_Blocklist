@@ -16,6 +16,8 @@ body:
       label: "Adresse IP concernée"
       description: "Ex : 203.0.113.45"
       placeholder: "203.0.113.45"
+    validations:
+      required: true
 
   - type: input
     id: file_list
@@ -57,6 +59,8 @@ body:
       label: "Preuves (logs anonymisés / extraits)"
       description: "Collez des extraits de logs anonymisés, timestamps (UTC), fréquence d'attaques. Joindre également des captures via 'Attach files' si besoin."
       placeholder: "ex: 2025-10-06T09:10:12 mail postfix/smtpd[1234]: connect from mail.example.com[203.0.113.45]"
+    validations:
+      required: true
 
   - type: input
     id: asn_fai
@@ -117,13 +121,9 @@ body:
       label: "Mesure(s) demandée(s)"
       options:
         - label: "Supprimer immédiatement l'IP de la blocklist (urgence)"
-          value: "remove_immediately"
-        - label: "Mettre en quarantaine / déplacer vers liste de vérification manuelle avant suppression"
-          value: "quarantine_for_review"
+        - label: "Mettre en quarantaine / vérification manuelle avant suppression"
         - label: "Requalifier comme 'whitelisted' (surveillance passive)"
-          value: "requalify_whitelist"
         - label: "Autre (préciser dans 'Informations additionnelles')"
-          value: "other"
 
   - type: textarea
     id: additional_info
