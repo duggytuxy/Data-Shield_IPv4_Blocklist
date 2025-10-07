@@ -37,7 +37,7 @@ Ce code de conduite s'applique à la fois au sein des espaces du projet ainsi qu
 
 ## Application
 
-Les cas de comportements abusifs, harcelants ou tout autre comportement inacceptables peuvent être signalés aux dirigeant·e·s de la communauté responsables de l'application du code de conduite à [contact@data-shield.eu].
+Les cas de comportements abusifs, harcelants ou tout autre comportement inacceptables peuvent être signalés aux dirigeant·e·s de la communauté responsables de l'application du code de conduite à [contact@data-shield.eu](contact@data-shield.eu).
 Toutes les plaintes seront examinées et feront l'objet d'une enquête rapide et équitable.
 
 Tou·te·s les dirigeant·e·s de la communauté sont tenu·e·s de respecter la vie privée et la sécurité des personnes ayant signalé un incident.
