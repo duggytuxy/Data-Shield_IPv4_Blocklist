@@ -1,8 +1,8 @@
 ---
-name: ❗ Signalement - Faux positif
-about: Signaler une adresse IP présente dans la blocklist que vous considérez comme légitime / non-malveillante.
+name: "❗ Signalement - Faux positif (fallback)"
+about: "Signaler une adresse IP présente dans la blocklist que vous considérez comme légitime / non-malveillante."
 title: "[FALSE-POSITIVE] <IP> - <Contexte court>"
-labels: false-positive, triage
+labels: ["false-positive", "triage"]
 assignees: []
 ---
 
@@ -45,4 +45,4 @@ Si vous fournissez des logs contenant des données personnelles, **veuillez supp
 
 ---
 
-Merci - notre équipe va examiner la demande et répondre sous 48h (souvent plus vite).
+Merci — notre équipe va examiner la demande et répondre sous 48h (souvent plus vite).
