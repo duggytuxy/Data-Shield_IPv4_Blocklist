@@ -40,3 +40,41 @@ body:
     id: sample_config
     attributes:
       label: "Exemple de configuration / snippet (facultatif)"
+      description: "Un petit extrait qui montre comment lister/consommer une blocklist (ex: commande ipset, config CLI)"
+      required: false
+  - type: dropdown
+    id: tested
+    attributes:
+      label: "Avez-vous testé quelque chose localement ?"
+      options:
+        - "Oui - je peux fournir les logs/snippets"
+        - "Non"
+      required: false
+  - type: input
+    id: expected_size
+    attributes:
+      label: "Taille estimée / contrainte (approx. nombre d'IP attendu)"
+      description: "Permet d'évaluer l'impact sur les tables et le sharding"
+      placeholder: "~50k"
+      required: false
+  - type: dropdown
+    id: contribution
+    attributes:
+      label: "Souhaitez-vous contribuer à l'intégration ?"
+      options:
+        - "Oui - je peux aider"
+        - "Non"
+        - "Peut-être"
+      required: true
+  - type: input
+    id: contact
+    attributes:
+      label: "Contact (GitHub / email) si besoin de précision"
+      placeholder: "@mon-compte-github"
+      required: false
+  - type: textarea
+    id: additional
+    attributes:
+      label: "Informations additionnelles (facultatif)"
+      description: "Notes sur firmware, version, contraintes particulières"
+      required: false
