@@ -1,5 +1,5 @@
 name: 🔧 Demande d'ajout - Nouvel éditeur / vendor
-description: Demande structurée pour ajouter le support d'un nouvel éditeur (ex : Ubiquiti, MikroTik, etc.)
+description: Demande pour ajouter le support d'un nouvel éditeur (ex : Ubiquiti, MikroTik, ...)
 title: "[VENDOR REQUEST] {vendor} - {usage}"
 labels: ['vendor-request','triage']
 body:
@@ -12,63 +12,58 @@ body:
     id: vendor
     attributes:
       label: Nom de l'éditeur (vendor) *
-      description: Ex: Ubiquiti, MikroTik, Fortinet (si autre, précisez la version/ligne produit)
+      description: Ex: Ubiquiti, MikroTik, Fortinet (précisez la version/ligne produit si possible)
       placeholder: Ubiquiti
       required: true
   - type: input
     id: usage
     attributes:
       label: Usage / cas d'usage principal *
-      description: Ex: import EDL, format d'IPset, threat feed HTTP, intégration via API, etc.
-      placeholder: Ex: External Dynamic List (EDL) - EDL HTTP
+      description: Ex: import EDL HTTP, ipset import, API d'ingestion, etc.
+      placeholder: External Dynamic List (EDL HTTP)
       required: true
   - type: textarea
     id: motivation
     attributes:
       label: Pourquoi voulez-vous cet éditeur ajouté ? *
       description: Impact opérationnel, nombre d'utilisateurs potentiels, services affectés.
-      placeholder: Ex: Nous utilisons des routeurs MikroTik dans tous nos sites et l'import EDL nous manque.
+      placeholder: Ex: Nous utilisons MikroTik sur 30 sites et avons besoin d'une intégration EDL.
       required: true
   - type: input
     id: doc_link
     attributes:
-      label: Lien(s) vers la documentation officielle (URL)
+      label: Lien vers la documentation officielle (URL)
       description: Documentation d'import / example config / API docs
       placeholder: https://www.example.com/docs
       required: false
-  - type: input
+  - type: textarea
     id: sample_config
     attributes:
       label: Exemple de configuration / snippet (facultatif)
       description: Un petit extrait qui montre comment lister/consommer une blocklist (ex: commande ipset, config CLI)
       required: false
-  - type: input
+  - type: dropdown
     id: tested
     attributes:
-      label: Avez-vous testé quelque chose localement ? (oui/non)
-      description: Si oui, précisez ce que vous avez testé (script, commande, version)
-      placeholder: oui - import EDL via 7.4.9
+      label: Avez-vous testé quelque chose localement ?
+      options:
+        - "Oui - je peux fournir les logs/snippets"
+        - "Non"
       required: false
   - type: input
     id: expected_size
     attributes:
       label: Taille estimée / contrainte (approx. nombre d'IP attendu)
       description: Permet d'évaluer l'impact sur les tables et le sharding
-      placeholder: ex: ~50k / liste splittée
-      required: false
-  - type: textarea
-    id: privacy_note
-    attributes:
-      label: Données personnelles / confidentialité (si applicable)
-      description: Indiquez si vous joignez des logs ou données sensibles (anonymisez-les)
+      placeholder: ~50k
       required: false
   - type: dropdown
     id: contribution
     attributes:
-      label: Souhaitez-vous contribuer à l'intégration (ex: fournir un snippet / tester) ?
+      label: Souhaitez-vous contribuer à l'intégration ?
       options:
         - "Oui - je peux aider"
-        - "Non - merci"
+        - "Non"
         - "Peut-être"
       required: true
   - type: input
@@ -81,5 +76,5 @@ body:
     id: additional
     attributes:
       label: Informations additionnelles (facultatif)
-      description: Tout autre détail utile (compatibilité firmware, version, notes particulières)
+      description: Notes sur firmware, version, contraintes particulières
       required: false
