@@ -31,4 +31,4 @@
 
 # Contact
 
-- Pour toute question, demande de licence spécifique ou usage non couvert par la présente licence, merci de contacter le concédant via : laurent(at)data-shield[.]eu
+- Pour toute question, demande de licence spécifique ou usage non couvert par la présente licence, merci de contacter le concédant via <contact@data-shield.eu>
