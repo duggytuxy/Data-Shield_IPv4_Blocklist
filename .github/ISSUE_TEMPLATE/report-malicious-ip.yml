@@ -1,93 +1,96 @@
-name: 🚨 Signalement - IP malveillante (communauté)
-description: Signalez une IP qui vous attaque/attaque votre infrastructure. Fournissez preuves et confirmation d'un report auprès du FAI (ticket abuse) — obligation pour éviter les signalements abusifs.
+name: "🚨 Signalement - IP malveillante (communauté)"
+description: "Signalez une IP qui vous attaque/attaque votre infrastructure. Fournissez preuves et confirmation d'un report auprès du FAI (ticket abuse) — obligation pour éviter les signalements abusifs."
 title: "[REPORT] {ip} - {service_cible}"
-labels: ['community-blacklist','triage']
+labels: ["community-blacklist","triage"]
 body:
   - type: markdown
     attributes:
-      value: >
+      value: |
         Merci de remplir ce formulaire si vous subissez une attaque depuis une IP non listée.
-        **Important** : pour éviter les abus, vous devez *au minimum* avoir signalé cette IP au fournisseur (FAI / abuse) et fournir l'ID de ticket / capture de l'accusé de réception, ou avoir au moins une autre source indépendante (AbuseIPDB / OTX / capture tierce).
-        Ne publiez **pas** de données personnelles (anonymisez les logs).
+        IMPORTANT : pour éviter les abus, vous devez au minimum avoir signalé cette IP au fournisseur (FAI / abuse) et fournir l'ID du ticket ou une capture de l'accusé de réception.
+        Vous pouvez également fournir une source indépendante (AbuseIPDB / OTX). Ne publiez pas de données personnelles non anonymisées.
+
   - type: input
     id: ip
     attributes:
-      label: Adresse IPv4 concernée *
-      description: Ex : 203.0.113.45
-      placeholder: 203.0.113.45
-      required: true
+      label: "Adresse IPv4 concernée"
+      description: "Ex : 203.0.113.45"
+      placeholder: "203.0.113.45"
+
   - type: input
     id: service_cible
     attributes:
-      label: Service / port ciblé *
-      description: Ex : SMTP (25), Web (80/443), SSH (22), RDP (3389)
-      placeholder: SSH (22)
-      required: true
+      label: "Service / port ciblé"
+      description: "Ex : SMTP (25), Web (80/443), SSH (22), RDP (3389)"
+      placeholder: "SSH (22)"
+
   - type: textarea
     id: contexte
     attributes:
-      label: Contexte & description courte de l'incident *
-      description: Indiquez le type d'attaque observée (brute-force, scan, exploitation...), impact et durée.
-      required: true
+      label: "Contexte & description courte de l'incident"
+      description: "Indiquez le type d'attaque observée (brute-force, scan, exploitation...), impact et durée."
+
   - type: textarea
     id: preuves
     attributes:
-      label: Preuves (logs anonymisés / extraits) *
-      description: Collez des extraits de logs (anonymisés), timestamps (UTC), fréquence d'attaques. Masquez tout identifiant personnel.
-      required: true
+      label: "Preuves (logs anonymisés / extraits)"
+      description: "Collez des extraits de logs anonymisés (timestamps UTC). Masquez tout identifiant personnel. Joignez capture si besoin."
+
   - type: input
     id: asn
     attributes:
-      label: ASN / FAI (si connu)
-      description: ex: ASXXXXX - OVH SAS
-      required: false
+      label: "ASN / FAI (si connu)"
+      description: "Ex : ASXXXXX - OVH SAS"
+      placeholder: "ASXXXXX - OVH SAS"
+
   - type: input
     id: reverse_dns
     attributes:
-      label: reverse DNS (si connu)
-      required: false
+      label: "reverse DNS (si connu)"
+      placeholder: "mail.example.com"
+
   - type: input
     id: abuse_ticket
     attributes:
-      label: ID du ticket abuse du FAI / preuve d'envoi vers le fournisseur (obligatoire sauf si autre preuve externe)
-      description: Fournissez l'ID du ticket ou une capture d'écran prouvant que vous avez signalé l'IP au FAI/abuse.
-      placeholder: ex: #1234567 ou capture-screenshot.png
-      required: true
+      label: "ID ticket abuse / preuve d'envoi au FAI"
+      description: "Ex : #1234567 ou nom du ticket. Joindre capture si possible."
+      placeholder: "#1234567"
+
   - type: input
     id: external_link
     attributes:
-      label: Lien(s) externes corroborants (AbuseIPDB, OTX, etc.) - facultatif mais recommandé
-      placeholder: https://www.abuseipdb.com/check/203.0.113.45
-      required: false
+      label: "Lien(s) externes corroborants (AbuseIPDB, OTX, ...)"
+      placeholder: "https://www.abuseipdb.com/check/203.0.113.45"
+
   - type: dropdown
     id: corroboration
     attributes:
-      label: Avez-vous au moins une source indépendante corroborante ?
+      label: "Avez-vous une source indépendante corroborante ?"
       options:
-        - "Oui (ex : AbuseIPDB / OTX / autre)"
-        - "Non"
-      required: true
+        - label: "Oui (ex : AbuseIPDB / OTX / autre)"
+        - label: "Non"
+
   - type: dropdown
     id: urgency
     attributes:
-      label: Niveau d'urgence
+      label: "Niveau d'urgence"
       options:
-        - "Urgent - service indisponible / impact majeur"
-        - "Élevé - impact significatif"
-        - "Moyen - impact limité"
-        - "Faible - information / veille"
-      required: true
+        - label: "Urgent - service indisponible / impact majeur"
+        - label: "Élevé - impact significatif"
+        - label: "Moyen - impact limité"
+        - label: "Faible - information / veille"
+
   - type: textarea
     id: additional
     attributes:
-      label: Informations additionnelles (facultatif)
-      description: ex: script/commande utilisée pour bloquer temporairement, timestamp UTC, contact GitHub
-      required: false
+      label: "Informations additionnelles (facultatif)"
+      description: "Ex : commande utilisée pour bloquer temporairement, timestamp UTC, contact GitHub"
+
   - type: markdown
     attributes:
-      value: >
+      value: |
         En soumettant ce signalement vous confirmez :
-        - Avoir **déjà signalé** l'IP au fournisseur / FAI (ou fourni une preuve externe) ;  
-        - Ne pas utiliser ce signalement à des fins malveillantes (fausse déclaration visant un concurrent, représailles, etc.) ;  
-        - Avoir anonymisé toute donnée personnelle dans les preuves.  
+        - Avoir déjà signalé l'IP au fournisseur / FAI (ou fourni une preuve externe) ;
+        - Ne pas utiliser ce signalement à des fins malveillantes (fausse déclaration visant un concurrent, représailles, etc.) ;
+        - Avoir anonymisé toute donnée personnelle dans les preuves.
         Les signalements abusifs ou falsifiés seront documentés et pourront conduire à des actions (fermeture de compte, signalement GitHub).
