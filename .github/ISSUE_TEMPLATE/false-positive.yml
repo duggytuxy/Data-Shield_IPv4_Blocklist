@@ -116,10 +116,14 @@ body:
     attributes:
       label: "Mesure(s) demandée(s)"
       options:
-        - "Supprimer immédiatement l'IP de la blocklist (urgence)"
-        - "Mettre en quarantaine / déplacer vers liste de vérification manuelle avant suppression"
-        - "Requalifier comme 'whitelisted' (surveillance passive)"
-        - "Autre (préciser dans 'Informations additionnelles')"
+        - label: "Supprimer immédiatement l'IP de la blocklist (urgence)"
+          value: "remove_immediately"
+        - label: "Mettre en quarantaine / déplacer vers liste de vérification manuelle avant suppression"
+          value: "quarantine_for_review"
+        - label: "Requalifier comme 'whitelisted' (surveillance passive)"
+          value: "requalify_whitelist"
+        - label: "Autre (préciser dans 'Informations additionnelles')"
+          value: "other"
 
   - type: textarea
     id: additional_info
