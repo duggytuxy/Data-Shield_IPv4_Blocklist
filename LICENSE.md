@@ -29,6 +29,6 @@
 
 - En aucun cas le Concédant ne pourra être tenu responsable de dommages directs, indirects, spéciaux, accessoires ou consécutifs résultant de l’utilisation de la Blocklist.
 
-6. Contact
+# Contact
 
 - Pour toute question, demande de licence spécifique ou usage non couvert par la présente licence, merci de contacter le concédant via : laurent(at)data-shield[.]eu
