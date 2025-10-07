@@ -96,6 +96,12 @@ D’après les retours recueillis sur **LinkedIn**, plus de **`165 entreprises e
 
 ---
 
+## 🚨 Signaler un faux positif
+Si vous pensez qu’une IP a été ajoutée par erreur, merci de créer une *Issue* en utilisant le template **Signalement - Faux positif** (bouton "New issue" → sélectionner "❗ Signalement - Faux positif").  
+Indiquez l’IP, le contexte, les extraits de logs (anonymisés) et la mesure souhaitée (suppression immédiate / réexamen).
+
+---
+
 ## ❤️ Soutenir le projet
 
 Le maintien de ce projet nécessite du temps et des ressources :
@@ -116,7 +122,7 @@ Le maintien de ce projet nécessite du temps et des ressources :
 L’utilisation de cette liste doit respecter les réglementations locales et le RGPD.  
 Les adresses IP publiées proviennent de flux techniques anonymes et **ne permettent pas d’identifier une personne physique**.  
 Elles sont conservées **60 jours maximum** à des fins de **cybersécurité défensive**, conformément à l’article 6-1.f du RGPD.  
-➡️ Consultez le document complet : [**LEGAL.md**](./LEGAL.md)
+➡️ Consultez le document complet : [**LEGAL**](/LEGAL)
 
 Data-Shield IPv4 Blocklist © 2023-2025 par Duggy Tuxy (Laurent Minne) est sous licence [**License File**](/LICENSE)
 
