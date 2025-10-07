@@ -1,5 +1,5 @@
 # 🛡️ Data-Shield IPv4 Blocklist  
-_Bloquez les adresses IP dangereuses et réduisez la surface d’attaque._
+_"Bloquez les adresses IP dangereuses et réduisez la surface d’attaque."_
 
 <p align="center">
   <img src="https://img.shields.io/badge/Open%20Source-100%25-brightgreen?style=for-the-badge&logo=opensourceinitiative">
@@ -122,8 +122,8 @@ Le maintien de ce projet nécessite du temps et des ressources :
 L’utilisation de cette liste doit respecter les réglementations locales et le RGPD.  
 Les adresses IP publiées proviennent de flux techniques anonymes et **ne permettent pas d’identifier une personne physique**.  
 Elles sont conservées **60 jours maximum** à des fins de **cybersécurité défensive**, conformément à l’article 6-1.f du RGPD.  
-➡️ Consultez le document complet : [**LEGAL**](/LEGAL)
+➡️ Consultez le document complet : [**LEGAL**](/LEGAL.md)
 
-Data-Shield IPv4 Blocklist © 2023-2025 par Duggy Tuxy (Laurent Minne) est sous licence [**License File**](/LICENSE)
+Data-Shield IPv4 Blocklist © 2023-2025 par Duggy Tuxy (Laurent Minne) est sous licence [**License File**](/LICENSE.md)
 
 <p align="center">🧠 _“Security through intelligence, not noise.”_</p>
