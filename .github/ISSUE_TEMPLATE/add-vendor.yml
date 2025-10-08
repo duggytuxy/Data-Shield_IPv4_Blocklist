@@ -1,4 +1,4 @@
-name: "Demande d'ajout - Nouvel éditeur / vendor"
+name: "🔧 Demande d'ajout - Nouvel éditeur / vendor"
 description: "Demande pour ajouter le support d'un nouvel éditeur (ex : Ubiquiti, MikroTik, ...)"
 title: "[VENDOR REQUEST] {vendor} - {usage}"
 labels: ["vendor-request","triage"]
