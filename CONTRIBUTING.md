@@ -7,7 +7,7 @@ Indiquez l’IP, le contexte, les extraits de logs (anonymisés) et la mesure so
 
 ---
 
-## Vous désirez remonter une adresse IPv4 dangereuse ?
+## Vous désirez remonter une adresse IP malveillante ?
 
 Merci de créer une *Issue* en utilisant le template **Signalement - IP malveillante** (bouton "New issue" → sélectionner "🚨 Signalement - IP malveillante **communauté**").  
 Merci de remplir ce formulaire si vous subissez une attaque depuis une IP non listée.
