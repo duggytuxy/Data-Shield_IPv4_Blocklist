@@ -20,12 +20,6 @@ Après analyse et validation, les adresses IP sont ajoutées à cette liste de b
 
 ---
 
-## 🛂Flux de traitement et d'intégration
-
-<p align="left">
-  <img src=https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/blob/main/schema_nbg.png
-</p>
-
 ## 🎯 Objectifs
 
 - Réduire le volume d’attaques et de scans réseau  
@@ -70,6 +64,14 @@ Sans activité détectée durant cette période, elles sont retirées et placée
 
 ---
 
+## 🛂Flux de traitement et d'intégration
+
+<p align="left">
+  <img src=https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/blob/main/schema_nbg.png
+</p>
+
+---
+
 ## 🔗 Intégration dans les pare-feux
 
 ⚠️**Informations importantes autour de la configuration liée à l'intégration**
@@ -82,6 +84,7 @@ Sans activité détectée durant cette période, elles sont retirées et placée
 | [prod_aa_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_aa_data-shield_ipv4_blocklist.txt) | Split A | 30 000 |
 | [prod_ab_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ab_data-shield_ipv4_blocklist.txt) | Split B | 30 000 |
 | [prod_ac_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ac_data-shield_ipv4_blocklist.txt) | Split C | 30 000 |
+| [prod_ad_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ad_data-shield_ipv4_blocklist.txt) | Split C | 30 000 |
 
 ---
 
