@@ -76,7 +76,7 @@ Sans activité détectée durant cette période, elles sont retirées et placée
 
 ⚠️**Informations importantes autour de la configuration liée à l'intégration**
 
-> - Comme ce sont des adresses IP qui tamponnent les assets exposés, la configuration DOIT se faire uniquement : WAN to LAN (de l'Internet vers le réseau interne)
+> Comme ce sont des adresses IP qui tamponnent les assets exposés, la configuration DOIT se faire uniquement : WAN to LAN (de l'Internet vers le réseau interne)
 
 | **Nom de la liste** | **Usage recommandé** | **Limite IPs** |
 |:--|:--|:--:|
