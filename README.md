@@ -78,6 +78,10 @@ Sans activité détectée durant cette période, elles sont retirées et placée
 
 > Comme ce sont des adresses IP qui tamponnent les assets exposés, la configuration DOIT se faire uniquement : WAN to LAN (de l'Internet vers le réseau interne)
 
+---
+
+## Listes en production
+
 | **Nom de la liste** | **Usage recommandé** | **Limite IPs** |
 |:--|:--|:--:|
 | [prod_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_data-shield_ipv4_blocklist.txt) | Liste complète | 100 000 |
