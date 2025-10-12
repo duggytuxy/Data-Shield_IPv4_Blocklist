@@ -20,7 +20,7 @@ Après analyse et validation, les adresses IP sont ajoutées à cette liste de b
 
 ---
 
-## Flux de traitement et d'intégration
+## 🛂Flux de traitement et d'intégration
 
 <p align="left">
   <img src=https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/blob/main/schema.png
