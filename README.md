@@ -1,4 +1,4 @@
-<p align="center">
+<p align="left">
   <img src=https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/blob/main/data_shield_ipv4_blocklist.png
 </p>
 
