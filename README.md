@@ -3,7 +3,7 @@ _"Bloquez les adresses IP dangereuses et réduisez la surface d’attaque."_
 
 <p align="left">
   <img src="https://img.shields.io/badge/Open%20Source-100%25-brightgreen?style=for-the-badge&logo=opensourceinitiative">
-  <img src="https://img.shields.io/badge/No_False_Positive-100%25-green?style=for-the-badge&logo=cachet">
+  <img src="https://img.shields.io/badge/No_False_Positive-99,99%25-green?style=for-the-badge&logo=cachet">
   <img src="https://img.shields.io/github/last-commit/duggytuxy/Intelligence_IPv4_Blocklist?label=Last%20update&color=informational&style=for-the-badge&logo=github">
 </p>
 
@@ -13,7 +13,7 @@ _"Bloquez les adresses IP dangereuses et réduisez la surface d’attaque."_
 
 **Data-Shield IPv4 Blocklist** vise à réduire le nombre d’attaques en bloquant les adresses IP identifiées comme sources d’activités malveillantes.
 
-Grâce à un réseau de **`42` leurres** déployés dans des zones stratégiques du cyberespace, plus de **`9 480 IP uniques`** sont collectées chaque jour.  
+Grâce à un réseau de **`43` leurres** déployés dans des zones stratégiques du cyberespace, plus de **`9 520 IP uniques`** sont collectées chaque jour.  
 Après analyse et validation, les adresses IP sont ajoutées à cette liste de blocage, **mise à jour toutes les `24 heures`**.
 
 > ⚠️ Cette liste ne remplace pas les bonnes pratiques de sécurité. Elle constitue une **couche de protection complémentaire**.
