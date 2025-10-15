@@ -71,7 +71,7 @@ Sans activité détectée durant cette période, elles sont retirées et placée
 ## 🛂Flux de traitement et d'intégration
 
 <p align="left">
-  <img src=https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/blob/main/schema_nbg.png
+  <img src=https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/blob/main/graph_pipeline_data_bl.png
 </p>
 
 ---
