@@ -72,6 +72,11 @@ Sans activité détectée durant cette période, elles sont retirées et placée
 
 <p align="left">
   <img src=https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/blob/main/graph_pipeline_data_bl.png
+</p>
+
+--
+
+<p align="left">
   <img src=https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/blob/main/graph_integration_data_bl.png
 </p>
 
