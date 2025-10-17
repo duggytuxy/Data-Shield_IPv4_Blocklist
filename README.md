@@ -1,5 +1,5 @@
 <p align="left">
-  <img src=https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/blob/main/data_shield_ipv4_blocklist.png
+  <img src=https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/blob/main/data_shield_ipv4_blocklist_white.png
 </p>
 
 # 🛡️ Data-Shield IPv4 Blocklist  
