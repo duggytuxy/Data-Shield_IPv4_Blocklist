@@ -125,12 +125,6 @@ D’après les retours recueillis sur **LinkedIn**, plus de **`165 entreprises e
 
 ---
 
-## 🚨 Signaler un faux positif
-Si vous pensez qu’une IP a été ajoutée par erreur, merci de créer une *Issue* en utilisant le template **Signalement - Faux positif** (bouton "New issue" → sélectionner "❗ Signalement - Faux positif").  
-Indiquez l’IP, le contexte, les extraits de logs (anonymisés) et la mesure souhaitée (suppression immédiate / réexamen).
-
----
-
 ## ❤️ Soutenir le projet
 
 Le maintien de ce projet nécessite du temps et des ressources :
