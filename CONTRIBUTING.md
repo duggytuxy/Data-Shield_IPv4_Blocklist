@@ -1,9 +1,18 @@
 # Comment contribuer
 
-## Vous désirez remonter un faux-positif ?
+## ️ ❤En Soutenant le projet !
 
-Merci de créer une *Issue* en utilisant le template **Signalement - Faux positif** (bouton "New issue" → sélectionner "❗ Signalement - Faux positif").  
-Indiquez l’IP, le contexte, les extraits de logs (anonymisés) et la mesure souhaitée (suppression immédiate / réexamen).
+Le maintien de ce projet nécessite du temps et des ressources :
+
+- Hébergement et supervision des leurres  
+- corrélation de données  
+- Extraction et suppression des faux-positifs en amont
+- Qualification, validation, intégration et publication continue  
+
+| **Plateforme** | **Description** | **Lien** |
+|:--|:--|:--|
+| **Ko-Fi** | Soutenez le projet et rejoignez les contributeurs. | [👉 Faire un don](https://ko-fi.com/laurentmduggytuxy) |
+| **Duggy Tuxy Store** | Boutique officielle (goodies et produits dérivés). | [🛍️ Visiter la boutique](https://duggy-tuxy.myspreadshop.be/)
 
 ---
 
