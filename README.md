@@ -111,17 +111,39 @@ Sans activité détectée durant cette période, elles sont retirées et placée
 > - **prod_data-shield_ipv4_blocklist.txt** 👉 Liste complète avec un historique de 60 jours
 
 ```
- https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_data-shield_ipv4_blocklist.txt
+https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_data-shield_ipv4_blocklist.txt
 ```
 
 > - **prod_aa_data-shield_ipv4_blocklist.txt** 👉 Liste splittée "A" avec un historique de 60 jours
+
+```
+https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_aa_data-shield_ipv4_blocklist.txt
+```
+
 > - **prod_ab_data-shield_ipv4_blocklist.txt** 👉 Liste splittée "B" avec un historique de 60 jours
+
+```
+https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ab_data-shield_ipv4_blocklist.txt
+```
 > - **prod_ac_data-shield_ipv4_blocklist.txt** 👉 Liste splittée "C" avec un historique de 60 jours
+
+```
+https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ac_data-shield_ipv4_blocklist.txt
+```
+
 > - **prod_ad_data-shield_ipv4_blocklist.txt** 👉 Liste splittée "D" avec un historique de 60 jours
+
+```
+https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ad_data-shield_ipv4_blocklist.txt
+```
 
 ✅**Prochaine liste en cours de déploiement**
 
 > - **prod_daily_data-shield_ipv4_blocklist.txt** 👉 Liste complète sans historique (mise à journée toutes les 24 heures)
+
+```
+https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_daily_data-shield_ipv4_blocklist.txt
+```
 
 ---
 
