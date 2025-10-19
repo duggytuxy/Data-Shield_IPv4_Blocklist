@@ -109,6 +109,9 @@ Sans activité détectée durant cette période, elles sont retirées et placée
 ⚠**Explications sur le contenu des blocklists**
 
 > - **prod_data-shield_ipv4_blocklist.txt** 👉 Liste complète avec un historique de 60 jours
+
+``` https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_data-shield_ipv4_blocklist.txt ```
+
 > - **prod_aa_data-shield_ipv4_blocklist.txt** 👉 Liste splittée "A" avec un historique de 60 jours
 > - **prod_ab_data-shield_ipv4_blocklist.txt** 👉 Liste splittée "B" avec un historique de 60 jours
 > - **prod_ac_data-shield_ipv4_blocklist.txt** 👉 Liste splittée "C" avec un historique de 60 jours
