@@ -106,7 +106,7 @@ Sans activité détectée durant cette période, elles sont retirées et placée
 | [prod_ac_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ac_data-shield_ipv4_blocklist.txt) | Split C | 30 000 |
 | [prod_ad_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ad_data-shield_ipv4_blocklist.txt) | Split D | 30 000 |
 
-⚠**Explications sur le contenu des blocklists**
+📝**Explications sur le contenu des blocklists**
 
 > **prod_data-shield_ipv4_blocklist.txt** 👉 Liste complète avec un historique de 60 jours
 
