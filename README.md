@@ -63,7 +63,7 @@ Sans activité détectée durant cette période, elles sont retirées et placée
 - L'intégration des blocklists se font principalement depuis les Firewalls (FortiOS, PAN-OS, IPtables, pfSense, OPNsense, etc.)
 - Pour intégrer les listes selon les vendors, visitez cette partie [Tutoriels d'intégration](https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist?tab=readme-ov-file#-tutoriels-dint%C3%A9gration)
 
-## 🔗 Intégration dans les pare-feux
+## 🔗 Règles dans les pare-feux
 ⚠️**Informations importantes autour de la configuration liée à l'intégration**
 
 > Comme ce sont des adresses IP qui tamponnent les assets exposés, la configuration DOIT se faire uniquement : WAN to LAN (de l'Internet vers le réseau interne)
