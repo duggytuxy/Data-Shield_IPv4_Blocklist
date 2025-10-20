@@ -12,10 +12,6 @@ _"Bloquez les adresses IP dangereuses et réduisez la surface d’attaque."_
 </p>
 
 ## 📖 Présentation du projet
-<p align="left">
-  <img src=https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/blob/main/presentation_data_shield_ipv4_blocklist.png
-</p>
-
 **Data-Shield IPv4 Blocklist** vise à réduire le nombre d’attaques en bloquant les adresses IP identifiées comme sources d’activités malveillantes.
 
 Grâce à un réseau de **`43` leurres** déployés dans des zones stratégiques du cyberespace, plus de **`9 520 IP uniques`** sont collectées chaque jour.  
@@ -26,7 +22,7 @@ Après analyse et validation, les adresses IP sont ajoutées à cette liste de b
 ## 🎯 Objectifs
 - Réduire le volume d’attaques et de scans réseau  
 - Limiter la cartographie des actifs exposés  
-- Compléter les protections existantes (IDS/IPS, SOC, etc.)
+- Compléter les protections existantes (IDS/IPS, SOC, WAF, etc.)
 
 ## 🧱 Politique de rétention
 Les adresses IP sont conservées **60 jours maximum**.  
@@ -56,14 +52,6 @@ Sans activité détectée durant cette période, elles sont retirées et placée
 | [CVE-2024-4577](https://cti.wazuh.com/vulnerabilities/cves/CVE-2024-4577) | [Phishing](https://attack.mitre.org/techniques/T1566/) | BE, US, FR, NL |
 
 ## 🛂Flux de traitement et d'intégration
-<p align="left">
-  <img src=https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/blob/main/graph_pipeline_data_bl.png
-</p>
-
-<p align="left">
-  <img src=https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/blob/main/graph_integration_data_bl.png
-</p>
-
 ⚠**Informations autour des faux-positifs (FPs)**
 
 > Le traitement des FPs se fait en amont, c'est-à-dire avant le déploiement en production des blocklists
