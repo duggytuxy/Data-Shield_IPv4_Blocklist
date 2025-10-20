@@ -52,9 +52,16 @@ Sans activité détectée durant cette période, elles sont retirées et placée
 | [CVE-2024-4577](https://cti.wazuh.com/vulnerabilities/cves/CVE-2024-4577) | [Phishing](https://attack.mitre.org/techniques/T1566/) | BE, US, FR, NL |
 
 ## 🛂Flux de traitement et d'intégration
-⚠**Informations autour des faux-positifs (FPs)**
+**Informations autour des flux de traitements**
+- Collecte de logs en provenance des agents de leurres
+- Traitement depuis la plateforme centralisée sur Wazuh 4.13
+- Création de `2 flux` - Whitelist et Blocklist
+- Traitement et suppresion des faux-positifs (FPs)
+- Création des blocklists [listes en production](https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist?tab=readme-ov-file#listes-en-production)
 
-> Le traitement des FPs se fait en amont, c'est-à-dire avant le déploiement en production des blocklists
+**Informations autour de l'intégration**
+- L'intégration des blocklists se font principalement depuis les Firewalls (FortiOS, PAN-OS, IPtables, pfSense, OPNsense, etc.)
+- Pour intégrer les listes selon les vendors, visitez cette partie [Tutoriels d'intégration](https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist?tab=readme-ov-file#-tutoriels-dint%C3%A9gration)
 
 ## 🔗 Intégration dans les pare-feux
 ⚠️**Informations importantes autour de la configuration liée à l'intégration**
