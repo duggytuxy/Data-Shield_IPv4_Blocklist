@@ -11,10 +11,7 @@ _"Bloquez les adresses IP dangereuses et réduisez la surface d’attaque."_
   <img src="https://img.shields.io/github/last-commit/duggytuxy/Intelligence_IPv4_Blocklist?label=Last%20update&color=informational&style=for-the-badge&logo=github">
 </p>
 
----
-
 ## 📖 Présentation du projet
-
 <p align="left">
   <img src=https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/blob/main/presentation_data_shield_ipv4_blocklist.png
 </p>
@@ -26,33 +23,21 @@ Après analyse et validation, les adresses IP sont ajoutées à cette liste de b
 
 > ⚠️ Cette liste ne remplace pas les bonnes pratiques de sécurité. Elle constitue une **couche de protection complémentaire**.
 
----
-
 ## 🎯 Objectifs
-
 - Réduire le volume d’attaques et de scans réseau  
 - Limiter la cartographie des actifs exposés  
 - Compléter les protections existantes (IDS/IPS, SOC, etc.)
 
----
-
 ## 🧱 Politique de rétention
-
 Les adresses IP sont conservées **60 jours maximum**.  
 Sans activité détectée durant cette période, elles sont retirées et placées dans une **liste blanche** également surveillée.
 
----
-
 ## 🔑 Points clés
-
 - **Portée globale** : 🌍 “World”  
 - Certaines IP ont une durée de vie très courte (APT, ransomware, infostealer, etc.)  
 - Vérification rigoureuse pour limiter les faux positifs  
 
----
-
 ## ⚔️ Types d’attaques identifiées
-
 | **CVE** | **Technique MITRE ATT&CK** | **Pays les plus ciblés** |
 |:--|:--|:--|
 | [CVE-2020-25078](https://cti.wazuh.com/vulnerabilities/cves/CVE-2020-25078) | [Apache Exploit](https://attack.mitre.org/techniques/T1190/) | FR, BE, NL, DE |
@@ -70,10 +55,7 @@ Sans activité détectée durant cette période, elles sont retirées et placée
 | [CVE-2022-41082](https://cti.wazuh.com/vulnerabilities/cves/CVE-2022-41082) | [IMAP Exploit](https://attack.mitre.org/techniques/T1071/003/) | FR, BE, NL, DE |
 | [CVE-2024-4577](https://cti.wazuh.com/vulnerabilities/cves/CVE-2024-4577) | [Phishing](https://attack.mitre.org/techniques/T1566/) | BE, US, FR, NL |
 
----
-
 ## 🛂Flux de traitement et d'intégration
-
 <p align="left">
   <img src=https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/blob/main/graph_pipeline_data_bl.png
 </p>
@@ -86,18 +68,12 @@ Sans activité détectée durant cette période, elles sont retirées et placée
 
 > Le traitement des FPs se fait en amont, c'est-à-dire avant le déploiement en production des blocklists
 
----
-
 ## 🔗 Intégration dans les pare-feux
-
 ⚠️**Informations importantes autour de la configuration liée à l'intégration**
 
 > Comme ce sont des adresses IP qui tamponnent les assets exposés, la configuration DOIT se faire uniquement : WAN to LAN (de l'Internet vers le réseau interne)
 
----
-
 ## 📝Listes en production
-
 | **Nom de la liste** | **Usage recommandé** | **Limite IPs** |
 |:--|:--|:--:|
 | [prod_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_data-shield_ipv4_blocklist.txt) | Liste complète | 100 000 |
@@ -148,10 +124,7 @@ https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/head
 https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_daily_data-shield_ipv4_blocklist.txt
 ```
 
----
-
 ## 📚 Tutoriels d’intégration
-
 | **Fournisseur** | **Documentation / Tutoriel** | **Taille max. de table** |
 |:--|:--|:--:|
 | **Fortinet** | [Guide officiel](https://docs.fortinet.com/document/fortigate/7.4.9/administration-guide/379433/configuring-a-threat-feed#threat-ext) | [FortiOS 7.4.9](https://docs.fortinet.com/document/fortigate/7.4.9/fortios-release-notes/626946/changes-in-table-size) |
@@ -163,16 +136,10 @@ https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/head
 | **IPTables** | [Tutoriel Lupovis (X. Bellekens)](https://www.linkedin.com/posts/activity-7125481101728313345-b8jM) | TBD |
 | **UniFi’s Next-Gen Firewall** | [Guide constructeur](https://help.ui.com/hc/en-us/articles/28314415752727-Application-Filtering-in-UniFi) | TBD |
 
----
-
 ## 💬 Retours de la communauté
-
 D’après les retours recueillis sur **LinkedIn**, plus de **`165 entreprises et indépendants`** (dont **Acensi**) utilisent déjà Data-Shield IPv4 Blocklist dans leurs pare-feux Fortinet, Palo Alto, Check Point, etc.
 
----
-
 ## ❤️ Soutenir le projet
-
 Le maintien de ce projet nécessite du temps et des ressources :
 
 - Hébergement et supervision des leurres  
@@ -184,10 +151,7 @@ Le maintien de ce projet nécessite du temps et des ressources :
 | **Ko-Fi** | Soutenez le projet et rejoignez les contributeurs. | [👉 Faire un don](https://ko-fi.com/laurentmduggytuxy) |
 | **Duggy Tuxy Store** | Boutique officielle (goodies et produits dérivés). | [🛍️ Visiter la boutique](https://duggy-tuxy.myspreadshop.be/) |
 
----
-
-### ⚖️ Mentions légales & RGPD
-
+## ⚖️ Mentions légales & RGPD
 L’utilisation de cette liste doit respecter les réglementations locales et le RGPD.  
 Les adresses IP publiées proviennent de flux techniques anonymes et **ne permettent pas d’identifier une personne physique**.  
 Elles sont conservées **60 jours maximum** à des fins de **cybersécurité défensive**, conformément à l’article 6-1.f du RGPD.  
