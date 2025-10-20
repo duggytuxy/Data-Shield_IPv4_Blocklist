@@ -141,6 +141,7 @@ https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/head
 ✅**Nouvelle liste en production**
 
 > **prod_daily_data-shield_ipv4_blocklist.txt** 👉 Liste complète sans historique (mise à journée toutes les 24 heures)
+
 > ⚙***Cette liste est idéale pour les assets critiques exposés car elle consommera moins de ressources vue le nombre d'adresses IP réduit***
 
 ```
