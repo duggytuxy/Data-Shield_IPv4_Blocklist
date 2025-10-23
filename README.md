@@ -74,7 +74,7 @@ Sans activité détectée durant cette période, elles sont retirées et placée
 | [prod_ad_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ad_data-shield_ipv4_blocklist.txt) | Split D | 30 000 |
 | [prod_daily_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_daily_data-shield_ipv4_blocklist.txt) | Liste complète "Daily" | 60 000 |
 
-📝**Explications sur le contenu des blocklists**
+📁**Explications sur le contenu des blocklists**
 
 > **prod_data-shield_ipv4_blocklist.txt** 👉 Liste complète avec un historique de 60 jours
 
@@ -128,7 +128,7 @@ https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/head
 | **UniFi’s Next-Gen Firewall** | [Guide constructeur](https://help.ui.com/hc/en-us/articles/28314415752727-Application-Filtering-in-UniFi) | TBD |
 
 ## 💬 Retours de la communauté
-D’après les retours recueillis sur **LinkedIn**, plus de **`165 entreprises et indépendants`** (dont **Acensi**) utilisent déjà Data-Shield IPv4 Blocklist dans leurs pare-feux Fortinet, Palo Alto, Check Point, etc.
+D’après les retours recueillis sur **LinkedIn**, plus de **`204 entreprises et indépendants`** (dont **Acensi**) utilisent déjà Data-Shield IPv4 Blocklist dans leurs pare-feux Fortinet, Palo Alto, Check Point, etc.
 
 ## ❤️ Soutenir le projet
 Le maintien de ce projet nécessite du temps et des ressources :
@@ -140,8 +140,9 @@ Le maintien de ce projet nécessite du temps et des ressources :
 | **Plateforme** | **Description** | **Lien** |
 |:--|:--|:--|
 | **Ko-Fi** | Soutenez le projet et rejoignez les contributeurs. | [👉 Faire un don](https://ko-fi.com/laurentmduggytuxy) |
-| **Duggy Tuxy Store** | Boutique officielle (goodies et produits dérivés). | [🛍️ Visiter la boutique](https://duggy-tuxy.myspreadshop.be/) |
+| **Duggy Tuxy Store** | Boutique officielle (goodies et produits dérivés). | [🛍️ Visiter la boutique](https://duggy-tuxy.myspreadshop.be/)
 
-Data-Shield IPv4 Blocklist © 2023-2025 par Duggy Tuxy (Laurent Minne) est sous licence [**License File**](/LICENSE.md)
+## ⚖Licence
+Data-Shield IPv4 Blocklist © 2023-2025 par Duggy Tuxy (Laurent Minne) est sous [licence](/LICENSE.md)
 
 <p align="center">🧠 _“Security through intelligence, not noise.”_</p>
