@@ -10,7 +10,7 @@ _"Bloquez les adresses IP dangereuses et réduisez la surface d’attaque."_
 ## 📖 Présentation du projet
 **Data-Shield IPv4 Blocklist** vise à réduire le nombre d’attaques en bloquant les adresses IP identifiées comme sources d’activités malveillantes.
 
-Grâce à un réseau de **`43` leurres** déployés dans des zones stratégiques du cyberespace, plus de **`9 520 IP uniques`** sont collectées chaque jour.  
+Grâce à un réseau de **`44` leurres** déployés dans des zones stratégiques du cyberespace, plus de **`9 650 IP uniques`** sont collectées chaque jour.  
 Après analyse et validation, les adresses IP sont ajoutées à cette liste de blocage, **mise à jour toutes les `24 heures`**.
 
 > ⚠️ Cette liste ne remplace pas les bonnes pratiques de sécurité. Elle constitue une **couche de protection complémentaire**.
