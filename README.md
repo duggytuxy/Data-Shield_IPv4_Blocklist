@@ -142,12 +142,6 @@ Le maintien de ce projet nécessite du temps et des ressources :
 | **Ko-Fi** | Soutenez le projet et rejoignez les contributeurs. | [👉 Faire un don](https://ko-fi.com/laurentmduggytuxy) |
 | **Duggy Tuxy Store** | Boutique officielle (goodies et produits dérivés). | [🛍️ Visiter la boutique](https://duggy-tuxy.myspreadshop.be/) |
 
-## ⚖️ Mentions légales & RGPD
-L’utilisation de cette liste doit respecter les réglementations locales et le RGPD.  
-Les adresses IP publiées proviennent de flux techniques anonymes et **ne permettent pas d’identifier une personne physique**.  
-Elles sont conservées **60 jours maximum** à des fins de **cybersécurité défensive**, conformément à l’article 6-1.f du RGPD.  
-➡️ Consultez le document complet : [**LEGAL**](/LEGAL.md)
-
 Data-Shield IPv4 Blocklist © 2023-2025 par Duggy Tuxy (Laurent Minne) est sous licence [**License File**](/LICENSE.md)
 
 <p align="center">🧠 _“Security through intelligence, not noise.”_</p>
