@@ -130,7 +130,7 @@ https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/head
 ## 💬 Retours de la communauté
 D’après les retours recueillis sur **LinkedIn**, plus de **`204 entreprises et indépendants`** (dont **Acensi**) utilisent déjà Data-Shield IPv4 Blocklist dans leurs pare-feux Fortinet, Palo Alto, Check Point, etc.
 
-# ❓ FAQ
+## ❓ Faq
 
 ### Comment utiliser les blocklists ?
 Les blocklists peuvent être intégrées dans vos pare-feux, WAF ou systèmes de détection d'intrusion (IDS/IPS) pour bloquer automatiquement les adresses IP malveillantes.
