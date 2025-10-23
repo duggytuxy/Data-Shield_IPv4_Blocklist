@@ -1,34 +1,9 @@
-# Licence d’utilisation – Data-Shield IPv4 Blocklist
+# Droit d’auteur 2023-2025 - Laurent M. (duggytuxy)
 
-***Version 1.1 – Octobre 2025***
+L’autorisation est accordée par les présentes, gratuitement, à toute personne obtenant une copie de cette Data-Shield IPv4 Blocklist et des fichiers de documentation associés (la « Data-Shield IPv4 Blocklist »), d’exploiter le Data-Shield IPv4 Blocklist sans restriction, y compris, mais sans s’y limiter, les droits d’utiliser, de copier, de modifier, de fusionner, de publier, de distribuer, de sous-licencier et/ou de vendre des copies de la Data-Shield IPv4 Blocklist, et de permettre aux personnes à qui la Data-Shield IPv4 Blocklist est fourni de le faire, Sous réserve des conditions suivantes :
 
-# Objet
+- L’avis de droit d’auteur ci-dessus et cet avis d’autorisation doivent être inclus dans toutes les copies ou parties substantielles de la Data-Shield IPv4 Blocklist.
 
-- La présente licence encadre l’utilisation de la Data-Shield IPv4 Blocklist (ci-après « la Blocklist »), publiée par son auteur (ci-après « le Concédant »).
+LA DATA-SHIELD IPV4 BLOCKLIST EST FOURNI « EN L’ÉTAT », SANS GARANTIE D’AUCUNE SORTE, EXPRESSE OU IMPLICITE, Y COMPRIS, MAIS SANS S’Y LIMITER, LES GARANTIES DE QUALITÉ MARCHANDE, D’ADÉQUATION À UN USAGE PARTICULIER ET D’ABSENCE DE CONTREFAÇON. EN AUCUN CAS, LES AUTEURS OU LES DÉTENTEURS DES DROITS D’AUTEUR NE POURRONT ÊTRE TENUS RESPONSABLES DE TOUTE RÉCLAMATION, DOMMAGE OU AUTRE RESPONSABILITÉ, QUE CE SOIT DANS LE CADRE D’UNE ACTION CONTRACTUELLE, DÉLICTUELLE OU AUTRE, DÉCOULANT DE, DÉCOULANT DE OU EN RELATION AVEC LA DATA-SHIELD IPV4 BLOCKLIST OU L’UTILISATION OU D’AUTRES TRANSACTIONS DANS LA DATA-SHIELD IPV4 BLOCKLIST.
 
-# Ouverture au public et aux entreprises
-
-- La Blocklist est ouverte à tout public : toute personne physique peut la consulter, l’utiliser et l’intégrer dans ses projets.
-- La Blocklist est ouverte à toute entreprise : toute personne morale peut l’utiliser dans le cadre de ses activités, sous réserve du respect des conditions ci-dessous.
-
-# Conditions d’utilisation
-
-- Attribution obligatoire : toute utilisation ou redistribution de la Blocklist doit mentionner clairement son nom (Data-Shield IPv4 Blocklist) et inclure un lien vers le dépôt d’origine :
-[**Data-Shield Repository**](https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist).
-- Redistribution commerciale : toute redistribution de la Blocklist, en tout ou en partie, effectuée à des fins commerciales, doit être accompagnée d’un don mensuel de 69,99 € via le lien suivant :
-[**Ko-Fi Website**](https://ko-fi.com/laurentmduggytuxy).
-- Usage non commercial : l’utilisation et la redistribution non commerciales sont libres, sous réserve du respect de l’attribution.
-- Modifications : les utilisateurs peuvent adapter, enrichir ou transformer la Blocklist en forkant ou en intégrant dans une repository propre. Toute redistribution de versions modifiées doit également respecter les présentes conditions.
-
-# Absence de garantie
-
-- La Blocklist est fournie « telle quelle », sans aucune garantie expresse ou implicite, y compris mais sans s’y limiter, les garanties de qualité marchande, d’adéquation à un usage particulier ou d’absence de défauts.
-- L’utilisateur assume l’entière responsabilité de son utilisation.
-
-# Limitation de responsabilité
-
-- En aucun cas le Concédant ne pourra être tenu responsable de dommages directs, indirects, spéciaux, accessoires ou consécutifs résultant de l’utilisation de la Blocklist.
-
-# Contact
-
-- Pour toute question, demande de licence spécifique ou usage non couvert par la présente licence, merci de contacter le concédant via <contact@data-shield.eu>
+***Source :*** [LA LICENCE MIT](https://opensource.org/license/mit)
