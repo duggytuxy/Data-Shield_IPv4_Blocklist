@@ -10,31 +10,26 @@
 > 🛡Block malicious IP addresses and reduce your attack surface!
 
 # Data-Shield IPv4 Blocklist  
+
 Data-Shield IPv4 Blocklist is an additional layer of protection containing a list of [IP addresses (version 4)](https://en.wikipedia.org/wiki/IPv4) whose activities have been detected as malicious.
 
 This list is designed around the discipline of [Deceptive Security](https://www.orangecyberdefense.com/be/blog/discover-deception-security#:~:text=What%20is%20deception%20security?,potentially%20demotivate%20some%20of%20them.) based on intelligent behavioral analysis of malicious activities related to cybercrime.
 
-## 📖 Présentation du projet
-**Data-Shield IPv4 Blocklist** vise à réduire le nombre d’attaques en bloquant les adresses IP identifiées comme sources d’activités malveillantes.
+Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to provide an additional layer of security for your [firewall](https://en.wikipedia.org/wiki/Firewall_(computing)), [WAF](https://en.wikipedia.org/wiki/Web_application_firewall), and [DNS sinkhole](https://en.wikipedia.org/wiki/DNS_sinkhole) instances.
 
-Grâce à un réseau de **`44` leurres** déployés dans des zones stratégiques du cyberespace, plus de **`9 650 IP uniques`** sont collectées chaque jour.  
-Après analyse et validation, les adresses IP sont ajoutées à cette liste de blocage, **mise à jour toutes les `24 heures`**.
+## Why Data-Shield IPv4 Blocklist?
 
-> ⚠️ Cette liste ne remplace pas les bonnes pratiques de sécurité. Elle constitue une **couche de protection complémentaire**.
+- **Easy integration into your firewall, WAF, DNS Sinkhole instances**: This list can be easily integrated into most vendors as a single link (RAW) for standard recognition of the included data.
+- **Customizable based on vendor limitations**: Some vendors have limited the number of IPv4 addresses per entry (per list) to prevent resource consumption overload. Data-Shield IPv4 Blocklist is designed to comply with this limitation by creating split lists.
+- **Data reliability (IPv4)**: Data-Shield IPv4 Blocklist provides high-quality, reliable data by minimizing false positives to avoid blocking legitimate exposed instances.
+- **Frequency of updates**: Data-Shield IPv4 Blocklist is updated every 24 hours to maintain the most recent data in order to protect you as effectively as possible.
+- **Data retention (IPv4 only)**: Data retention is limited to a maximum of 54 days. This retention is mainly used to continuously monitor the activities of IPv4 addresses tagged as malicious, which have short lifespans but are likely to resurface.
 
-## 🎯 Objectifs
+## Malicious activities detected
+
 - Réduire le volume d’attaques et de scans réseau  
 - Limiter la cartographie des actifs exposés  
 - Compléter les protections existantes (IDS/IPS, SOC, WAF, etc.)
-
-## 🧱 Politique de rétention
-Les adresses IP sont conservées **60 jours maximum**.  
-Sans activité détectée durant cette période, elles sont retirées et placées dans une **liste blanche** également surveillée.
-
-## 🔑 Points clés
-- **Portée globale** : 🌍 “World”  
-- Certaines IP ont une durée de vie très courte (APT, ransomware, infostealer, etc.)  
-- Vérification rigoureuse pour limiter les faux positifs  
 
 ## ⚔️ Types d’attaques identifiées
 | **CVE** | **Technique MITRE ATT&CK** | **Pays les plus ciblés** |
