@@ -90,19 +90,14 @@ To facilitate the integration of Data-Shield IPv4 Blocklist into firewall instan
 
 [![Star History Chart](https://api.star-history.com/svg?repos=duggytuxy/Data-Shield_IPv4_Blocklist&type=date&legend=top-left)](https://www.star-history.com/#duggytuxy/Data-Shield_IPv4_Blocklist&type=date&legend=top-left) **LinkedIn**, plus de **`204 entreprises et indépendants`** (dont **Acensi**) utilisent déjà Data-Shield IPv4 Blocklist dans leurs pare-feux Fortinet, Palo Alto, Check Point, etc.
 
-## ❤️ Soutenir le projet
-Le maintien de ce projet nécessite du temps et des ressources :
+## Support Data-Shield IPv4 Blocklist!
 
-- Hébergement et supervision des leurres  
-- APIs et corrélation de données  
-- Qualification, validation, intégration et publication continue  
+Data-Shield IPv4 Blocklist requires time and funding. That is why it is important to appeal for donations so that it can be maintained over time and in the best possible conditions:
 
-| **Plateforme** | **Description** | **Lien** |
-|:--|:--|:--|
-| **Ko-Fi** | Soutenez le projet et rejoignez les contributeurs. | [👉 Faire un don](https://ko-fi.com/laurentmduggytuxy) |
-| **Duggy Tuxy Store** | Boutique officielle (goodies et produits dérivés). | [🛍️ Visiter la boutique](https://duggy-tuxy.myspreadshop.be/)
+- **Ko-Fi**: ```https://ko-fi.com/laurentmduggytuxy```
+- **Duggy Tuxy Store**: ```https://duggy-tuxy.myspreadshop.be```
 
 ## ⚖Licence
-Data-Shield IPv4 Blocklist © 2023-2025 par Duggy Tuxy (Laurent Minne) est sous [licence](/LICENSE.md)
+Data-Shield IPv4 Blocklist © 2023-2025 by Duggy Tuxy (Laurent Minne) is under [licence](/LICENSE.md)
 
-<p align="center">🧠 _“Security through intelligence, not noise.”_</p>
+> 🧠 Security through intelligence, not noise!
