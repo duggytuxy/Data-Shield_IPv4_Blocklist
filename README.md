@@ -25,21 +25,16 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 - **Frequency of updates**: Data-Shield IPv4 Blocklist is updated every 24 hours to maintain the most recent data in order to protect you as effectively as possible.
 - **Data retention (IPv4 only)**: Data retention is limited to a maximum of 54 days. This retention is mainly used to continuously monitor the activities of IPv4 addresses tagged as malicious, which have short lifespans but are likely to resurface.
 
-## Malicious activities detected
+## Malicious activities detected (TTPs)
 
-- Réduire le volume d’attaques et de scans réseau  
-- Limiter la cartographie des actifs exposés  
-- Compléter les protections existantes (IDS/IPS, SOC, WAF, etc.)
+A non-exhaustive list of Malicious activities (CVEs Exploit):
 
-## ⚔️ Types d’attaques identifiées
-| **CVE** | **Technique MITRE ATT&CK** | **Pays les plus ciblés** |
-|:--|:--|:--|
-| [CVE-2020-25078](https://cti.wazuh.com/vulnerabilities/cves/CVE-2020-25078) | [Apache Exploit](https://attack.mitre.org/techniques/T1190/) | FR, BE, NL, DE |
-| [CVE-2021-42013](https://cti.wazuh.com/vulnerabilities/cves/CVE-2021-42013) | [Nginx Exploit](https://attack.mitre.org/techniques/T1102/) | BE, IT, NL, PL |
-| [CVE-2021-41773](https://cti.wazuh.com/vulnerabilities/cves/CVE-2021-41773) | [VPN Exploit](https://attack.mitre.org/techniques/T1133/) | FR, BE, NL, DE |
-| [CVE-2024-3400](https://cti.wazuh.com/vulnerabilities/cves/CVE-2024-3400) | [RDP Abuse](https://attack.mitre.org/techniques/T1021/001/) | FR, BE, IT, ES |
-| [CVE-2025-0282](https://cti.wazuh.com/vulnerabilities/cves/CVE-2025-0282) | [SSH Brute-Force](https://attack.mitre.org/techniques/T1110/) | PL, BE, NL, FR |
-| [CVE-2024-3721](https://cti.wazuh.com/vulnerabilities/cves/CVE-2024-3721) | [Credential Dumping](https://attack.mitre.org/techniques/T1003/) | FR, BE, ES, PT |
+- **CVE-2020-25078**: ```https://cti.wazuh.com/vulnerabilities/cves/CVE-2020-25078``` | [Apache Exploit](https://attack.mitre.org/techniques/T1190/) | FR, BE, NL, DE |
+- **CVE-2021-42013**: ```https://cti.wazuh.com/vulnerabilities/cves/CVE-2021-42013``` | [Nginx Exploit](https://attack.mitre.org/techniques/T1102/) | BE, IT, NL, PL |
+- **CVE-2021-41773**: ```https://cti.wazuh.com/vulnerabilities/cves/CVE-2021-41773``` | [VPN Exploit](https://attack.mitre.org/techniques/T1133/) | FR, BE, NL, DE |
+- **CVE-2024-3400**: ```https://cti.wazuh.com/vulnerabilities/cves/CVE-2024-3400``` | [RDP Abuse](https://attack.mitre.org/techniques/T1021/001/) | FR, BE, IT, ES |
+- **CVE-2025-0282**: ```https://cti.wazuh.com/vulnerabilities/cves/CVE-2025-0282``` | [SSH Brute-Force](https://attack.mitre.org/techniques/T1110/) | PL, BE, NL, FR |
+- **CVE-2024-3721**: ```https://cti.wazuh.com/vulnerabilities/cves/CVE-2024-3721``` | [Credential Dumping](https://attack.mitre.org/techniques/T1003/) | FR, BE, ES, PT |
 | [CVE-2022-30023](https://cti.wazuh.com/vulnerabilities/cves/CVE-2022-30023) | [Information Gathering](https://attack.mitre.org/techniques/T1591/) | FR, BE, NL, LU |
 | [CVE-2017-9841](https://cti.wazuh.com/vulnerabilities/cves/CVE-2017-9841) | [Remote Code Execution](https://attack.mitre.org/techniques/T1210/) | FR, BE, LU, DE |
 | [CVE-2018-10561](https://cti.wazuh.com/vulnerabilities/cves/CVE-2018-10561) | [Ransomware](https://attack.mitre.org/techniques/T1486/) | FR, BE, ES, PT |
