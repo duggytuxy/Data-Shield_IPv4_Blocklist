@@ -29,20 +29,20 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 
 A non-exhaustive list of Malicious activities (CVEs Exploit):
 
-- **CVE-2020-25078**: CVSS 3.1: ```7.5```,```https://cti.wazuh.com/vulnerabilities/cves/CVE-2020-25078``` | [Apache Exploit](https://attack.mitre.org/techniques/T1190/) | FR, BE, NL, DE |
-- **CVE-2021-42013**: ```https://cti.wazuh.com/vulnerabilities/cves/CVE-2021-42013``` | [Nginx Exploit](https://attack.mitre.org/techniques/T1102/) | BE, IT, NL, PL |
-- **CVE-2021-41773**: ```https://cti.wazuh.com/vulnerabilities/cves/CVE-2021-41773``` | [VPN Exploit](https://attack.mitre.org/techniques/T1133/) | FR, BE, NL, DE |
-- **CVE-2024-3400** : ```https://cti.wazuh.com/vulnerabilities/cves/CVE-2024-3400``` | [RDP Abuse](https://attack.mitre.org/techniques/T1021/001/) | FR, BE, IT, ES |
-- **CVE-2025-0282** : ```https://cti.wazuh.com/vulnerabilities/cves/CVE-2025-0282``` | [SSH Brute-Force](https://attack.mitre.org/techniques/T1110/) | PL, BE, NL, FR |
-- **CVE-2024-3721** : ```https://cti.wazuh.com/vulnerabilities/cves/CVE-2024-3721``` | [Credential Dumping](https://attack.mitre.org/techniques/T1003/) | FR, BE, ES, PT |
-- **CVE-2022-30023**: ```https://cti.wazuh.com/vulnerabilities/cves/CVE-2022-30023``` | [Information Gathering](https://attack.mitre.org/techniques/T1591/) | FR, BE, NL, LU |
-- **CVE-2017-9841** : ```https://cti.wazuh.com/vulnerabilities/cves/CVE-2017-9841``` | [Remote Code Execution](https://attack.mitre.org/techniques/T1210/) | FR, BE, LU, DE |
-- **CVE-2018-10561**: ```https://cti.wazuh.com/vulnerabilities/cves/CVE-2018-10561``` | [Ransomware](https://attack.mitre.org/techniques/T1486/) | FR, BE, ES, PT |
-- **CVE-2018-20062**: ```https://cti.wazuh.com/vulnerabilities/cves/CVE-2018-20062``` | [OT/ICS Attack](https://attack.mitre.org/techniques/ics/) | FR, BE, NL, DE |
-- **CVE-2022-44808**: ```https://cti.wazuh.com/vulnerabilities/cves/CVE-2022-44808``` | [Tor Exit Node Abuse](https://attack.mitre.org/software/S0183/) | DE, FR, NL, PL |
-- **CVE-2022-41040**: ```https://cti.wazuh.com/vulnerabilities/cves/CVE-2022-41040``` | [Web Traversal](https://capec.mitre.org/data/definitions/139.html) | BE, FR, NL, AT |
-- **CVE-2022-41082**: ```https://cti.wazuh.com/vulnerabilities/cves/CVE-2022-41082``` | [IMAP Exploit](https://attack.mitre.org/techniques/T1071/003/) | FR, BE, NL, DE |
-- **CVE-2024-4577** : ```https://cti.wazuh.com/vulnerabilities/cves/CVE-2024-4577``` | [Phishing](https://attack.mitre.org/techniques/T1566/) | BE, US, FR, NL |
+- **CVE-2020-25078**: CVSS 3.1: ```7.5```: An issue was discovered on D-Link DCS-2530L before 1.06.01 Hotfix and DCS-2670L through 2.02 devices. The unauthenticated /config/getuser endpoint allows for remote administrator password disclosure. 
+- **CVE-2021-42013**: ```https://cti.wazuh.com/vulnerabilities/cves/CVE-2021-42013```
+- **CVE-2021-41773**: ```https://cti.wazuh.com/vulnerabilities/cves/CVE-2021-41773```
+- **CVE-2024-3400** : ```https://cti.wazuh.com/vulnerabilities/cves/CVE-2024-3400```
+- **CVE-2025-0282** : ```https://cti.wazuh.com/vulnerabilities/cves/CVE-2025-0282```
+- **CVE-2024-3721** : ```https://cti.wazuh.com/vulnerabilities/cves/CVE-2024-3721```
+- **CVE-2022-30023**: ```https://cti.wazuh.com/vulnerabilities/cves/CVE-2022-30023```
+- **CVE-2017-9841** : ```https://cti.wazuh.com/vulnerabilities/cves/CVE-2017-9841```
+- **CVE-2018-10561**: ```https://cti.wazuh.com/vulnerabilities/cves/CVE-2018-10561```
+- **CVE-2018-20062**: ```https://cti.wazuh.com/vulnerabilities/cves/CVE-2018-20062```
+- **CVE-2022-44808**: ```https://cti.wazuh.com/vulnerabilities/cves/CVE-2022-44808```
+- **CVE-2022-41040**: ```https://cti.wazuh.com/vulnerabilities/cves/CVE-2022-41040```
+- **CVE-2022-41082**: ```https://cti.wazuh.com/vulnerabilities/cves/CVE-2022-41082```
+- **CVE-2024-4577** : ```https://cti.wazuh.com/vulnerabilities/cves/CVE-2024-4577```
 
 ## 🛂Flux de traitement et d'intégration
 **Informations autour des flux de traitements**
