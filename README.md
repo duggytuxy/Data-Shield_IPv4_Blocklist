@@ -57,10 +57,13 @@ A non-exhaustive list of Malicious activities (TTPs):
 - **Web Spam**: Comment/forum spam, HTTP referer spam, or other CMS spam.
 - **Bad Web Bot**: Webpage scraping (for email addresses, content, etc) and crawlers that do not honor robots.txt. Excessive requests and user agent spoofing can also be reported here. 
 
-## Listes en production
-| **Nom de la liste** | **Usage recommandé** | **Limite IPs** |
-|:--|:--|:--:|
-| [prod_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_data-shield_ipv4_blocklist.txt) | Liste complète | 100 000 |
+## Production lists
+
+Data-Shield IPv4 Blocklist consists of 5 official lists that are updated every 24 hours.
+
+Exhaustive lists of those that are put into production, followed by their uses and limitations:
+
+- **prod_data-shield_ipv4_blocklist.txt**: Complete list, limited to 100,000 IPv4 addresses: ```https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_data-shield_ipv4_blocklist.txt```
 | [prod_aa_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_aa_data-shield_ipv4_blocklist.txt) | Split A | 30 000 |
 | [prod_ab_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ab_data-shield_ipv4_blocklist.txt) | Split B | 30 000 |
 | [prod_ac_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ac_data-shield_ipv4_blocklist.txt) | Split C | 30 000 |
