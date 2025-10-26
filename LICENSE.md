@@ -1,9 +1,11 @@
-# Droit d’auteur 2023-2025 - Laurent M. (duggytuxy)
+## Copyright <2025> <Data_shield IPv4 Blocklist>
 
-L’autorisation est accordée par les présentes, gratuitement, à toute personne obtenant une copie de cette Data-Shield IPv4 Blocklist et des fichiers de documentation associés (la « Data-Shield IPv4 Blocklist »), d’exploiter la Data-Shield IPv4 Blocklist sans restriction, y compris, mais sans s’y limiter, les droits d’utiliser, de copier, de modifier, de fusionner, de publier, de distribuer, de sous-licencier et/ou de vendre des copies de la Data-Shield IPv4 Blocklist, et de permettre aux personnes à qui la Data-Shield IPv4 Blocklist est fourni de le faire, Sous réserve des conditions suivantes :
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
-- L’avis de droit d’auteur ci-dessus et cet avis d’autorisation doivent être inclus dans toutes les copies ou parties substantielles de la Data-Shield IPv4 Blocklist.
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-LA DATA-SHIELD IPV4 BLOCKLIST EST FOURNI « EN L’ÉTAT », SANS GARANTIE D’AUCUNE SORTE, EXPRESSE OU IMPLICITE, Y COMPRIS, MAIS SANS S’Y LIMITER, LES GARANTIES DE QUALITÉ MARCHANDE, D’ADÉQUATION À UN USAGE PARTICULIER ET D’ABSENCE DE CONTREFAÇON. EN AUCUN CAS, LES AUTEURS OU LES DÉTENTEURS DES DROITS D’AUTEUR NE POURRONT ÊTRE TENUS RESPONSABLES DE TOUTE RÉCLAMATION, DOMMAGE OU AUTRE RESPONSABILITÉ, QUE CE SOIT DANS LE CADRE D’UNE ACTION CONTRACTUELLE, DÉLICTUELLE OU AUTRE, DÉCOULANT DE, DÉCOULANT DE OU EN RELATION AVEC LA DATA-SHIELD IPV4 BLOCKLIST OU L’UTILISATION OU D’AUTRES TRANSACTIONS DANS LA DATA-SHIELD IPV4 BLOCKLIST.
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-***Source :*** [LA LICENCE MIT](https://opensource.org/license/mit)
+
+
+***Source :*** [The MIT License](https://opensource.org/license/mit)
