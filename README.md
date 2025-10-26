@@ -98,6 +98,7 @@ Data-Shield IPv4 Blocklist requires time and funding. That is why it is importan
 - **Duggy Tuxy Store**: ```https://duggy-tuxy.myspreadshop.be```
 
 ## ⚖Licence
-Data-Shield IPv4 Blocklist © 2023-2025 by Duggy Tuxy (Laurent Minne) is under [licence](/LICENSE.md)
+
+Data-Shield IPv4 Blocklist ```2023-2025``` by Duggy Tuxy (Laurent Minne) is under [licence](/LICENSE.md)
 
 > 🧠 Security through intelligence, not noise!
