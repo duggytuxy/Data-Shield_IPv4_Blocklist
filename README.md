@@ -69,7 +69,11 @@ Exhaustive lists of those that are put into production, followed by their uses a
 - **prod_ac_data-shield_ipv4_blocklist.txt**: Split list ```C```, limited to 30,000 IPv4 addresses: ```https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ac_data-shield_ipv4_blocklist.txt```
 - **prod_ad_data-shield_ipv4_blocklist.txt**: Split list ```D```, limited to 30,000 IPv4 addresses: ```https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ad_data-shield_ipv4_blocklist.txt```
 
-## Integration tutorials
+## Integration tutorials:
+
+The main firewall rule around Data-Shield IPv4 Blocklist lists is implemented as follows so that it is operational and effective in terms of blocking:
+
+- ```From the internet to the internal network (WAN to LAN)```
 
 To facilitate the integration of Data-Shield IPv4 Blocklist into firewall instances, here is a non-exhaustive list of some tutorials offered by vendors and the Cyber community:
 
@@ -82,28 +86,9 @@ To facilitate the integration of Data-Shield IPv4 Blocklist into firewall instan
 - **IPTables**: Lupovis tutorial (X. Bellekens): ```https://www.linkedin.com/posts/activity-7125481101728313345-b8jM```
 - **UniFi’s Next-Gen Firewall**: Manufacturer's guide: ```https://help.ui.com/hc/en-us/articles/28314415752727-Application-Filtering-in-UniFi```
 
-## 💬 Retours de la communauté
-D’après les retours recueillis sur **LinkedIn**, plus de **`204 entreprises et indépendants`** (dont **Acensi**) utilisent déjà Data-Shield IPv4 Blocklist dans leurs pare-feux Fortinet, Palo Alto, Check Point, etc.
+## Star History
 
-## ❓ Faq
-
-### Comment utiliser les blocklists ?
-Les blocklists peuvent être intégrées dans vos pare-feux, WAF ou systèmes de détection d'intrusion (IDS/IPS) pour bloquer automatiquement les adresses IP malveillantes.
-
-### Quelle est la fréquence de mise à jour ?
-Les listes sont mises à jour toutes les 24 heures pour garantir une protection optimale.
-
-### Est-ce que cette liste remplace un antivirus ou un firewall ?
-Non. Elle est complémentaire aux solutions de sécurité existantes.
-
-### Que faire en cas de faux positif ?
-Les IP sont vérifiées rigoureusement. En cas de doute, vous pouvez soumettre un rapport via les canaux communautaires [Issues](https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/issues).
-
-### Puis-je contribuer au projet ?
-Oui ! Vous pouvez soutenir le projet via Ko-Fi.
-
-### Quels systèmes sont compatibles ?
-Les blocklists sont compatibles avec Fortinet, Palo Alto, Check Point, OPNsense, pfSense, IPTables, Stormshield, F5 BIG-IP, UniFi, etc.
+[![Star History Chart](https://api.star-history.com/svg?repos=duggytuxy/Data-Shield_IPv4_Blocklist&type=date&legend=top-left)](https://www.star-history.com/#duggytuxy/Data-Shield_IPv4_Blocklist&type=date&legend=top-left) **LinkedIn**, plus de **`204 entreprises et indépendants`** (dont **Acensi**) utilisent déjà Data-Shield IPv4 Blocklist dans leurs pare-feux Fortinet, Palo Alto, Check Point, etc.
 
 ## ❤️ Soutenir le projet
 Le maintien de ce projet nécessite du temps et des ressources :
