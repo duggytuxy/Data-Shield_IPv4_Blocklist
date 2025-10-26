@@ -9,7 +9,11 @@
 
 > 🛡Block malicious IP addresses and reduce your attack surface!
 
-# Data-Shield IPv4 Blocklist  
+# Data-Shield IPv4 Blocklist 
+
+<p align="left">
+  <img src="https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/blob/main/classical_schema.png">
+</p> 
 
 Data-Shield IPv4 Blocklist is an additional layer of protection containing a list of [IP addresses (version 4)](https://en.wikipedia.org/wiki/IPv4) whose activities have been detected as malicious.
 
