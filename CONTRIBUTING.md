@@ -1,20 +1,11 @@
-# Comment contribuer
+# How to contribute?
 
-## ️ ❤En soutenant le projet !
+## ️ By supporting Data-Shield IPv4 Blocklist!
 
-Le maintien de ce projet nécessite du temps et des ressources :
+Data-Shield IPv4 Blocklist requires time and funding. That is why it is important to appeal for donations so that it can be maintained over time and in the best possible conditions:
 
-- Hébergement et supervision des leurres  
-- corrélation de données  
-- Extraction et suppression des faux-positifs en amont
-- Qualification, validation, intégration et publication continue  
-
-| **Plateforme** | **Description** | **Lien** |
-|:--|:--|:--|
-| **Ko-Fi** | Soutenez le projet et rejoignez les contributeurs. | [👉 Faire un don](https://ko-fi.com/laurentmduggytuxy) |
-| **Duggy Tuxy Store** | Boutique officielle (goodies et produits dérivés). | [🛍️ Visiter la boutique](https://duggy-tuxy.myspreadshop.be/)
-
-> - ⚠Si vous appréciez mon travail et que ce projet vous semble très utile, par les temps qui courent, je vous en remercie d'avance !
+- **Ko-Fi**: ```https://ko-fi.com/laurentmduggytuxy```
+- **Duggy Tuxy Store**: ```https://duggy-tuxy.myspreadshop.be```
 
 ---
 
