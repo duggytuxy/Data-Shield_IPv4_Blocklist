@@ -65,6 +65,10 @@ A non-exhaustive list of Malicious activities (TTPs):
 
 ## Production lists
 
+<p align="left">
+  <img src="https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/blob/main/data-shield_ipv4_blocklist_technical_schema.png">
+</p> 
+
 Data-Shield IPv4 Blocklist consists of 5 official lists that are updated every 24 hours.
 
 Exhaustive lists of those that are put into production, followed by their uses and limitations:
