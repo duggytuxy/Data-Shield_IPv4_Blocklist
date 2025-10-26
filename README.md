@@ -97,7 +97,7 @@ Data-Shield IPv4 Blocklist requires time and funding. That is why it is importan
 - **Ko-Fi**: ```https://ko-fi.com/laurentmduggytuxy```
 - **Duggy Tuxy Store**: ```https://duggy-tuxy.myspreadshop.be```
 
-## ⚖Licence
+## Licence
 
 Data-Shield IPv4 Blocklist ```2023-2025``` by Duggy Tuxy (Laurent Minne) is under [licence](/LICENSE.md)
 
