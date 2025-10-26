@@ -69,18 +69,18 @@ Exhaustive lists of those that are put into production, followed by their uses a
 - **prod_ac_data-shield_ipv4_blocklist.txt**: Split list ```C```, limited to 30,000 IPv4 addresses: ```https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ac_data-shield_ipv4_blocklist.txt```
 - **prod_ad_data-shield_ipv4_blocklist.txt**: Split list ```D```, limited to 30,000 IPv4 addresses: ```https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ad_data-shield_ipv4_blocklist.txt```
 
-## 📚 Tutoriels d’intégration
+## Integration tutorials
 
-| **Fournisseur** | **Documentation / Tutoriel** | **Taille max. de table** |
-|:--|:--|:--:|
-| **Fortinet** | [Guide officiel](https://docs.fortinet.com/document/fortigate/7.4.9/administration-guide/379433/configuring-a-threat-feed#threat-ext) | [FortiOS 7.4.9](https://docs.fortinet.com/document/fortigate/7.4.9/fortios-release-notes/626946/changes-in-table-size) |
-| **Checkpoint** | [Guide constructeur](https://sc1.checkpoint.com/documents/R80.20SP/WebAdminGuides/EN/CP_R80.20SP_Maestro_AdminGuide/Topics-Maestro-AG/IP-Block-Feature.htm) | TBD |
-| **Palo Alto** | [Panorama EDL](https://docs.paloaltonetworks.com/network-security/security-policy/administration/objects/external-dynamic-lists/configure-the-firewall-to-access-an-external-dynamic-list#configure-the-firewall-to-access-an-external-dynamic-list-panorama) | TBD |
-| **OPNsense** | [Guide Slash-Root (Julien Louis)](https://slash-root.fr/opnsense-block-malicious-ips/) | TBD |
-| **Stormshield** | [Vidéo officielle](https://www.youtube.com/watch?v=yT2oas7M2UM) | TBD |
-| **F5 BIG-IP** | [Guide officiel](https://my.f5.com/manage/s/article/K10978895) | TBD |
-| **IPTables** | [Tutoriel Lupovis (X. Bellekens)](https://www.linkedin.com/posts/activity-7125481101728313345-b8jM) | TBD |
-| **UniFi’s Next-Gen Firewall** | [Guide constructeur](https://help.ui.com/hc/en-us/articles/28314415752727-Application-Filtering-in-UniFi) | TBD |
+To facilitate the integration of Data-Shield IPv4 Blocklist into firewall instances, here is a non-exhaustive list of some tutorials offered by vendors and the Cyber community:
+
+- **Fortinet**: Official guide : ```https://docs.fortinet.com/document/fortigate/7.4.9/administration-guide/379433/configuring-a-threat-feed#threat-ext```
+- **Checkpoint**: Manufacturer's guide: ```https://sc1.checkpoint.com/documents/R80.20SP/WebAdminGuides/EN/CP_R80.20SP_Maestro_AdminGuide/Topics-Maestro-AG/IP-Block-Feature.htm```
+- **Palo Alto**: EDL Overview: ```https://docs.paloaltonetworks.com/network-security/security-policy/administration/objects/external-dynamic-lists/configure-the-firewall-to-access-an-external-dynamic-list#configure-the-firewall-to-access-an-external-dynamic-list-panorama```
+- **OPNsense**: Slash-Root Guide (Julien Louis): ```https://slash-root.fr/opnsense-block-malicious-ips/```
+- **Stormshield**: Official video: ```https://www.youtube.com/watch?v=yT2oas7M2UM```
+- **F5 BIG-IP**: Official guide: ```https://my.f5.com/manage/s/article/K10978895```
+- **IPTables**: Lupovis tutorial (X. Bellekens): ```https://www.linkedin.com/posts/activity-7125481101728313345-b8jM```
+- **UniFi’s Next-Gen Firewall**: Manufacturer's guide: ```https://help.ui.com/hc/en-us/articles/28314415752727-Application-Filtering-in-UniFi```
 
 ## 💬 Retours de la communauté
 D’après les retours recueillis sur **LinkedIn**, plus de **`204 entreprises et indépendants`** (dont **Acensi**) utilisent déjà Data-Shield IPv4 Blocklist dans leurs pare-feux Fortinet, Palo Alto, Check Point, etc.
