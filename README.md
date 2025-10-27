@@ -31,7 +31,7 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 - **Data reliability (IPv4)**: Data-Shield IPv4 Blocklist provides high-quality, reliable data by minimizing false positives to avoid blocking legitimate exposed instances.
 - **Frequency of updates**: Data-Shield IPv4 Blocklist is updated every 24 hours to maintain the most recent data in order to protect you as effectively as possible.
 - **Data retention (IPv4 only)**: Data retention is limited to a maximum of 54 days. This retention is mainly used to continuously monitor the activities of IPv4 addresses tagged as malicious, which have short lifespans but are likely to resurface.
-- **The MIT Licence**: Data-Shield IPv4 Blocklist is licensed under [MIT](/LICENSE.md) so that you can benefit fully from the list(s) offered in this repository.
+- **The MIT Licence**: Data-Shield IPv4 Blocklist is licensed under [CC BY 4.0](/LICENSE) so that you can benefit fully from the list(s) offered in this repository.
 
 ## Malicious activities detected (TTPs)
 
@@ -109,6 +109,6 @@ Data-Shield IPv4 Blocklist requires time and funding. That is why it is importan
 
 ## Licence
 
-Data-Shield IPv4 Blocklist ```2023-2025``` by Duggy Tuxy (Laurent Minne) is under [licence](/LICENSE.md)
+Data-Shield IPv4 Blocklist ```2023-2025``` by Duggy Tuxy (Laurent Minne) is under [licence](/LICENSE)
 
 > 🧠 Security through intelligence, not noise!
