@@ -2,7 +2,7 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/blob/main/data_shield_logo_official_dark_white.png">
   <source media="(prefers-color-scheme: light)" srcset="https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/blob/main/data_shield_logo_official_white_dark.png">
-  <img src="https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/blob/main/data_shield_logo_official_dark_white.png" />
+  <img src="https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/blob/main/data_shield_logo_official_white_dark.png" />
 </picture>
 </p>
 
@@ -17,8 +17,12 @@
 # Data-Shield IPv4 Blocklist 
 
 <p align="left">
-  <img src="https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/blob/main/data-shield_ipv4_blocklist_schema_dark.png">
-</p> 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/blob/madata-shield_ipv4_blocklist_schema_dark.png">
+  <source media="(prefers-color-scheme: light)" srcset="https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/blob/main/data-shield_ipv4_blocklist_schema.png">
+  <img src="https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/blob/main/data-shield_ipv4_blocklist_technical_schema.png" />
+</picture>
+</p>
 
 Data-Shield IPv4 Blocklist is an additional layer of protection containing a list of [IP addresses (version 4)](https://en.wikipedia.org/wiki/IPv4) whose activities have been detected as malicious.
 
@@ -71,8 +75,12 @@ A non-exhaustive list of Malicious activities (TTPs):
 ## Production lists
 
 <p align="left">
-  <img src="https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/blob/main/data-shield_ipv4_blocklist_technical_schema_dark.png">
-</p> 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/blob/main/data-shield_ipv4_blocklist_technical_schema_dark.png">
+  <source media="(prefers-color-scheme: light)" srcset="https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/blob/main/data-shield_ipv4_blocklist_technical_schema.png">
+  <img src="https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/blob/main/data-shield_ipv4_blocklist_technical_schema.png" />
+</picture>
+</p>
 
 Data-Shield IPv4 Blocklist consists of 5 official lists that are updated every 24 hours.
 
