@@ -128,6 +128,6 @@ Data-Shield IPv4 Blocklist requires time and funding. That is why it is importan
 
 ## Licence
 
-Data-Shield IPv4 Blocklist ```2023-2025``` by Duggy Tuxy (Laurent Minne) is under [licence](/LICENSE)
+Data-Shield IPv4 Blocklist ```2023-2025``` by Duggy Tuxy (Laurent Minne) is under [license](/LICENSE)
 
 > 🧠 Security through intelligence, not noise!
