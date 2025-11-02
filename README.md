@@ -115,7 +115,7 @@ To facilitate the integration of Data-Shield IPv4 Blocklist into firewall instan
 - **IPTables**: Lupovis tutorial (X. Bellekens): ```https://www.linkedin.com/posts/activity-7125481101728313345-b8jM```
 - **UniFi’s Next-Gen Firewall**: Manufacturer's guide: ```https://help.ui.com/hc/en-us/articles/28314415752727-Application-Filtering-in-UniFi```
 
-## ⏲️Star History
+## 🌟Star History
 
 <a href="https://www.star-history.com/#duggytuxy/Data-Shield_IPv4_Blocklist&type=date&legend=top-left">
  <picture>
