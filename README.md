@@ -16,7 +16,7 @@
 
 > 🛡Block malicious IP addresses and reduce your attack surface!
 
-# Data-Shield IPv4 Blocklist 
+# 🧱Data-Shield IPv4 Blocklist 
 
 <p align="left">
 <picture>
@@ -32,7 +32,7 @@ This list is designed around the discipline of [Deceptive Security](https://www.
 
 Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to provide an additional layer of security for your [firewall](https://en.wikipedia.org/wiki/Firewall_(computing)), [WAF](https://en.wikipedia.org/wiki/Web_application_firewall), and [DNS sinkhole](https://en.wikipedia.org/wiki/DNS_sinkhole) instances.
 
-## Why Data-Shield IPv4 Blocklist?
+## ❓Why Data-Shield IPv4 Blocklist?
 
 - **Protective layer**: Data-Shield IPv4 Blocklist provides an additional layer of security to reduce the number and attack surface of your exposed assets (web applications, websites, DMZs, public IPs, etc.), reducing the recon phase and exposure of your data on platforms such as [Shodan](https://www.shodan.io/) and similar.
 - **Open to the general public**: Data-Shield IPv4 Blocklist is open to any user with a firewall, WAF, DNS sinkhole, and other similar protection mechanisms.
@@ -44,7 +44,7 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 - **Data retention (IPv4 only)**: Data retention is limited to a maximum of 54 days. This retention is mainly used to continuously monitor the activities of IPv4 addresses tagged as malicious, which have short lifespans but are likely to resurface.
 - **The CC BY 4.0 Licence**: Data-Shield IPv4 Blocklist is licensed under [CC BY 4.0](/LICENSE) so that you can benefit fully from the list(s) offered in this repository.
 
-## Malicious activities detected (TTPs)
+## 🐞Malicious activities detected (TTPs)
 
 A non-exhaustive list of Malicious activities (CVEs Exploit):
 
@@ -74,7 +74,7 @@ A non-exhaustive list of Malicious activities (TTPs):
 - **Web Spam**: Comment/forum spam, HTTP referer spam, or other CMS spam.
 - **Bad Web Bot**: Webpage scraping (for email addresses, content, etc) and crawlers that do not honor robots.txt. Excessive requests and user agent spoofing can also be reported here, etc.
 
-## Production lists
+## 📋Production lists
 
 <p align="left">
 <picture>
@@ -94,7 +94,7 @@ Exhaustive lists of those that are put into production, followed by their uses a
 - **prod_ac_data-shield_ipv4_blocklist.txt**: Split list ```C```, limited to 30,000 IPv4 addresses: ```https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ac_data-shield_ipv4_blocklist.txt```
 - **prod_ad_data-shield_ipv4_blocklist.txt**: Split list ```D```, limited to 30,000 IPv4 addresses: ```https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ad_data-shield_ipv4_blocklist.txt```
 
-## Integration tutorials:
+## 🎓Integration tutorials:
 
 The main firewall rule around Data-Shield IPv4 Blocklist lists is implemented as follows so that it is operational and effective in terms of blocking:
 
@@ -115,7 +115,7 @@ To facilitate the integration of Data-Shield IPv4 Blocklist into firewall instan
 - **IPTables**: Lupovis tutorial (X. Bellekens): ```https://www.linkedin.com/posts/activity-7125481101728313345-b8jM```
 - **UniFi’s Next-Gen Firewall**: Manufacturer's guide: ```https://help.ui.com/hc/en-us/articles/28314415752727-Application-Filtering-in-UniFi```
 
-## Star History
+## ⏲️Star History
 
 <a href="https://www.star-history.com/#duggytuxy/Data-Shield_IPv4_Blocklist&type=date&legend=top-left">
  <picture>
@@ -125,14 +125,14 @@ To facilitate the integration of Data-Shield IPv4 Blocklist into firewall instan
  </picture>
 </a>
 
-## Support Data-Shield IPv4 Blocklist!
+## 💖Support Data-Shield IPv4 Blocklist!
 
 Data-Shield IPv4 Blocklist requires time and funding. That is why it is important to appeal for donations so that it can be maintained over time and in the best possible conditions:
 
 - **Ko-Fi**: ```https://ko-fi.com/laurentmduggytuxy```
 - **Duggy Tuxy Store**: ```https://duggy-tuxy.myspreadshop.be```
 
-## Licence
+## ⚖️Licence
 
 Data-Shield IPv4 Blocklist ```2023-2025``` by Duggy Tuxy (Laurent Minne) is under [license](/LICENSE)
 
