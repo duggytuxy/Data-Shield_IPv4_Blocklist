@@ -130,6 +130,9 @@ cd /etc/iptables_blocklist
 
 ```
 #!/bin/bash
+
+set -euo pipefail
+
 BLOCKLIST_URL="https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_data-shield_ipv4_blocklist.txt"
 PREVIOUS_BLOCKLIST="/etc/iptables_blocklist/previous_blocklist.txt"
 CURRENT_BLOCKLIST="/etc/iptables_blocklist/current_blocklist.txt"
