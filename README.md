@@ -112,7 +112,7 @@ To facilitate the integration of Data-Shield IPv4 Blocklist into firewall instan
 - **OPNsense**: Slash-Root Guide (Julien Louis): ```https://slash-root.fr/opnsense-block-malicious-ips/```
 - **Stormshield**: Official video: ```https://www.youtube.com/watch?v=yT2oas7M2UM```
 - **F5 BIG-IP**: Official guide: ```https://my.f5.com/manage/s/article/K10978895```
-- **IPTables**: Lupovis tutorial (X. Bellekens): ```https://www.linkedin.com/posts/activity-7125481101728313345-b8jM```
+- **IPTables**: Duggy Tuxy tutorial: See the tutorial link [Implementing the Data-Shield IPv4 Blocklist with IPtables](https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist?tab=readme-ov-file#%EF%B8%8Fintegration-scripts)
 - **UniFi’s Next-Gen Firewall**: Manufacturer's guide: ```https://help.ui.com/hc/en-us/articles/28314415752727-Application-Filtering-in-UniFi```
 
 ## ⚙️Integration scripts
