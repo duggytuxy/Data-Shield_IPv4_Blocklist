@@ -115,6 +115,7 @@ To facilitate the integration of Data-Shield IPv4 Blocklist into firewall instan
 - **F5 BIG-IP**: Official guide: ```https://my.f5.com/manage/s/article/K10978895```
 - **IPtables**: Duggy Tuxy tutorial: See the tutorial link [Implementing the Data-Shield IPv4 Blocklist with IPtables](https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist?tab=readme-ov-file#%EF%B8%8Fintegration-scripts)
 - **UniFi’s Next-Gen Firewall**: Manufacturer's guide: ```https://help.ui.com/hc/en-us/articles/28314415752727-Application-Filtering-in-UniFi```
+- **NAS Synology**: MyOwnServer's website : ```https://myownserver.org/posts/Automatiser_la_liste_de_blocage.html```
 
 ## ⚙️Integration scripts
 
