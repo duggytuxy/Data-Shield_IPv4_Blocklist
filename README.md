@@ -65,6 +65,7 @@ A non-exhaustive list of Malicious activities (CVEs Exploit):
 - **CVE-2022-41082**: CVSS 3.1: ```8.0```: Microsoft Exchange Server Remote Code Execution Vulnerability
 - **CVE-2024-4577** : CVSS 3.1: ```9.8```: In PHP versions 8.1. before 8.1.29, 8.2. before 8.2.20, 8.3. before 8.3.8, when using Apache and PHP-CGI on Windows, if the system is set up to use certain code pages, Windows may use "Best-Fit" behavior to replace characters in command line given to Win32 API functions. PHP CGI module may misinterpret those characters as PHP options, which may allow a malicious user to pass options to PHP binary being run, and thus reveal the source code of scripts, run arbitrary PHP code on the server, etc.
 - **CVE-2025-59287**: CVSS 3.1: ```9.8```: Deserialization of untrusted data in Windows Server Update Service allows an unauthorized attacker to execute code over a network.
+- **CVE-2025-52665**: CVSS 3.1: ```10.```: A malicious actor with access to the management network could exploit a misconfiguration in UniFi’s door access application, UniFi Access, that exposed a management API without proper authentication. This vulnerability was introduced in Version 3.3.22 and was fixed in Version 4.0.21 and later. 
 
 A non-exhaustive list of Malicious activities (TTPs):
 
