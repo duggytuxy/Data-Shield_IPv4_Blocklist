@@ -102,11 +102,10 @@ Exhaustive lists of those that are put into production, followed by their uses a
 
 The main firewall rule around Data-Shield IPv4 Blocklist lists is implemented as follows so that it is operational and effective in terms of blocking:
 
-> ⚠️```Please, respect the direction of this flow```!
-
-> ✅```From the internet to the internal network (WAN to LAN)```
-
-> ❌```Do not integrate these flow rules in this direction (LAN to WAN)```
+> [!IMPORTANT]
+> - ⚠️```Please, respect the direction of this flow```!
+> - ✅```From the internet to the internal network (WAN to LAN)```
+> - ❌```Do not integrate these flow rules in this direction (LAN to WAN)```
 
 To facilitate the integration of Data-Shield IPv4 Blocklist into firewall instances, here is a non-exhaustive list of some tutorials offered by vendors and the Cyber community:
 
