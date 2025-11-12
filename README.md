@@ -122,7 +122,7 @@ To facilitate the integration of Data-Shield IPv4 Blocklist into firewall instan
 
 ## Integration scripts
 
-🐧Implementing the Data-Shield IPv4 Blocklist with IPtables:
+🧱Implementing the Data-Shield IPv4 Blocklist with IPtables:
 
 - Create a directory to store the blocklist and scripts
 
