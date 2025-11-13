@@ -76,7 +76,6 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 - **Stormshield**: Official video: ```https://www.youtube.com/watch?v=yT2oas7M2UM```
 - **F5 BIG-IP**: Official guide: ```https://my.f5.com/manage/s/article/K10978895```
 - **NFtables**: Duggy Tuxy tutorial: See the tutorial link [Implementing the Data-Shield IPv4 Blocklist with NFtables](https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist?tab=readme-ov-file#integration-scripts)
-- **UniFi’s Next-Gen Firewall**: Manufacturer's guide: ```https://help.ui.com/hc/en-us/articles/28314415752727-Application-Filtering-in-UniFi```
 - **NAS Synology**: MyOwnServer's website : ```https://myownserver.org/posts/Automatiser_la_liste_de_blocage.html```
 
 ## ⚙Integration scripts
