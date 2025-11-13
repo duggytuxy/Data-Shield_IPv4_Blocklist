@@ -40,9 +40,11 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 
 ## Production lists
 
-Data-Shield IPv4 Blocklist consists of 5 official lists that are updated every 24 hours.
+> [!NOTE]
+> Data-Shield IPv4 Blocklist consists of 5 official lists that are updated every 24 hours.
 
-Exhaustive lists of those that are put into production, followed by their uses and limitations:
+> [!IMPORTANT]
+> Exhaustive lists of those that are put into production, followed by their uses and limitations:
 
 - **prod_data-shield_ipv4_blocklist.txt**: Full list, limited to 110,000 IPv4 addresses: ```https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_data-shield_ipv4_blocklist.txt```
 - **prod_aa_data-shield_ipv4_blocklist.txt**: Split list ```A```, limited to 30,000 IPv4 addresses: ```https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_aa_data-shield_ipv4_blocklist.txt```
@@ -52,29 +54,31 @@ Exhaustive lists of those that are put into production, followed by their uses a
 
 ## Integration tutorials:
 
-The main firewall rule around Data-Shield IPv4 Blocklist lists is implemented as follows so that it is operational and effective in terms of blocking:
-
 > [!IMPORTANT]
-> - ⚠️```Please, respect the direction of this flow```!
-> - ✅```From the internet to the internal network (WAN to LAN)```
-> - ❌```Do not integrate these flow rules in this direction (LAN to WAN)```
+> The main firewall rule around Data-Shield IPv4 Blocklist lists is implemented as follows so that it is operational and effective in terms of blocking:
 
-To facilitate the integration of Data-Shield IPv4 Blocklist into firewall instances, here is a non-exhaustive list of some tutorials offered by vendors and the Cyber community:
+- ⚠️```Please, respect the direction of this flow```!
+- ✅```From the internet to the internal network (WAN to LAN)```
+- ❌```Do not integrate these flow rules in this direction (LAN to WAN)```
 
-> [!TIPS]
-> - **Fortinet**: Official guide : ```https://docs.fortinet.com/document/fortigate/7.4.9/administration-guide/379433/configuring-a-threat-feed#threat-ext```
-> - **Checkpoint**: Manufacturer's guide: ```https://sc1.checkpoint.com/documents/R80.20SP/WebAdminGuides/EN/CP_R80.20SP_Maestro_AdminGuide/Topics-Maestro-AG/IP-Block-Feature.htm```
-> - **Palo Alto**: EDL Overview: ```https://docs.paloaltonetworks.com/network-security/security-policy/administration/objects/external-dynamic-lists/configure-the-firewall-to-access-an-external-dynamic-list#configure-the-firewall-to-access-an-external-dynamic-list-panorama```
-> - **OPNsense**: Slash-Root Guide (Julien Louis): ```https://slash-root.fr/opnsense-block-malicious-ips/```
-> - **Stormshield**: Official video: ```https://www.youtube.com/watch?v=yT2oas7M2UM```
-> - **F5 BIG-IP**: Official guide: ```https://my.f5.com/manage/s/article/K10978895```
-> - **IPtables**: Duggy Tuxy tutorial: See the tutorial link [Implementing the Data-Shield IPv4 Blocklist with IPtables](https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist?tab=readme-ov-file#%EF%B8%8Fintegration-scripts)
-> - **UniFi’s Next-Gen Firewall**: Manufacturer's guide: ```https://help.ui.com/hc/en-us/articles/28314415752727-Application-Filtering-in-UniFi```
-> - **NAS Synology**: MyOwnServer's website : ```https://myownserver.org/posts/Automatiser_la_liste_de_blocage.html```
+> [!NOTE]
+> To facilitate the integration of Data-Shield IPv4 Blocklist into firewall instances, here is a non-exhaustive list of some tutorials offered by vendors and the Cyber community:
+
+
+- **Fortinet**: Official guide : ```https://docs.fortinet.com/document/fortigate/7.4.9/administration-guide/379433/configuring-a-threat-feed#threat-ext```
+- **Checkpoint**: Manufacturer's guide: ```https://sc1.checkpoint.com/documents/R80.20SP/WebAdminGuides/EN/CP_R80.20SP_Maestro_AdminGuide/Topics-Maestro-AG/IP-Block-Feature.htm```
+- **Palo Alto**: EDL Overview: ```https://docs.paloaltonetworks.com/network-security/security-policy/administration/objects/external-dynamic-lists/configure-the-firewall-to-access-an-external-dynamic-list#configure-the-firewall-to-access-an-external-dynamic-list-panorama```
+- **OPNsense**: Slash-Root Guide (Julien Louis): ```https://slash-root.fr/opnsense-block-malicious-ips/```
+- **Stormshield**: Official video: ```https://www.youtube.com/watch?v=yT2oas7M2UM```
+- **F5 BIG-IP**: Official guide: ```https://my.f5.com/manage/s/article/K10978895```
+- **IPtables**: Duggy Tuxy tutorial: See the tutorial link [Implementing the Data-Shield IPv4 Blocklist with IPtables](https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist?tab=readme-ov-file#%EF%B8%8Fintegration-scripts)
+- **UniFi’s Next-Gen Firewall**: Manufacturer's guide: ```https://help.ui.com/hc/en-us/articles/28314415752727-Application-Filtering-in-UniFi```
+- **NAS Synology**: MyOwnServer's website : ```https://myownserver.org/posts/Automatiser_la_liste_de_blocage.html```
 
 ## Integration scripts
 
-🧱Implementing the Data-Shield IPv4 Blocklist with IPtables:
+> [!TIP]
+> Implementing the Data-Shield IPv4 Blocklist with IPtables:
 
 - Create a directory to store the blocklist and scripts
 
