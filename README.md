@@ -80,7 +80,7 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 ## Integration scripts
 
 > [!TIP]
-> Implementing the Data-Shield IPv4 Blocklist with IPtables:
+> Implementing the Data-Shield IPv4 Blocklist with [IPtables](https://en.wikipedia.org/wiki/Iptables):
 
 - Create a directory to store the blocklist and scripts
 
