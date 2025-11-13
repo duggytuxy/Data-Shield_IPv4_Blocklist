@@ -190,16 +190,6 @@ crontab -e
 
 - Save and exit the editor.
 
-## ⭐Star History
-
-<a href="https://www.star-history.com/#duggytuxy/Data-Shield_IPv4_Blocklist&type=date&logscale&legend=top-left">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=duggytuxy/Data-Shield_IPv4_Blocklist&type=date&theme=dark&logscale&legend=top-left" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=duggytuxy/Data-Shield_IPv4_Blocklist&type=date&logscale&legend=top-left" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=duggytuxy/Data-Shield_IPv4_Blocklist&type=date&logscale&legend=top-left" />
- </picture>
-</a>
-
 ## 💖Support Data-Shield IPv4 Blocklist!
 
 > [!NOTE]
