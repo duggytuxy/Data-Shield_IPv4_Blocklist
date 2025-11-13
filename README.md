@@ -162,5 +162,3 @@ crontab -e
 
 > [!IMPORTANT]
 > Data-Shield IPv4 Blocklist ```2023-2025``` by Duggy Tuxy (Laurent Minne) is under [license](/LICENSE)
-
-> 🧠Security through intelligence, not noise!
