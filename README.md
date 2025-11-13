@@ -18,15 +18,15 @@
 
 > 🛡Block malicious IP addresses and reduce your attack surface!
 
-# Data-Shield IPv4 Blocklist 
+# 🧱Data-Shield IPv4 Blocklist 
 
 Data-Shield IPv4 Blocklist is an additional layer of protection containing a list of [IP addresses (version 4)](https://en.wikipedia.org/wiki/IPv4) whose activities have been detected as malicious.
 
-This list is designed around the discipline of [Deceptive Security](https://www.orangecyberdefense.com/be/blog/discover-deception-security#:~:text=What%20is%20deception%20security?,potentially%20demotivate%20some%20of%20them.) based on intelligent behavioral analysis of malicious activities related to cybercrime.
+This list is designed around the discipline of [Deceptive Security](https://en.wikipedia.org/wiki/Deception_technology) based on intelligent behavioral analysis of malicious activities related to cybercrime.
 
 Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to provide an additional layer of security for your [firewall](https://en.wikipedia.org/wiki/Firewall_(computing)), [WAF](https://en.wikipedia.org/wiki/Web_application_firewall), and [DNS sinkhole](https://en.wikipedia.org/wiki/DNS_sinkhole) instances.
 
-## Why Data-Shield IPv4 Blocklist?
+## 🎯Why Data-Shield IPv4 Blocklist?
 
 - **Protective layer**: [Data-Shield IPv4 Blocklist](https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist) provides an additional layer of security to reduce the number and attack surface of your exposed assets (web applications, websites, DMZs, public IPs, etc.), reducing the recon phase and exposure of your data on platforms such as [Shodan](https://www.shodan.io/) and similar.
 - **Open to the general public**: Data-Shield IPv4 Blocklist is open to any user with a firewall, WAF, DNS sinkhole, and other similar protection mechanisms.
@@ -38,7 +38,7 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 - **Data retention (IPv4 only)**: Data retention is limited to a maximum of 54 days. This retention is mainly used to continuously monitor the activities of IPv4 addresses tagged as malicious, which have short lifespans but are likely to resurface.
 - **The CC BY 4.0 Licence**: Data-Shield IPv4 Blocklist is licensed under [CC BY 4.0](/LICENSE) so that you can benefit fully from the list(s) offered in this repository.
 
-## Production lists
+## 📋Production lists
 
 > [!NOTE]
 > Data-Shield IPv4 Blocklist consists of 5 official lists that are updated every 24 hours.
@@ -52,7 +52,7 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 - **prod_ac_data-shield_ipv4_blocklist.txt**: Split list ```C```, limited to 30,000 IPv4 addresses: ```https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ac_data-shield_ipv4_blocklist.txt```
 - **prod_ad_data-shield_ipv4_blocklist.txt**: Split list ```D```, limited to 30,000 IPv4 addresses: ```https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ad_data-shield_ipv4_blocklist.txt```
 
-## Integration tutorials:
+## 🎓Integration tutorials:
 
 > [!IMPORTANT]
 > The main firewall rule around Data-Shield IPv4 Blocklist lists is implemented as follows so that it is operational and effective in terms of blocking:
@@ -77,7 +77,7 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 - **UniFi’s Next-Gen Firewall**: Manufacturer's guide: ```https://help.ui.com/hc/en-us/articles/28314415752727-Application-Filtering-in-UniFi```
 - **NAS Synology**: MyOwnServer's website : ```https://myownserver.org/posts/Automatiser_la_liste_de_blocage.html```
 
-## Integration scripts
+## ⚙️Integration scripts
 
 > [!TIP]
 > Implementing the Data-Shield IPv4 Blocklist with [NFtables](https://en.wikipedia.org/wiki/Nftables):
@@ -189,7 +189,7 @@ crontab -e
 
 - Save and exit the editor.
 
-## Star History
+## ⭐Star History
 
 <a href="https://www.star-history.com/#duggytuxy/Data-Shield_IPv4_Blocklist&type=date&legend=top-left">
  <picture>
@@ -199,7 +199,7 @@ crontab -e
  </picture>
 </a>
 
-## Support Data-Shield IPv4 Blocklist!
+## 💖Support Data-Shield IPv4 Blocklist!
 
 > [!NOTE]
 > Data-Shield IPv4 Blocklist requires time and funding. That is why it is important to appeal for donations so that it can be maintained over time and in the best possible conditions:
@@ -207,7 +207,7 @@ crontab -e
 - **Ko-Fi**: ```https://ko-fi.com/laurentmduggytuxy```
 - **Duggy Tuxy Store**: ```https://duggy-tuxy.myspreadshop.be```
 
-## Licence
+## ⚖️Licence
 
 > [!IMPORTANT]
 > Data-Shield IPv4 Blocklist ```2023-2025``` by Duggy Tuxy (Laurent Minne) is under [license](/LICENSE)
