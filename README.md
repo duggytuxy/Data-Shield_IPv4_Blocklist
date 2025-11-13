@@ -152,13 +152,15 @@ crontab -e
 
 ## Support Data-Shield IPv4 Blocklist!
 
-Data-Shield IPv4 Blocklist requires time and funding. That is why it is important to appeal for donations so that it can be maintained over time and in the best possible conditions:
+> [!NOTE]
+> Data-Shield IPv4 Blocklist requires time and funding. That is why it is important to appeal for donations so that it can be maintained over time and in the best possible conditions:
 
 - **Ko-Fi**: ```https://ko-fi.com/laurentmduggytuxy```
 - **Duggy Tuxy Store**: ```https://duggy-tuxy.myspreadshop.be```
 
 ## Licence
 
-Data-Shield IPv4 Blocklist ```2023-2025``` by Duggy Tuxy (Laurent Minne) is under [license](/LICENSE)
+> [!IMPORTANT]
+> Data-Shield IPv4 Blocklist ```2023-2025``` by Duggy Tuxy (Laurent Minne) is under [license](/LICENSE)
 
 > 🧠Security through intelligence, not noise!
