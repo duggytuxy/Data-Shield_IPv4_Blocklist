@@ -57,7 +57,6 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 > [!IMPORTANT]
 > The main firewall rule around Data-Shield IPv4 Blocklist lists is implemented as follows so that it is operational and effective in terms of blocking:
 
-- ⚠️```Please, respect the direction of this flow```!
 - ✅```From the internet to the internal network (WAN to LAN)```
 - ❌```Do not integrate these flow rules in this direction (LAN to WAN)```
 
