@@ -209,7 +209,7 @@ crontab -e
 - **Ko-Fi**: ```https://ko-fi.com/laurentmduggytuxy```
 - **Duggy Tuxy Store**: ```https://duggy-tuxy.myspreadshop.be```
 
-## ⚖️Licence
+## ⚖Licence
 
 > [!IMPORTANT]
 > Data-Shield IPv4 Blocklist ```2023-2025``` by Duggy Tuxy (Laurent Minne) is under [license](/LICENSE)
