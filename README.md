@@ -80,50 +80,99 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 ## Integration scripts
 
 > [!TIP]
-> Implementing the Data-Shield IPv4 Blocklist with [IPtables](https://en.wikipedia.org/wiki/Iptables):
+> Implementing the Data-Shield IPv4 Blocklist with [NFtables](https://en.wikipedia.org/wiki/Nftables):
 
 - Create a directory to store the blocklist and scripts
 
 ```
-mkdir /etc/iptables_blocklist
-cd /etc/iptables_blocklist
+mkdir /etc/nftables_blocklist
+cd /etc/nftables_blocklist
 ```
 
 - Create a script named ```update_blocklist.sh```:
 
 ```
 #!/bin/bash
-
 set -euo pipefail
 
+# Variables
 BLOCKLIST_URL="https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_data-shield_ipv4_blocklist.txt"
-PREVIOUS_BLOCKLIST="/etc/iptables_blocklist/previous_blocklist.txt"
-CURRENT_BLOCKLIST="/etc/iptables_blocklist/current_blocklist.txt"
-IPTABLES="/sbin/iptables"
+BLOCKLIST_DIR="/etc/nftables_blocklist"
+PREVIOUS_BLOCKLIST="$BLOCKLIST_DIR/previous_blocklist.txt"
+CURRENT_BLOCKLIST="$BLOCKLIST_DIR/current_blocklist.txt"
+TMP_BLOCKLIST="$BLOCKLIST_DIR/tmp_blocklist.txt"
 IPSET="/sbin/ipset"
+NFT="/usr/sbin/nft"
 BLOCKLIST_SET_NAME="myblocklist"
-# Download the current blocklist
-curl -s $BLOCKLIST_URL -o $CURRENT_BLOCKLIST
-# Create the ipset set if it does not exist
-$IPSET list -n | grep -q $BLOCKLIST_SET_NAME || $IPSET create $BLOCKLIST_SET_NAME hash:ip
-# Add new IPs to the blocklist
-comm -23 <(sort $PREVIOUS_BLOCKLIST | sort | uniq) <(sort $CURRENT_BLOCKLIST | sort | uniq) | while read -r IP; do
-  $IPSET add $BLOCKLIST_SET_NAME $IP
+NFT_TABLE="inet"
+NFT_CHAIN="filter"
+NFT_RULE_HANDLE_FILE="$BLOCKLIST_DIR/nft_rule_handle"
+LOGFILE="/var/log/ipset_update.log"
+
+# Utility functions
+log() {
+    echo "$(date '+%Y-%m-%d %H:%M:%S') : $*" >> "$LOGFILE"
+}
+
+# Preparation
+mkdir -p "$BLOCKLIST_DIR"
+touch "$PREVIOUS_BLOCKLIST"
+touch "$LOGFILE"
+
+# Secure download
+if ! curl -s --fail "$BLOCKLIST_URL" -o "$TMP_BLOCKLIST"; then
+    log "ERREUR : Failed to download the blocklist from $BLOCKLIST_URL"
+    exit 1
+fi
+
+# IP validation and cleanup
+grep -E '^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$' "$TMP_BLOCKLIST" | sort -u > "$CURRENT_BLOCKLIST"
+
+# Creation of temporary set for atomicity
+TMP_SET_NAME="${BLOCKLIST_SET_NAME}_tmp"
+if $IPSET list -n | grep -q "$TMP_SET_NAME"; then
+    $IPSET flush "$TMP_SET_NAME"
+else
+    $IPSET create "$TMP_SET_NAME" hash:ip
+fi
+
+# Adding IPs to the temporary set
+while read -r IP; do
+    $IPSET add "$TMP_SET_NAME" "$IP" 2>/dev/null || log "WARN : Unable to add $IP (possibly already present)"
+done < "$CURRENT_BLOCKLIST"
+
+# Swap for atomicity
+if $IPSET list -n | grep -q "$BLOCKLIST_SET_NAME"; then
+    $IPSET swap "$TMP_SET_NAME" "$BLOCKLIST_SET_NAME"
+    $IPSET destroy "$TMP_SET_NAME"
+else
+    $IPSET rename "$TMP_SET_NAME" "$BLOCKLIST_SET_NAME"
+fi
+
+# Check if the nftables rule exists
+if ! $NFT list chain $NFT_TABLE $NFT_CHAIN | grep -q "$BLOCKLIST_SET_NAME"; then
+    $NFT add rule $NFT_TABLE $NFT_CHAIN ip saddr @${BLOCKLIST_SET_NAME} drop
+    log "INFO : Added nftables rule to block IPs"
+fi
+
+# Logging changes
+comm -23 <(sort -u "$PREVIOUS_BLOCKLIST") <(sort -u "$CURRENT_BLOCKLIST") | while read -r IP; do
+    log "ADD : $IP"
 done
-# Remove outdated IPs from the blocklist
-comm -13 <(sort $PREVIOUS_BLOCKLIST | sort | uniq) <(sort $CURRENT_BLOCKLIST | sort | uniq) | while read -r IP; do
-  $IPSET del $BLOCKLIST_SET_NAME $IP
+
+comm -13 <(sort -u "$PREVIOUS_BLOCKLIST") <(sort -u "$CURRENT_BLOCKLIST") | while read -r IP; do
+    log "REMOVE : $IP"
 done
-# Ensure the IPtables rule is in place
-$IPTABLES -C INPUT -m set --match-set $BLOCKLIST_SET_NAME src -j DROP 2>/dev/null || $IPTABLES -I INPUT -m set --match-set $BLOCKLIST_SET_NAME src -j DROP
-# Save the current blocklist as the previous one for the next run
-cp $CURRENT_BLOCKLIST $PREVIOUS_BLOCKLIST
+
+# Save for next run
+cp "$CURRENT_BLOCKLIST" "$PREVIOUS_BLOCKLIST"
+log "INFO : Update completed successfully"
 ```
 
 - Make the script executable:
 
 ```
-chmod +x /etc/iptables_blocklist/update_blocklist.sh
+chmod +x /etc/nftables_blocklist/update_blocklist.sh
 ```
 
 - To keep your blocklist updated, create a cron job to run the script regularly:
@@ -135,7 +184,7 @@ crontab -e
 - Add the following line to execute the script every hour:
 
 ```
-0 * * * * /etc/iptables_blocklist/update_blocklist.sh
+0 * * * * /etc/nftables_blocklist/update_blocklist.sh
 ```
 
 - Save and exit the editor.
