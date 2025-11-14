@@ -1,8 +1,8 @@
 <p align="left">
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/blob/main/data_shield_logo_official_dark_white.png">
-  <source media="(prefers-color-scheme: light)" srcset="https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/blob/main/data_shield_logo_official_white_dark.png">
-  <img src="https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/blob/main/data_shield_logo_official_white_dark.png" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/blob/main/images/data_shield_logo_official_dark_white.png">
+  <source media="(prefers-color-scheme: light)" srcset="https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/blob/main/images/data_shield_logo_official_white_dark.png">
+  <img src="https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/blob/main/images/data_shield_logo_official_white_dark.png" />
 </picture>
 </p>
 
