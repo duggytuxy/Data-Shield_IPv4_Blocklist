@@ -38,7 +38,14 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 > - **Data reliability (IPv4)**: Data-Shield IPv4 Blocklist provides high-quality, reliable data by minimizing false positives to avoid blocking legitimate exposed instances.
 > - **Frequency of updates**: Data-Shield IPv4 Blocklist is updated every ```24``` hours to maintain the most recent data in order to protect you as effectively as possible.
 > - **Data retention (IPv4 only)**: Data retention is limited to a maximum of ```15``` days. This retention is mainly used to continuously monitor the activities of IPv4 addresses tagged as malicious, which have short lifespans but are likely to resurface.
+> - **Performance**: Data-Shield IPv4 Blocklist is just as effective as those offered by other solutions and vendors.
 > - **The CC BY 4.0 Licence**: Data-Shield IPv4 Blocklist is licensed under [CC BY 4.0](/LICENSE) so that you can benefit fully from the list(s) offered in this repository.
+
+## 🚀Objectives
+
+- Reduce noise by up to 50%, save time on incident response, reduce consumption of CPU, RAM, and other server resources.
+- Block up to approximately 90% of malicious bot traffic in order to significantly reduce the load on servers in terms of resources.
+- Automatic update of blocklists via GitHub Raw URLs (GitLab coming soon...) and [bash scripts](https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/releases/tag/Linux).
 
 ## 📋Production lists
 
@@ -118,7 +125,7 @@ chmod +x /etc/nftables_blocklist/update_nftables_blocklist.sh
 Or
 
 ```
-chmod +x /etc/nftables_blocklist/update_iptables_blocklist.sh
+chmod +x /etc/iptables_blocklist/update_iptables_blocklist.sh
 ```
 
 - To keep your blocklist updated, create a cron job to run the script regularly:
@@ -136,7 +143,7 @@ crontab -e
 Or
 
 ```
-0 * * * * /etc/nftables_blocklist/update_iptables_blocklist.sh
+0 * * * * /etc/iptables_blocklist/update_iptables_blocklist.sh
 ```
 
 - Save and exit the editor.
