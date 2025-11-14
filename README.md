@@ -10,7 +10,7 @@
   <img src="https://img.shields.io/badge/Open%20Source-100%25-brightgreen?style=for-the-badge&logo=opensourceinitiative">
   <img src="https://img.shields.io/badge/Made%20with-%E2%9D%A4-red?style=for-the-badge">
   <img src="https://img.shields.io/badge/False_Positive-0%25-green?style=for-the-badge&logo=cachet">
-  <img src="https://img.shields.io/badge/License-CC_BY_4.0-red?style=for-the-badge&logo=license">
+  <img src="https://img.shields.io/badge/License-GNU_GPLv3-blue?style=for-the-badge&logo=license">
   <img src="https://img.shields.io/github/forks/duggytuxy/Data-Shield_IPv4_Blocklist?style=for-the-badge&logo=github">
   <img src="https://img.shields.io/github/stars/duggytuxy/Data-Shield_IPv4_Blocklist?style=for-the-badge&logo=github">
   <img src="https://img.shields.io/github/last-commit/duggytuxy/Data-Shield_IPv4_Blocklist?label=Last%20update&color=informational&style=for-the-badge&logo=github">
@@ -39,7 +39,7 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 > - **Frequency of updates**: Data-Shield IPv4 Blocklist is updated every ```24``` hours to maintain the most recent data in order to protect you as effectively as possible.
 > - **Data retention (IPv4 only)**: Data retention is limited to a maximum of ```15``` days. This retention is mainly used to continuously monitor the activities of IPv4 addresses tagged as malicious, which have short lifespans but are likely to resurface.
 > - **Performance**: Data-Shield IPv4 Blocklist is just as effective as those offered by other solutions and vendors.
-> - **The CC BY 4.0 Licence**: Data-Shield IPv4 Blocklist is licensed under [CC BY 4.0](/LICENSE) so that you can benefit fully from the list(s) offered in this repository.
+> - **The GNU GPLv3 Licence**: Data-Shield IPv4 Blocklist is licensed under [GNU GPLv3](/LICENSE).
 
 ## 🚀Objectives
 
