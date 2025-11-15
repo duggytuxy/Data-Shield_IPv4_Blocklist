@@ -124,10 +124,8 @@ cd /etc/iptables_blocklist
 wget https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/releases/download/Linux/update_nftables_blocklist.sh
 ```
 
-> [!NOTE]
-> (update_nftables_blocklist.sh ) sha256:3056c3478b4aef9e0a97889951e7029025fde93b540eab570ef21b3c4cad83a0
-
 - To check the sha256 of the file, enter the following command
+- sha256: ```3056c3478b4aef9e0a97889951e7029025fde93b540eab570ef21b3c4cad83a0```
 
 ```
 sha256sum update_nftables_blocklist.sh
@@ -139,10 +137,8 @@ Or
 wget https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/releases/download/Linux/update_iptables_blocklist.sh
 ```
 
-> [!NOTE]
-> (update_iptables_blocklist.sh) sha256:6781142b77935a1bf8efcd036aac06ee0c028f7940c253b327952beb1b0a94c9
-
 - To check the sha256 of the file, enter the following command
+- sha256: ```6781142b77935a1bf8efcd036aac06ee0c028f7940c253b327952beb1b0a94c9```
 
 ```
 sha256sum update_iptables_blocklist.sh
