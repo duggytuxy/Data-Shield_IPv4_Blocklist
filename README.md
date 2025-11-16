@@ -125,7 +125,7 @@ wget https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/releases/download/L
 ```
 
 - To check the sha256 of the file, enter the following command
-- sha256: ```3056c3478b4aef9e0a97889951e7029025fde93b540eab570ef21b3c4cad83a0```
+- sha256: ```18ba5a2658acc33c0430c5e6518f81d8e5137f00818c53970081a23c15e591e6```
 
 ```
 sha256sum update_nftables_blocklist.sh
