@@ -102,20 +102,13 @@ Or
 ## ⚙Integration scripts
 
 > [!TIP]
-> Implementing the Data-Shield IPv4 Blocklist with [NFtables](https://en.wikipedia.org/wiki/Nftables) or [IPtables](https://en.wikipedia.org/wiki/Iptables):
+> Implementing the Data-Shield IPv4 Blocklist with [NFtables](https://en.wikipedia.org/wiki/Nftables):
 
-- Create a directory to store the blocklist and scripts
+- Create a directory to store the blocklist and script
 
 ```
 mkdir /etc/nftables_blocklist
 cd /etc/nftables_blocklist
-```
-
-Or
-
-```
-mkdir /etc/iptables_blocklist
-cd /etc/iptables_blocklist
 ```
 
 - Download the script using the following command:
@@ -131,7 +124,28 @@ wget https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/releases/download/L
 sha256sum update_nftables_blocklist.sh
 ```
 
-- Logrotate configuration (for NFtables)
+- Make the script executable:
+
+```
+chmod +x /etc/nftables_blocklist/update_nftables_blocklist.sh
+```
+
+- To keep your blocklist updated, create a cron job to run the script regularly:
+
+```
+crontab -e
+```
+
+- Add the following line to execute the script every hour:
+
+```
+0 * * * * /etc/nftables_blocklist/update_nftables_blocklist.sh
+```
+
+- Save and exit the editor.
+
+> [!NOTE] 
+> Logrotate configuration
 
 - Creates the file ```/etc/logrotate.d/nft_blocklist```
 
@@ -153,7 +167,17 @@ sha256sum update_nftables_blocklist.sh
 sudo logrotate -f /etc/logrotate.d/nft_blocklist
 ```
 
-Or
+> [!TIP]
+> Implementing the Data-Shield IPv4 Blocklist with [IPtables](https://en.wikipedia.org/wiki/Iptables):
+
+- Create a directory to store the blocklist and script
+
+```
+mkdir /etc/iptables_blocklist
+cd /etc/iptables_blocklist
+```
+
+- Download the script using the following command:
 
 ```
 wget https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/releases/download/Linux/update_iptables_blocklist.sh
@@ -169,12 +193,6 @@ sha256sum update_iptables_blocklist.sh
 - Make the script executable:
 
 ```
-chmod +x /etc/nftables_blocklist/update_nftables_blocklist.sh
-```
-
-Or
-
-```
 chmod +x /etc/iptables_blocklist/update_iptables_blocklist.sh
 ```
 
@@ -185,12 +203,6 @@ crontab -e
 ```
 
 - Add the following line to execute the script every hour:
-
-```
-0 * * * * /etc/nftables_blocklist/update_nftables_blocklist.sh
-```
-
-Or
 
 ```
 0 * * * * /etc/iptables_blocklist/update_iptables_blocklist.sh
