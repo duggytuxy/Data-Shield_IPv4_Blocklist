@@ -131,6 +131,28 @@ wget https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/releases/download/L
 sha256sum update_nftables_blocklist.sh
 ```
 
+- Logrotate configuration (for NFtables)
+
+- Creates the file ```/etc/logrotate.d/nft_blocklist```
+
+```
+/var/log/nft_blocklist_update.log {
+    daily
+    rotate 14
+    compress
+    delaycompress
+    missingok
+    notifempty
+    create 640 root adm
+}
+```
+
+- Immediate test
+
+```
+sudo logrotate -f /etc/logrotate.d/nft_blocklist
+```
+
 Or
 
 ```
