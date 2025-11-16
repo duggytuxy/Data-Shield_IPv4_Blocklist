@@ -7,15 +7,13 @@ BLOCKLIST_DIR="/etc/nftables_blocklist"
 PREVIOUS_BLOCKLIST="$BLOCKLIST_DIR/previous_blocklist.txt"
 CURRENT_BLOCKLIST="$BLOCKLIST_DIR/current_blocklist.txt"
 TMP_BLOCKLIST="$BLOCKLIST_DIR/tmp_blocklist.txt"
-IPSET="/sbin/ipset"
 NFT="/usr/sbin/nft"
-BLOCKLIST_SET_NAME="myblocklist"
-NFT_TABLE="inet"
-NFT_CHAIN="filter"
-NFT_RULE_HANDLE_FILE="$BLOCKLIST_DIR/nft_rule_handle"
-LOGFILE="/var/log/ipset_update.log"
+NFT_TABLE="inet filter"
+NFT_CHAIN="input"
+NFT_SET="blocklist_ipv4"
+LOGFILE="/var/log/nft_blocklist_update.log"
 
-# Utility functions
+# Logging function
 log() {
     echo "$(date '+%Y-%m-%d %H:%M:%S') : $*" >> "$LOGFILE"
 }
@@ -27,49 +25,44 @@ touch "$LOGFILE"
 
 # Secure download
 if ! curl -s --fail "$BLOCKLIST_URL" -o "$TMP_BLOCKLIST"; then
-    log "ERROR : Failed to download the blocklist from $BLOCKLIST_URL"
+    log "ERROR: Failed to download blocklist from $BLOCKLIST_URL"
     exit 1
 fi
 
-# IP validation and cleanup
+# Validate IPs and clean up
 grep -E '^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$' "$TMP_BLOCKLIST" | sort -u > "$CURRENT_BLOCKLIST"
 
-# Creation of temporary set for atomicity
-TMP_SET_NAME="${BLOCKLIST_SET_NAME}_tmp"
-if $IPSET list -n | grep -q "$TMP_SET_NAME"; then
-    $IPSET flush "$TMP_SET_NAME"
-else
-    $IPSET create "$TMP_SET_NAME" hash:ip
+# Create table and set if necessary
+if ! $NFT list table inet filter >/dev/null 2>&1; then
+    $NFT add table inet filter
+    log "INFO: Table inet filter created"
 fi
 
-# Adding IPs to the temporary set
+if ! $NFT list set inet filter $NFT_SET >/dev/null 2>&1; then
+    $NFT add set inet filter $NFT_SET '{ type ipv4_addr; flags interval; }'
+    log "INFO: Set $NFT_SET created"
+fi
+
+# Atomic update: flush + add IPs
+$NFT flush set inet filter $NFT_SET
 while read -r IP; do
-    $IPSET add "$TMP_SET_NAME" "$IP" 2>/dev/null || log "WARN : Unable to add $IP (possibly already present)"
+    $NFT add element inet filter $NFT_SET { $IP } 2>/dev/null || log "WARN: Could not add $IP"
 done < "$CURRENT_BLOCKLIST"
 
-# Swap for atomicity
-if $IPSET list -n | grep -q "$BLOCKLIST_SET_NAME"; then
-    $IPSET swap "$TMP_SET_NAME" "$BLOCKLIST_SET_NAME"
-    $IPSET destroy "$TMP_SET_NAME"
-else
-    $IPSET rename "$TMP_SET_NAME" "$BLOCKLIST_SET_NAME"
+# Add rule if missing
+if ! $NFT list chain inet filter input | grep -q "$NFT_SET"; then
+    $NFT insert rule inet filter input ip saddr @${NFT_SET} drop
+    log "INFO: Rule added to block IPs"
 fi
 
-# Check if the nftables rule exists
-if ! $NFT list chain $NFT_TABLE $NFT_CHAIN | grep -q "$BLOCKLIST_SET_NAME"; then
-    $NFT add rule $NFT_TABLE $NFT_CHAIN ip saddr @${BLOCKLIST_SET_NAME} drop
-    log "INFO : Added nftables rule to block IPs"
-fi
-
-# Logging changes
+# Log changes
 comm -23 <(sort -u "$PREVIOUS_BLOCKLIST") <(sort -u "$CURRENT_BLOCKLIST") | while read -r IP; do
-    log "ADD : $IP"
+    log "ADDED: $IP"
 done
 
 comm -13 <(sort -u "$PREVIOUS_BLOCKLIST") <(sort -u "$CURRENT_BLOCKLIST") | while read -r IP; do
-    log "REMOVE : $IP"
+    log "REMOVED: $IP"
 done
 
 # Save for next run
 cp "$CURRENT_BLOCKLIST" "$PREVIOUS_BLOCKLIST"
-log "INFO : Update completed successfully"
