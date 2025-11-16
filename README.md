@@ -210,6 +210,29 @@ crontab -e
 
 - Save and exit the editor.
 
+> [!NOTE] 
+> Logrotate configuration
+
+- Creates the file ```/etc/logrotate.d/ipset_update```
+
+```
+/var/log/ipset_update.log {
+    daily
+    rotate 7
+    compress
+    delaycompress
+    missingok
+    notifempty
+    create 640 root adm
+}
+```
+
+- Immediate test
+
+```
+sudo logrotate -f /etc/logrotate.d/ipset_update
+```
+
 ## 💖Support Data-Shield IPv4 Blocklist!
 
 > [!NOTE]
