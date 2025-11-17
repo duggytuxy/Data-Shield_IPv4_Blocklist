@@ -104,6 +104,9 @@ Or
 > [!TIP]
 > Implementing the Data-Shield IPv4 Blocklist with [NFtables](https://en.wikipedia.org/wiki/Nftables):
 
+> [!CAUTION]
+> Scripts must be used beforehand in pre-production or labs to avoid side effects (rules not adapted to the environment, etc.) in production.
+
 - Create a directory to store the blocklist and script
 
 ```
@@ -169,6 +172,9 @@ sudo logrotate -f /etc/logrotate.d/nft_blocklist
 
 > [!TIP]
 > Implementing the Data-Shield IPv4 Blocklist with [IPtables](https://en.wikipedia.org/wiki/Iptables):
+
+> [!CAUTION]
+> Scripts must be used beforehand in pre-production or labs to avoid side effects (rules not adapted to the environment, etc.) in production.
 
 - Create a directory to store the blocklist and script
 
