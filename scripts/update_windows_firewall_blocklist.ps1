@@ -1,4 +1,3 @@
-# Requires PowerShell 5.0+
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
@@ -9,9 +8,8 @@ $PreviousBlocklist = Join-Path $BlocklistDir "previous_blocklist.txt"
 $CurrentBlocklist = Join-Path $BlocklistDir "current_blocklist.txt"
 $TmpBlocklist = Join-Path $BlocklistDir "tmp_blocklist.txt"
 $LogFile = "C:\FirewallBlocklist\firewall_update.log"
-$RuleName = "DynamicBlocklist"
+$RulePrefix = "DynamicBlocklist"
 
-# Logging function
 function Write-Log {
     param([string]$Message)
     $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
@@ -23,7 +21,7 @@ if (!(Test-Path $BlocklistDir)) { New-Item -ItemType Directory -Path $BlocklistD
 if (!(Test-Path $PreviousBlocklist)) { New-Item -ItemType File -Path $PreviousBlocklist | Out-Null }
 if (!(Test-Path $LogFile)) { New-Item -ItemType File -Path $LogFile | Out-Null }
 
-# Download blocklist securely
+# Download blocklist
 try {
     Invoke-WebRequest -Uri $BlocklistUrl -OutFile $TmpBlocklist -UseBasicParsing
 } catch {
@@ -31,24 +29,26 @@ try {
     exit 1
 }
 
-# Validate IPs and clean up
-Get-Content $TmpBlocklist | Where-Object { $_ -match '^\d{1,3}(\.\d{1,3}){3}$' } | Sort-Object -Unique | Set-Content $CurrentBlocklist
+# Validate IPs
+$NewIPs = Get-Content $TmpBlocklist | Where-Object { $_ -match '^(25[0-5]|2[0-4]\d|[01]?\d\d?)\.(25[0-5]|2[0-4]\d|[01]?\d\d?)\.(25[0-5]|2[0-4]\d|[01]?\d\d?)\.(25[0-5]|2[0-4]\d|[01]?\d\d?)$' } | Sort-Object -Unique
+$NewIPs | Set-Content $CurrentBlocklist
+$OldIPs = @(Get-Content $PreviousBlocklist)
 
-# Read IPs
-$NewIPs = Get-Content $CurrentBlocklist
-$OldIPs = Get-Content $PreviousBlocklist
+# Remove old rules
+Get-NetFirewallRule | Where-Object { $_.DisplayName -like "$RulePrefix*" } | Remove-NetFirewallRule
 
-# Remove old rule if exists
-if (Get-NetFirewallRule -DisplayName $RuleName -ErrorAction SilentlyContinue) {
-    Remove-NetFirewallRule -DisplayName $RuleName
-    Write-Log "INFO: Removed old firewall rule"
-}
-
-# Add new rule with updated IPs
-if ($NewIPs.Count -gt 0) {
-    $RemoteAddresses = $NewIPs -join ","
-    New-NetFirewallRule -DisplayName $RuleName -Direction Inbound -Action Block -RemoteAddress $RemoteAddresses
-    Write-Log "INFO: Added firewall rule with $($NewIPs.Count) IPs"
+# Add new rules in chunks (max 1000 IPs per rule)
+$ChunkSize = 1000
+for ($i = 0; $i -lt $NewIPs.Count; $i += $ChunkSize) {
+    $Chunk = $NewIPs[$i..([Math]::Min($i + $ChunkSize - 1, $NewIPs.Count - 1))]
+    $RemoteAddresses = $Chunk -join ","
+    $RuleName = "$RulePrefix-$([int]($i / $ChunkSize) + 1)"
+    try {
+        New-NetFirewallRule -DisplayName $RuleName -Direction Inbound -Action Block -RemoteAddress $RemoteAddresses
+        Write-Log "INFO: Added firewall rule $RuleName with $($Chunk.Count) IPs"
+    } catch {
+        Write-Log "ERROR: Failed to add rule $RuleName. Reason: $($_.Exception.Message)"
+    }
 }
 
 # Log changes
@@ -57,6 +57,6 @@ Compare-Object $OldIPs $NewIPs | ForEach-Object {
     elseif ($_.SideIndicator -eq "<=") { Write-Log "REMOVED: $($_.InputObject)" }
 }
 
-# Save current blocklist for next run
+# Save current blocklist
 Copy-Item $CurrentBlocklist $PreviousBlocklist -Force
 Write-Log "INFO: Update completed successfully"
