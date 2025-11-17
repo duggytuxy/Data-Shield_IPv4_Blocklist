@@ -33,25 +33,25 @@ fi
 grep -E '^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$' "$TMP_BLOCKLIST" | sort -u > "$CURRENT_BLOCKLIST"
 
 # Create table and set if necessary
-if ! $NFT list table inet filter >/dev/null 2>&1; then
-    $NFT add table inet filter
-    log "INFO: Table inet filter created"
+if ! $NFT list table $NFT_TABLE >/dev/null 2>&1; then
+    $NFT add table $NFT_TABLE
+    log "INFO: Table $NFT_TABLE created"
 fi
 
-if ! $NFT list set inet filter $NFT_SET >/dev/null 2>&1; then
-    $NFT add set inet filter $NFT_SET '{ type ipv4_addr; flags interval; }'
+if ! $NFT list set $NFT_TABLE $NFT_SET >/dev/null 2>&1; then
+    $NFT add set $NFT_TABLE $NFT_SET '{ type ipv4_addr; flags interval; }'
     log "INFO: Set $NFT_SET created"
 fi
 
 # Atomic update: flush + add IPs
-$NFT flush set inet filter $NFT_SET
+$NFT flush set $NFT_TABLE $NFT_SET
 while read -r IP; do
-    $NFT add element inet filter $NFT_SET { $IP } 2>/dev/null || log "WARN: Could not add $IP"
+    $NFT add element $NFT_TABLE $NFT_SET { $IP } 2>/dev/null || log "WARN: Could not add $IP"
 done < "$CURRENT_BLOCKLIST"
 
 # Add rule if missing
-if ! $NFT list chain inet filter input | grep -q "$NFT_SET"; then
-    $NFT insert rule inet filter input ip saddr @${NFT_SET} drop
+if ! $NFT list chain $NFT_TABLE input | grep -q "$NFT_SET"; then
+    $NFT insert rule $NFT_TABLE input ip saddr @${NFT_SET} drop
     log "INFO: Rule added to block IPs"
 fi
 
