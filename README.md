@@ -75,6 +75,8 @@ Or
 - **prod_ac_data-shield_ipv4_blocklist.txt**: Split list ```C```, limited to 30,000 IPv4 addresses: ```https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@latest/prod_ac_data-shield_ipv4_blocklist.txt```
 - **prod_ad_data-shield_ipv4_blocklist.txt**: Split list ```D```, limited to 30,000 IPv4 addresses: ```https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@latest/prod_ad_data-shield_ipv4_blocklist.txt```
 
+Or 
+
 > [!TIP]
 > Use the official URLs of the Gitea repository (Mirror Only)
 
