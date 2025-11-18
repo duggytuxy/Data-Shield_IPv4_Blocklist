@@ -11,9 +11,6 @@
   <img src="https://img.shields.io/badge/Made%20with-%E2%9D%A4-red?style=for-the-badge">
   <img src="https://img.shields.io/badge/False_Positive-0%25-green?style=for-the-badge&logo=cachet">
   <img src="https://img.shields.io/badge/License-GNU_GPLv3-blue?style=for-the-badge&logo=license">
-  <img src="https://img.shields.io/github/forks/duggytuxy/Data-Shield_IPv4_Blocklist?style=for-the-badge&logo=github">
-  <img src="https://img.shields.io/github/stars/duggytuxy/Data-Shield_IPv4_Blocklist?style=for-the-badge&logo=github">
-  <img src="https://img.shields.io/github/last-commit/duggytuxy/Data-Shield_IPv4_Blocklist?label=Last%20update&color=informational&style=for-the-badge&logo=github">
 </p>
 
 > 🛡Block malicious IP addresses and reduce your attack surface!
