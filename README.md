@@ -67,13 +67,22 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 Or
 
 > [!TIP]
-> Use URLs from the JSdelivr CDN
+> Use URLs from the JSdelivr CDN (Mirror Only)
 
 - **prod_data-shield_ipv4_blocklist.txt**: Full list, limited to 110,000 IPv4 addresses: ```https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@latest/prod_data-shield_ipv4_blocklist.txt```
 - **prod_aa_data-shield_ipv4_blocklist.txt**: Split list ```A```, limited to 30,000 IPv4 addresses: ```https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@latest/prod_aa_data-shield_ipv4_blocklist.txt```
 - **prod_ab_data-shield_ipv4_blocklist.txt**: Split list ```B```, limited to 30,000 IPv4 addresses: ```https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@latest/prod_ab_data-shield_ipv4_blocklist.txt```
 - **prod_ac_data-shield_ipv4_blocklist.txt**: Split list ```C```, limited to 30,000 IPv4 addresses: ```https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@latest/prod_ac_data-shield_ipv4_blocklist.txt```
 - **prod_ad_data-shield_ipv4_blocklist.txt**: Split list ```D```, limited to 30,000 IPv4 addresses: ```https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@latest/prod_ad_data-shield_ipv4_blocklist.txt```
+
+> [!TIP]
+> Use the official URLs of the Gitea repository (Mirror Only)
+
+- **prod_data-shield_ipv4_blocklist.txt**: Full list, limited to 110,000 IPv4 addresses: ```https://gitea.com/duggytuxy/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_data-shield_ipv4_blocklist.txt```
+- **prod_aa_data-shield_ipv4_blocklist.txt**: Split list ```A```, limited to 30,000 IPv4 addresses: ```https://gitea.com/duggytuxy/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_aa_data-shield_ipv4_blocklist.txt```
+- **prod_ab_data-shield_ipv4_blocklist.txt**: Split list ```B```, limited to 30,000 IPv4 addresses: ```https://gitea.com/duggytuxy/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_ab_data-shield_ipv4_blocklist.txt```
+- **prod_ac_data-shield_ipv4_blocklist.txt**: Split list ```C```, limited to 30,000 IPv4 addresses: ```https://gitea.com/duggytuxy/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_ac_data-shield_ipv4_blocklist.txt```
+- **prod_ad_data-shield_ipv4_blocklist.txt**: Split list ```D```, limited to 30,000 IPv4 addresses: ```https://gitea.com/duggytuxy/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_ad_data-shield_ipv4_blocklist.txt```
 
 ## 🎓Integration tutorials:
 
@@ -96,7 +105,7 @@ Or
 - **OPNsense**: Slash-Root Guide (Julien Louis): ```https://slash-root.fr/opnsense-block-malicious-ips/```
 - **Stormshield**: Official video: ```https://www.youtube.com/watch?v=yT2oas7M2UM```
 - **F5 BIG-IP**: Official guide: ```https://my.f5.com/manage/s/article/K10978895```
-- **NFtables**: Duggy Tuxy tutorial: See the tutorial [link](https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist?tab=readme-ov-file#integration-scripts)
+- **NFtables, IPtables**: Duggy Tuxy tutorial: See the tutorial [link](https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist?tab=readme-ov-file#integration-scripts)
 - **NAS Synology**: MyOwnServer's website : ```https://myownserver.org/posts/Automatiser_la_liste_de_blocage.html```
 
 ## ⚙Integration scripts
