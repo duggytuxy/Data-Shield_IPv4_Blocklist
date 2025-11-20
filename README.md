@@ -42,7 +42,7 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 
 - Reduce noise by up to 50%, save time on incident response, reduce consumption of CPU, RAM, and other server resources.
 - Block up to approximately 90% of malicious bot traffic in order to significantly reduce the load on servers in terms of resources.
-- Automatic update of blocklists via GitHub Raw URLs (GitLab coming soon...) and [bash scripts](https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/releases/tag/Linux).
+- Automatic update of blocklists via GitHub, JSdelivr CDN and Gitea Raw URLs (GitLab coming soon...) and by [scripts](https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist?tab=readme-ov-file#integration-scripts).
 
 ## 📋Production lists
 
@@ -125,7 +125,7 @@ cd /etc/nftables_blocklist
 - Download the script using the following command:
 
 ```
-wget https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/releases/download/Linux/update_nftables_blocklist.sh
+wget https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/releases/download/v1.1.1/update_nftables_blocklist.sh
 ```
 
 - To check the sha256 of the file, enter the following command
@@ -194,7 +194,7 @@ cd /etc/iptables_blocklist
 - Download the script using the following command:
 
 ```
-wget https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/releases/download/Linux/update_iptables_blocklist.sh
+wget https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/releases/download/v1.0.0/update_iptables_blocklist.sh
 ```
 
 - To check the sha256 of the file, enter the following command
