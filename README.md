@@ -64,7 +64,7 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 Or
 
 > [!TIP]
-> Use URLs from the JSdelivr CDN (Mirror Only)
+> Use URLs from the JSdelivr CDN (Mirror)
 
 - **prod_data-shield_ipv4_blocklist.txt**: Full list, limited to 110,000 IPv4 addresses: ```https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@main/prod_data-shield_ipv4_blocklist.txt```
 - **prod_aa_data-shield_ipv4_blocklist.txt**: Split list ```A```, limited to 30,000 IPv4 addresses: ```https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@main/prod_aa_data-shield_ipv4_blocklist.txt```
@@ -75,7 +75,7 @@ Or
 Or 
 
 > [!TIP]
-> Use the official URLs of the GitLab repository
+> Use the official URLs of the GitLab repository (Mirror)
 
 - **prod_data-shield_ipv4_blocklist.txt**: Full list, limited to 110,000 IPv4 addresses: ```https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_data-shield_ipv4_blocklist.txt?ref_type=heads```
 - **prod_aa_data-shield_ipv4_blocklist.txt**: Split list ```A```, limited to 30,000 IPv4 addresses: ```https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_aa_data-shield_ipv4_blocklist.txt?ref_type=heads```
@@ -86,7 +86,7 @@ Or
 Or 
 
 > [!TIP]
-> Use the official URLs of the Gitea repository (Mirror Only)
+> Use the official URLs of the Gitea repository (Mirror)
 
 - **prod_data-shield_ipv4_blocklist.txt**: Full list, limited to 110,000 IPv4 addresses: ```https://gitea.com/duggytuxy/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_data-shield_ipv4_blocklist.txt```
 - **prod_aa_data-shield_ipv4_blocklist.txt**: Split list ```A```, limited to 30,000 IPv4 addresses: ```https://gitea.com/duggytuxy/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_aa_data-shield_ipv4_blocklist.txt```
