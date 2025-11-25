@@ -2,9 +2,9 @@
 # ==============================================================================
 # Script Name: setup_blocklist_manager.sh
 # Version:     0.0.11 (beta - 2)
-# Description: Interactive installer to generate an IPv4 Blocklist updater
-#              for either IPtables (via IPSet) or NFtables.
-#              Features automatic source failover and Cron setup.
+# Description: Interactive installer for IPv4 Blocklist updater.
+#              Features: Source Failover, Dynamic Paths, SHA256, IPSet Save,
+#              Cron task and Strict IP Validation (0-255).
 # Author:      Duggy Tuxy (Laurent M.)
 # ==============================================================================
 
@@ -23,7 +23,6 @@ SELECTED_URL=""
 USE_SHA256="no"
 
 # --- Dynamic Path Discovery ---
-# We find the real paths on the current system to inject them into the final script
 CMD_IPTABLES=$(command -v iptables || echo "/sbin/iptables")
 CMD_IPSET=$(command -v ipset || echo "/sbin/ipset")
 CMD_NFT=$(command -v nft || echo "/usr/sbin/nft")
@@ -49,16 +48,15 @@ select_working_source() {
     
     for url in "${SOURCES[@]}"; do
         log_info "Testing: $url"
-        
-        # Attempt 1: HEAD request (Fast)
+        # Attempt 1: HEAD request
         if $CMD_CURL -s -I --fail "$url" > /dev/null; then
             SELECTED_URL="$url"
-            log_success "Source reachable (HEAD method). Selecting: $url"
+            log_success "Source reachable (HEAD). Selecting: $url"
             break
-        # Attempt 2: GET request (Fallback if server blocks HEAD)
+        # Attempt 2: GET request (Fallback)
         elif $CMD_CURL -sfL "$url" -o /dev/null; then
             SELECTED_URL="$url"
-            log_success "Source reachable (GET fallback). Selecting: $url"
+            log_success "Source reachable (GET). Selecting: $url"
             break
         else
             log_error "Source unreachable, trying next..."
@@ -109,17 +107,14 @@ generate_script() {
 # --- Generators ---
 
 create_iptables_file() {
-    # Define the SHA256 logic block to inject if requested
     local SHA_LOGIC=""
     if [[ "$USE_SHA256" == "yes" || "$USE_SHA256" == "y" ]]; then
         SHA_LOGIC='
 # SHA256 Verification
 HASH_URL="${BLOCKLIST_URL}.sha256"
 if curl -s --fail "$HASH_URL" -o "$BLOCKLIST_DIR/remote.sha256"; then
-    # Assuming file format is "hash filename" or just "hash"
     REMOTE_HASH=$(awk "{print \$1}" "$BLOCKLIST_DIR/remote.sha256")
     LOCAL_HASH=$(sha256sum "$TMP_BLOCKLIST" | awk "{print \$1}")
-    
     if [[ "$REMOTE_HASH" != "$LOCAL_HASH" ]]; then
         log "CRITICAL: SHA256 mismatch! Update aborted."
         exit 1
@@ -147,7 +142,7 @@ CURRENT_BLOCKLIST="\$BLOCKLIST_DIR/current_blocklist.txt"
 TMP_BLOCKLIST="\$BLOCKLIST_DIR/tmp_blocklist.txt"
 IPSET_SAVE_FILE="\$BLOCKLIST_DIR/ipset_dump.save"
 
-# Dynamic Paths (Detected during setup)
+# Dynamic Paths
 IPTABLES="$CMD_IPTABLES"
 IPSET="$CMD_IPSET"
 
@@ -168,8 +163,10 @@ fi
 
 $SHA_LOGIC
 
-# Validate IPs
-grep -E '^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$' "\$TMP_BLOCKLIST" | sort -u > "\$CURRENT_BLOCKLIST"
+# Strict IP Validation (Regex + Range Check 0-255)
+grep -E '^([0-9]{1,3}\.){3}[0-9]{1,3}$' "\$TMP_BLOCKLIST" | \
+awk -F. '\$1<=255 && \$2<=255 && \$3<=255 && \$4<=255' | \
+sort -u > "\$CURRENT_BLOCKLIST"
 
 # Create temp set
 TMP_SET_NAME="\${BLOCKLIST_SET_NAME}_tmp"
@@ -184,7 +181,7 @@ while read -r IP; do
     \$IPSET add "\$TMP_SET_NAME" "\$IP" 2>/dev/null || true
 done < "\$CURRENT_BLOCKLIST"
 
-# Swap sets (Atomic)
+# Swap sets
 if \$IPSET list -n | grep -q "\$BLOCKLIST_SET_NAME"; then
     \$IPSET swap "\$TMP_SET_NAME" "\$BLOCKLIST_SET_NAME"
     \$IPSET destroy "\$TMP_SET_NAME"
@@ -192,11 +189,10 @@ else
     \$IPSET rename "\$TMP_SET_NAME" "\$BLOCKLIST_SET_NAME"
 fi
 
-# IPSet Save (Persistence)
+# Save IPSet state
 \$IPSET save > "\$IPSET_SAVE_FILE"
-# Optional: Restore command for boot scripts would be: \$IPSET restore < "\$IPSET_SAVE_FILE"
 
-# Add IPtables rule if missing
+# Add rule if missing
 if ! \$IPTABLES -C INPUT -m set --match-set "\$BLOCKLIST_SET_NAME" src -j DROP 2>/dev/null; then
     \$IPTABLES -I INPUT -m set --match-set "\$BLOCKLIST_SET_NAME" src -j DROP
     log "INFO: Added IPtables rule."
@@ -207,7 +203,7 @@ comm -23 <(sort -u "\$PREVIOUS_BLOCKLIST") <(sort -u "\$CURRENT_BLOCKLIST") | wh
 comm -13 <(sort -u "\$PREVIOUS_BLOCKLIST") <(sort -u "\$CURRENT_BLOCKLIST") | while read -r IP; do log "REMOVED: \$IP"; done
 
 cp "\$CURRENT_BLOCKLIST" "\$PREVIOUS_BLOCKLIST"
-log "INFO: Update completed successfully (IPSet saved)."
+log "INFO: Update completed successfully."
 EOF
 }
 
@@ -268,8 +264,10 @@ fi
 
 $SHA_LOGIC
 
-# Validate IPs
-grep -E '^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$' "\$TMP_BLOCKLIST" | sort -u > "\$CURRENT_BLOCKLIST"
+# Strict IP Validation (Regex + Range Check 0-255)
+grep -E '^([0-9]{1,3}\.){3}[0-9]{1,3}$' "\$TMP_BLOCKLIST" | \
+awk -F. '\$1<=255 && \$2<=255 && \$3<=255 && \$4<=255' | \
+sort -u > "\$CURRENT_BLOCKLIST"
 
 # Create table/set if missing
 if ! \$NFT list table \$NFT_TABLE >/dev/null 2>&1; then
