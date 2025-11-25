@@ -1,7 +1,7 @@
 #!/bin/bash
 # ==============================================================================
 # Script Name: setup_blocklist_manager.sh
-# Version:     0.0.10 (beta - 1)
+# Version:     0.0.11 (beta - 2)
 # Description: Interactive installer to generate an IPv4 Blocklist updater
 #              for either IPtables (via IPSet) or NFtables.
 #              Features automatic source failover and Cron setup.
@@ -11,7 +11,6 @@
 set -euo pipefail
 
 # --- Configuration ---
-# List of sources ordered by priority (Failover mechanism)
 SOURCES=(
     "https://gitea.com/duggytuxy/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_data-shield_ipv4_blocklist.txt"
     "https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_data-shield_ipv4_blocklist.txt?ref_type=heads"
@@ -21,16 +20,21 @@ SOURCES=(
 
 GENERATED_SCRIPT_PATH="/usr/local/bin/update_blocklist.sh"
 SELECTED_URL=""
+USE_SHA256="no"
+
+# --- Dynamic Path Discovery ---
+# We find the real paths on the current system to inject them into the final script
+CMD_IPTABLES=$(command -v iptables || echo "/sbin/iptables")
+CMD_IPSET=$(command -v ipset || echo "/sbin/ipset")
+CMD_NFT=$(command -v nft || echo "/usr/sbin/nft")
+CMD_CURL=$(command -v curl || echo "/usr/bin/curl")
 
 # --- Helper Functions ---
-
-# Function to print colored logs for better visibility
 log_info() { echo -e "\e[34m[INFO]\e[0m $1"; }
 log_success() { echo -e "\e[32m[SUCCESS]\e[0m $1"; }
 log_error() { echo -e "\e[31m[ERROR]\e[0m $1"; }
 log_input() { echo -e "\e[33m[INPUT]\e[0m $1"; }
 
-# Check if user is root
 check_root() {
     if [[ $EUID -ne 0 ]]; then
        log_error "This script must be run as root (sudo)." 
@@ -38,20 +42,26 @@ check_root() {
     fi
 }
 
-# --- Step 1: Source Connectivity Test ---
+# --- Step 1: Source Connectivity Test (with Fallback) ---
 select_working_source() {
     echo ""
     log_info "Step 1: Testing blocklist source connectivity..."
     
     for url in "${SOURCES[@]}"; do
         log_info "Testing: $url"
-        # Using curl -I (Head request) to check availability quickly
-        if curl -s -I --fail "$url" > /dev/null; then
+        
+        # Attempt 1: HEAD request (Fast)
+        if $CMD_CURL -s -I --fail "$url" > /dev/null; then
             SELECTED_URL="$url"
-            log_success "Source is reachable. Selecting: $url"
+            log_success "Source reachable (HEAD method). Selecting: $url"
+            break
+        # Attempt 2: GET request (Fallback if server blocks HEAD)
+        elif $CMD_CURL -sfL "$url" -o /dev/null; then
+            SELECTED_URL="$url"
+            log_success "Source reachable (GET fallback). Selecting: $url"
             break
         else
-            log_error "Source unreachable, trying next fallback..."
+            log_error "Source unreachable, trying next..."
         fi
     done
 
@@ -61,14 +71,23 @@ select_working_source() {
     fi
 }
 
-# --- Step 2: Generate the Script ---
+# --- Step 2: Security Options ---
+configure_security() {
+    echo ""
+    log_info "Step 2: Security Options"
+    log_input "Do you want to enable SHA256 integrity verification? (yes/no)"
+    echo "      (Note: This assumes a .sha256 file exists at the source URL)"
+    read -r SHA_CHOICE
+    USE_SHA256="${SHA_CHOICE,,}"
+}
+
+# --- Step 3: Generate the Script ---
 generate_script() {
     echo ""
-    log_info "Step 2: Select Firewall Engine"
+    log_info "Step 3: Select Firewall Engine"
     log_input "Do you want to create the script for IPtables or NFtables? (Type 'IPtables' or 'NFtables')"
     read -r ENGINE_CHOICE
 
-    # Convert input to lowercase for comparison
     case "${ENGINE_CHOICE,,}" in
         iptables)
             log_info "Generating IPtables script..."
@@ -87,7 +106,32 @@ generate_script() {
     log_success "Script generated at: $GENERATED_SCRIPT_PATH"
 }
 
+# --- Generators ---
+
 create_iptables_file() {
+    # Define the SHA256 logic block to inject if requested
+    local SHA_LOGIC=""
+    if [[ "$USE_SHA256" == "yes" || "$USE_SHA256" == "y" ]]; then
+        SHA_LOGIC='
+# SHA256 Verification
+HASH_URL="${BLOCKLIST_URL}.sha256"
+if curl -s --fail "$HASH_URL" -o "$BLOCKLIST_DIR/remote.sha256"; then
+    # Assuming file format is "hash filename" or just "hash"
+    REMOTE_HASH=$(awk "{print \$1}" "$BLOCKLIST_DIR/remote.sha256")
+    LOCAL_HASH=$(sha256sum "$TMP_BLOCKLIST" | awk "{print \$1}")
+    
+    if [[ "$REMOTE_HASH" != "$LOCAL_HASH" ]]; then
+        log "CRITICAL: SHA256 mismatch! Update aborted."
+        exit 1
+    else
+        log "INFO: SHA256 Verified."
+    fi
+else
+    log "WARN: Could not download SHA256 file. Skipping verification."
+fi
+'
+    fi
+
 cat <<EOF > "$GENERATED_SCRIPT_PATH"
 #!/bin/bash
 set -euo pipefail
@@ -101,8 +145,12 @@ BLOCKLIST_DIR="/etc/iptables_blocklist"
 PREVIOUS_BLOCKLIST="\$BLOCKLIST_DIR/previous_blocklist.txt"
 CURRENT_BLOCKLIST="\$BLOCKLIST_DIR/current_blocklist.txt"
 TMP_BLOCKLIST="\$BLOCKLIST_DIR/tmp_blocklist.txt"
-IPTABLES="/sbin/iptables"
-IPSET="/sbin/ipset"
+IPSET_SAVE_FILE="\$BLOCKLIST_DIR/ipset_dump.save"
+
+# Dynamic Paths (Detected during setup)
+IPTABLES="$CMD_IPTABLES"
+IPSET="$CMD_IPSET"
+
 BLOCKLIST_SET_NAME="myblocklist"
 LOGFILE="/var/log/ipset_update.log"
 
@@ -117,6 +165,8 @@ if ! curl -s --fail "\$BLOCKLIST_URL" -o "\$TMP_BLOCKLIST"; then
     log "ERROR: Failed to download blocklist."
     exit 1
 fi
+
+$SHA_LOGIC
 
 # Validate IPs
 grep -E '^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$' "\$TMP_BLOCKLIST" | sort -u > "\$CURRENT_BLOCKLIST"
@@ -134,13 +184,17 @@ while read -r IP; do
     \$IPSET add "\$TMP_SET_NAME" "\$IP" 2>/dev/null || true
 done < "\$CURRENT_BLOCKLIST"
 
-# Swap sets
+# Swap sets (Atomic)
 if \$IPSET list -n | grep -q "\$BLOCKLIST_SET_NAME"; then
     \$IPSET swap "\$TMP_SET_NAME" "\$BLOCKLIST_SET_NAME"
     \$IPSET destroy "\$TMP_SET_NAME"
 else
     \$IPSET rename "\$TMP_SET_NAME" "\$BLOCKLIST_SET_NAME"
 fi
+
+# IPSet Save (Persistence)
+\$IPSET save > "\$IPSET_SAVE_FILE"
+# Optional: Restore command for boot scripts would be: \$IPSET restore < "\$IPSET_SAVE_FILE"
 
 # Add IPtables rule if missing
 if ! \$IPTABLES -C INPUT -m set --match-set "\$BLOCKLIST_SET_NAME" src -j DROP 2>/dev/null; then
@@ -153,11 +207,31 @@ comm -23 <(sort -u "\$PREVIOUS_BLOCKLIST") <(sort -u "\$CURRENT_BLOCKLIST") | wh
 comm -13 <(sort -u "\$PREVIOUS_BLOCKLIST") <(sort -u "\$CURRENT_BLOCKLIST") | while read -r IP; do log "REMOVED: \$IP"; done
 
 cp "\$CURRENT_BLOCKLIST" "\$PREVIOUS_BLOCKLIST"
-log "INFO: Update completed successfully."
+log "INFO: Update completed successfully (IPSet saved)."
 EOF
 }
 
 create_nftables_file() {
+    local SHA_LOGIC=""
+    if [[ "$USE_SHA256" == "yes" || "$USE_SHA256" == "y" ]]; then
+        SHA_LOGIC='
+# SHA256 Verification
+HASH_URL="${BLOCKLIST_URL}.sha256"
+if curl -s --fail "$HASH_URL" -o "$BLOCKLIST_DIR/remote.sha256"; then
+    REMOTE_HASH=$(awk "{print \$1}" "$BLOCKLIST_DIR/remote.sha256")
+    LOCAL_HASH=$(sha256sum "$TMP_BLOCKLIST" | awk "{print \$1}")
+    if [[ "$REMOTE_HASH" != "$LOCAL_HASH" ]]; then
+        log "CRITICAL: SHA256 mismatch! Update aborted."
+        exit 1
+    else
+        log "INFO: SHA256 Verified."
+    fi
+else
+    log "WARN: Could not download SHA256 file. Skipping verification."
+fi
+'
+    fi
+
 cat <<EOF > "$GENERATED_SCRIPT_PATH"
 #!/bin/bash
 set -euo pipefail
@@ -171,7 +245,10 @@ BLOCKLIST_DIR="/etc/nftables_blocklist"
 PREVIOUS_BLOCKLIST="\$BLOCKLIST_DIR/previous_blocklist.txt"
 CURRENT_BLOCKLIST="\$BLOCKLIST_DIR/current_blocklist.txt"
 TMP_BLOCKLIST="\$BLOCKLIST_DIR/tmp_blocklist.txt"
-NFT="/usr/sbin/nft"
+
+# Dynamic Path
+NFT="$CMD_NFT"
+
 NFT_TABLE="inet filter"
 NFT_CHAIN="input"
 NFT_SET="blocklist_ipv4"
@@ -188,6 +265,8 @@ if ! curl -s --fail "\$BLOCKLIST_URL" -o "\$TMP_BLOCKLIST"; then
     log "ERROR: Failed to download blocklist."
     exit 1
 fi
+
+$SHA_LOGIC
 
 # Validate IPs
 grep -E '^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$' "\$TMP_BLOCKLIST" | sort -u > "\$CURRENT_BLOCKLIST"
@@ -222,10 +301,10 @@ cp "\$CURRENT_BLOCKLIST" "\$PREVIOUS_BLOCKLIST"
 EOF
 }
 
-# --- Step 3: Permissions ---
+# --- Step 4: Permissions ---
 setup_permissions() {
     echo ""
-    log_info "Step 3: Execution Permissions"
+    log_info "Step 4: Execution Permissions"
     log_input "Do you want to make the generated script executable? (yes/no)"
     read -r PERM_CHOICE
 
@@ -233,43 +312,35 @@ setup_permissions() {
         chmod +x "$GENERATED_SCRIPT_PATH"
         log_success "Permissions granted: chmod +x $GENERATED_SCRIPT_PATH"
     else
-        log_info "Skipping permissions. You will need to chmod it manually."
-        log_info "Exiting setup."
+        log_info "Skipping permissions."
         exit 0
     fi
 }
 
-# --- Step 4: Cron Job ---
+# --- Step 5: Cron Job ---
 setup_cron() {
     echo ""
-    log_info "Step 4: Automation (Cron)"
-    log_input "Do you want to create a Cron task to update the blocklist automatically? (yes/no)"
+    log_info "Step 5: Automation (Cron)"
+    log_input "Do you want to create a Cron task (Every hour)? (yes/no)"
     read -r CRON_CHOICE
 
     if [[ "${CRON_CHOICE,,}" == "yes" || "${CRON_CHOICE,,}" == "y" ]]; then
-        log_info "Setting up hourly cron job (recommended)..."
-        
-        # Check if job already exists to avoid duplicates
         if crontab -l 2>/dev/null | grep -q "$GENERATED_SCRIPT_PATH"; then
-             log_info "Cron job already exists for this script."
+             log_info "Cron job already exists."
         else
-            # Append the job to the current crontab (runs at minute 0 of every hour)
             (crontab -l 2>/dev/null; echo "0 * * * * $GENERATED_SCRIPT_PATH >/dev/null 2>&1") | crontab -
-            log_success "Cron job added successfully (Every hour)."
+            log_success "Cron job added successfully."
         fi
-    else
-        log_info "No Cron job added. You will need to run the script manually."
-        exit 0
     fi
 }
 
-# --- Main Execution Flow ---
+# --- Main Flow ---
 check_root
 select_working_source
+configure_security
 generate_script
 setup_permissions
 setup_cron
 
 echo ""
-log_success "Installation and setup complete!"
-echo "You can verify the installation by running: $GENERATED_SCRIPT_PATH"
+log_success "Installation complete. Enjoy your automated protection!"
