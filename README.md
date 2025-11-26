@@ -8,9 +8,11 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/Open%20Source-100%25-brightgreen?style=for-the-badge&logo=opensourceinitiative">
+  <img src="https://img.shields.io/badge/powered%20by-DuggyTuxy-0052cc?style=for-the-badge&logo=apachekafka)>
   <img src="https://img.shields.io/badge/Made%20with-%E2%9D%A4-red?style=for-the-badge">
-  <img src="https://img.shields.io/badge/False_Positive-0%25-green?style=for-the-badge&logo=cachet">
+  <img src="https://img.shields.io/badge/No_False_Positive-green?style=for-the-badge&logo=cachet">
   <img src="https://img.shields.io/badge/License-GNU_GPLv3-blue?style=for-the-badge&logo=license">
+  <img src="https://img.shields.io/github/last-commit/CyberFlood/evil-domains?label=Cyber%20Threat%20Intel%20%E2%80%93%20Last%20Update&color=informational&style=for-the-badge&logo=github">
 </p>
 
 > 🛡Block malicious IP addresses and reduce your attack surface!
