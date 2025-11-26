@@ -15,8 +15,6 @@
   <img src="https://img.shields.io/github/last-commit/duggytuxy/Data-Shield_IPv4_Blocklist?label=IPv4%20Blocklist%20Last%20Update&color=informational&style=for-the-badge&logo=github">
 </p>
 
-> 🛡Block malicious IP addresses and reduce your attack surface!
-
 # 🧱Data-Shield IPv4 Blocklist 
 
 Data-Shield IPv4 Blocklist is an additional layer of protection containing a list of [IP addresses (version 4)](https://en.wikipedia.org/wiki/IPv4) whose activities have been detected as malicious.
@@ -32,69 +30,50 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 - **Single origin**: Data-Shield IPv4 Blocklist comes from a single source, processed by probes located around the world. Logs are centralized on a self-hosted [HIDS](https://en.wikipedia.org/wiki/Host-based_intrusion_detection_system)/[SIEM](https://fr.wikipedia.org/wiki/Security_information_and_event_management) platform, secured via an open-source WAF.
 - **Easy integration into your firewall, WAF, DNS Sinkhole instances**: This list can be easily integrated into most vendors as a single link (RAW) for standard recognition of the included data.
 - **Customizable based on vendor limitations**: Some vendors have limited the number of IPv4 addresses per entry (per list) to prevent resource consumption overload. Data-Shield IPv4 Blocklist is designed to comply with this limitation by creating split lists.
+- **Data reliability (IPv4)**: Data-Shield IPv4 Blocklist provides high-quality, reliable data by minimizing false positives to avoid blocking legitimate exposed instances.
+- **Frequency of updates**: Data-Shield IPv4 Blocklist is updated every ```24``` hours to maintain the most recent data in order to protect you as effectively as possible.
+- **Data retention (IPv4 only)**: Data retention is limited to a maximum of ```60``` days. This retention is mainly used to continuously monitor the activities of IPv4 addresses tagged as malicious, which have short lifespans but are likely to resurface.
+- **Performance**: Data-Shield IPv4 Blocklist is just as effective as those offered by other solutions and vendors.
+- **The GNU GPLv3 Licence**: Data-Shield IPv4 Blocklist is licensed under [GNU GPLv3](/LICENSE).
 
-> [!IMPORTANT]
-> - **Data reliability (IPv4)**: Data-Shield IPv4 Blocklist provides high-quality, reliable data by minimizing false positives to avoid blocking legitimate exposed instances.
-> - **Frequency of updates**: Data-Shield IPv4 Blocklist is updated every ```24``` hours to maintain the most recent data in order to protect you as effectively as possible.
-> - **Data retention (IPv4 only)**: Data retention is limited to a maximum of ```15``` days. This retention is mainly used to continuously monitor the activities of IPv4 addresses tagged as malicious, which have short lifespans but are likely to resurface.
-> - **Performance**: Data-Shield IPv4 Blocklist is just as effective as those offered by other solutions and vendors.
-> - **The GNU GPLv3 Licence**: Data-Shield IPv4 Blocklist is licensed under [GNU GPLv3](/LICENSE).
-
-## 🚀Objectives
+## 🚀Primary objectives
 
 - Reduce noise by up to 50%, save time on incident response, reduce consumption of CPU, RAM, and other server resources.
 - Block up to approximately 90% of malicious bot traffic in order to significantly reduce the load on servers in terms of resources.
-- Automatic update of blocklists via GitHub, JSdelivr CDN and Gitea Raw URLs (GitLab coming soon...) and by [scripts](https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist?tab=readme-ov-file#integration-scripts).
+- Automatic update of blocklists via GitHub, JSdelivr CDN, GitLab and Gitea Raw URLs and by [scripts](https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist?tab=readme-ov-file#integration-scripts).
 
 ## 📋Production lists
 
-> [!NOTE]
-> Data-Shield IPv4 Blocklist consists of 5 official lists that are updated every 24 hours.
-
 > [!IMPORTANT]
+> Data-Shield IPv4 Blocklist consists of 5 official lists that are updated every 24 hours.
+> To ensure availability and resilience, two mirrors and an open-source CDN are put into production.
 > Exhaustive lists of those that are put into production, followed by their uses and limitations:
 
-> [!TIP]
-> Use the official URLs of the GitHub repository
-
-- **prod_data-shield_ipv4_blocklist.txt**: Full list, limited to 110,000 IPv4 addresses: ```https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_data-shield_ipv4_blocklist.txt```
-- **prod_aa_data-shield_ipv4_blocklist.txt**: Split list ```A```, limited to 30,000 IPv4 addresses: ```https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_aa_data-shield_ipv4_blocklist.txt```
-- **prod_ab_data-shield_ipv4_blocklist.txt**: Split list ```B```, limited to 30,000 IPv4 addresses: ```https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ab_data-shield_ipv4_blocklist.txt```
-- **prod_ac_data-shield_ipv4_blocklist.txt**: Split list ```C```, limited to 30,000 IPv4 addresses: ```https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ac_data-shield_ipv4_blocklist.txt```
-- **prod_ad_data-shield_ipv4_blocklist.txt**: Split list ```D```, limited to 30,000 IPv4 addresses: ```https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ad_data-shield_ipv4_blocklist.txt```
-
-Or
-
-> [!TIP]
-> Use URLs from the JSdelivr CDN (Mirror)
-
-- **prod_data-shield_ipv4_blocklist.txt**: Full list, limited to 110,000 IPv4 addresses: ```https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@main/prod_data-shield_ipv4_blocklist.txt```
-- **prod_aa_data-shield_ipv4_blocklist.txt**: Split list ```A```, limited to 30,000 IPv4 addresses: ```https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@main/prod_aa_data-shield_ipv4_blocklist.txt```
-- **prod_ab_data-shield_ipv4_blocklist.txt**: Split list ```B```, limited to 30,000 IPv4 addresses: ```https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@main/prod_ab_data-shield_ipv4_blocklist.txt```
-- **prod_ac_data-shield_ipv4_blocklist.txt**: Split list ```C```, limited to 30,000 IPv4 addresses: ```https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@main/prod_ac_data-shield_ipv4_blocklist.txt```
-- **prod_ad_data-shield_ipv4_blocklist.txt**: Split list ```D```, limited to 30,000 IPv4 addresses: ```https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@main/prod_ad_data-shield_ipv4_blocklist.txt```
-
-Or 
-
-> [!TIP]
-> Use the official URLs of the GitLab repository (Mirror)
-
-- **prod_data-shield_ipv4_blocklist.txt**: Full list, limited to 110,000 IPv4 addresses: ```https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_data-shield_ipv4_blocklist.txt?ref_type=heads```
-- **prod_aa_data-shield_ipv4_blocklist.txt**: Split list ```A```, limited to 30,000 IPv4 addresses: ```https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_aa_data-shield_ipv4_blocklist.txt?ref_type=heads```
-- **prod_ab_data-shield_ipv4_blocklist.txt**: Split list ```B```, limited to 30,000 IPv4 addresses: ```https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_ab_data-shield_ipv4_blocklist.txt?ref_type=heads```
-- **prod_ac_data-shield_ipv4_blocklist.txt**: Split list ```C```, limited to 30,000 IPv4 addresses: ```https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_ac_data-shield_ipv4_blocklist.txt?ref_type=heads```
-- **prod_ad_data-shield_ipv4_blocklist.txt**: Split list ```D```, limited to 30,000 IPv4 addresses: ```https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_ad_data-shield_ipv4_blocklist.txt?ref_type=heads```
-
-Or 
-
-> [!TIP]
-> Use the official URLs of the Gitea repository (Mirror)
-
-- **prod_data-shield_ipv4_blocklist.txt**: Full list, limited to 110,000 IPv4 addresses: ```https://gitea.com/duggytuxy/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_data-shield_ipv4_blocklist.txt```
-- **prod_aa_data-shield_ipv4_blocklist.txt**: Split list ```A```, limited to 30,000 IPv4 addresses: ```https://gitea.com/duggytuxy/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_aa_data-shield_ipv4_blocklist.txt```
-- **prod_ab_data-shield_ipv4_blocklist.txt**: Split list ```B```, limited to 30,000 IPv4 addresses: ```https://gitea.com/duggytuxy/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_ab_data-shield_ipv4_blocklist.txt```
-- **prod_ac_data-shield_ipv4_blocklist.txt**: Split list ```C```, limited to 30,000 IPv4 addresses: ```https://gitea.com/duggytuxy/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_ac_data-shield_ipv4_blocklist.txt```
-- **prod_ad_data-shield_ipv4_blocklist.txt**: Split list ```D```, limited to 30,000 IPv4 addresses: ```https://gitea.com/duggytuxy/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_ad_data-shield_ipv4_blocklist.txt```
+| **Filename GitHub** | **Source** | **Limitation** |
+|:---:|:---:|:---:|
+| [prod_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_data-shield_ipv4_blocklist.txt) | Full | 110.000 IPs |
+| [prod_aa_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_aa_data-shield_ipv4_blocklist.txt) | Split A | 30.000 IPs |
+| [prod_ab_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ab_data-shield_ipv4_blocklist.txt) | Split B | 30.000 IPs |
+| [prod_ac_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ac_data-shield_ipv4_blocklist.txt) | Split C | 30.000 IPs |
+| [prod_ad_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ad_data-shield_ipv4_blocklist.txt) | Split D | 30.000 IPs |
+| **Filename GitLab** | **Source** | **Limitation** |
+| [prod_data-shield_ipv4_blocklist.txt(https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_data-shield_ipv4_blocklist.txt?ref_type=heads) | Full | 110.000 IPs |
+| [prod_aa_data-shield_ipv4_blocklist.txt](https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_aa_data-shield_ipv4_blocklist.txt?ref_type=heads) | Split A | 30.000 IPs |
+| [prod_ab_data-shield_ipv4_blocklist.txt](https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_ab_data-shield_ipv4_blocklist.txt?ref_type=heads) | Split B | 30.000 IPs |
+| [prod_ac_data-shield_ipv4_blocklist.txt](https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_ac_data-shield_ipv4_blocklist.txt?ref_type=heads) | Split C | 30.000 IPs |
+| [prod_ad_data-shield_ipv4_blocklist.txt](https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_ad_data-shield_ipv4_blocklist.txt?ref_type=heads) | Split D | 30.000 IPs |
+| **Filename CDN JSdelivr** | **Source** | **Limitation** |
+| [prod_data-shield_ipv4_blocklist.txt](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@main/prod_data-shield_ipv4_blocklist.txt) | Full | 110.000 IPs |
+| [prod_aa_data-shield_ipv4_blocklist.txt](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@main/prod_aa_data-shield_ipv4_blocklist.txt) | Split A | 30.000 IPs |
+| [prod_ab_data-shield_ipv4_blocklist.txt](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@main/prod_ab_data-shield_ipv4_blocklist.txt) | Split B | 30.000 IPs |
+| [prod_ac_data-shield_ipv4_blocklist.txt](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@main/prod_ac_data-shield_ipv4_blocklist.txt) | Split C | 30.000 IPs |
+| [prod_ad_data-shield_ipv4_blocklist.txt](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@main/prod_ad_data-shield_ipv4_blocklist.txt) | Split D | 30.000 IPs |
+| **Filename Gitea** | **Source** | **Limitation** |
+| [prod_data-shield_ipv4_blocklist.txt](https://gitea.com/duggytuxy/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_data-shield_ipv4_blocklist.txt) | Full | 110.000 IPs |
+| [prod_aa_data-shield_ipv4_blocklist.txt](https://gitea.com/duggytuxy/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_aa_data-shield_ipv4_blocklist.txt) | Split A | 30.000 IPs |
+| [prod_ab_data-shield_ipv4_blocklist.txt](https://gitea.com/duggytuxy/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_ab_data-shield_ipv4_blocklist.txt) | Split B | 30.000 IPs |
+| [prod_ac_data-shield_ipv4_blocklist.txt](https://gitea.com/duggytuxy/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_ac_data-shield_ipv4_blocklist.txt) | Split C | 30.000 IPs |
+| [prod_ad_data-shield_ipv4_blocklist.txt](https://gitea.com/duggytuxy/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_ad_data-shield_ipv4_blocklist.txt) | Split D | 30.000 IPs |
 
 ## 🎓Integration tutorials:
 
