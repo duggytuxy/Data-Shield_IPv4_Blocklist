@@ -81,23 +81,24 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 > The main firewall rule around Data-Shield IPv4 Blocklist lists is implemented as follows so that it is operational and effective in terms of blocking:
 
 > [!TIP]
-> From the internet to the internal network (WAN to LAN)
+> **From the internet to the internal network (WAN to LAN 👉 Inbound Rules)**
 
 > [!CAUTION]
-> Do not integrate these flow rules in this direction (LAN to WAN)
+> **Do not integrate these flow rules in this direction (LAN to WAN 👉 Outbound Rules)**
 
 > [!NOTE]
 > To facilitate the integration of Data-Shield IPv4 Blocklist into firewall instances, here is a non-exhaustive list of some tutorials offered by vendors and the Cyber community:
 
-
-- **Fortinet**: Official guide : ```https://docs.fortinet.com/document/fortigate/7.4.9/administration-guide/379433/configuring-a-threat-feed#threat-ext```
-- **Checkpoint**: Manufacturer's guide: ```https://sc1.checkpoint.com/documents/R80.20SP/WebAdminGuides/EN/CP_R80.20SP_Maestro_AdminGuide/Topics-Maestro-AG/IP-Block-Feature.htm```
-- **Palo Alto**: EDL Overview: ```https://docs.paloaltonetworks.com/network-security/security-policy/administration/objects/external-dynamic-lists/configure-the-firewall-to-access-an-external-dynamic-list#configure-the-firewall-to-access-an-external-dynamic-list-panorama```
-- **OPNsense**: Slash-Root Guide (Julien Louis): ```https://slash-root.fr/opnsense-block-malicious-ips/```
-- **Stormshield**: Official video: ```https://www.youtube.com/watch?v=yT2oas7M2UM```
-- **F5 BIG-IP**: Official guide: ```https://my.f5.com/manage/s/article/K10978895```
-- **NFtables, IPtables**: Duggy Tuxy tutorial: See the tutorial [link](https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist?tab=readme-ov-file#integration-scripts)
-- **NAS Synology**: MyOwnServer's website : ```https://myownserver.org/posts/Automatiser_la_liste_de_blocage.html```
+| **Vendors URL** | **Source** | **Limitation** |
+|:---|:---:|:---:|
+| [Fortinet](https://docs.fortinet.com/document/fortigate/7.4.9/administration-guide/379433/configuring-a-threat-feed#threat-ext) | Official guide | To Be Confirmed |
+| [Checkpoint](https://sc1.checkpoint.com/documents/R80.20SP/WebAdminGuides/EN/CP_R80.20SP_Maestro_AdminGuide/Topics-Maestro-AG/IP-Block-Feature.htm) | Manufacturer's guide | To Be Confirmed |
+| [Palo Alto](https://docs.paloaltonetworks.com/network-security/security-policy/administration/objects/external-dynamic-lists/configure-the-firewall-to-access-an-external-dynamic-list#configure-the-firewall-to-access-an-external-dynamic-list-panorama) | EDL Overview | To Be Confirmed |
+| [OPNsense](https://slash-root.fr/opnsense-block-malicious-ips/) | Slash-Root Guide (Julien Louis) | To Be Confirmed |
+| [Stormshield](https://www.youtube.com/watch?v=yT2oas7M2UM) | Official video | To Be Confirmed |
+| [F5 BIG-IP](https://my.f5.com/manage/s/article/K10978895) | Official guide | To Be Confirmed |
+| [NFtables, IPtables](https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist?tab=readme-ov-file#integration-scripts) | Duggy Tuxy tutorials | To Be Confirmed |
+| [NAS Synology](https://myownserver.org/posts/Automatiser_la_liste_de_blocage.html) | MyOwnServer website | To Be Confirmed |
 
 ## ⚙Integration scripts
 
