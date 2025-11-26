@@ -122,6 +122,9 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 | [FR_Modele_GRC_DataShield_IPv4_Blocklist.docx](/docs/FR_Modele_GRC_DataShield_IPv4_Blocklist.docx) | French | R/W | ✅ |
 | [FR_Modele_GRC_DataShield_IPv4_Blocklist.pdf](/docs/FR_Modele_GRC_DataShield_IPv4_Blocklist.pdf) | French | R | ✅ |
 
+> [!NOTE]
+> These documents may be modified for adaptation purposes to ensure compliance under the best conditions for the implementation of the Data-Shield IPv4 Blocklist.
+
 ## Support Data-Shield IPv4 Blocklist!
 
 > [!NOTE]
