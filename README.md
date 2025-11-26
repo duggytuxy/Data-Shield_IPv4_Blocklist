@@ -15,7 +15,7 @@
   <img src="https://img.shields.io/github/last-commit/duggytuxy/Data-Shield_IPv4_Blocklist?label=IPv4%20Blocklist%20Last%20Update&color=informational&style=for-the-badge&logo=github">
 </p>
 
-# 🧱Data-Shield IPv4 Blocklist 
+# Data-Shield IPv4 Blocklist 
 
 Data-Shield IPv4 Blocklist is an additional layer of protection containing a list of [IP addresses (version 4)](https://en.wikipedia.org/wiki/IPv4) whose activities have been detected as malicious.
 
@@ -23,7 +23,7 @@ This list is designed around the discipline of [Deceptive Security](https://en.w
 
 Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to provide an additional layer of security for your [firewall](https://en.wikipedia.org/wiki/Firewall_(computing)), [WAF](https://en.wikipedia.org/wiki/Web_application_firewall), and [DNS sinkhole](https://en.wikipedia.org/wiki/DNS_sinkhole) instances.
 
-## 🎯Why Data-Shield IPv4 Blocklist?
+## Why Data-Shield IPv4 Blocklist?
 
 - **Protective layer**: [Data-Shield IPv4 Blocklist](https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist) provides an additional layer of security to reduce the number and attack surface of your exposed assets (web applications, websites, DMZs, public IPs, etc.), reducing the recon phase and exposure of your data on platforms such as [Shodan](https://www.shodan.io/) and similar.
 - **Open to the general public**: Data-Shield IPv4 Blocklist is open to any user with a firewall, WAF, DNS sinkhole, and other similar protection mechanisms.
@@ -36,13 +36,13 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 - **Performance**: Data-Shield IPv4 Blocklist is just as effective as those offered by other solutions and vendors.
 - **The GNU GPLv3 Licence**: Data-Shield IPv4 Blocklist is licensed under [GNU GPLv3](/LICENSE).
 
-## 🚀Primary objectives
+## Primary objectives
 
 - Reduce noise by up to 50%, save time on incident response, reduce consumption of CPU, RAM, and other server resources.
 - Block up to approximately 90% of malicious bot traffic in order to significantly reduce the load on servers in terms of resources.
 - Automatic update of blocklists via GitHub, JSdelivr CDN, GitLab and Gitea Raw URLs and by [scripts](https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist?tab=readme-ov-file#integration-scripts).
 
-## 📋Production lists
+## Production lists
 
 > [!IMPORTANT]
 > Data-Shield IPv4 Blocklist consists of 5 official lists that are updated every 24 hours.
@@ -75,7 +75,7 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 | [prod_ac_data-shield_ipv4_blocklist.txt](https://gitea.com/duggytuxy/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_ac_data-shield_ipv4_blocklist.txt) | Split C | 30.000 IPs |
 | [prod_ad_data-shield_ipv4_blocklist.txt](https://gitea.com/duggytuxy/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_ad_data-shield_ipv4_blocklist.txt) | Split D | 30.000 IPs |
 
-## 🎓Integration tutorials:
+## Integration tutorials:
 
 > [!IMPORTANT]
 > The main firewall rule around Data-Shield IPv4 Blocklist lists is implemented as follows so that it is operational and effective in terms of blocking:
@@ -100,7 +100,7 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 | [NFtables, IPtables](https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist?tab=readme-ov-file#integration-scripts) | Duggy Tuxy tutorials | To Be Confirmed |
 | [NAS Synology](https://myownserver.org/posts/Automatiser_la_liste_de_blocage.html) | MyOwnServer website | To Be Confirmed |
 
-## ⚙Integration scripts
+## Integration scripts
 
 > [!TIP]
 > Implementing the Data-Shield IPv4 Blocklist with [NFtables](https://en.wikipedia.org/wiki/Nftables) and [IPtables](https://en.wikipedia.org/wiki/Iptables):
@@ -110,14 +110,14 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 
 - Coming soon...
 
-## 💖Support Data-Shield IPv4 Blocklist!
+## Support Data-Shield IPv4 Blocklist!
 
 > [!NOTE]
 > Data-Shield IPv4 Blocklist requires time and funding. That is why it is important to appeal for donations so that it can be maintained over time and in the best possible conditions:
 
 - **Ko-Fi**: ```https://ko-fi.com/laurentmduggytuxy```
 
-## ⚖Licence
+## Licence
 
 > [!IMPORTANT]
 > Data-Shield IPv4 Blocklist ```2023-2025``` by Duggy Tuxy (Laurent Minne) is under [license](/LICENSE)
