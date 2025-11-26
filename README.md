@@ -125,6 +125,9 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 > [!NOTE]
 > These documents may be modified for adaptation purposes to ensure compliance under the best conditions for the implementation of the Data-Shield IPv4 Blocklist.
 
+> [!TIP]
+> Simply download them, modify them according to your needs, and insert them into your GRC processes.
+
 ## Support Data-Shield IPv4 Blocklist!
 
 > [!NOTE]
