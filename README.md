@@ -110,6 +110,18 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 
 - Coming soon...
 
+## GRC Compliance Model DataShield IPv4 Blocklist Integration
+
+> [!IMPORTANT]
+> For compliance purposes, companies wishing to implement the Data-Shield IPv4 Blocklist can refer to the “[ISO27001:2022](https://en.wikipedia.org/wiki/ISO/IEC_27001), [NIS2](https://en.wikipedia.org/wiki/Cyber-security_regulation#NIS_2_Directive), and [GDPR](https://en.wikipedia.org/wiki/General_Data_Protection_Regulation) compliance model” documents, which are available and listed in the table below.
+
+| **Document URL** | **Language** | **Rights** | **NIS2, GDPR and ISO27001:2022** |
+|:---|:---:|:---:|:---:|
+| [EN_GRC_Compliance_Model_DataShield_IPv4_Blocklist.docx](/docs/EN_GRC_Compliance_Model_DataShield_IPv4_Blocklist.docx) | English | R/W | ✅ |
+| [EN_GRC_Compliance_Model_DataShield_IPv4_Blocklist.pdf](/docs/EN_GRC_Compliance_Model_DataShield_IPv4_Blocklist.pdf) | English | R | ✅ |
+| [FR_Modele_GRC_DataShield_IPv4_Blocklist.docx](/docs/FR_Modele_GRC_DataShield_IPv4_Blocklist.docx) | French | R/W | ✅ |
+| [FR_Modele_GRC_DataShield_IPv4_Blocklist.pdf](/docs/FR_Modele_GRC_DataShield_IPv4_Blocklist.pdf) | French | R | ✅ |
+
 ## Support Data-Shield IPv4 Blocklist!
 
 > [!NOTE]
