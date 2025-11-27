@@ -21,14 +21,14 @@ Data-Shield IPv4 Blocklist is an additional layer of protection containing a lis
 
 This list is designed around the discipline of [Deceptive Security](https://en.wikipedia.org/wiki/Deception_technology) based on intelligent behavioral analysis of malicious activities related to cybercrime.
 
-Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to provide an additional layer of security for your [firewall](https://en.wikipedia.org/wiki/Firewall_(computing)), [WAF](https://en.wikipedia.org/wiki/Web_application_firewall), and [DNS sinkhole](https://en.wikipedia.org/wiki/DNS_sinkhole) instances.
+Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to provide an additional layer of security for your [firewall](https://en.wikipedia.org/wiki/Firewall_(computing)) and [WAF](https://en.wikipedia.org/wiki/Web_application_firewall) instances.
 
 ## Why Data-Shield IPv4 Blocklist?
 
-- **Protective layer**: [Data-Shield IPv4 Blocklist](https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist) provides an additional layer of security to reduce the number and attack surface of your exposed assets (web applications, websites, DMZs, public IPs, etc.), reducing the recon phase and exposure of your data on platforms such as [Shodan](https://www.shodan.io/) and similar.
-- **Open to the general public**: Data-Shield IPv4 Blocklist is open to any user with a firewall, WAF, DNS sinkhole, and other similar protection mechanisms.
+- **Protective layer**: [Data-Shield IPv4 Blocklist](https://www.linkedin.com/in/laurent-minne/) provides an additional layer of security to reduce the number and attack surface of your exposed assets (web applications, websites, DMZs, public IPs, etc.), reducing the recon phase and exposure of your data on platforms such as [Shodan](https://www.shodan.io/) and similar.
+- **Open to the general public**: Data-Shield IPv4 Blocklist is open to any user with a firewall, WAF and other similar protection mechanisms.
 - **Single origin**: Data-Shield IPv4 Blocklist comes from a single source, processed by probes located around the world. Logs are centralized on a self-hosted [HIDS](https://en.wikipedia.org/wiki/Host-based_intrusion_detection_system)/[SIEM](https://fr.wikipedia.org/wiki/Security_information_and_event_management) platform, secured via an open-source WAF.
-- **Easy integration into your firewall, WAF, DNS Sinkhole instances**: This list can be easily integrated into most vendors as a single link (RAW) for standard recognition of the included data.
+- **Easy integration into your firewall and WAF instances**: This list can be easily integrated into most vendors as a single link (RAW) for standard recognition of the included data.
 - **Customizable based on vendor limitations**: Some vendors have limited the number of IPv4 addresses per entry (per list) to prevent resource consumption overload. Data-Shield IPv4 Blocklist is designed to comply with this limitation by creating split lists.
 - **Data reliability (IPv4)**: Data-Shield IPv4 Blocklist provides high-quality, reliable data by minimizing false positives to avoid blocking legitimate exposed instances.
 - **Frequency of updates**: Data-Shield IPv4 Blocklist is updated every ```24``` hours to maintain the most recent data in order to protect you as effectively as possible.
@@ -40,7 +40,7 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 
 - Reduce noise by up to 50%, save time on incident response, reduce consumption of CPU, RAM, and other server resources.
 - Block up to approximately 90% of malicious bot traffic in order to significantly reduce the load on servers in terms of resources.
-- Automatic update of blocklists via GitHub, JSdelivr CDN, GitLab and Gitea Raw URLs and by [scripts](https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist?tab=readme-ov-file#integration-scripts).
+- Automatic update of blocklists via GitHub, JSdelivr [CDN](https://en.wikipedia.org/wiki/Content_delivery_network), GitLab and Gitea Raw URLs.
 
 ## Production lists
 
@@ -115,7 +115,7 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 > [!IMPORTANT]
 > For compliance purposes, companies wishing to implement the Data-Shield IPv4 Blocklist can refer to the “[ISO27001:2022](https://en.wikipedia.org/wiki/ISO/IEC_27001), [NIS2](https://en.wikipedia.org/wiki/Cyber-security_regulation#NIS_2_Directive), and [GDPR](https://en.wikipedia.org/wiki/General_Data_Protection_Regulation) compliance model” documents, which are available and listed in the table below.
 
-| **Document URL** | **Language** | **Rights** | **NIS2, GDPR and ISO27001:2022** |
+| **Document URL** | **Language** | **Rights** | **ISO27001:2022, NIS2 and GDPR** |
 |:---|:---:|:---:|:---:|
 | [EN_GRC_Compliance_Model_DataShield_IPv4_Blocklist.docx](/docs/EN_GRC_Compliance_Model_DataShield_IPv4_Blocklist.docx) | English | R/W | ✅ |
 | [EN_GRC_Compliance_Model_DataShield_IPv4_Blocklist.pdf](/docs/EN_GRC_Compliance_Model_DataShield_IPv4_Blocklist.pdf) | English | R | ✅ |
