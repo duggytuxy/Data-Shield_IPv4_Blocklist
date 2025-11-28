@@ -63,7 +63,7 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 > To ensure availability and resilience, two mirrors and an open-source CDN are put into production.
 > Exhaustive lists of those that are put into production, followed by their uses and limitations:
 
-### [GitHub Repository](https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist)
+### [**GitHub Repository**](https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist)
 
 | **GitHub RAW URL** | **Source** | **Limitation** |
 |:---|:---:|:---:|
