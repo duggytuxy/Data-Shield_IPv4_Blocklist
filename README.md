@@ -17,7 +17,6 @@
 
 <div align="center">
   <br />
-  <br />
   <a href="https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist" target="_blank">GitHub</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
   <a href="https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist" target="_blank">GitLab (Mirror 1)</a>
@@ -28,7 +27,6 @@
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
   <a href="https://ko-fi.com/laurentmduggytuxy" target="_blank">Ko-Fi Page</a>
   <br />
-  <hr />
 </div>
 
 # Data-Shield IPv4 Blocklist 
