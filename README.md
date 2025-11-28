@@ -75,7 +75,9 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 | [prod_ac_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ac_data-shield_ipv4_blocklist.txt) | Split C | 30.000 IPs |
 | [prod_ad_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ad_data-shield_ipv4_blocklist.txt) | Split D | 30.000 IPs |
 
-### [GitLab Repository](https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist)
+> [!TIP]
+> **GitLab Repository**
+> [Official Link](https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/)
 
 | **GitLab RAW URL (Mirror)** | **Source** | **Limitation** |
 |:---|:---:|:---:|
@@ -85,7 +87,9 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 | [prod_ac_data-shield_ipv4_blocklist.txt](https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_ac_data-shield_ipv4_blocklist.txt?ref_type=heads) | Split C | 30.000 IPs |
 | [prod_ad_data-shield_ipv4_blocklist.txt](https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_ad_data-shield_ipv4_blocklist.txt?ref_type=heads) | Split D | 30.000 IPs |
 
-### [CDN JDdelivr package](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@main/)
+> [!TIP]
+> **CDN JSdelivr @Main**
+> [Official Link](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@main/)
 
 | **CDN JSdelivr URL** | **Source** | **Limitation** |
 |:---|:---:|:---:|
@@ -95,7 +99,9 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 | [prod_ac_data-shield_ipv4_blocklist.txt](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@main/prod_ac_data-shield_ipv4_blocklist.txt) | Split C | 30.000 IPs |
 | [prod_ad_data-shield_ipv4_blocklist.txt](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@main/prod_ad_data-shield_ipv4_blocklist.txt) | Split D | 30.000 IPs |
 
-### [Gitea Repository](https://gitea.com/duggytuxy/Data-Shield_IPv4_Blocklist/)
+> [!TIP]
+> **Gitea Repository**
+> [Official Link](https://gitea.com/duggytuxy/Data-Shield_IPv4_Blocklist/)
 
 | **Gitea RAW URL (Mirror)** | **Source** | **Limitation** |
 |:---|:---:|:---:|
