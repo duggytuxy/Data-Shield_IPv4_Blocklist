@@ -6,6 +6,18 @@
 </picture>
 </p>
 
+<div align="center">
+  <a href="https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist" target="_blank">GitHub Repository</a>
+  <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+  <a href="https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist" target="_blank">GitLab Repository (Mirror 1)</a>
+  <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+  <a href="https://gitea.com/duggytuxy/Data-Shield_IPv4_Blocklist/" target="_blank">Gitea Repository (Mirror 2)</a>
+  <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+  <a href="https://www.linkedin.com/in/laurent-minne/" target="_blank">Linkedin Profile</a>
+  <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+  <a href="https://ko-fi.com/laurentmduggytuxy" target="_blank">Ko-Fi Page</a>
+</div>
+
 <p align="center">
   <img src="https://img.shields.io/badge/Open%20Source-100%25-brightgreen?style=for-the-badge&logo=opensourceinitiative">
   <img src="https://img.shields.io/badge/powered%20by-DuggyTuxy-darkred?style=for-the-badge&logo=apachekafka">
