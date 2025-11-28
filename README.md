@@ -177,5 +177,5 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 > Data-Shield IPv4 Blocklist ```2023-2025``` by Duggy Tuxy (Laurent Minne) is under [license](/LICENSE)
 
 <p align="center">
-  <img src="https://tryhackme-badges.s3.amazonaws.com/duggytuxy.png" alt="Your Image Badge" />
+  <img src="https://tryhackme-badges.s3.amazonaws.com/duggytuxy.png?update=1" alt="Your Image Badge" />
 </p>
