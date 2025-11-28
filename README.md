@@ -63,6 +63,8 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 > To ensure availability and resilience, two mirrors and an open-source CDN are put into production.
 > Exhaustive lists of those that are put into production, followed by their uses and limitations:
 
+### [GitHub Repository](https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist)
+
 | **GitHub RAW URL** | **Source** | **Limitation** |
 |:---|:---:|:---:|
 | [prod_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_data-shield_ipv4_blocklist.txt) | Full | 110.000 IPs |
@@ -70,6 +72,8 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 | [prod_ab_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ab_data-shield_ipv4_blocklist.txt) | Split B | 30.000 IPs |
 | [prod_ac_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ac_data-shield_ipv4_blocklist.txt) | Split C | 30.000 IPs |
 | [prod_ad_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ad_data-shield_ipv4_blocklist.txt) | Split D | 30.000 IPs |
+
+### [GitLab Repository](https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist)
 
 | **GitLab RAW URL (Mirror)** | **Source** | **Limitation** |
 |:---|:---:|:---:|
@@ -79,6 +83,8 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 | [prod_ac_data-shield_ipv4_blocklist.txt](https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_ac_data-shield_ipv4_blocklist.txt?ref_type=heads) | Split C | 30.000 IPs |
 | [prod_ad_data-shield_ipv4_blocklist.txt](https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_ad_data-shield_ipv4_blocklist.txt?ref_type=heads) | Split D | 30.000 IPs |
 
+### [CDN JDdelivr package](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@main/)
+
 | **CDN JSdelivr URL** | **Source** | **Limitation** |
 |:---|:---:|:---:|
 | [prod_data-shield_ipv4_blocklist.txt](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@main/prod_data-shield_ipv4_blocklist.txt) | Full | 110.000 IPs |
@@ -86,6 +92,8 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 | [prod_ab_data-shield_ipv4_blocklist.txt](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@main/prod_ab_data-shield_ipv4_blocklist.txt) | Split B | 30.000 IPs |
 | [prod_ac_data-shield_ipv4_blocklist.txt](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@main/prod_ac_data-shield_ipv4_blocklist.txt) | Split C | 30.000 IPs |
 | [prod_ad_data-shield_ipv4_blocklist.txt](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@main/prod_ad_data-shield_ipv4_blocklist.txt) | Split D | 30.000 IPs |
+
+### [Gitea Repository](https://gitea.com/duggytuxy/Data-Shield_IPv4_Blocklist/)
 
 | **Gitea RAW URL (Mirror)** | **Source** | **Limitation** |
 |:---|:---:|:---:|
