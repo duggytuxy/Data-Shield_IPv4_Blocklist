@@ -52,8 +52,9 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 
 ## Primary objectives
 
+- Data-Shield IPv4 Blocklist contains the latest data for blocking IPs generating malicious traffic and activities.
 - Reduce noise by up to 50%, save time on incident response, reduce consumption of CPU, RAM, and other server resources.
-- Block up to approximately 90% of malicious bot traffic in order to significantly reduce the load on servers in terms of resources.
+- Block up to approximately 95% of malicious bot traffic in order to significantly reduce the load on servers in terms of resources.
 - Automatic update of blocklists via GitHub, JSdelivr [CDN](https://en.wikipedia.org/wiki/Content_delivery_network), GitLab and Gitea Raw URLs.
 
 ## Production lists
@@ -118,9 +119,13 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 
 > [!TIP]
 > **From the internet to the internal network (WAN to LAN 👉 Inbound Rules)**
+> - Exemple (IPtables): `sudo iptables -A INPUT -s <IP_ADDRESS> -j DROP`
+> - Exemple (NFtables): `sudo nft add rule inet filter input ip saddr <IP_ADDRESS> drop`
 
 > [!CAUTION]
 > **Do not integrate these flow rules in this direction (LAN to WAN 👉 Outbound Rules)**
+> - Exemple (IPtables): `sudo iptables -A OUTPUT -d <IP_ADDRESS> -j DROP`
+> - Exemple (NFtables): `sudo nft add rule inet filter output ip daddr <IP_ADDRESS> drop`
 
 > [!NOTE]
 > To facilitate the integration of Data-Shield IPv4 Blocklist into firewall instances, here is a non-exhaustive list of some tutorials offered by vendors and the Cyber community:
