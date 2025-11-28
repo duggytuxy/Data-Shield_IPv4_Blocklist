@@ -119,13 +119,13 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 
 > [!TIP]
 > **From the internet to the internal network (WAN to LAN 👉 Inbound Rules)**
-> - Exemple (IPtables): `sudo iptables -A INPUT -s <IP_ADDRESS> -j DROP`
-> - Exemple (NFtables): `sudo nft add rule inet filter input ip saddr <IP_ADDRESS> drop`
+> - Example (IPtables): `sudo iptables -A INPUT -s <IP_ADDRESS> -j DROP`
+> - Example (NFtables): `sudo nft add rule inet filter input ip saddr <IP_ADDRESS> drop`
 
 > [!CAUTION]
 > **Do not integrate these flow rules in this direction (LAN to WAN 👉 Outbound Rules)**
-> - Exemple (IPtables): `sudo iptables -A OUTPUT -d <IP_ADDRESS> -j DROP`
-> - Exemple (NFtables): `sudo nft add rule inet filter output ip daddr <IP_ADDRESS> drop`
+> - Example (IPtables): `sudo iptables -A OUTPUT -d <IP_ADDRESS> -j DROP`
+> - Example (NFtables): `sudo nft add rule inet filter output ip daddr <IP_ADDRESS> drop`
 
 > [!NOTE]
 > To facilitate the integration of Data-Shield IPv4 Blocklist into firewall instances, here is a non-exhaustive list of some tutorials offered by vendors and the Cyber community:
