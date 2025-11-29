@@ -24,6 +24,8 @@
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
   <a href="https://www.linkedin.com/in/laurent-minne/" target="_blank">Linkedin</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+  <a href="https://tryhackme.com/p/duggytuxy" target="_blank">TryHackMe</a>
+  <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
   <a href="https://ko-fi.com/laurentmduggytuxy" target="_blank">Ko-Fi</a>
   <br />
 </div>
