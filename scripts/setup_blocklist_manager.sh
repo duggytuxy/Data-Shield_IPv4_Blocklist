@@ -210,6 +210,10 @@ comm -23 <(sort -u "\$PREVIOUS_BLOCKLIST") <(sort -u "\$CURRENT_BLOCKLIST") | wh
 comm -13 <(sort -u "\$PREVIOUS_BLOCKLIST") <(sort -u "\$CURRENT_BLOCKLIST") | while read -r IP; do log "ADDED: \$IP"; done
 
 cp "\$CURRENT_BLOCKLIST" "\$PREVIOUS_BLOCKLIST"
+
+# Cleanup temporary files
+rm -f "\$TMP_BLOCKLIST"
+
 log "INFO: Update completed successfully."
 EOF
 }
@@ -308,6 +312,10 @@ comm -23 <(sort -u "\$PREVIOUS_BLOCKLIST") <(sort -u "\$CURRENT_BLOCKLIST") | wh
 comm -13 <(sort -u "\$PREVIOUS_BLOCKLIST") <(sort -u "\$CURRENT_BLOCKLIST") | while read -r IP; do log "ADDED: \$IP"; done
 
 cp "\$CURRENT_BLOCKLIST" "\$PREVIOUS_BLOCKLIST"
+
+# Cleanup temporary files
+rm -f "\$TMP_BLOCKLIST"
+
 log "INFO: Update completed successfully."
 EOF
 }
