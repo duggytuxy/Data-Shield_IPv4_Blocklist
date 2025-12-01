@@ -214,6 +214,14 @@ grep -E '^([0-9]{1,3}\.){3}[0-9]{1,3}$' "\$TMP_BLOCKLIST" | \
 awk -F. '\$1<=255 && \$2<=255 && \$3<=255 && \$4<=255' | \
 sort -u > "\$CURRENT_BLOCKLIST"
 
+# Validate blocklist is not empty
+if [[ ! -s "\$CURRENT_BLOCKLIST" ]]; then
+    log "ERROR: Blocklist is empty after validation. Aborting update."
+    exit 1
+fi
+
+log "INFO: \$(wc -l < "\$CURRENT_BLOCKLIST") valid IPs loaded."
+
 # Create temp set
 TMP_SET_NAME="\${BLOCKLIST_SET_NAME}_tmp"
 if \$IPSET list -n | grep -q "\$TMP_SET_NAME"; then
@@ -319,6 +327,14 @@ $SHA_LOGIC
 grep -E '^([0-9]{1,3}\.){3}[0-9]{1,3}$' "\$TMP_BLOCKLIST" | \
 awk -F. '\$1<=255 && \$2<=255 && \$3<=255 && \$4<=255' | \
 sort -u > "\$CURRENT_BLOCKLIST"
+
+# Validate blocklist is not empty
+if [[ ! -s "\$CURRENT_BLOCKLIST" ]]; then
+    log "ERROR: Blocklist is empty after validation. Aborting update."
+    exit 1
+fi
+
+log "INFO: \$(wc -l < "\$CURRENT_BLOCKLIST") valid IPs loaded."
 
 # Create table/set if missing
 if ! \$NFT list table \$NFT_TABLE >/dev/null 2>&1; then
