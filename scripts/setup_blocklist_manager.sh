@@ -255,6 +255,7 @@ NFT="$CMD_NFT"
 NFT_TABLE="inet filter"
 NFT_CHAIN="input"
 NFT_SET="blocklist_ipv4"
+NFT_SAVE_FILE="\$BLOCKLIST_DIR/nftables_blocklist.nft"
 LOGFILE="/var/log/nft_blocklist_update.log"
 
 log() { echo "\$(date '+%Y-%m-%d %H:%M:%S') : \$*" >> "\$LOGFILE"; }
@@ -297,6 +298,10 @@ if ! \$NFT list chain \$NFT_TABLE input | grep -q "\$NFT_SET"; then
     \$NFT insert rule \$NFT_TABLE input ip saddr @\${NFT_SET} drop
     log "INFO: Rule added to block IPs"
 fi
+
+# Save NFtables state
+\$NFT list table \$NFT_TABLE > "\$NFT_SAVE_FILE"
+log "INFO: NFtables state saved to \$NFT_SAVE_FILE"
 
 # Logging differences
 comm -23 <(sort -u "\$PREVIOUS_BLOCKLIST") <(sort -u "\$CURRENT_BLOCKLIST") | while read -r IP; do log "REMOVED: \$IP"; done
