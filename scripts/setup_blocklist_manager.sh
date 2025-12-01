@@ -206,8 +206,8 @@ if ! \$IPTABLES -C INPUT -m set --match-set "\$BLOCKLIST_SET_NAME" src -j DROP 2
 fi
 
 # Logging differences
-comm -23 <(sort -u "\$PREVIOUS_BLOCKLIST") <(sort -u "\$CURRENT_BLOCKLIST") | while read -r IP; do log "ADDED: \$IP"; done
-comm -13 <(sort -u "\$PREVIOUS_BLOCKLIST") <(sort -u "\$CURRENT_BLOCKLIST") | while read -r IP; do log "REMOVED: \$IP"; done
+comm -23 <(sort -u "\$PREVIOUS_BLOCKLIST") <(sort -u "\$CURRENT_BLOCKLIST") | while read -r IP; do log "REMOVED: \$IP"; done
+comm -13 <(sort -u "\$PREVIOUS_BLOCKLIST") <(sort -u "\$CURRENT_BLOCKLIST") | while read -r IP; do log "ADDED: \$IP"; done
 
 cp "\$CURRENT_BLOCKLIST" "\$PREVIOUS_BLOCKLIST"
 log "INFO: Update completed successfully."
@@ -299,10 +299,11 @@ if ! \$NFT list chain \$NFT_TABLE input | grep -q "\$NFT_SET"; then
 fi
 
 # Logging differences
-comm -23 <(sort -u "\$PREVIOUS_BLOCKLIST") <(sort -u "\$CURRENT_BLOCKLIST") | while read -r IP; do log "ADDED: \$IP"; done
-comm -13 <(sort -u "\$PREVIOUS_BLOCKLIST") <(sort -u "\$CURRENT_BLOCKLIST") | while read -r IP; do log "REMOVED: \$IP"; done
+comm -23 <(sort -u "\$PREVIOUS_BLOCKLIST") <(sort -u "\$CURRENT_BLOCKLIST") | while read -r IP; do log "REMOVED: \$IP"; done
+comm -13 <(sort -u "\$PREVIOUS_BLOCKLIST") <(sort -u "\$CURRENT_BLOCKLIST") | while read -r IP; do log "ADDED: \$IP"; done
 
 cp "\$CURRENT_BLOCKLIST" "\$PREVIOUS_BLOCKLIST"
+log "INFO: Update completed successfully."
 EOF
 }
 
