@@ -48,6 +48,45 @@ check_root() {
     fi
 }
 
+check_dependencies() {
+    local missing_deps=()
+    
+    if ! command -v curl &>/dev/null; then
+        missing_deps+=("curl")
+    fi
+    
+    if ! command -v awk &>/dev/null; then
+        missing_deps+=("awk")
+    fi
+    
+    if ! command -v grep &>/dev/null; then
+        missing_deps+=("grep")
+    fi
+    
+    local has_iptables=false
+    local has_nftables=false
+    
+    if command -v iptables &>/dev/null && command -v ipset &>/dev/null; then
+        has_iptables=true
+    fi
+    
+    if command -v nft &>/dev/null; then
+        has_nftables=true
+    fi
+    
+    if [[ "$has_iptables" == false && "$has_nftables" == false ]]; then
+        missing_deps+=("iptables+ipset or nftables")
+    fi
+    
+    if [[ ${#missing_deps[@]} -gt 0 ]]; then
+        log_error "Missing dependencies: ${missing_deps[*]}"
+        log_info "Please install the missing packages and try again."
+        exit 1
+    fi
+    
+    log_success "All dependencies are installed."
+}
+
 # --- Step 1: Source Connectivity Test (with Fallback) ---
 select_working_source() {
     echo ""
@@ -355,6 +394,7 @@ setup_cron() {
 
 # --- Main Flow ---
 check_root
+check_dependencies
 select_working_source
 configure_security
 generate_script
