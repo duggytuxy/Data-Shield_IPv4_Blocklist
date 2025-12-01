@@ -22,6 +22,13 @@ GENERATED_SCRIPT_PATH="/usr/local/bin/update_blocklist.sh"
 SELECTED_URL=""
 USE_SHA256="no"
 
+# --- Colors ---
+NC="\e[0m"
+BLUE="\e[34m"
+GREEN="\e[32m"
+RED="\e[31m"
+YELLOW="\e[33m"
+
 # --- Dynamic Path Discovery ---
 CMD_IPTABLES=$(command -v iptables || echo "/sbin/iptables")
 CMD_IPSET=$(command -v ipset || echo "/sbin/ipset")
@@ -29,10 +36,10 @@ CMD_NFT=$(command -v nft || echo "/usr/sbin/nft")
 CMD_CURL=$(command -v curl || echo "/usr/bin/curl")
 
 # --- Helper Functions ---
-log_info() { echo -e "\e[34m[INFO]\e[0m $1"; }
-log_success() { echo -e "\e[32m[SUCCESS]\e[0m $1"; }
-log_error() { echo -e "\e[31m[ERROR]\e[0m $1"; }
-log_input() { echo -e "\e[33m[INPUT]\e[0m $1"; }
+log_info() { echo -e "${BLUE}[INFO]${NC} $1"; }
+log_success() { echo -e "${GREEN}[SUCCESS]${NC} $1"; }
+log_error() { echo -e "${RED}[ERROR]${NC} $1"; }
+log_input() { echo -e "${YELLOW}[INPUT]${NC} $1"; }
 
 check_root() {
     if [[ $EUID -ne 0 ]]; then
