@@ -22,6 +22,13 @@ GENERATED_SCRIPT_PATH="/usr/local/bin/update_blocklist.sh"
 SELECTED_URL=""
 USE_SHA256="no"
 
+# --- Colors ---
+NC="\e[0m"
+BLUE="\e[34m"
+GREEN="\e[32m"
+RED="\e[31m"
+YELLOW="\e[33m"
+
 # --- Dynamic Path Discovery ---
 CMD_IPTABLES=$(command -v iptables || echo "/sbin/iptables")
 CMD_IPSET=$(command -v ipset || echo "/sbin/ipset")
@@ -29,16 +36,55 @@ CMD_NFT=$(command -v nft || echo "/usr/sbin/nft")
 CMD_CURL=$(command -v curl || echo "/usr/bin/curl")
 
 # --- Helper Functions ---
-log_info() { echo -e "\e[34m[INFO]\e[0m $1"; }
-log_success() { echo -e "\e[32m[SUCCESS]\e[0m $1"; }
-log_error() { echo -e "\e[31m[ERROR]\e[0m $1"; }
-log_input() { echo -e "\e[33m[INPUT]\e[0m $1"; }
+log_info() { echo -e "${BLUE}[INFO]${NC} $1"; }
+log_success() { echo -e "${GREEN}[SUCCESS]${NC} $1"; }
+log_error() { echo -e "${RED}[ERROR]${NC} $1"; }
+log_input() { echo -e "${YELLOW}[INPUT]${NC} $1"; }
 
 check_root() {
     if [[ $EUID -ne 0 ]]; then
        log_error "This script must be run as root (sudo)." 
        exit 1
     fi
+}
+
+check_dependencies() {
+    local missing_deps=()
+    
+    if ! command -v curl &>/dev/null; then
+        missing_deps+=("curl")
+    fi
+    
+    if ! command -v awk &>/dev/null; then
+        missing_deps+=("awk")
+    fi
+    
+    if ! command -v grep &>/dev/null; then
+        missing_deps+=("grep")
+    fi
+    
+    local has_iptables=false
+    local has_nftables=false
+    
+    if command -v iptables &>/dev/null && command -v ipset &>/dev/null; then
+        has_iptables=true
+    fi
+    
+    if command -v nft &>/dev/null; then
+        has_nftables=true
+    fi
+    
+    if [[ "$has_iptables" == false && "$has_nftables" == false ]]; then
+        missing_deps+=("iptables+ipset or nftables")
+    fi
+    
+    if [[ ${#missing_deps[@]} -gt 0 ]]; then
+        log_error "Missing dependencies: ${missing_deps[*]}"
+        log_info "Please install the missing packages and try again."
+        exit 1
+    fi
+    
+    log_success "All dependencies are installed."
 }
 
 # --- Step 1: Source Connectivity Test (with Fallback) ---
@@ -168,6 +214,14 @@ grep -E '^([0-9]{1,3}\.){3}[0-9]{1,3}$' "\$TMP_BLOCKLIST" | \
 awk -F. '\$1<=255 && \$2<=255 && \$3<=255 && \$4<=255' | \
 sort -u > "\$CURRENT_BLOCKLIST"
 
+# Validate blocklist is not empty
+if [[ ! -s "\$CURRENT_BLOCKLIST" ]]; then
+    log "ERROR: Blocklist is empty after validation. Aborting update."
+    exit 1
+fi
+
+log "INFO: \$(wc -l < "\$CURRENT_BLOCKLIST") valid IPs loaded."
+
 # Create temp set
 TMP_SET_NAME="\${BLOCKLIST_SET_NAME}_tmp"
 if \$IPSET list -n | grep -q "\$TMP_SET_NAME"; then
@@ -199,10 +253,14 @@ if ! \$IPTABLES -C INPUT -m set --match-set "\$BLOCKLIST_SET_NAME" src -j DROP 2
 fi
 
 # Logging differences
-comm -23 <(sort -u "\$PREVIOUS_BLOCKLIST") <(sort -u "\$CURRENT_BLOCKLIST") | while read -r IP; do log "ADDED: \$IP"; done
-comm -13 <(sort -u "\$PREVIOUS_BLOCKLIST") <(sort -u "\$CURRENT_BLOCKLIST") | while read -r IP; do log "REMOVED: \$IP"; done
+comm -23 <(sort -u "\$PREVIOUS_BLOCKLIST") <(sort -u "\$CURRENT_BLOCKLIST") | while read -r IP; do log "REMOVED: \$IP"; done
+comm -13 <(sort -u "\$PREVIOUS_BLOCKLIST") <(sort -u "\$CURRENT_BLOCKLIST") | while read -r IP; do log "ADDED: \$IP"; done
 
 cp "\$CURRENT_BLOCKLIST" "\$PREVIOUS_BLOCKLIST"
+
+# Cleanup temporary files
+rm -f "\$TMP_BLOCKLIST"
+
 log "INFO: Update completed successfully."
 EOF
 }
@@ -248,6 +306,7 @@ NFT="$CMD_NFT"
 NFT_TABLE="inet filter"
 NFT_CHAIN="input"
 NFT_SET="blocklist_ipv4"
+NFT_SAVE_FILE="\$BLOCKLIST_DIR/nftables_blocklist.nft"
 LOGFILE="/var/log/nft_blocklist_update.log"
 
 log() { echo "\$(date '+%Y-%m-%d %H:%M:%S') : \$*" >> "\$LOGFILE"; }
@@ -268,6 +327,14 @@ $SHA_LOGIC
 grep -E '^([0-9]{1,3}\.){3}[0-9]{1,3}$' "\$TMP_BLOCKLIST" | \
 awk -F. '\$1<=255 && \$2<=255 && \$3<=255 && \$4<=255' | \
 sort -u > "\$CURRENT_BLOCKLIST"
+
+# Validate blocklist is not empty
+if [[ ! -s "\$CURRENT_BLOCKLIST" ]]; then
+    log "ERROR: Blocklist is empty after validation. Aborting update."
+    exit 1
+fi
+
+log "INFO: \$(wc -l < "\$CURRENT_BLOCKLIST") valid IPs loaded."
 
 # Create table/set if missing
 if ! \$NFT list table \$NFT_TABLE >/dev/null 2>&1; then
@@ -291,11 +358,20 @@ if ! \$NFT list chain \$NFT_TABLE input | grep -q "\$NFT_SET"; then
     log "INFO: Rule added to block IPs"
 fi
 
+# Save NFtables state
+\$NFT list table \$NFT_TABLE > "\$NFT_SAVE_FILE"
+log "INFO: NFtables state saved to \$NFT_SAVE_FILE"
+
 # Logging differences
-comm -23 <(sort -u "\$PREVIOUS_BLOCKLIST") <(sort -u "\$CURRENT_BLOCKLIST") | while read -r IP; do log "ADDED: \$IP"; done
-comm -13 <(sort -u "\$PREVIOUS_BLOCKLIST") <(sort -u "\$CURRENT_BLOCKLIST") | while read -r IP; do log "REMOVED: \$IP"; done
+comm -23 <(sort -u "\$PREVIOUS_BLOCKLIST") <(sort -u "\$CURRENT_BLOCKLIST") | while read -r IP; do log "REMOVED: \$IP"; done
+comm -13 <(sort -u "\$PREVIOUS_BLOCKLIST") <(sort -u "\$CURRENT_BLOCKLIST") | while read -r IP; do log "ADDED: \$IP"; done
 
 cp "\$CURRENT_BLOCKLIST" "\$PREVIOUS_BLOCKLIST"
+
+# Cleanup temporary files
+rm -f "\$TMP_BLOCKLIST"
+
+log "INFO: Update completed successfully."
 EOF
 }
 
@@ -334,6 +410,7 @@ setup_cron() {
 
 # --- Main Flow ---
 check_root
+check_dependencies
 select_working_source
 configure_security
 generate_script
