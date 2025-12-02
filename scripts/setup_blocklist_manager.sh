@@ -1,7 +1,7 @@
 #!/bin/bash
 # ==============================================================================
 # Script Name: setup_blocklist_manager.sh
-# Version:     0.0.12 (beta 3)
+# Version:     0.0.13 (beta 4)
 # Description: Interactive installer for IPv4 Blocklist updater.
 #              Features: Source Failover, Dynamic Paths, SHA256, IPSet Save,
 #              Cron task and Strict IP Validation (0-255).
