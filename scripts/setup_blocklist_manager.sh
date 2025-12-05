@@ -1,11 +1,11 @@
 #!/bin/bash
 # ==============================================================================
 # Script Name: setup_blocklist_manager.sh
-# Version:     0.1.01 (Release Candidate 1)
+# Version:     0.1.02 (Release Candidate 2)
 # Description: Interactive installer for IPv4 Blocklist updater.
-#              Generates a self-documented, secure script for IPtables or NFtables.
-#              Features: Failover, Path Hardening, SHA256, Atomic Updates, 
-#              Strict IP Validation & Immutable Locking.
+#              Features: Source Failover, Path Hardening, PGP/SHA256 Security,
+#              Atomic Updates, Strict IP Validation, Immutable Locking,
+#              Secure Storage (chmod 700) & Systemd Timer support.
 # Author:      Duggy Tuxy (Laurent M.)
 # ==============================================================================
 
@@ -21,7 +21,8 @@ SOURCES=(
 
 GENERATED_SCRIPT_PATH="/usr/local/bin/update_blocklist.sh"
 SELECTED_URL=""
-USE_SHA256="no"
+SECURITY_MODE="none" # none, sha256, pgp
+PGP_KEY_URL=""
 
 # --- Colors for UX ---
 NC="\e[0m"
@@ -29,9 +30,9 @@ BLUE="\e[34m"
 GREEN="\e[32m"
 RED="\e[31m"
 YELLOW="\e[33m"
+CYAN="\e[36m"
 
 # --- Dynamic Path Discovery (Anti-Tampering) ---
-# We verify absolute paths to prevent PATH Hijacking attacks
 CMD_BASH=$(command -v bash || echo "/bin/bash")
 CMD_IPTABLES=$(command -v iptables || echo "/sbin/iptables")
 CMD_IPSET=$(command -v ipset || echo "/sbin/ipset")
@@ -39,6 +40,8 @@ CMD_NFT=$(command -v nft || echo "/usr/sbin/nft")
 CMD_CURL=$(command -v curl || echo "/usr/bin/curl")
 CMD_RM=$(command -v rm || echo "/bin/rm")
 CMD_CHMOD=$(command -v chmod || echo "/bin/chmod")
+CMD_GPG=$(command -v gpg || echo "/usr/bin/gpg")
+CMD_SYSTEMCTL=$(command -v systemctl || echo "/bin/systemctl")
 
 # --- Helper Functions ---
 log_info() { echo -e "${BLUE}[INFO]${NC} $1"; }
@@ -69,7 +72,7 @@ check_dependencies() {
         log_error "Missing dependencies: ${missing_deps[*]}"
         exit 1
     fi
-    log_success "All dependencies are installed."
+    log_success "All base dependencies are installed."
 }
 
 # --- Step 1: Source Connectivity Test ---
@@ -98,13 +101,44 @@ select_working_source() {
     fi
 }
 
-# --- Step 2: Security Options ---
+# --- Step 2: Advanced Security Options ---
 configure_security() {
     echo ""
-    log_info "Step 2: Security Options"
-    log_input "Do you want to enable SHA256 integrity verification? (yes/no)"
-    read -r SHA_CHOICE
-    USE_SHA256="${SHA_CHOICE,,}"
+    log_info "Step 2: Integrity & Authenticity"
+    echo -e "Choose verification method:"
+    echo -e "  1) ${CYAN}SHA256 Hash${NC} (Integrity only - Simple)"
+    echo -e "  2) ${CYAN}PGP Signature${NC} (Integrity + Authenticity - High Security)"
+    echo -e "  3) ${CYAN}None${NC} (Not recommended)"
+    
+    log_input "Enter your choice (1/2/3):"
+    read -r SEC_CHOICE
+
+    case "$SEC_CHOICE" in
+        1)
+            SECURITY_MODE="sha256"
+            log_info "Selected: SHA256 Verification."
+            ;;
+        2)
+            SECURITY_MODE="pgp"
+            if ! command -v gpg &>/dev/null; then
+                log_error "'gpg' is not installed. Please install GnuPG to use this feature."
+                exit 1
+            fi
+            log_info "Selected: PGP Signature Verification."
+            log_input "Please enter the URL of the Public Key (.asc/pub):"
+            # Default placeholder if user hits enter, but ideally they provide one
+            read -r USER_KEY_URL
+            if [[ -z "$USER_KEY_URL" ]]; then
+                log_error "Public Key URL is required for PGP mode."
+                exit 1
+            fi
+            PGP_KEY_URL="$USER_KEY_URL"
+            ;;
+        *)
+            SECURITY_MODE="none"
+            log_info "Selected: No verification."
+            ;;
+    esac
 }
 
 # --- Step 3: Generate the Script ---
@@ -134,31 +168,73 @@ generate_script() {
     log_success "Script generated at: $GENERATED_SCRIPT_PATH"
 }
 
-# --- Generators with FULL DOCUMENTATION ---
+# --- Generators ---
 
-create_iptables_file() {
-    local SHEBANG="$1"
-    local SHA_LOGIC=""
-    if [[ "$USE_SHA256" == "yes" || "$USE_SHA256" == "y" ]]; then
-        SHA_LOGIC='
+get_security_logic() {
+    local LOGIC=""
+    
+    if [[ "$SECURITY_MODE" == "sha256" ]]; then
+        LOGIC='
 # --- Security: SHA256 Integrity Check ---
-# We download a checksum file to verify the blocklist has not been tampered with.
 HASH_URL="${BLOCKLIST_URL}.sha256"
 if curl -s --fail "$HASH_URL" -o "$BLOCKLIST_DIR/remote.sha256"; then
     REMOTE_HASH=$(awk "{print \$1}" "$BLOCKLIST_DIR/remote.sha256")
     LOCAL_HASH=$(sha256sum "$TMP_BLOCKLIST" | awk "{print \$1}")
-    
     if [[ "$REMOTE_HASH" != "$LOCAL_HASH" ]]; then
-        log "CRITICAL: SHA256 mismatch! File corrupted or tampered. Update aborted."
+        log "CRITICAL: SHA256 mismatch! Update aborted."
         exit 1
     else
-        log "INFO: SHA256 Verified. Integrity confirmed."
+        log "INFO: SHA256 Verified."
     fi
 else
     log "WARN: Could not download SHA256 file. Skipping verification."
 fi
 '
+    elif [[ "$SECURITY_MODE" == "pgp" ]]; then
+        LOGIC='
+# --- Security: PGP Signature Verification ---
+# We use an ephemeral keyring to avoid polluting the root user keyring.
+PUB_KEY_URL="'"$PGP_KEY_URL"'"
+SIG_URL="${BLOCKLIST_URL}.asc" # Assuming signature is .asc
+TMP_KEYRING="$BLOCKLIST_DIR/tmp_keyring.gpg"
+TMP_PUBKEY="$BLOCKLIST_DIR/pubkey.asc"
+TMP_SIG="$BLOCKLIST_DIR/signature.asc"
+
+# 1. Download Public Key
+if ! curl -s --fail "$PUB_KEY_URL" -o "$TMP_PUBKEY"; then
+    log "CRITICAL: Failed to download Public Key. Aborting."
+    exit 1
+fi
+
+# 2. Download Detached Signature
+if ! curl -s --fail "$SIG_URL" -o "$TMP_SIG"; then
+    log "CRITICAL: Failed to download PGP Signature. Aborting."
+    exit 1
+fi
+
+# 3. Verify
+# Import key to temp keyring
+rm -f "$TMP_KEYRING"
+'$CMD_GPG' --no-default-keyring --keyring "$TMP_KEYRING" --import "$TMP_PUBKEY" >/dev/null 2>&1
+
+# Verify data against signature
+if '$CMD_GPG' --no-default-keyring --keyring "$TMP_KEYRING" --verify "$TMP_SIG" "$TMP_BLOCKLIST" >/dev/null 2>&1; then
+    log "INFO: PGP Signature Verified. Authenticity Confirmed."
+else
+    log "CRITICAL: PGP Signature INVALID! File may be tampered. Aborting."
+    exit 1
+fi
+
+# Cleanup auth files
+rm -f "$TMP_KEYRING" "$TMP_PUBKEY" "$TMP_SIG"
+'
     fi
+    echo "$LOGIC"
+}
+
+create_iptables_file() {
+    local SHEBANG="$1"
+    local SECURITY_BLOCK=$(get_security_logic)
 
 cat <<EOF > "$GENERATED_SCRIPT_PATH"
 $SHEBANG
@@ -166,8 +242,6 @@ set -euo pipefail
 
 # ==============================================================================
 # Script: update_blocklist.sh (IPtables/IPSet Version)
-# Description: Downloads, validates, and updates a list of malicious IPs.
-#              Uses IPSet 'swap' method for atomic updates (no downtime).
 # Generated by: setup_blocklist_manager.sh
 # ==============================================================================
 
@@ -181,87 +255,76 @@ IPSET_SAVE_FILE="\$BLOCKLIST_DIR/ipset_dump.save"
 BLOCKLIST_SET_NAME="myblocklist"
 LOGFILE="/var/log/ipset_update.log"
 
-# --- Dynamic Paths (Hardcoded for Security against PATH Hijacking) ---
+# --- Dynamic Paths ---
 IPTABLES="$CMD_IPTABLES"
 IPSET="$CMD_IPSET"
 RM="$CMD_RM"
 
-# --- Logging Function ---
 log() { echo "\$(date '+%Y-%m-%d %H:%M:%S') : \$*" >> "\$LOGFILE"; }
 
-# --- 1. Preparation ---
-# Create directory structure and log file if they don't exist
-mkdir -p "\$BLOCKLIST_DIR"
+# --- 1. Secure Preparation ---
+# Create directory and set permissions to 700 (Read/Write/Execute for root ONLY)
+if [[ ! -d "\$BLOCKLIST_DIR" ]]; then
+    mkdir -p "\$BLOCKLIST_DIR"
+    chmod 700 "\$BLOCKLIST_DIR"
+fi
 touch "\$PREVIOUS_BLOCKLIST" "\$LOGFILE"
+chmod 600 "\$LOGFILE" # Log file secure too
 
 # --- 2. Secure Download ---
-# curl flags: -s (silent), --fail (exit on 404/500 errors)
 if ! curl -s --fail "\$BLOCKLIST_URL" -o "\$TMP_BLOCKLIST"; then
-    log "ERROR: Failed to download blocklist from source."
+    log "ERROR: Failed to download blocklist."
     exit 1
 fi
 
-$SHA_LOGIC
+$SECURITY_BLOCK
 
 # --- 3. Strict Validation ---
-# We sanitize the input. We only accept valid IPv4 formats (0.0.0.0 to 255.255.255.255).
-# Regex: Checks structure. Awk: Checks numerical range (<=255).
 grep -E '^([0-9]{1,3}\.){3}[0-9]{1,3}$' "\$TMP_BLOCKLIST" | \
 awk -F. '\$1<=255 && \$2<=255 && \$3<=255 && \$4<=255' | \
 sort -u > "\$CURRENT_BLOCKLIST"
 
-# Safety Check: Never apply an empty list (would clear protection)
 if [[ ! -s "\$CURRENT_BLOCKLIST" ]]; then
-    log "ERROR: Blocklist is empty after validation. Aborting update to maintain protection."
+    log "ERROR: Blocklist is empty after validation. Aborting."
     exit 1
 fi
 
 log "INFO: \$(wc -l < "\$CURRENT_BLOCKLIST") valid IPs loaded."
 
-# --- 4. Atomic Update (The Swap Method) ---
-# We create a temporary IPSet, fill it, then swap it with the live set.
-# This ensures there is ZERO moment where the firewall is unprotected.
-
+# --- 4. Atomic Update (Swap) ---
 TMP_SET_NAME="\${BLOCKLIST_SET_NAME}_tmp"
 
-# Flush or create temporary set
 if \$IPSET list -n | grep -q "\$TMP_SET_NAME"; then
     \$IPSET flush "\$TMP_SET_NAME"
 else
     \$IPSET create "\$TMP_SET_NAME" hash:ip
 fi
 
-# Fill temporary set (suppress errors for duplicates)
 while read -r IP; do
     \$IPSET add "\$TMP_SET_NAME" "\$IP" 2>/dev/null || true
 done < "\$CURRENT_BLOCKLIST"
 
-# Perform the Swap
 if \$IPSET list -n | grep -q "\$BLOCKLIST_SET_NAME"; then
     \$IPSET swap "\$TMP_SET_NAME" "\$BLOCKLIST_SET_NAME"
     \$IPSET destroy "\$TMP_SET_NAME"
 else
-    # First run: just rename
     \$IPSET rename "\$TMP_SET_NAME" "\$BLOCKLIST_SET_NAME"
 fi
 
 # --- 5. Persistence ---
-# Save the set to a file so it can be restored on reboot
 \$IPSET save > "\$IPSET_SAVE_FILE"
+chmod 600 "\$IPSET_SAVE_FILE"
 
-# --- 6. Firewall Rule Enforcement ---
-# Ensure the rule exists in IPtables. If not, insert it at the top.
+# --- 6. Firewall Rule ---
 if ! \$IPTABLES -C INPUT -m set --match-set "\$BLOCKLIST_SET_NAME" src -j DROP 2>/dev/null; then
     \$IPTABLES -I INPUT -m set --match-set "\$BLOCKLIST_SET_NAME" src -j DROP
-    log "INFO: Added IPtables rule to Drop traffic from blocklist."
+    log "INFO: Added IPtables rule."
 fi
 
-# --- 7. Logging Changes ---
-# Compare previous list vs current list to log what changed
+# --- 7. Logging & Cleanup ---
 comm -23 <(sort -u "\$PREVIOUS_BLOCKLIST") <(sort -u "\$CURRENT_BLOCKLIST") | while read -r IP; do log "REMOVED: \$IP"; done
 comm -13 <(sort -u "\$PREVIOUS_BLOCKLIST") <(sort -u "\$CURRENT_BLOCKLIST") | while read -r IP; do log "ADDED: \$IP"; done
 
-# --- 8. Cleanup ---
 cp "\$CURRENT_BLOCKLIST" "\$PREVIOUS_BLOCKLIST"
 \$RM -f "\$TMP_BLOCKLIST"
 
@@ -271,26 +334,7 @@ EOF
 
 create_nftables_file() {
     local SHEBANG="$1"
-    local SHA_LOGIC=""
-    if [[ "$USE_SHA256" == "yes" || "$USE_SHA256" == "y" ]]; then
-        SHA_LOGIC='
-# --- Security: SHA256 Integrity Check ---
-HASH_URL="${BLOCKLIST_URL}.sha256"
-if curl -s --fail "$HASH_URL" -o "$BLOCKLIST_DIR/remote.sha256"; then
-    REMOTE_HASH=$(awk "{print \$1}" "$BLOCKLIST_DIR/remote.sha256")
-    LOCAL_HASH=$(sha256sum "$TMP_BLOCKLIST" | awk "{print \$1}")
-    
-    if [[ "$REMOTE_HASH" != "$LOCAL_HASH" ]]; then
-        log "CRITICAL: SHA256 mismatch! Update aborted."
-        exit 1
-    else
-        log "INFO: SHA256 Verified."
-    fi
-else
-    log "WARN: Could not download SHA256 file. Skipping verification."
-fi
-'
-    fi
+    local SECURITY_BLOCK=$(get_security_logic)
 
 cat <<EOF > "$GENERATED_SCRIPT_PATH"
 $SHEBANG
@@ -298,7 +342,6 @@ set -euo pipefail
 
 # ==============================================================================
 # Script: update_blocklist.sh (NFtables Version)
-# Description: Downloads, validates, and updates a list of malicious IPs.
 # Generated by: setup_blocklist_manager.sh
 # ==============================================================================
 
@@ -311,7 +354,6 @@ TMP_BLOCKLIST="\$BLOCKLIST_DIR/tmp_blocklist.txt"
 NFT_SAVE_FILE="\$BLOCKLIST_DIR/nftables_blocklist.nft"
 LOGFILE="/var/log/nft_blocklist_update.log"
 
-# NFtables Objects
 NFT_TABLE="inet filter"
 NFT_CHAIN="input"
 NFT_SET="blocklist_ipv4"
@@ -320,12 +362,15 @@ NFT_SET="blocklist_ipv4"
 NFT="$CMD_NFT"
 RM="$CMD_RM"
 
-# --- Logging Function ---
 log() { echo "\$(date '+%Y-%m-%d %H:%M:%S') : \$*" >> "\$LOGFILE"; }
 
-# --- 1. Preparation ---
-mkdir -p "\$BLOCKLIST_DIR"
+# --- 1. Secure Preparation ---
+if [[ ! -d "\$BLOCKLIST_DIR" ]]; then
+    mkdir -p "\$BLOCKLIST_DIR"
+    chmod 700 "\$BLOCKLIST_DIR"
+fi
 touch "\$PREVIOUS_BLOCKLIST" "\$LOGFILE"
+chmod 600 "\$LOGFILE"
 
 # --- 2. Secure Download ---
 if ! curl -s --fail "\$BLOCKLIST_URL" -o "\$TMP_BLOCKLIST"; then
@@ -333,35 +378,29 @@ if ! curl -s --fail "\$BLOCKLIST_URL" -o "\$TMP_BLOCKLIST"; then
     exit 1
 fi
 
-$SHA_LOGIC
+$SECURITY_BLOCK
 
 # --- 3. Strict Validation ---
-# Validate IPv4 format (Regex) and range 0-255 (Awk)
 grep -E '^([0-9]{1,3}\.){3}[0-9]{1,3}$' "\$TMP_BLOCKLIST" | \
 awk -F. '\$1<=255 && \$2<=255 && \$3<=255 && \$4<=255' | \
 sort -u > "\$CURRENT_BLOCKLIST"
 
-# Safety Check: Empty list protection
 if [[ ! -s "\$CURRENT_BLOCKLIST" ]]; then
-    log "ERROR: Blocklist is empty after validation. Aborting update."
+    log "ERROR: Blocklist is empty after validation. Aborting."
     exit 1
 fi
 
 log "INFO: \$(wc -l < "\$CURRENT_BLOCKLIST") valid IPs loaded."
 
 # --- 4. NFtables Structure ---
-# Create table and set if they don't exist
 if ! \$NFT list table \$NFT_TABLE >/dev/null 2>&1; then
     \$NFT add table \$NFT_TABLE
-    log "INFO: Table \$NFT_TABLE created"
 fi
 if ! \$NFT list set \$NFT_TABLE \$NFT_SET >/dev/null 2>&1; then
     \$NFT add set \$NFT_TABLE \$NFT_SET '{ type ipv4_addr; flags interval; }'
-    log "INFO: Set \$NFT_SET created"
 fi
 
 # --- 5. Atomic Update ---
-# Flush old entries and add new ones
 \$NFT flush set \$NFT_TABLE \$NFT_SET
 while read -r IP; do
     \$NFT add element \$NFT_TABLE \$NFT_SET { \$IP } 2>/dev/null || log "WARN: Could not add \$IP"
@@ -375,13 +414,12 @@ fi
 
 # --- 7. Persistence ---
 \$NFT list table \$NFT_TABLE > "\$NFT_SAVE_FILE"
-log "INFO: NFtables state saved to file."
+chmod 600 "\$NFT_SAVE_FILE"
 
-# --- 8. Logging Changes ---
+# --- 8. Logging & Cleanup ---
 comm -23 <(sort -u "\$PREVIOUS_BLOCKLIST") <(sort -u "\$CURRENT_BLOCKLIST") | while read -r IP; do log "REMOVED: \$IP"; done
 comm -13 <(sort -u "\$PREVIOUS_BLOCKLIST") <(sort -u "\$CURRENT_BLOCKLIST") | while read -r IP; do log "ADDED: \$IP"; done
 
-# --- 9. Cleanup ---
 cp "\$CURRENT_BLOCKLIST" "\$PREVIOUS_BLOCKLIST"
 \$RM -f "\$TMP_BLOCKLIST"
 
@@ -398,18 +436,16 @@ setup_permissions() {
 
     if [[ "${PERM_CHOICE,,}" == "yes" || "${PERM_CHOICE,,}" == "y" ]]; then
         $CMD_CHMOD +x "$GENERATED_SCRIPT_PATH"
-        log_success "Permissions granted: +x"
+        log_success "Permissions granted."
         
-        # New Feature: Immutable Bit
         log_input "Do you want to LOCK the file (immutable bit)? (yes/no)"
-        echo "      (Prevents modification/deletion even by root. Recommended for Prod.)"
         read -r LOCK_CHOICE
         if [[ "${LOCK_CHOICE,,}" == "yes" || "${LOCK_CHOICE,,}" == "y" ]]; then
             if command -v chattr &>/dev/null; then
                 chattr +i "$GENERATED_SCRIPT_PATH"
-                log_success "File locked! (Use 'chattr -i' to unlock if you need to edit it)."
+                log_success "File locked (immutable)."
             else
-                log_error "'chattr' command not found. Skipping lock."
+                log_error "'chattr' not found. Skipping lock."
             fi
         fi
     else
@@ -418,20 +454,83 @@ setup_permissions() {
     fi
 }
 
-# --- Step 5: Cron Job ---
-setup_cron() {
+# --- Step 5: Automation (Systemd/Cron) ---
+setup_automation() {
     echo ""
-    log_info "Step 5: Automation (Cron)"
-    log_input "Do you want to create a Cron task (Every hour)? (yes/no)"
-    read -r CRON_CHOICE
+    log_info "Step 5: Automation"
+    echo -e "Choose an automation method:"
+    echo -e "  1) ${CYAN}Systemd Timer${NC} (Recommended - Better logs & dependency handling)"
+    echo -e "  2) ${CYAN}Cron Job${NC} (Legacy - Simple)"
+    echo -e "  3) ${CYAN}None${NC}"
+    
+    log_input "Enter your choice (1/2/3):"
+    read -r AUTO_CHOICE
 
-    if [[ "${CRON_CHOICE,,}" == "yes" || "${CRON_CHOICE,,}" == "y" ]]; then
-        if crontab -l 2>/dev/null | grep -q "$GENERATED_SCRIPT_PATH"; then
-             log_info "Cron job already exists."
-        else
-            (crontab -l 2>/dev/null; echo "0 * * * * $GENERATED_SCRIPT_PATH >/dev/null 2>&1") | crontab -
-            log_success "Cron job added successfully."
-        fi
+    case "$AUTO_CHOICE" in
+        1)
+            setup_systemd_timer
+            ;;
+        2)
+            setup_cron_job
+            ;;
+        *)
+            log_info "No automation configured."
+            ;;
+    esac
+}
+
+setup_systemd_timer() {
+    if ! command -v systemctl &>/dev/null; then
+        log_error "Systemd is not available. Falling back to Cron."
+        setup_cron_job
+        return
+    fi
+
+    log_info "Configuring Systemd Timer..."
+    
+    SERVICE_FILE="/etc/systemd/system/blocklist-update.service"
+    TIMER_FILE="/etc/systemd/system/blocklist-update.timer"
+
+    # Create Service
+    cat <<EOF > "$SERVICE_FILE"
+[Unit]
+Description=Update IPv4 Blocklist
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=$GENERATED_SCRIPT_PATH
+User=root
+EOF
+
+    # Create Timer (Hourly)
+    cat <<EOF > "$TIMER_FILE"
+[Unit]
+Description=Run blocklist update every hour
+
+[Timer]
+OnCalendar=hourly
+Persistent=true
+Unit=blocklist-update.service
+
+[Install]
+WantedBy=timers.target
+EOF
+
+    # Enable
+    $CMD_SYSTEMCTL daemon-reload
+    $CMD_SYSTEMCTL enable --now blocklist-update.timer
+    log_success "Systemd timer enabled and started."
+}
+
+setup_cron_job() {
+    log_info "Configuring Cron Job..."
+    if crontab -l 2>/dev/null | grep -q "$GENERATED_SCRIPT_PATH"; then
+            log_info "Cron job already exists."
+    else
+        (crontab -l 2>/dev/null; echo "0 * * * * $GENERATED_SCRIPT_PATH >/dev/null 2>&1") | crontab -
+        log_success "Cron job added (Hourly)."
     fi
 }
 
@@ -442,7 +541,7 @@ select_working_source
 configure_security
 generate_script
 setup_permissions
-setup_cron
+setup_automation
 
 echo ""
-log_success "Installation complete. Enjoy your automated protection!"
+log_success "Installation complete. System secured."
