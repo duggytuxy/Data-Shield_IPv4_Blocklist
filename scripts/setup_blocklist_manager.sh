@@ -1,11 +1,11 @@
 #!/bin/bash
 # ==============================================================================
 # Script Name: setup_blocklist_manager.sh
-# Version:     0.1.02 (Release Candidate 2)
+# Version:     0.1.03 (Release Candidate 3)
 # Description: Interactive installer for IPv4 Blocklist updater.
-#              Features: Source Failover, Path Hardening, PGP/SHA256 Security,
+#              Features: Source Failover, Path Hardening, PGP/SHA256,
 #              Atomic Updates, Strict IP Validation, Immutable Locking,
-#              Secure Storage (chmod 700) & Systemd Timer support.
+#              Secure Storage, Systemd Timer & Re-run Safety.
 # Author:      Duggy Tuxy (Laurent M.)
 # ==============================================================================
 
@@ -40,6 +40,8 @@ CMD_NFT=$(command -v nft || echo "/usr/sbin/nft")
 CMD_CURL=$(command -v curl || echo "/usr/bin/curl")
 CMD_RM=$(command -v rm || echo "/bin/rm")
 CMD_CHMOD=$(command -v chmod || echo "/bin/chmod")
+CMD_CHATTR=$(command -v chattr || echo "/usr/bin/chattr")
+CMD_LSATTR=$(command -v lsattr || echo "/usr/bin/lsattr")
 CMD_GPG=$(command -v gpg || echo "/usr/bin/gpg")
 CMD_SYSTEMCTL=$(command -v systemctl || echo "/bin/systemctl")
 
@@ -75,6 +77,20 @@ check_dependencies() {
     log_success "All base dependencies are installed."
 }
 
+# --- Step 0: Pre-flight Cleanup (Fix for Immutable Trap) ---
+unlock_existing_script() {
+    if [[ -f "$GENERATED_SCRIPT_PATH" ]]; then
+        # Check if file is immutable (has 'i' attribute)
+        if $CMD_LSATTR "$GENERATED_SCRIPT_PATH" 2>/dev/null | grep -q "i"; then
+            log_info "Existing script is locked (immutable). Unlocking for update..."
+            $CMD_CHATTR -i "$GENERATED_SCRIPT_PATH" || {
+                log_error "Failed to unlock $GENERATED_SCRIPT_PATH. Cannot overwrite."
+                exit 1
+            }
+        fi
+    fi
+}
+
 # --- Step 1: Source Connectivity Test ---
 select_working_source() {
     echo ""
@@ -82,11 +98,12 @@ select_working_source() {
     
     for url in "${SOURCES[@]}"; do
         log_info "Testing: $url"
-        if $CMD_CURL -s -I --fail "$url" > /dev/null; then
+        # Added timeouts to avoid hanging
+        if $CMD_CURL --connect-timeout 5 --max-time 10 -s -I --fail "$url" > /dev/null; then
             SELECTED_URL="$url"
             log_success "Source reachable (HEAD). Selecting: $url"
             break
-        elif $CMD_CURL -sfL "$url" -o /dev/null; then
+        elif $CMD_CURL --connect-timeout 5 --max-time 15 -sfL "$url" -o /dev/null; then
             SELECTED_URL="$url"
             log_success "Source reachable (GET). Selecting: $url"
             break
@@ -125,14 +142,17 @@ configure_security() {
                 exit 1
             fi
             log_info "Selected: PGP Signature Verification."
-            log_input "Please enter the URL of the Public Key (.asc/pub):"
-            # Default placeholder if user hits enter, but ideally they provide one
-            read -r USER_KEY_URL
-            if [[ -z "$USER_KEY_URL" ]]; then
-                log_error "Public Key URL is required for PGP mode."
-                exit 1
-            fi
-            PGP_KEY_URL="$USER_KEY_URL"
+            
+            while [[ -z "$PGP_KEY_URL" ]]; do
+                log_input "Please enter the URL of the Public Key (.asc/pub):"
+                read -r USER_KEY_URL
+                # Basic URL validation
+                if [[ "$USER_KEY_URL" =~ ^https?:// ]]; then
+                    PGP_KEY_URL="$USER_KEY_URL"
+                else
+                    log_error "Invalid URL. Must start with http:// or https://"
+                fi
+            done
             ;;
         *)
             SECURITY_MODE="none"
@@ -149,6 +169,9 @@ generate_script() {
     read -r ENGINE_CHOICE
 
     local SHEBANG="#!$CMD_BASH"
+    
+    # Ensure destination is writable
+    unlock_existing_script
 
     case "${ENGINE_CHOICE,,}" in
         iptables)
@@ -177,7 +200,7 @@ get_security_logic() {
         LOGIC='
 # --- Security: SHA256 Integrity Check ---
 HASH_URL="${BLOCKLIST_URL}.sha256"
-if curl -s --fail "$HASH_URL" -o "$BLOCKLIST_DIR/remote.sha256"; then
+if curl --connect-timeout 10 --max-time 30 -s --fail "$HASH_URL" -o "$BLOCKLIST_DIR/remote.sha256"; then
     REMOTE_HASH=$(awk "{print \$1}" "$BLOCKLIST_DIR/remote.sha256")
     LOCAL_HASH=$(sha256sum "$TMP_BLOCKLIST" | awk "{print \$1}")
     if [[ "$REMOTE_HASH" != "$LOCAL_HASH" ]]; then
@@ -195,19 +218,19 @@ fi
 # --- Security: PGP Signature Verification ---
 # We use an ephemeral keyring to avoid polluting the root user keyring.
 PUB_KEY_URL="'"$PGP_KEY_URL"'"
-SIG_URL="${BLOCKLIST_URL}.asc" # Assuming signature is .asc
+SIG_URL="${BLOCKLIST_URL}.asc"
 TMP_KEYRING="$BLOCKLIST_DIR/tmp_keyring.gpg"
 TMP_PUBKEY="$BLOCKLIST_DIR/pubkey.asc"
 TMP_SIG="$BLOCKLIST_DIR/signature.asc"
 
 # 1. Download Public Key
-if ! curl -s --fail "$PUB_KEY_URL" -o "$TMP_PUBKEY"; then
+if ! curl --connect-timeout 10 --max-time 30 -s --fail "$PUB_KEY_URL" -o "$TMP_PUBKEY"; then
     log "CRITICAL: Failed to download Public Key. Aborting."
     exit 1
 fi
 
 # 2. Download Detached Signature
-if ! curl -s --fail "$SIG_URL" -o "$TMP_SIG"; then
+if ! curl --connect-timeout 10 --max-time 30 -s --fail "$SIG_URL" -o "$TMP_SIG"; then
     log "CRITICAL: Failed to download PGP Signature. Aborting."
     exit 1
 fi
@@ -272,7 +295,8 @@ touch "\$PREVIOUS_BLOCKLIST" "\$LOGFILE"
 chmod 600 "\$LOGFILE" # Log file secure too
 
 # --- 2. Secure Download ---
-if ! curl -s --fail "\$BLOCKLIST_URL" -o "\$TMP_BLOCKLIST"; then
+# Added Timeouts to prevent hanging processes
+if ! curl --connect-timeout 10 --max-time 60 -s --fail "\$BLOCKLIST_URL" -o "\$TMP_BLOCKLIST"; then
     log "ERROR: Failed to download blocklist."
     exit 1
 fi
@@ -373,7 +397,7 @@ touch "\$PREVIOUS_BLOCKLIST" "\$LOGFILE"
 chmod 600 "\$LOGFILE"
 
 # --- 2. Secure Download ---
-if ! curl -s --fail "\$BLOCKLIST_URL" -o "\$TMP_BLOCKLIST"; then
+if ! curl --connect-timeout 10 --max-time 60 -s --fail "\$BLOCKLIST_URL" -o "\$TMP_BLOCKLIST"; then
     log "ERROR: Failed to download blocklist."
     exit 1
 fi
@@ -518,9 +542,12 @@ Unit=blocklist-update.service
 WantedBy=timers.target
 EOF
 
-    # Enable
+    # Enable and Reload
     $CMD_SYSTEMCTL daemon-reload
     $CMD_SYSTEMCTL enable --now blocklist-update.timer
+    # If timer was already running, restart it to apply changes
+    $CMD_SYSTEMCTL restart blocklist-update.timer
+    
     log_success "Systemd timer enabled and started."
 }
 
