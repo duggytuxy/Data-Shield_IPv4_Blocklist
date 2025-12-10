@@ -30,10 +30,11 @@
   <br />
 </div>
 
-<div align="center">
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/L4L71HRILD)
-<br />
-</div>
+<p align="center">
+  <a href="https://ko-fi.com/L4L71HRILD" target="_blank">
+    <img src="https://ko-fi.com/img/githubbutton_sm.svg" alt="Support me on Ko-fi">
+  </a>
+</p>
 
 # Data-Shield IPv4 Blocklist 
 
