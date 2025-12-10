@@ -30,9 +30,7 @@
   <br />
 </div>
 
-<p align="left">
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/L4L71HRILD)
-</p>
 
 # Data-Shield IPv4 Blocklist 
 
