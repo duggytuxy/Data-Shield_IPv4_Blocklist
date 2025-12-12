@@ -1,20 +1,25 @@
 #!/bin/bash
 # ==============================================================================
 # Script Name: setup_blocklist_manager.sh
-# Version :    0.1.10 (Pre-Production 1)
-# Description: Production-grade installer for IPv4 Blocklist Manager.
-#              Features: Dynamic Failover, Atomic Firewall Updates,
-#              Sandboxed Systemd, Log Rotation, Strict Validation.
+# Version :    0.1.11 (Pre-Production 2)
+# Description: Enterprise-grade installer for an IPv4 Blocklist Manager.
+#              Features:
+#               - Dynamic Source Failover (High Availability)
+#               - Atomic NFTables Updates (No firewall downtime)
+#               - Systemd Hardening (Sandboxing)
+#               - Automatic Log Rotation
+#               - Strict Input Validation (IPv4 Regex)
 # Target OS:   Ubuntu 24.04 LTS or + / Debian 13 or +
 # Author:      Duggy Tuxy (Laurent M.)
 # ==============================================================================
 
-# --- Safety & Strict Mode ---
+# --- Strict Mode & Safety ---
 set -euo pipefail
 IFS=$'\n\t'
 
 # --- Configuration Constants ---
-# Using an array implies we will inject ALL of them into the final script for failover
+# Array of blocklist mirrors. These will be injected into the final script
+# to ensure high availability (failover) during every update.
 readonly SOURCES=(
     "https://gitea.com/duggytuxy/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_data-shield_ipv4_blocklist.txt"
     "https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_data-shield_ipv4_blocklist.txt?ref_type=heads"
@@ -22,7 +27,8 @@ readonly SOURCES=(
     "https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@main/prod_data-shield_ipv4_blocklist.txt"
 )
 
-readonly TARGET_SCRIPT="/usr/local/bin/update_blocklist.sh"
+readonly INSTALL_DIR="/usr/local/bin"
+readonly TARGET_SCRIPT="${INSTALL_DIR}/update_blocklist.sh"
 readonly LOG_FILE="/var/log/blocklist_manager_install.log"
 
 # --- Visual Feedback ---
@@ -43,7 +49,9 @@ log() {
         WARNING) color=$C_WARN ;;
         ERROR)   color=$C_ERR ;;
     esac
-    echo -e "${color}[${level}]${C_RESET} ${msg}" | tee -a "$LOG_FILE"
+    # Print to console with color and append to log file without color
+    echo -e "${color}[${level}]${C_RESET} ${msg}"
+    echo "$(date '+%Y-%m-%d %H:%M:%S') [${level}] ${msg}" >> "$LOG_FILE"
 }
 
 assert_root() {
@@ -53,18 +61,24 @@ assert_root() {
     fi
 }
 
-check_dependencies() {
-    log INFO "Checking dependencies..."
+check_environment() {
+    log INFO "Checking system environment and dependencies..."
+    
+    # Ensure install directory exists
+    if [[ ! -d "$INSTALL_DIR" ]]; then
+        mkdir -p "$INSTALL_DIR"
+    fi
+
     local deps=("curl" "grep" "awk" "sed" "systemctl")
     local missing=()
 
-    # Check firewall backend availability
+    # Check firewall backend availability (NFTables is the target standard)
     if command -v nft >/dev/null; then
-        log SUCCESS "Backend detected: nftables"
-    elif command -v iptables >/dev/null && command -v ipset >/dev/null; then
-        log SUCCESS "Backend detected: iptables + ipset"
+        log SUCCESS "Firewall backend detected: nftables"
     else
-        missing+=("nftables OR (iptables + ipset)")
+        log ERROR "nftables is not installed. This script requires nftables."
+        log INFO "Please run: apt update && apt install nftables"
+        exit 1
     fi
 
     for cmd in "${deps[@]}"; do
@@ -74,25 +88,26 @@ check_dependencies() {
     done
 
     if [[ ${#missing[@]} -gt 0 ]]; then
-        log ERROR "Missing dependencies: ${missing[*]}"
+        log ERROR "Missing system dependencies: ${missing[*]}"
         exit 1
     fi
 }
 
-# --- Core Generators ---
+# --- Code Generators ---
 
 # Function: generate_failover_logic
-# Description: Injects a bash loop to try mirrors sequentially inside the target script.
+# Description: Generates the bash code responsible for iterating over mirrors.
+#              This is injected dynamically into the target script.
 generate_failover_logic() {
     cat <<'EOF'
     # --- Failover Logic ---
     TMP_FILE=$(mktemp)
     DOWNLOAD_SUCCESS=false
     
-    # List of mirrors injected by setup script
+    # List of mirrors injected by the setup script
     MIRRORS=(
 EOF
-    # Injection of URLs from the SOURCES array
+    # Inject URLs from the SOURCES constant
     for url in "${SOURCES[@]}"; do
         echo "        \"$url\""
     done
@@ -102,8 +117,9 @@ EOF
 
     for url in "${MIRRORS[@]}"; do
         log "INFO" "Attempting download from: $url"
-        # Timeout settings: 5s connect, 15s max transfer
+        # Timeout settings: 5s connect, 15s max transfer to prevent hanging
         if curl -fsSL --connect-timeout 5 --max-time 15 "$url" -o "$TMP_FILE"; then
+            # Verify the file is not empty
             if [[ -s "$TMP_FILE" ]]; then
                 log "INFO" "Download successful."
                 DOWNLOAD_SUCCESS=true
@@ -117,75 +133,94 @@ EOF
     done
 
     if [[ "$DOWNLOAD_SUCCESS" = false ]]; then
-        log "CRITICAL" "Unable to download blocklist from any mirror."
+        log "CRITICAL" "All mirrors failed. Aborting update to preserve current rules."
         rm -f "$TMP_FILE"
         exit 1
     fi
 EOF
 }
 
+# Function: create_nftables_script
+# Description: Writes the final operational script to disk.
 create_nftables_script() {
     local failover_block
     failover_block=$(generate_failover_logic)
 
     cat <<EOF > "$TARGET_SCRIPT"
 #!/bin/bash
+# ==============================================================================
+# Script: update_blocklist.sh
+# Type:   NFTables Atomic Updater
+# Generated by: setup_blocklist_manager.sh
+# ==============================================================================
 set -euo pipefail
 
 # --- Configuration ---
 NFT_TABLE="inet filter"
+NFT_CHAIN="input"
 NFT_SET="blocklist_ipv4"
 LOG_FILE="/var/log/nft_blocklist.log"
 NFT_CMD="/usr/sbin/nft"
 
+# Simple logging function
 log() { echo "\$(date '+%Y-%m-%d %H:%M:%S') [\$1] : \$2" >> "\$LOG_FILE"; }
 
-# 1. Acquire Data (Failover)
-log "INFO" "Starting blocklist update..."
+# 1. Acquire Data (Failover Mechanism)
+log "INFO" "Starting blocklist update sequence..."
 $failover_block
 
-# 2. Validate Data
-# Regex for strictly valid IPv4 (0-255)
+# 2. Validate Data (Input Validation)
+# We use grep with ERE to strictly match valid IPv4 addresses (0.0.0.0 to 255.255.255.255)
+# This prevents malicious injection or corrupted data from breaking the firewall.
 VALIDATED_FILE=\$(mktemp)
 grep -E '^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$' "\$TMP_FILE" > "\$VALIDATED_FILE"
 
+# Sanity Check: Ensure we have a reasonable amount of IPs (e.g., > 10)
 LINE_COUNT=\$(wc -l < "\$VALIDATED_FILE")
 if [[ "\$LINE_COUNT" -lt 10 ]]; then
-    log "ERROR" "Validated file too small (\$LINE_COUNT lines). Security triggered."
+    log "ERROR" "Validated file is too small (\$LINE_COUNT lines). Security abort triggered."
     rm -f "\$TMP_FILE" "\$VALIDATED_FILE"
     exit 1
 fi
 
-# 3. Atomic Apply (NFTables)
-# We build a single transaction file to ensure atomicity
+# 3. Atomic Apply (NFTables Transaction)
+# We build a single transaction file. When loaded with 'nft -f', 
+# operations are atomic: the set is flushed and repopulated instantly.
 BATCH_FILE=\$(mktemp)
 
 cat <<NFT > "\$BATCH_FILE"
+# Ensure the table and chain exist (Idempotency)
 add table \$NFT_TABLE
+add chain \$NFT_TABLE \$NFT_CHAIN { type filter hook input priority 0; }
+
+# Define and populate the set
 add set \$NFT_TABLE \$NFT_SET { type ipv4_addr; flags interval; }
 flush set \$NFT_TABLE \$NFT_SET
 add element \$NFT_TABLE \$NFT_SET {
 NFT
 
-# Append IPs with comma separation
+# Append IPs from validated file, adding a comma to each line for NFT syntax
 sed 's/$/, /' "\$VALIDATED_FILE" >> "\$BATCH_FILE"
 
 cat <<NFT >> "\$BATCH_FILE"
 }
 NFT
 
-# Apply the batch
+# Apply the batch transaction
 if \$NFT_CMD -f "\$BATCH_FILE"; then
-    log "SUCCESS" "Blocklist updated: \$LINE_COUNT IPs loaded."
+    log "SUCCESS" "Blocklist updated successfully. \$LINE_COUNT IPs active."
 else
-    log "ERROR" "Failed to apply NFTables rules."
+    log "ERROR" "Failed to apply NFTables transaction. Old rules remain active."
+    # Keep temp files for debugging in case of error
+    exit 1
 fi
 
-# 4. Enforce Rule (Idempotent)
-# Check if rule exists, if not add it. Drops traffic from the set.
-if ! \$NFT_CMD list chain \$NFT_TABLE input | grep -q "@\$NFT_SET"; then
-    \$NFT_CMD insert rule \$NFT_TABLE input ip saddr @\$NFT_SET drop
-    log "INFO" "Blocking rule injected."
+# 4. Enforce Blocking Rule
+# We ensure the drop rule exists at the top of the chain.
+# Note: 'index 0' attempts to put it early, but simple 'insert' is safer for idempotency here.
+if ! \$NFT_CMD list chain \$NFT_TABLE \$NFT_CHAIN | grep -q "@\$NFT_SET"; then
+    \$NFT_CMD insert rule \$NFT_TABLE \$NFT_CHAIN ip saddr @\$NFT_SET drop
+    log "INFO" "Blocking rule was missing and has been injected."
 fi
 
 # Cleanup
@@ -193,14 +228,15 @@ rm -f "\$TMP_FILE" "\$VALIDATED_FILE" "\$BATCH_FILE"
 EOF
 }
 
-# --- Systemd Automation with Hardening ---
+# --- Systemd Automation with Security Hardening ---
 setup_systemd() {
-    log INFO "Configuring Systemd..."
+    log INFO "Configuring Systemd automation..."
     
     local service_file="/etc/systemd/system/blocklist-update.service"
     local timer_file="/etc/systemd/system/blocklist-update.timer"
 
-    # Hardened Service Unit
+    # 1. Service Unit (Hardened)
+    # Uses sandboxing to limit the script's reach if compromised.
     cat <<EOF > "$service_file"
 [Unit]
 Description=Update IPv4 Blocklist Firewall Rules
@@ -216,10 +252,15 @@ ProtectSystem=full
 ProtectHome=true
 PrivateTmp=true
 NoNewPrivileges=true
+# Limit capabilities to Networking only
 CapabilityBoundingSet=CAP_NET_ADMIN
+
+[Install]
+WantedBy=multi-user.target
 EOF
 
-    # Hourly Timer with Random Delay (to spread load on mirrors)
+    # 2. Timer Unit
+    # Runs hourly with a random delay to prevent thundering herd effect on mirrors
     cat <<EOF > "$timer_file"
 [Unit]
 Description=Run blocklist update every hour
@@ -233,9 +274,13 @@ Persistent=true
 WantedBy=timers.target
 EOF
 
+    # Reload and Enable
     systemctl daemon-reload
     systemctl enable --now blocklist-update.timer
-    log SUCCESS "Systemd Timer enabled."
+    # Also enable the service so it runs at least once on boot/network-up
+    systemctl enable blocklist-update.service
+    
+    log SUCCESS "Systemd Timer and Service enabled."
 }
 
 setup_logrotate() {
@@ -255,39 +300,36 @@ EOF
 # --- Main Execution Flow ---
 
 main() {
-    assert_root
-    check_dependencies
+    log INFO "Starting Blocklist Manager Installation..."
     
-    # Detect Engine (Default to NFTables if available as it is the modern standard)
-    if command -v nft >/dev/null; then
-        log INFO "Generating script for NFTables..."
-        create_nftables_script
-    else
-        log INFO "NFTables not found. Generating for IPtables (Legacy)..."
-        # Note: Function create_iptables_script would go here (omitted for brevity, logical equivalent of nft)
-        log ERROR "Please install nftables to use this script (apt install nftables)."
-        exit 1
-    fi
+    assert_root
+    check_environment
+    
+    # 1. Generate the payload script
+    log INFO "Generating NFTables update script at $TARGET_SCRIPT..."
+    create_nftables_script
 
-    # Permissions & Immutability
+    # 2. Set Permissions
     chmod 700 "$TARGET_SCRIPT"
     
-    # Handle Immutability attribute intelligently
+    # 3. Handle File Immutability (If previous install used it)
     if lsattr "$TARGET_SCRIPT" 2>/dev/null | grep -q "i"; then
         chattr -i "$TARGET_SCRIPT"
+        log INFO "Removed immutable flag from existing script."
     fi
-    # Re-lock if desired (optional policy)
-    # chattr +i "$TARGET_SCRIPT"
 
+    # 4. Configure Automation
     setup_systemd
     setup_logrotate
 
-    # First Run
-    log INFO "Immediate execution for initialization..."
+    # 5. Validation Run
+    log INFO "Executing initial blocklist update to verify installation..."
     if "$TARGET_SCRIPT"; then
-        log SUCCESS "Installation complete. Your infrastructure is secure."
+        log SUCCESS "Installation complete. The firewall is now updated and secured."
+        log INFO "Monitor logs using: tail -f /var/log/nft_blocklist.log"
     else
-        log ERROR "The generated script failed during the first test."
+        log ERROR "The generated script failed during the initial test run."
+        log INFO "Please check /var/log/nft_blocklist.log for details."
         exit 1
     fi
 }
