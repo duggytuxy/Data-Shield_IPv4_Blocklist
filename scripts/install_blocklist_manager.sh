@@ -1,6 +1,7 @@
 #!/bin/bash
 # ==============================================================================
 # Script Name: install_blocklist_manager.sh
+# Version:     v0.2.01 (Pre-Retail)
 # Description: Enterprise-grade installer for an IPv4 Blocklist Manager.
 #              Features:
 #               - Multi-Distro Support (Debian/Ubuntu/Fedora)
