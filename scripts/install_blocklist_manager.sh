@@ -10,7 +10,7 @@
 #               - Atomic NFTables Updates (No firewall downtime)
 #               - Systemd Hardening (Sandboxing)
 # Target OS:   Ubuntu 20.04+, Debian 11+, Fedora 41+
-# Author:      Senior Bash Automation Expert
+# Author:      Duggy Tuxy (Laurent M.)
 # ==============================================================================
 
 # --- Strict Mode & Safety ---
