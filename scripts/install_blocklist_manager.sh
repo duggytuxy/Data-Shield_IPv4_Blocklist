@@ -1,11 +1,11 @@
 #!/bin/bash
 # ==============================================================================
 # Script Name: install_blocklist_manager.sh
-# Version:     v0.2.02 (Pre‑Retail)
-# Description: Enterprise‑grade installer for an IPv4 Blocklist Manager.
+# Version:     v0.2.02 (Pre-Retail)
+# Description: Enterprise-grade installer for an IPv4 Blocklist Manager.
 #              Features:
 #               - UFW Compatibility (Isolated Table with High Priority)
-#               - Multi‑Distro Support (Debian/Ubuntu/Fedora)
+#               - Multi-Distro Support (Debian/Ubuntu/Fedora)
 #               - Dynamic Source Failover (High Availability)
 #               - Atomic NFTables Updates (No firewall downtime)
 #               - Systemd Hardening (Sandboxing)
@@ -70,7 +70,7 @@ assert_root() {
 detect_os_and_configure() {
     log INFO "Detecting Operating System..."
 
-    # ----- 1️⃣  Safe parsing of /etc/os-release -----------------------------
+    # ----- Safe parsing of /etc/os-release -----------------------------
     if [[ -f /etc/os-release ]]; then
         # Do NOT source the file – parse only the ID field
         OS_ID=$(grep '^ID=' /etc/os-release | cut -d= -f2 | tr -d '"')
@@ -90,16 +90,16 @@ detect_os_and_configure() {
             PKG_MANAGER="apt"
             ;;
         *)
-            log WARNING "Unknown OS ($OS_ID). Assuming Debian‑style."
+            log WARNING "Unknown OS ($OS_ID). Assuming Debian-style."
             PKG_MANAGER="apt"
             ;;
     esac
 }
 
 handle_fedora_specifics() {
-    log INFO "Applying Fedora‑specific configurations..."
+    log INFO "Applying Fedora-specific configurations..."
 
-    # ----- 2️⃣  Graceful handling of firewalld ------------------------------
+    # ----- Graceful handling of firewalld ------------------------------
     if systemctl is-active --quiet firewalld; then
         log WARNING "Firewalld is active – disabling to avoid NFTables conflict."
         systemctl stop firewalld
@@ -122,7 +122,7 @@ check_environment() {
         mkdir -p "$INSTALL_DIR"
     fi
 
-    # ----- 3️⃣  Secure log file creation ------------------------------------
+    # ----- Secure log file creation ------------------------------------
     if [[ ! -f "$LOG_FILE" ]]; then
         touch "$LOG_FILE"
         chmod 600 "$LOG_FILE"
@@ -167,7 +167,7 @@ generate_failover_logic() {
 
     MIRRORS=(
 EOF
-    # ----- 3️⃣  Escape URLs safely before injection -------------------------
+    # ----- Escape URLs safely before injection -------------------------
     for url in "${SOURCES[@]}"; do
         printf '        "%s"\n' "$url"
     done
@@ -219,10 +219,10 @@ NFT_CMD="/usr/sbin/nft"
 
 log() { echo "\$(date '+%Y-%m-%d %H:%M:%S') [\$1] : \$2" >> "\$LOG_FILE"; }
 
-# --------------------------- 1️⃣  Download blocklist ----------------------
+# --------------------------- Download blocklist ----------------------
 $failover_block
 
-# --------------------------- 2️⃣  Validate IPs ---------------------------
+# --------------------------- Validate IPs ---------------------------
 VALIDATED_FILE=\$(mktemp)
 grep -E '^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\$' "\$TMP_FILE" > "\$VALIDATED_FILE"
 
@@ -236,7 +236,7 @@ if (( LINE_COUNT < 10 )); then
     exit 1
 fi
 
-# --------------------------- 3️⃣  Build atomic nft batch -----------------
+# --------------------------- Build atomic nft batch -----------------
 BATCH_FILE=\$(mktemp)
 
 cat <<NFT > "\$BATCH_FILE"
@@ -247,7 +247,7 @@ flush set \$NFT_TABLE \$NFT_SET
 add element \$NFT_TABLE \$NFT_SET {
 NFT
 
-# Build a comma‑separated list without a trailing comma
+# Build a comma-separated list without a trailing comma
 ELEMENTS=\$(paste -sd, "\$VALIDATED_FILE")
 printf "    %s\n" "\$ELEMENTS" >> "\$BATCH_FILE"
 
@@ -262,7 +262,7 @@ if ! \$NFT_CMD list chain \$NFT_TABLE \$NFT_CHAIN | grep -q "@\$NFT_SET"; then
 fi
 NFT
 
-# --------------------------- 4️⃣  Apply transaction --------------------
+# --------------------------- Apply transaction --------------------
 if ! \$NFT_CMD -f "\$BATCH_FILE" 2>>"\$LOG_FILE"; then
     log ERROR "nft transaction failed – see log."
     rm -f "\$TMP_FILE" "\$VALIDATED_FILE" "\$BATCH_FILE"
@@ -338,23 +338,23 @@ EOF
 
 # --------------------------- Main execution flow -------------------------
 main() {
-    log INFO "Starting Blocklist Manager Installation (UFW‑Safe edition)…"
+    log INFO "Starting Blocklist Manager Installation (UFW-Safe edition)…"
 
     assert_root
     detect_os_and_configure
     check_environment
 
-    log INFO "Generating high‑priority NFTables updater at $TARGET_SCRIPT…"
+    log INFO "Generating high-priority NFTables updater at $TARGET_SCRIPT…"
     create_nftables_script
     chmod 750 "$TARGET_SCRIPT"
 
-    # ----- 9️⃣  Immutable lock (prevent tampering) -------------------------
+    # ----- Immutable lock (prevent tampering) -------------------------
     if lsattr "$TARGET_SCRIPT" 2>/dev/null | grep -q "i"; then
         chattr -i "$TARGET_SCRIPT"
     fi
     chattr +i "$TARGET_SCRIPT"
 
-    # Fedora‑specific SELinux context
+    # Fedora-specific SELinux context
     if [[ "$OS_ID" == "fedora" ]] && command -v restorecon >/dev/null; then
         log INFO "Applying SELinux context to script..."
         restorecon -v "$TARGET_SCRIPT"
