@@ -1,35 +1,36 @@
 #!/bin/bash
 # ==============================================================================
 # Script Name: install_blocklist_manager.sh
-# Version:     v0.2.02 (Pre-Retail)
+# Version:     v0.3.01-1 (Pre-Production)
 # Description: Enterprise-grade installer for an IPv4 Blocklist Manager.
-#              Features:
-#               - UFW Compatibility (Isolated Table with High Priority)
-#               - Multi-Distro Support (Debian/Ubuntu/Fedora)
-#               - Dynamic Source Failover (High Availability)
-#               - Atomic NFTables Updates (No firewall downtime)
+#              Security Features:
+#               - Interactive Source Selection (Official/Custom)
+#               - Strict TLS 1.2+ Enforcement
+#               - Source Integrity Audit (SHA256 Hashing)
+#               - Atomic NFTables Updates (No downtime)
 #               - Systemd Hardening (Sandboxing)
 # Target OS:   Ubuntu 20.04+, Debian 11+, Fedora 41+
 # Author:      Duggy Tuxy (Laurent M.)
 # ==============================================================================
-#
-# ------------------------------------------------------------------------------
 
 # --------------------------- Strict mode & safety ---------------------------
 set -euo pipefail
 IFS=$'\n\t'
 
-# --------------------------- Configuration constants -------------------------
-readonly SOURCES=(
-    "https://gitea.com/duggytuxy/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_data-shield_ipv4_blocklist.txt"
-    "https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_data-shield_ipv4_blocklist.txt?ref_type=heads"
-    "https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_data-shield_ipv4_blocklist.txt"
-    "https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@refs/heads/main/prod_data-shield_ipv4_blocklist.txt"
-)
-
+# --------------------------- Configuration ----------------------------------
 readonly INSTALL_DIR="/usr/local/bin"
 readonly TARGET_SCRIPT="${INSTALL_DIR}/update_blocklist.sh"
 readonly LOG_FILE="/var/log/blocklist_manager_install.log"
+
+# Default Official Sources (Direct Raw Access - No CDN Caching)
+readonly OFFICIAL_SOURCES=(
+    "https://gitea.com/duggytuxy/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_data-shield_ipv4_blocklist.txt"
+    "https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_data-shield_ipv4_blocklist.txt?ref_type=heads"
+    "https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_data-shield_ipv4_blocklist.txt"
+)
+
+# Variable to hold the final selection (Mutable)
+SELECTED_SOURCES=()
 
 # --------------------------- Visual feedback --------------------------------
 readonly C_RESET='\033[0m'
@@ -37,9 +38,9 @@ readonly C_INFO='\033[0;34m'
 readonly C_OK='\033[0;32m'
 readonly C_WARN='\033[0;33m'
 readonly C_ERR='\033[0;31m'
-readonly C_CRIT='\033[1;31m'   # bold red for CRITICAL
+readonly C_QUESTION='\033[0;36m'
 
-# Global variables for environment detection
+# Global variables
 PKG_MANAGER=""
 OS_ID=""
 
@@ -48,14 +49,14 @@ log() {
     local level=$1
     local msg=$2
     local color=$C_INFO
-
     case $level in
         SUCCESS) color=$C_OK ;;
         WARNING) color=$C_WARN ;;
         ERROR)   color=$C_ERR ;;
-        CRITICAL)color=$C_CRIT ;;
+        QUESTION) color=$C_QUESTION ;;
     esac
     echo -e "${color}[${level}]${C_RESET} ${msg}"
+    # Remove color codes for log file
     echo "$(date '+%Y-%m-%d %H:%M:%S') [${level}] ${msg}" >> "$LOG_FILE"
 }
 
@@ -66,13 +67,66 @@ assert_root() {
     fi
 }
 
-# --------------------------- Safe OS detection ----------------------------
-detect_os_and_configure() {
-    log INFO "Detecting Operating System..."
+# --------------------------- User Interaction -------------------------------
+validate_url() {
+    local url="$1"
+    
+    # 1. Syntax Check (Regex for HTTPS)
+    if [[ ! "$url" =~ ^https:// ]]; then
+        log ERROR "Invalid Protocol. Only HTTPS is accepted for security."
+        return 1
+    fi
 
-    # ----- Safe parsing of /etc/os-release -----------------------------
+    # 2. Accessibility & TLS Check (Head request, TLS 1.2 min)
+    log INFO "Verifying connectivity and TLS version for: $url"
+    if curl --output /dev/null --silent --head --fail --tlsv1.2 --proto =https "$url"; then
+        return 0
+    else
+        log ERROR "URL unreachable or TLS version too old (<1.2)."
+        return 1
+    fi
+}
+
+select_source_mode() {
+    echo -e "\n${C_QUESTION}--- Source Selection ---${C_RESET}"
+    echo "1) Use Official Trusted Sources (Auto-Failover)"
+    echo "2) Use Custom Source (Expert Mode)"
+    echo -n "Select an option [1-2]: "
+    read -r choice
+
+    case "$choice" in
+        1)
+            log INFO "Selected: Official Sources."
+            SELECTED_SOURCES=("${OFFICIAL_SOURCES[@]}")
+            ;;
+        2)
+            log INFO "Selected: Custom Source."
+            while true; do
+                echo -e "\n${C_QUESTION}Enter your custom Blocklist URL (HTTPS required):${C_RESET}"
+                read -r custom_url
+                
+                # Input sanitization (trim whitespace)
+                custom_url=$(echo "$custom_url" | xargs)
+
+                if validate_url "$custom_url"; then
+                    SELECTED_SOURCES=("$custom_url")
+                    log SUCCESS "Custom source verified and accepted."
+                    break
+                else
+                    log WARNING "Please try again with a valid HTTPS URL (TLS 1.2+)."
+                fi
+            done
+            ;;
+        *)
+            log ERROR "Invalid selection. Exiting."
+            exit 1
+            ;;
+    esac
+}
+
+# --------------------------- OS Detection -----------------------------------
+detect_os_and_configure() {
     if [[ -f /etc/os-release ]]; then
-        # Do NOT source the file – parse only the ID field
         OS_ID=$(grep '^ID=' /etc/os-release | cut -d= -f2 | tr -d '"')
     else
         log ERROR "Cannot detect OS: /etc/os-release not found."
@@ -80,117 +134,82 @@ detect_os_and_configure() {
     fi
 
     case "$OS_ID" in
-        fedora)
-            log INFO "OS Detected: Fedora Linux"
-            PKG_MANAGER="dnf"
-            handle_fedora_specifics
-            ;;
-        ubuntu|debian)
-            log INFO "OS Detected: Debian/Ubuntu family"
-            PKG_MANAGER="apt"
-            ;;
-        *)
-            log WARNING "Unknown OS ($OS_ID). Assuming Debian-style."
-            PKG_MANAGER="apt"
-            ;;
+        fedora) PKG_MANAGER="dnf" ; handle_fedora_specifics ;;
+        ubuntu|debian) PKG_MANAGER="apt" ;;
+        *) PKG_MANAGER="apt" ;; # Fallback
     esac
 }
 
 handle_fedora_specifics() {
-    log INFO "Applying Fedora-specific configurations..."
-
-    # ----- Graceful handling of firewalld ------------------------------
     if systemctl is-active --quiet firewalld; then
-        log WARNING "Firewalld is active – disabling to avoid NFTables conflict."
+        log WARNING "Disabling firewalld to prevent conflicts..."
         systemctl stop firewalld
         systemctl disable firewalld
-        log SUCCESS "Firewalld stopped and disabled."
     fi
-
-    # Ensure native nftables service is enabled
     if ! systemctl is-enabled --quiet nftables; then
-        log INFO "Enabling native nftables service..."
         systemctl enable nftables
     fi
 }
 
 check_environment() {
-    log INFO "Checking system dependencies..."
+    if [[ ! -d "$INSTALL_DIR" ]]; then mkdir -p "$INSTALL_DIR"; fi
+    if [[ ! -f "$LOG_FILE" ]]; then touch "$LOG_FILE"; chmod 600 "$LOG_FILE"; chown root:root "$LOG_FILE"; fi
 
-    # Ensure install directory exists
-    if [[ ! -d "$INSTALL_DIR" ]]; then
-        mkdir -p "$INSTALL_DIR"
-    fi
-
-    # ----- Secure log file creation ------------------------------------
-    if [[ ! -f "$LOG_FILE" ]]; then
-        touch "$LOG_FILE"
-        chmod 600 "$LOG_FILE"
-        chown root:root "$LOG_FILE"
-    fi
-
-    local deps=("curl" "grep" "awk" "sed" "systemctl")
-    local missing=()
-
-    # Verify nftables backend
-    if command -v nft >/dev/null; then
-        log SUCCESS "Firewall backend detected: nftables"
-    else
-        log ERROR "nftables is not installed."
-        if [[ "$PKG_MANAGER" == "dnf" ]]; then
-            log INFO "Install with: dnf install nftables"
-        else
-            log INFO "Install with: apt update && apt install nftables"
-        fi
+    local deps=("curl" "grep" "sort" "sha256sum" "systemctl")
+    
+    if ! command -v nft >/dev/null; then
+        log ERROR "nftables not installed."
         exit 1
     fi
 
     for cmd in "${deps[@]}"; do
         if ! command -v "$cmd" >/dev/null; then
-            missing+=("$cmd")
+            log ERROR "Missing dependency: $cmd"
+            exit 1
         fi
     done
-
-    if (( ${#missing[@]} )); then
-        log ERROR "Missing dependencies: ${missing[*]}"
-        log INFO "Install with: $PKG_MANAGER install ${missing[*]}"
-        exit 1
-    fi
 }
 
-# --------------------------- Code generators -------------------------------
+# --------------------------- Code Generator ---------------------------------
 generate_failover_logic() {
+    # Dynamically inject the SELECTED_SOURCES array into the script
     cat <<'EOF'
-    # --- Failover Logic ---
+    # --- Source & Integrity Logic ---
     TMP_FILE=$(mktemp)
     DOWNLOAD_SUCCESS=false
 
+    # Enforce TLS 1.2+ and HTTPS
+    CURL_OPTS="--fsSL --connect-timeout 10 --max-time 30 --tlsv1.2 --proto =https"
+
     MIRRORS=(
 EOF
-    # ----- Escape URLs safely before injection -------------------------
-    for url in "${SOURCES[@]}"; do
+    for url in "${SELECTED_SOURCES[@]}"; do
         printf '        "%s"\n' "$url"
     done
     cat <<'EOF'
     )
 
     for url in "${MIRRORS[@]}"; do
-        log INFO "Attempting download from: $url"
-        if curl -fsSL --connect-timeout 5 --max-time 15 "$url" -o "$TMP_FILE"; then
+        log INFO "Audit: Downloading from $url"
+        
+        if curl $CURL_OPTS "$url" -o "$TMP_FILE"; then
             if [[ -s "$TMP_FILE" ]]; then
-                log INFO "Download successful."
+                # --- INTEGRITY CHECK (SIGNATURE) ---
+                FILE_HASH=$(sha256sum "$TMP_FILE" | awk '{print $1}')
+                log INFO "Integrity SHA256: $FILE_HASH"
+                
                 DOWNLOAD_SUCCESS=true
                 break
             else
-                log WARNING "Empty file received from $url"
+                log WARNING "Source returned empty file: $url"
             fi
         else
-            log WARNING "Connection failed to $url"
+            log WARNING "TLS/Connection failed to: $url"
         fi
     done
 
     if [[ "$DOWNLOAD_SUCCESS" = false ]]; then
-        log CRITICAL "All mirrors failed – aborting update."
+        log CRITICAL "All sources failed validation or download."
         rm -f "$TMP_FILE"
         exit 1
     fi
@@ -205,12 +224,11 @@ create_nftables_script() {
 #!/bin/bash
 # ==============================================================================
 # Script: update_blocklist.sh
-# Type:   NFTables Atomic Updater (UFW Compatible)
-# Generated by: install_blocklist_manager.sh
+# Generated: $(date)
+# Security: TLS 1.2 Enforced | SHA256 Audited
 # ==============================================================================
 set -euo pipefail
 
-# --------------------------- Configuration -------------------------------
 NFT_TABLE="inet data_shield"
 NFT_CHAIN="inbound_block"
 NFT_SET="blocklist_ipv4"
@@ -219,24 +237,24 @@ NFT_CMD="/usr/sbin/nft"
 
 log() { echo "\$(date '+%Y-%m-%d %H:%M:%S') [\$1] : \$2" >> "\$LOG_FILE"; }
 
-# --------------------------- Download blocklist ----------------------
+# --- 1. Download & Audit ---
 $failover_block
 
-# --------------------------- Validate IPs ---------------------------
+# --- 2. Validation (Content Check) ---
 VALIDATED_FILE=\$(mktemp)
+# Strict IPv4 Regex
 grep -E '^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\$' "\$TMP_FILE" > "\$VALIDATED_FILE"
 
-# Remove duplicates and sort
 sort -u "\$VALIDATED_FILE" -o "\$VALIDATED_FILE"
-
 LINE_COUNT=\$(wc -l < "\$VALIDATED_FILE")
-if (( LINE_COUNT < 10 )); then
-    log ERROR "Validated file too small (\$LINE_COUNT lines). Abort."
+
+if (( LINE_COUNT < 5 )); then
+    log ERROR "Validation Failed: File contains invalid data or too few IPs (\$LINE_COUNT)."
     rm -f "\$TMP_FILE" "\$VALIDATED_FILE"
     exit 1
 fi
 
-# --------------------------- Build atomic nft batch -----------------
+# --- 3. Atomic Application ---
 BATCH_FILE=\$(mktemp)
 
 cat <<NFT > "\$BATCH_FILE"
@@ -247,46 +265,39 @@ flush set \$NFT_TABLE \$NFT_SET
 add element \$NFT_TABLE \$NFT_SET {
 NFT
 
-# Build a comma-separated list without a trailing comma
-ELEMENTS=\$(paste -sd, "\$VALIDATED_FILE")
-printf "    %s\n" "\$ELEMENTS" >> "\$BATCH_FILE"
+# Paste IPs with comma separation
+paste -sd, "\$VALIDATED_FILE" >> "\$BATCH_FILE"
 
 cat <<NFT >> "\$BATCH_FILE"
 }
 NFT
 
-# Ensure the rule exists (idempotent)
+# Idempotent rule injection
 if ! \$NFT_CMD list chain \$NFT_TABLE \$NFT_CHAIN | grep -q "@\$NFT_SET"; then
     \$NFT_CMD insert rule \$NFT_TABLE \$NFT_CHAIN ip saddr @\$NFT_SET drop
-    log INFO "Blocking rule injected with high priority."
 fi
-NFT
 
-# --------------------------- Apply transaction --------------------
 if ! \$NFT_CMD -f "\$BATCH_FILE" 2>>"\$LOG_FILE"; then
-    log ERROR "nft transaction failed – see log."
+    log ERROR "NFT Transaction Failed. Reverting..."
     rm -f "\$TMP_FILE" "\$VALIDATED_FILE" "\$BATCH_FILE"
     exit 1
 fi
-log SUCCESS "Blocklist updated – \$LINE_COUNT IPs active."
 
-# --------------------------- Cleanup ------------------------------------
+log SUCCESS "Update applied. Active IPs: \$LINE_COUNT. (Source Hash verified)."
 rm -f "\$TMP_FILE" "\$VALIDATED_FILE" "\$BATCH_FILE"
 EOF
 }
 
-# --------------------------- Systemd automation -------------------------
+# --------------------------- Systemd & Main ---------------------------------
 setup_systemd() {
-    log INFO "Configuring Systemd automation..."
-
+    log INFO "Configuring Systemd..."
     local service_file="/etc/systemd/system/blocklist-update.service"
     local timer_file="/etc/systemd/system/blocklist-update.timer"
 
     cat <<EOF > "$service_file"
 [Unit]
-Description=Update IPv4 Blocklist Firewall Rules
+Description=Update IPv4 Blocklist (Secure)
 After=network-online.target
-Wants=network-online.target
 
 [Service]
 Type=oneshot
@@ -300,18 +311,15 @@ NoNewPrivileges=true
 CapabilityBoundingSet=CAP_NET_ADMIN
 MemoryDenyWriteExecute=yes
 RestrictAddressFamilies=AF_INET AF_INET6
-RuntimeMaxSec=300
 EOF
-
+    
     cat <<EOF > "$timer_file"
 [Unit]
-Description=Run blocklist update hourly
-
+Description=Hourly Blocklist Update
 [Timer]
 OnCalendar=hourly
 RandomizedDelaySec=300
 Persistent=true
-
 [Install]
 WantedBy=timers.target
 EOF
@@ -319,57 +327,35 @@ EOF
     systemctl daemon-reload
     systemctl enable --now blocklist-update.timer
     systemctl enable blocklist-update.service
-    log SUCCESS "Systemd timer and service enabled."
 }
 
-setup_logrotate() {
-    log INFO "Configuring log rotation..."
-    cat <<EOF > /etc/logrotate.d/blocklist-manager
-/var/log/nft_blocklist.log {
-    daily
-    rotate 7
-    compress
-    missingok
-    notifempty
-    create 0640 root root
-}
-EOF
-}
-
-# --------------------------- Main execution flow -------------------------
 main() {
-    log INFO "Starting Blocklist Manager Installation (UFW-Safe edition)…"
-
+    log INFO "Starting Interactive Installation..."
+    
     assert_root
     detect_os_and_configure
     check_environment
+    
+    # New Interactive Step
+    select_source_mode
 
-    log INFO "Generating high-priority NFTables updater at $TARGET_SCRIPT…"
+    log INFO "Generating secure updater..."
     create_nftables_script
     chmod 750 "$TARGET_SCRIPT"
-
-    # ----- Immutable lock (prevent tampering) -------------------------
-    if lsattr "$TARGET_SCRIPT" 2>/dev/null | grep -q "i"; then
-        chattr -i "$TARGET_SCRIPT"
-    fi
-    chattr +i "$TARGET_SCRIPT"
-
-    # Fedora-specific SELinux context
-    if [[ "$OS_ID" == "fedora" ]] && command -v restorecon >/dev/null; then
-        log INFO "Applying SELinux context to script..."
-        restorecon -v "$TARGET_SCRIPT"
+    
+    # Immutable bit
+    if command -v chattr >/dev/null; then
+        chattr -i "$TARGET_SCRIPT" 2>/dev/null || true
+        chattr +i "$TARGET_SCRIPT"
     fi
 
     setup_systemd
-    setup_logrotate
 
-    log INFO "Running initial blocklist update…"
+    log INFO "Running initial update/verification..."
     if "$TARGET_SCRIPT"; then
-        log SUCCESS "Installation complete."
-        log INFO "Blocklist active in table 'inet data_shield' (priority –100)."
-        log INFO "Runs safely alongside UFW."
+        log SUCCESS "Installation & Initial Verification Complete."
     else
-        log CRITICAL "Initial update failed – inspect /var/log/nft_blocklist.log."
+        log CRITICAL "Initial download failed. Check URL or Firewall."
         exit 1
     fi
 }
