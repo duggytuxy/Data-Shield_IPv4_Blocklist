@@ -1,7 +1,7 @@
 #!/bin/bash
 # ==============================================================================
 # Script Name: install_blocklist_manager.sh
-# Version:     v0.3.01-1 (Pre-Production)
+# Version:     v0.3.03-1 (Pre-Production)
 # Description: Enterprise-grade installer for an IPv4 Blocklist Manager.
 #              Security Features:
 #               - Interactive Source Selection (Official/Custom)
