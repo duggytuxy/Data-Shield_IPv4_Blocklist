@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Script Name: install_blocklist_manager.py
+Version:     0.3.0.3-1
 Description: Enterprise-grade installer for an IPv4 Blocklist Manager.
 Target OS:   Ubuntu 20.04+, Debian 11+, Fedora 41+
 Python Ver:  3.9+
