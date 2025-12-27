@@ -21,8 +21,6 @@
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
   <a href="https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist" target="_blank">GitLab</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-  <a href="https://gitea.com/duggytuxy/Data-Shield_IPv4_Blocklist/" target="_blank">Gitea</a>
-  <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
   <a href="https://www.linkedin.com/in/laurent-minne/" target="_blank">Linkedin</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
   <a href="https://tryhackme.com/p/duggytuxy" target="_blank">TryHackMe</a>
@@ -66,7 +64,7 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 - Data-Shield IPv4 Blocklist contains the latest data for blocking IPs generating malicious traffic and activities.
 - Reduce noise by up to 50%, save time on incident response, reduce consumption of CPU, RAM, and other server resources.
 - Block up to approximately 95% of malicious bot traffic in order to significantly reduce the load on servers in terms of resources.
-- Automatic update of blocklists via GitHub, JSdelivr [CDN](https://en.wikipedia.org/wiki/Content_delivery_network), GitLab and Gitea Raw URLs.
+- Automatic update of blocklists via GitHub, JSdelivr [CDN](https://en.wikipedia.org/wiki/Content_delivery_network) and GitLab Raw URLs.
 
 ## Production lists
 
@@ -110,18 +108,6 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 | [prod_ab_data-shield_ipv4_blocklist.txt](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@refs/heads/main/prod_ab_data-shield_ipv4_blocklist.txt) | Split B | 30.000 IPs |
 | [prod_ac_data-shield_ipv4_blocklist.txt](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@refs/heads/main/prod_ac_data-shield_ipv4_blocklist.txt) | Split C | 30.000 IPs |
 | [prod_ad_data-shield_ipv4_blocklist.txt](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@refs/heads/main/prod_ad_data-shield_ipv4_blocklist.txt) | Split D | 30.000 IPs |
-
-> [!TIP]
-> **Gitea Repository**
-> [Official Link](https://gitea.com/duggytuxy/Data-Shield_IPv4_Blocklist/)
-
-| **Gitea RAW URL (Mirror)** | **Source** | **Limitation** |
-|:---|:---:|:---:|
-| [prod_data-shield_ipv4_blocklist.txt](https://gitea.com/duggytuxy/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_data-shield_ipv4_blocklist.txt) | Full | 110.000 IPs |
-| [prod_aa_data-shield_ipv4_blocklist.txt](https://gitea.com/duggytuxy/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_aa_data-shield_ipv4_blocklist.txt) | Split A | 30.000 IPs |
-| [prod_ab_data-shield_ipv4_blocklist.txt](https://gitea.com/duggytuxy/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_ab_data-shield_ipv4_blocklist.txt) | Split B | 30.000 IPs |
-| [prod_ac_data-shield_ipv4_blocklist.txt](https://gitea.com/duggytuxy/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_ac_data-shield_ipv4_blocklist.txt) | Split C | 30.000 IPs |
-| [prod_ad_data-shield_ipv4_blocklist.txt](https://gitea.com/duggytuxy/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_ad_data-shield_ipv4_blocklist.txt) | Split D | 30.000 IPs |
 
 ## Integration tutorials:
 
