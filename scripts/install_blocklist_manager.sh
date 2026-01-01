@@ -29,6 +29,8 @@ readonly OFFICIAL_SOURCES=(
     "https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_data-shield_ipv4_blocklist.txt?ref_type=heads"
 	"https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@refs/heads/main/prod_data-shield_ipv4_blocklist.txt"
     "https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_data-shield_ipv4_blocklist.txt"
+	"https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/raw/f7ab787b044e43e1b4dc2d048dd86a4ceaa4831a/prod_ad_data-shield_ipv4_blocklist.txt"
+	"https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_data-shield_ipv4_blocklist.txt"
 )
 
 # Mutable global variables
