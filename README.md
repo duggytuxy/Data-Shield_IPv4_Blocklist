@@ -190,10 +190,112 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 > [!TIP]
 > Implementing the Data-Shield IPv4 Blocklist with [NFtables](https://en.wikipedia.org/wiki/Nftables):
 
+A secure, atomic, and idempotent manager designed for critical Linux infrastructures. It automatically deploys Nftables rules to block malicious traffic using the Data-Shield list.
+
+### Hardened Security
+
+- Strict TLS 1.2+ verification
+- Sandboxed Systemd execution (`ProtectSystem=full`, `NoNewPrivileges`)
+- Immutable script protection (`chattr +i`)
+
+### High Performance
+
+- Atomic Nftables Updates: Zero downtime during rule reloading
+- Optimized Nftables sets for handling thousands of IPs efficiently
+
+### Idempotence & Safety
+
+- Safe to run multiple times (handles updates automatically)
+- Auto-Failover: Switches to mirrors if the primary source is down
+
+## Quick Installation
+
+> [!NOTE]
+> Supported OS: Debian 11+, Ubuntu 20.04+, Fedora 41+
+
 > [!CAUTION]
 > Scripts must be used beforehand in pre-production or labs to avoid side effects (rules not adapted to the environment, etc.) in production.
 
-- Coming soon...
+```
+# 1. Download the installer
+wget https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/releases/download/v0.3.04/install_blocklist_manager.sh
+chmod +x install_blocklist_manager.sh
+
+# 2. Run with root privileges
+sudo ./install_blocklist_manager.sh
+```
+
+> [!NOTE]
+> Follow the interactive prompts to select your source (Official or Custom).
+
+Once installed, a Systemd timer (`blocklist-update.timer`) runs hourly:
+
+- Audit: Downloads the list and verifies integrity (SHA256)
+- Validate: Checks IP format (Strict Regex) and minimum entry count
+- Apply: Atomically swaps the Nftables set using a temporary batch file
+
+## Uninstallation
+
+> [!NOTE]
+> To cleanly remove the script, services, logs, and firewall rules:
+
+```
+sudo ./install_blocklist_manager.sh --uninstall
+```
+
+## Automated Testing (Docker)
+
+> [!NOTE]
+> To ensure stability and security, this project includes a complete test harness that runs inside a Docker container. This validates installation, idempotence, and uninstallation without modifying your host system.
+
+### 1. Test Environment Setup
+
+Create a `Dockerfile` in the root directory:
+
+```
+# Use a Debian image with Systemd support
+FROM jlei/systemd-debian:12
+
+# Install dependencies required by the script
+RUN apt-get update && apt-get install -y \
+    curl \
+    nftables \
+    e2fsprogs \
+    kmod \
+    sudo \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy scripts
+COPY install_blocklist_manager.sh /root/
+COPY run_tests.sh /root/
+
+WORKDIR /root/
+RUN chmod +x install_blocklist_manager.sh run_tests.sh
+
+# Default command: Run the test suite
+CMD ["./run_tests.sh"]
+```
+
+### 2. Running the Tests
+
+You can run the full validation suite using the following commands:
+
+```
+# 1. Build the test image
+docker build -t blocklist-tester .
+
+# 2. Run the tests (Requires privileged mode for Nftables/Systemd)
+docker run --rm --privileged -v /sys/fs/cgroup:/sys/fs/cgroup:ro blocklist-tester
+```
+
+### 3. Expected Output
+
+The test suite performs 4 phases:
+
+- Static Analysis: Syntax checking and linting
+- Cold Installation: Verifies file creation, Systemd services, and Nftables tables
+- Idempotence: Re-runs installation to ensure safe updates (checking `chattr` handling)
+- Uninstallation: Verifies complete cleanup of the system
 
 ## GRC Compliance Model
 
