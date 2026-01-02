@@ -81,7 +81,7 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 > **GitHub Repository**
 > [Official Link](https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist)
 
-| **GitHub RAW URL** | **Source** | **Limitation** |
+| **GitHub RAW URL (Mirror)** | **Source** | **Limitation** |
 |:---|:---:|:---:|
 | [prod_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_data-shield_ipv4_blocklist.txt) | Full | 240.000 IPs |
 | [prod_aa_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_aa_data-shield_ipv4_blocklist.txt) | Split A | 30.000 IPs |
@@ -97,7 +97,7 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 > **GitLab Repository**
 > [Official Link](https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/)
 
-| **GitLab RAW URL (Mirror)** | **Source** | **Limitation** |
+| **GitLab RAW URL (Main)** | **Source** | **Limitation** |
 |:---|:---:|:---:|
 | [prod_data-shield_ipv4_blocklist.txt](https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_data-shield_ipv4_blocklist.txt?ref_type=heads) | Full | 240.000 IPs |
 | [prod_aa_data-shield_ipv4_blocklist.txt](https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_aa_data-shield_ipv4_blocklist.txt?ref_type=heads) | Split A | 30.000 IPs |
@@ -113,7 +113,7 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 > **CDN JSdelivr Refs**
 > [Official Link](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@main/)
 
-| **CDN JSdelivr URL** | **Source** | **Limitation** |
+| **CDN JSdelivr URL (Mirror)** | **Source** | **Limitation** |
 |:---|:---:|:---:|
 | [prod_data-shield_ipv4_blocklist.txt](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@refs/heads/main/prod_data-shield_ipv4_blocklist.txt) | Full | 240.000 IPs |
 | [prod_aa_data-shield_ipv4_blocklist.txt](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@refs/heads/main/prod_aa_data-shield_ipv4_blocklist.txt) | Split A | 30.000 IPs |
