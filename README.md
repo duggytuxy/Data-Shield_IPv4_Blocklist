@@ -43,6 +43,39 @@
 
 # Data-Shield IPv4 Blocklist 
 
+```
+      +=========================================+
+      |       DATA-SHIELD IPv4 BLOCKLIST        |
+      |     (Central Threat Intelligence)       |
+      +=========================================+
+                   |
+                   | (Periodic Synchronization / Updates)
+        +----------+----------+
+        |                     |
+        v                     v
++---------------------+   +---------------------+
+| PERIMETER FIREWALLS |   |  WEB APP FIREWALLS  |
+|  (L3/L4 Protection) |   | (L7 / Edge Defense) |
++---------------------+   +---------------------+
+| Targets:            |   | Targets:            |
+| - OPNsense (Aliases)|   | - Cloudflare (WAF)  |
+| - FortiOS (Ext. BL) |   | - BunkerWeb         |
+| - PAN-OS (EDL)      |   | - AWS WAF           |
++----------+----------+   +----------+----------+
+           |                         |
+           v                         v
+   /---------------\         /---------------\
+   |  DROP PACKET  |         | BLOCK REQUEST |
+   |  (Connection  |         | (HTTP 403/444)|
+   |    Refused)   |         |               |
+   \---------------/         \---------------/
+           |                         |
+           +-----------+-------------+
+                       |
+                       v
+           [  SECURED INFRASTRUCTURE ]
+```
+
 Data-Shield IPv4 Blocklist is an additional layer of protection containing a list of [IP addresses (version 4)](https://en.wikipedia.org/wiki/IPv4) whose activities have been detected as malicious.
 
 This list is designed around the discipline of [Deceptive Security](https://en.wikipedia.org/wiki/Deception_technology) based on intelligent behavioral analysis of malicious activities related to cybercrime.
