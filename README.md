@@ -187,6 +187,44 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 
 ## Integration scripts
 
+```
+[  Internet / Bad Actors  ]
+                 |
+                 | (Incoming Packet: src=1.2.3.4)
+                 v
+      +-------------------------+
+      | Network Interface (NIC) |
+      +-------------------------+
+                 |
+                 v
+      +=========================+
+      |    NFtables (Kernel)    |
+      +=========================+
+                 |
+                 |  <--- Hook: Input
+                 v
+      +-------------------------+
+      | Chain: 'inbound_block'  | <--- (Priority -100 : Very High)
+      +-------------------------+
+                 |
+                 v
+      /-------------------------\
+      |    Is Source IP in      |
+      |       Named SET         |
+      |    @blocklist_ipv4 ?    |
+      \-------------------------/
+           /           \
+    (YES / Match)   (NO / No Match)
+         |               |
+         v               v
+    +---------+     +---------+
+    |  DROP   |     | ACCEPT  | ---> Continue to next chains...
+    +---------+     +---------+      (SSH, Docker, Nginx, etc.)
+         X               |
+     (Silently)          v
+                  [ Application / Server ]
+```
+
 > [!TIP]
 > Implementing the Data-Shield IPv4 Blocklist with [NFtables](https://en.wikipedia.org/wiki/Nftables):
 
