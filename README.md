@@ -221,7 +221,7 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 ## Integration scripts
 
 ```
-[  Internet / Bad Actors  ]
+      [  Internet / Bad Actors  ]
                  |
                  | (Incoming Packet: src=1.2.3.4)
                  v
