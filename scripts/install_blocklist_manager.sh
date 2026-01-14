@@ -1,7 +1,7 @@
 #!/bin/bash
 # ==============================================================================
 # Script Name: install_blocklist_manager.sh
-# Version:     v0.3.04
+# Version:     v0.4.0
 # Description: Enterprise-grade installer for an IPv4 Blocklist Manager.
 #              Features:
 #               - Interactive Source Selection
@@ -10,6 +10,7 @@
 #               - Systemd Hardening
 #               - Idempotent Installation (Safe Updates)
 #               - Full Uninstallation Support
+#               - Critical Failure Alerting (Syslog/Journald)
 # Target OS:   Ubuntu 20.04+, Debian 11+, Fedora 41+
 # Author:      Duggy Tuxy (Laurent M.)
 # ==============================================================================
@@ -24,13 +25,13 @@ readonly TARGET_SCRIPT="${INSTALL_DIR}/update_blocklist.sh"
 readonly LOG_FILE="/var/log/blocklist_manager_install.log"
 readonly SERVICE_NAME="blocklist-update"
 
-# Default Official Sources
+# Default Official Sources (Multi-Mirror Resilience)
 readonly OFFICIAL_SOURCES=(
     "https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_data-shield_ipv4_blocklist.txt?ref_type=heads"
-	"https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@refs/heads/main/prod_data-shield_ipv4_blocklist.txt"
+    "https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@refs/heads/main/prod_data-shield_ipv4_blocklist.txt"
     "https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_data-shield_ipv4_blocklist.txt"
-	"https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/raw/c8e3e44db73eb918b5790c47891330a2b3dcb9e5/prod_data-shield_ipv4_blocklist.txt"
-	"https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_data-shield_ipv4_blocklist.txt"
+    "https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/raw/c8e3e44db73eb918b5790c47891330a2b3dcb9e5/prod_data-shield_ipv4_blocklist.txt"
+    "https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_data-shield_ipv4_blocklist.txt"
 )
 
 # Mutable global variables
@@ -214,7 +215,7 @@ check_environment() {
     if [[ ! -d "$INSTALL_DIR" ]]; then mkdir -p "$INSTALL_DIR"; fi
     if [[ ! -f "$LOG_FILE" ]]; then touch "$LOG_FILE"; chmod 600 "$LOG_FILE"; fi
 
-    local deps=("curl" "grep" "sort" "sha256sum" "systemctl")
+    local deps=("curl" "grep" "sort" "sha256sum" "systemctl" "logger")
     if ! command -v nft >/dev/null; then log ERROR "nftables missing."; exit 1; fi
 
     for cmd in "${deps[@]}"; do
@@ -251,7 +252,7 @@ EOF
     done
 
     if [[ "$DOWNLOAD_SUCCESS" = false ]]; then
-        log CRITICAL "All sources failed."
+        alert "CRITICAL: All download sources failed. Network or DNS issue?"
         rm -f "$TMP_FILE"
         exit 1
     fi
@@ -267,7 +268,7 @@ create_nftables_script() {
 # ==============================================================================
 # Script: update_blocklist.sh
 # Generated: $(date)
-# Security: TLS 1.2 Enforced | SHA256 Audited
+# Security: TLS 1.2 Enforced | SHA256 Audited | System Alerting
 # ==============================================================================
 set -euo pipefail
 
@@ -279,6 +280,16 @@ NFT_CMD="/usr/sbin/nft"
 
 log() { echo "\$(date '+%Y-%m-%d %H:%M:%S') [\$1] : \$2" >> "\$LOG_FILE"; }
 
+# --- Alerting Mechanism ---
+alert() {
+    local msg="\$1"
+    log ERROR "\$msg"
+    # Send high-priority alert to Syslog/Journald (visible to monitoring tools)
+    if command -v logger >/dev/null; then
+        logger -t "BlocklistManager" -p auth.crit "\$msg"
+    fi
+}
+
 # --- 1. Download & Audit ---
 $failover_block
 
@@ -289,7 +300,7 @@ sort -u "\$VALIDATED_FILE" -o "\$VALIDATED_FILE"
 LINE_COUNT=\$(wc -l < "\$VALIDATED_FILE")
 
 if (( LINE_COUNT < 5 )); then
-    log ERROR "Validation Failed: Too few IPs (\$LINE_COUNT)."
+    alert "Validation Failed: Too few IPs (\$LINE_COUNT). File might be corrupted."
     rm -f "\$TMP_FILE" "\$VALIDATED_FILE"
     exit 1
 fi
@@ -312,7 +323,7 @@ if ! \$NFT_CMD list chain \$NFT_TABLE \$NFT_CHAIN | grep -q "@\$NFT_SET"; then
 fi
 
 if ! \$NFT_CMD -f "\$BATCH_FILE" 2>>"\$LOG_FILE"; then
-    log ERROR "NFT Transaction Failed."
+    alert "NFT Transaction Failed. Syntax error or kernel lock."
     rm -f "\$TMP_FILE" "\$VALIDATED_FILE" "\$BATCH_FILE"
     exit 1
 fi
@@ -327,10 +338,13 @@ setup_systemd() {
     local service_file="/etc/systemd/system/${SERVICE_NAME}.service"
     local timer_file="/etc/systemd/system/${SERVICE_NAME}.timer"
 
+    # Note: OnFailure= is available for advanced users who wish to trigger a separate alert unit.
     cat <<EOF > "$service_file"
 [Unit]
 Description=Update IPv4 Blocklist (Secure)
 After=network-online.target
+# OnFailure=unit-status-mail@%n.service
+
 [Service]
 Type=oneshot
 ExecStart=$TARGET_SCRIPT
@@ -369,7 +383,7 @@ main() {
         uninstall
     fi
 
-    log INFO "Starting Installation (v0.3.04)..."
+    log INFO "Starting Installation (v0.4.0)..."
     detect_os_and_configure
     check_environment
     
@@ -393,7 +407,7 @@ main() {
     if "$TARGET_SCRIPT"; then
         log SUCCESS "Installation & Initial Verification Complete."
     else
-        log CRITICAL "Initial download failed. Check Internet or Firewall."
+        log CRITICAL "Initial download failed. Check system logs for details."
         exit 1
     fi
 }
