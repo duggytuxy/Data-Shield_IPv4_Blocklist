@@ -281,7 +281,7 @@ A secure, atomic, and idempotent manager designed for critical Linux infrastruct
 
 ```
 # 1. Download the installer
-wget https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/releases/download/v0.3.04/install_blocklist_manager.sh
+wget https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/releases/download/v0.4.0/install_blocklist_manager.sh
 chmod +x install_blocklist_manager.sh
 
 # 2. Run with root privileges
