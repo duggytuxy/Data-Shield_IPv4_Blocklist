@@ -98,7 +98,7 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 ## Production lists
 
 > [!IMPORTANT]
-> Data-Shield IPv4 Blocklist consists of 9 official lists that are updated every 24 hours.
+> Data-Shield IPv4 Blocklist consists of 10 official lists that are updated every 24 hours.
 > To ensure availability and resilience, two mirrors and an open-source CDN are put into production.
 > Exhaustive lists of those that are put into production, followed by their uses and limitations:
 
@@ -117,6 +117,7 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 | [prod_af_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_af_data-shield_ipv4_blocklist.txt) | Split F | 30.000 IPs |
 | [prod_ag_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ag_data-shield_ipv4_blocklist.txt) | Split G | 30.000 IPs |
 | [prod_ah_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ah_data-shield_ipv4_blocklist.txt) | Split H | 30.000 IPs |
+| [prod_ai_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ai_data-shield_ipv4_blocklist.txt) | Split I | 30.000 IPs |
 
 > [!TIP]
 > **GitLab Repository**
@@ -133,6 +134,7 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 | [prod_af_data-shield_ipv4_blocklist.txt](https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_af_data-shield_ipv4_blocklist.txt?ref_type=heads) | Split F | 30.000 IPs |
 | [prod_ag_data-shield_ipv4_blocklist.txt](https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_ag_data-shield_ipv4_blocklist.txt?ref_type=heads) | Split G | 30.000 IPs |
 | [prod_ah_data-shield_ipv4_blocklist.txt](https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_ah_data-shield_ipv4_blocklist.txt?ref_type=heads) | Split H | 30.000 IPs |
+| [prod_ai_data-shield_ipv4_blocklist.txt](https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_ai_data-shield_ipv4_blocklist.txt?ref_type=heads) | Split I | 30.000 IPs |
 
 > [!TIP]
 > **CDN JSdelivr Refs**
@@ -149,6 +151,7 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 | [prod_af_data-shield_ipv4_blocklist.txt](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@refs/heads/main/prod_af_data-shield_ipv4_blocklist.txt) | Split F | 30.000 IPs |
 | [prod_ag_data-shield_ipv4_blocklist.txt](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@refs/heads/main/prod_ag_data-shield_ipv4_blocklist.txt) | Split G | 30.000 IPs |
 | [prod_ah_data-shield_ipv4_blocklist.txt](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@refs/heads/main/prod_ah_data-shield_ipv4_blocklist.txt) | Split H | 30.000 IPs |
+| [prod_ai_data-shield_ipv4_blocklist.txt](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@refs/heads/main/prod_ai_data-shield_ipv4_blocklist.txt) | Split I | 30.000 IPs |
 
 > [!TIP]
 > **BitBucket Repository**
@@ -165,6 +168,7 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 | [prod_af_data-shield_ipv4_blocklist.txt](https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/raw/99c4b9fd8aa92f0e7d0f7b76cd465d130d752f5d/prod_af_data-shield_ipv4_blocklist.txt) | Split F | 30.000 IPs |
 | [prod_ag_data-shield_ipv4_blocklist.txt](https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/raw/99c4b9fd8aa92f0e7d0f7b76cd465d130d752f5d/prod_ag_data-shield_ipv4_blocklist.txt) | Split G | 30.000 IPs |
 | [prod_ah_data-shield_ipv4_blocklist.txt](https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/raw/99c4b9fd8aa92f0e7d0f7b76cd465d130d752f5d/prod_ah_data-shield_ipv4_blocklist.txt) | Split H | 30.000 IPs |
+| [prod_ai_data-shield_ipv4_blocklist.txt](https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/raw/99c4b9fd8aa92f0e7d0f7b76cd465d130d752f5d/prod_ai_data-shield_ipv4_blocklist.txt) | Split I | 30.000 IPs |
 
 > [!TIP]
 > **Codeberg Repository**
@@ -181,6 +185,8 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 | [prod_af_data-shield_ipv4_blocklist.txt](https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_af_data-shield_ipv4_blocklist.txt) | Split F | 30.000 IPs |
 | [prod_ag_data-shield_ipv4_blocklist.txt](https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_ag_data-shield_ipv4_blocklist.txt) | Split G | 30.000 IPs |
 | [prod_ah_data-shield_ipv4_blocklist.txt](https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_ah_data-shield_ipv4_blocklist.txt) | Split H | 30.000 IPs |
+| [prod_ai_data-shield_ipv4_blocklist.txt](https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_ai_data-shield_ipv4_blocklist.txt) | Split I | 30.000 IPs |
+
 ## Integration tutorials:
 
 > [!IMPORTANT]
