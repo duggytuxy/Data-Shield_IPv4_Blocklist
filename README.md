@@ -93,7 +93,7 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 - Data-Shield IPv4 Blocklist contains the latest data for blocking IPs generating malicious traffic and activities.
 - Reduce noise by up to 50%, save time on incident response, reduce consumption of CPU, RAM, and other server resources.
 - Block up to approximately 95% of malicious bot traffic in order to significantly reduce the load on servers in terms of resources.
-- Automatic update of blocklists via GitHub, JSdelivr [CDN](https://en.wikipedia.org/wiki/Content_delivery_network) and GitLab Raw URLs.
+- Automatic update of blocklists via GitHub, JSdelivr [CDN](https://en.wikipedia.org/wiki/Content_delivery_network), BitBucket, Codeberg and GitLab Raw URLs.
 
 ## Production lists
 
