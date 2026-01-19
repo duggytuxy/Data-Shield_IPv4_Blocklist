@@ -83,8 +83,8 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 - **Customizable based on vendor limitations**: Some vendors have limited the number of IPv4 addresses per entry (per list) to prevent resource consumption overload. Data-Shield IPv4 Blocklist is designed to comply with this limitation by creating split lists.
 - **Data reliability (IPv4)**: Data-Shield IPv4 Blocklist provides high-quality, reliable data by minimizing false positives to avoid blocking legitimate exposed instances.
 - **Portability**: The content of the Data-Shield IPv4 Blocklist can be used to enrich [IoC](https://en.wikipedia.org/wiki/Indicator_of_compromise) data types on open source [CTI](https://en.wikipedia.org/wiki/Cyber_threat_intelligence) platforms such as [OpenCTI](https://github.com/OpenCTI-Platform/opencti), [MISP](https://github.com/MISP/MISP), and others.
-- **Frequency of updates**: Data-Shield IPv4 Blocklist is updated every ```12``` hours to maintain the most recent data in order to protect you as effectively as possible.
-- **Data retention (IPv4 only)**: Data retention is limited to a maximum of ```60``` days. This retention is mainly used to continuously monitor the activities of IPv4 addresses tagged as malicious, which have short lifespans but are likely to resurface.
+- **Frequency of updates**: Data-Shield IPv4 Blocklist is updated every ```6``` hours to maintain the most recent data in order to protect you as effectively as possible.
+- **Data retention (IPv4 only)**: Data retention is limited to a maximum of ```15``` days. This retention is mainly used to continuously monitor the activities of IPv4 addresses tagged as malicious, which have short lifespans but are likely to resurface.
 - **Performance**: Data-Shield IPv4 Blocklist is just as effective as those offered by other solutions and vendors.
 - **The GNU GPLv3 Licence**: Data-Shield IPv4 Blocklist is licensed under [GNU GPLv3](/LICENSE).
 
@@ -98,7 +98,7 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 ## Production lists
 
 > [!IMPORTANT]
-> Data-Shield IPv4 Blocklist consists of 10 official lists that are updated every 24 hours.
+> Data-Shield IPv4 Blocklist consists of 5 official lists that are updated every 6 hours.
 > To ensure availability and resilience, two mirrors and an open-source CDN are put into production.
 > Exhaustive lists of those that are put into production, followed by their uses and limitations:
 
