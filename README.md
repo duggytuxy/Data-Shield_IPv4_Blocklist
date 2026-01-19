@@ -108,16 +108,11 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 
 | **GitHub RAW URL (Mirror)** | **Source** | **Limitation** |
 |:---|:---:|:---:|
-| [prod_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_data-shield_ipv4_blocklist.txt) | Full | 300.000 IPs |
+| [prod_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_data-shield_ipv4_blocklist.txt) | Full | 120.000 IPs |
 | [prod_aa_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_aa_data-shield_ipv4_blocklist.txt) | Split A | 30.000 IPs |
 | [prod_ab_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ab_data-shield_ipv4_blocklist.txt) | Split B | 30.000 IPs |
 | [prod_ac_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ac_data-shield_ipv4_blocklist.txt) | Split C | 30.000 IPs |
 | [prod_ad_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ad_data-shield_ipv4_blocklist.txt) | Split D | 30.000 IPs |
-| [prod_ae_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ae_data-shield_ipv4_blocklist.txt) | Split E | 30.000 IPs |
-| [prod_af_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_af_data-shield_ipv4_blocklist.txt) | Split F | 30.000 IPs |
-| [prod_ag_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ag_data-shield_ipv4_blocklist.txt) | Split G | 30.000 IPs |
-| [prod_ah_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ah_data-shield_ipv4_blocklist.txt) | Split H | 30.000 IPs |
-| [prod_ai_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ai_data-shield_ipv4_blocklist.txt) | Split I | 30.000 IPs |
 
 > [!TIP]
 > **GitLab Repository**
@@ -125,16 +120,11 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 
 | **GitLab RAW URL (Main)** | **Source** | **Limitation** |
 |:---|:---:|:---:|
-| [prod_data-shield_ipv4_blocklist.txt](https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_data-shield_ipv4_blocklist.txt?ref_type=heads) | Full | 300.000 IPs |
+| [prod_data-shield_ipv4_blocklist.txt](https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_data-shield_ipv4_blocklist.txt?ref_type=heads) | Full | 120.000 IPs |
 | [prod_aa_data-shield_ipv4_blocklist.txt](https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_aa_data-shield_ipv4_blocklist.txt?ref_type=heads) | Split A | 30.000 IPs |
 | [prod_ab_data-shield_ipv4_blocklist.txt](https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_ab_data-shield_ipv4_blocklist.txt?ref_type=heads) | Split B | 30.000 IPs |
 | [prod_ac_data-shield_ipv4_blocklist.txt](https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_ac_data-shield_ipv4_blocklist.txt?ref_type=heads) | Split C | 30.000 IPs |
 | [prod_ad_data-shield_ipv4_blocklist.txt](https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_ad_data-shield_ipv4_blocklist.txt?ref_type=heads) | Split D | 30.000 IPs |
-| [prod_ae_data-shield_ipv4_blocklist.txt](https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_ae_data-shield_ipv4_blocklist.txt?ref_type=heads) | Split E | 30.000 IPs |
-| [prod_af_data-shield_ipv4_blocklist.txt](https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_af_data-shield_ipv4_blocklist.txt?ref_type=heads) | Split F | 30.000 IPs |
-| [prod_ag_data-shield_ipv4_blocklist.txt](https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_ag_data-shield_ipv4_blocklist.txt?ref_type=heads) | Split G | 30.000 IPs |
-| [prod_ah_data-shield_ipv4_blocklist.txt](https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_ah_data-shield_ipv4_blocklist.txt?ref_type=heads) | Split H | 30.000 IPs |
-| [prod_ai_data-shield_ipv4_blocklist.txt](https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_ai_data-shield_ipv4_blocklist.txt?ref_type=heads) | Split I | 30.000 IPs |
 
 > [!TIP]
 > **CDN JSdelivr Refs**
@@ -142,16 +132,11 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 
 | **CDN JSdelivr URL (Mirror)** | **Source** | **Limitation** |
 |:---|:---:|:---:|
-| [prod_data-shield_ipv4_blocklist.txt](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@refs/heads/main/prod_data-shield_ipv4_blocklist.txt) | Full | 300.000 IPs |
+| [prod_data-shield_ipv4_blocklist.txt](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@refs/heads/main/prod_data-shield_ipv4_blocklist.txt) | Full | 120.000 IPs |
 | [prod_aa_data-shield_ipv4_blocklist.txt](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@refs/heads/main/prod_aa_data-shield_ipv4_blocklist.txt) | Split A | 30.000 IPs |
 | [prod_ab_data-shield_ipv4_blocklist.txt](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@refs/heads/main/prod_ab_data-shield_ipv4_blocklist.txt) | Split B | 30.000 IPs |
 | [prod_ac_data-shield_ipv4_blocklist.txt](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@refs/heads/main/prod_ac_data-shield_ipv4_blocklist.txt) | Split C | 30.000 IPs |
 | [prod_ad_data-shield_ipv4_blocklist.txt](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@refs/heads/main/prod_ad_data-shield_ipv4_blocklist.txt) | Split D | 30.000 IPs |
-| [prod_ae_data-shield_ipv4_blocklist.txt](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@refs/heads/main/prod_ae_data-shield_ipv4_blocklist.txt) | Split E | 30.000 IPs |
-| [prod_af_data-shield_ipv4_blocklist.txt](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@refs/heads/main/prod_af_data-shield_ipv4_blocklist.txt) | Split F | 30.000 IPs |
-| [prod_ag_data-shield_ipv4_blocklist.txt](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@refs/heads/main/prod_ag_data-shield_ipv4_blocklist.txt) | Split G | 30.000 IPs |
-| [prod_ah_data-shield_ipv4_blocklist.txt](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@refs/heads/main/prod_ah_data-shield_ipv4_blocklist.txt) | Split H | 30.000 IPs |
-| [prod_ai_data-shield_ipv4_blocklist.txt](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@refs/heads/main/prod_ai_data-shield_ipv4_blocklist.txt) | Split I | 30.000 IPs |
 
 > [!TIP]
 > **BitBucket Repository**
@@ -159,16 +144,11 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 
 | **BitBucket RAW URL (Mirror)** | **Source** | **Limitation** |
 |:---|:---:|:---:|
-| [prod_data-shield_ipv4_blocklist.txt](https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/raw/99c4b9fd8aa92f0e7d0f7b76cd465d130d752f5d/prod_data-shield_ipv4_blocklist.txt) | Full | 300.000 IPs |
+| [prod_data-shield_ipv4_blocklist.txt](https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/raw/99c4b9fd8aa92f0e7d0f7b76cd465d130d752f5d/prod_data-shield_ipv4_blocklist.txt) | Full | 120.000 IPs |
 | [prod_aa_data-shield_ipv4_blocklist.txt](https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/raw/99c4b9fd8aa92f0e7d0f7b76cd465d130d752f5d/prod_aa_data-shield_ipv4_blocklist.txt) | Split A | 30.000 IPs |
 | [prod_ab_data-shield_ipv4_blocklist.txt](https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/raw/99c4b9fd8aa92f0e7d0f7b76cd465d130d752f5d/prod_ab_data-shield_ipv4_blocklist.txt) | Split B | 30.000 IPs |
 | [prod_ac_data-shield_ipv4_blocklist.txt](https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/raw/99c4b9fd8aa92f0e7d0f7b76cd465d130d752f5d/prod_ac_data-shield_ipv4_blocklist.txt) | Split C | 30.000 IPs |
 | [prod_ad_data-shield_ipv4_blocklist.txt](https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/raw/99c4b9fd8aa92f0e7d0f7b76cd465d130d752f5d/prod_ad_data-shield_ipv4_blocklist.txt) | Split D | 30.000 IPs |
-| [prod_ae_data-shield_ipv4_blocklist.txt](https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/raw/99c4b9fd8aa92f0e7d0f7b76cd465d130d752f5d/prod_ae_data-shield_ipv4_blocklist.txt) | Split E | 30.000 IPs |
-| [prod_af_data-shield_ipv4_blocklist.txt](https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/raw/99c4b9fd8aa92f0e7d0f7b76cd465d130d752f5d/prod_af_data-shield_ipv4_blocklist.txt) | Split F | 30.000 IPs |
-| [prod_ag_data-shield_ipv4_blocklist.txt](https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/raw/99c4b9fd8aa92f0e7d0f7b76cd465d130d752f5d/prod_ag_data-shield_ipv4_blocklist.txt) | Split G | 30.000 IPs |
-| [prod_ah_data-shield_ipv4_blocklist.txt](https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/raw/99c4b9fd8aa92f0e7d0f7b76cd465d130d752f5d/prod_ah_data-shield_ipv4_blocklist.txt) | Split H | 30.000 IPs |
-| [prod_ai_data-shield_ipv4_blocklist.txt](https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/raw/99c4b9fd8aa92f0e7d0f7b76cd465d130d752f5d/prod_ai_data-shield_ipv4_blocklist.txt) | Split I | 30.000 IPs |
 
 > [!TIP]
 > **Codeberg Repository**
@@ -176,16 +156,11 @@ Data-Shield IPv4 Blocklist contains the most recent data (IPv4 addresses) to pro
 
 | **Codeberg RAW URL (Mirror)** | **Source** | **Limitation** |
 |:---|:---:|:---:|
-| [prod_data-shield_ipv4_blocklist.txt](https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_data-shield_ipv4_blocklist.txt) | Full | 300.000 IPs |
+| [prod_data-shield_ipv4_blocklist.txt](https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_data-shield_ipv4_blocklist.txt) | Full | 120.000 IPs |
 | [prod_aa_data-shield_ipv4_blocklist.txt](https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_aa_data-shield_ipv4_blocklist.txt) | Split A | 30.000 IPs |
 | [prod_ab_data-shield_ipv4_blocklist.txt](https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_ab_data-shield_ipv4_blocklist.txt) | Split B | 30.000 IPs |
 | [prod_ac_data-shield_ipv4_blocklist.txt](https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_ac_data-shield_ipv4_blocklist.txt) | Split C | 30.000 IPs |
 | [prod_ad_data-shield_ipv4_blocklist.txt](https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_ad_data-shield_ipv4_blocklist.txt) | Split D | 30.000 IPs |
-| [prod_ae_data-shield_ipv4_blocklist.txt](https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_ae_data-shield_ipv4_blocklist.txt) | Split E | 30.000 IPs |
-| [prod_af_data-shield_ipv4_blocklist.txt](https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_af_data-shield_ipv4_blocklist.txt) | Split F | 30.000 IPs |
-| [prod_ag_data-shield_ipv4_blocklist.txt](https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_ag_data-shield_ipv4_blocklist.txt) | Split G | 30.000 IPs |
-| [prod_ah_data-shield_ipv4_blocklist.txt](https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_ah_data-shield_ipv4_blocklist.txt) | Split H | 30.000 IPs |
-| [prod_ai_data-shield_ipv4_blocklist.txt](https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_ai_data-shield_ipv4_blocklist.txt) | Split I | 30.000 IPs |
 
 ## Integration tutorials:
 
@@ -312,59 +287,60 @@ Once installed, a Systemd timer (`blocklist-update.timer`) runs hourly:
 sudo ./install_blocklist_manager.sh --uninstall
 ```
 
-## Automated Testing (Docker)
+## Log Rotation (Recommended)
 
-> [!NOTE]
-> To ensure stability and security, this project includes a complete test harness that runs inside a Docker container. This validates installation, idempotence, and uninstallation without modifying your host system.
+Since the `blocklist-update` service runs hourly, the log file (`nft_blocklist.log`) can grow significantly over time. To prevent disk saturation and ensure proper log archiving, it is highly recommended to configure `logrotate`.
 
-### 1. Test Environment Setup
+### Configuration Details
 
-Create a `Dockerfile` in the root directory:
+This configuration handles both the installation log and the runtime execution logs. It keeps a 4-week history, compresses old logs to save space, and ensures secure permissions.
 
-```
-# Use a Debian image with Systemd support
-FROM jlei/systemd-debian:12
-
-# Install dependencies required by the script
-RUN apt-get update && apt-get install -y \
-    curl \
-    nftables \
-    e2fsprogs \
-    kmod \
-    sudo \
-    && rm -rf /var/lib/apt/lists/*
-
-# Copy scripts
-COPY install_blocklist_manager.sh /root/
-COPY run_tests.sh /root/
-
-WORKDIR /root/
-RUN chmod +x install_blocklist_manager.sh run_tests.sh
-
-# Default command: Run the test suite
-CMD ["./run_tests.sh"]
-```
-
-### 2. Running the Tests
-
-You can run the full validation suite using the following commands:
+> Target File: `/etc/logrotate.d/blocklist-manager`
 
 ```
-# 1. Build the test image
-docker build -t blocklist-tester .
-
-# 2. Run the tests (Requires privileged mode for Nftables/Systemd)
-docker run --rm --privileged -v /sys/fs/cgroup:/sys/fs/cgroup:ro blocklist-tester
+/var/log/nft_blocklist.log
+/var/log/blocklist_manager_install.log {
+    weekly
+    rotate 4
+    compress
+    delaycompress
+    missingok
+    notifempty
+    create 0640 root adm
+}
 ```
 
-### 3. Expected Output
+### Quick Setup
 
-The test suite performs 4 phases:
+Run the following block as root to create the configuration and verify permissions:
 
-- Static Analysis: Syntax checking and linting
-- Cold Installation: Verifies file creation, Systemd services, and Nftables tables
-- Idempotence: Re-runs installation to ensure safe updates (checking `chattr` handling)
-- Uninstallation: Verifies complete cleanup of the system
+```
+# 1. Create the configuration file
+cat <<EOF > /etc/logrotate.d/blocklist-manager
+/var/log/nft_blocklist.log
+/var/log/blocklist_manager_install.log {
+    weekly
+    rotate 4
+    compress
+    delaycompress
+    missingok
+    notifempty
+    create 0640 root adm
+}
+EOF
+
+# 2. Secure the file permissions
+chmod 644 /etc/logrotate.d/blocklist-manager
+chown root:root /etc/logrotate.d/blocklist-manager
+
+# 3. Verify configuration (Dry Run)
+logrotate -d /etc/logrotate.d/blocklist-manager
+```
+
+> [!IMPORTANT] 
+> - Prevent Disk Saturation: Without rotation, the log file will grow indefinitely, potentially filling up `/var`.
+> - Performance: `delaycompress` defers compression of the most recent archive to the next rotation cycle, preventing race conditions while the script is writing.
+> - Security: `create 0640 root adm` allows system administrators (group `adm`) to audit logs without requiring root privileges, adhering to the Principle of Least Privilege.
 
 ## GRC Compliance Model
 
