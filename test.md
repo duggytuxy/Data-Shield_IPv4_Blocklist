@@ -23,7 +23,7 @@
 
 ## Table of Contents  
 
-1. [Why Data‑Shield IPv4 Blocklist?](#why-data-shield-ipv4-blocklist)  
+1. [Why Data‑Shield IPv4 Blocklist?](#why-datashield-ipv4-blocklist)  
 2. [Primary Objectives](#primary-objectives)  
 3. [Production Lists (Mirrors)](#production-lists-mirrors)  
 4. [Integration Tutorials](#integration-tutorials)  
@@ -32,7 +32,7 @@
 7. [Support the Project](#support-the-project)  
 8. [License](#license) 
 
-## Why Data‑Shield IPv4 Blocklist?  
+## Data‑Shield IPv4 Blocklist Community?  
 
 - **Additional defensive layer** – blocks known malicious IPv4 sources before they reach your perimeter or web applications.  
 - **Open to everyone** – free for any firewall, WAF, or IDS that can consume a plain‑text IP list.  
