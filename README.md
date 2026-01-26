@@ -283,9 +283,9 @@ sudo ./install_blocklist_manager.sh --uninstall
 
 | Objectif | Période |
 | :--- | :---: |
-| - [ ] Dashboard Optimization | Q1 2026 |
-| - [ ] Script Fail2ban | Q2 2026 |
-| - [ ] API | Q3 2026 |
+| ☐ Dashboard Optimization | Q1 2026 |
+| ☐ Script Fail2ban | Q2 2026 |
+| ☐ API | Q3 2026 |
 
 ## Support & Sustainability
 
