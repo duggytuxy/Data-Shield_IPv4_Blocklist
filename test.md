@@ -112,7 +112,7 @@ To guarantee high availability and resilience, the Data-Shield IPv4 Blocklist is
 | Split List B | 30k IPs | [prod_ab_data-shield_ipv4_blocklist.txt](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@refs/heads/main/prod_ab_data-shield_ipv4_blocklist.txt) |
 | Split List C | 30k IPs | [prod_ac_data-shield_ipv4_blocklist.txt](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@refs/heads/main/prod_ac_data-shield_ipv4_blocklist.txt) |
 
-#### <img src="https://w7.pngwing.com/pngs/48/879/png-transparent-bitbucket-icon-logo-tech-companies-thumbnail.png" width="20"/> BitBucket Repository (Mirror)
+#### <img src="https://cdn.worldvectorlogo.com/logos/bitbucket.svg" width="20"/> BitBucket Repository (Mirror)
 > **[View Official Repository](https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/src/main/)**
 
 | **Dataset Variant** | **Entry Cap** | **Raw Link** |
