@@ -211,7 +211,8 @@ Once installed, a timer (`blocklist-update.timer`) executes hourly to perform th
 
 To prevent disk saturation from the hourly execution logs, it is essential to configure `logrotate`.
 
-> [!IMPORTANT] Why is this necessary?
+> [!IMPORTANT]
+> Why is this necessary?
 
   - **Disk Space**: Prevents `/var` from filling up indefinitely.
   - **Security**: Enforces `0640` permissions, adhering to the Principle of Least Privilege.
@@ -244,7 +245,8 @@ logrotate -d /etc/logrotate.d/blocklist-manager
 
 ### 4. Uninstallation
 
-> [!NOTE] To cleanly remove the script, services, logs, and firewall rules:
+> [!NOTE] 
+> To cleanly remove the script, services, logs, and firewall rules:
 
 ```bash
 sudo ./install_blocklist_manager.sh --uninstall
