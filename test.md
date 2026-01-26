@@ -291,7 +291,7 @@ If you find this project useful, consider supporting its ongoing development:
 
 ### ⚖️ License & Copyright
 
-**Data-Shield IPv4 Blocklist Community** © 2023–2026  
-Developed by **Duggy Tuxy (Laurent Minne)**.
+- **Data-Shield IPv4 Blocklist Community** © 2023–2026  
+- Developed by **Duggy Tuxy (Laurent Minne)**.
 
-This project is open-source software licensed under the **[GNU GPLv3 License](/LICENSE)**.
+"This project is open-source software licensed under the **[GNU GPLv3 License](/LICENSE)**."
