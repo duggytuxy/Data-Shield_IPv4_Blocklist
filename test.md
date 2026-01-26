@@ -37,9 +37,10 @@
 4. [Production Lists (Mirrors)](#production-lists-mirrors)  
 5. [Integration Tutorials](#integration-tutorials)  
 6. [Installation & Management Scripts](#installation--management-scripts)  
-7. [GRC Compliance Model](#grc-compliance-model)  
-8. [Support the Project](#support-the-project)  
-9. [License](#license) 
+7. [GRC Compliance Model](#grc-compliance-model) 
+8. [Roadmap](#roadmap) 
+9. [Support the Project](#support-the-project)  
+L. [License](#license) 
 
 # Data‑Shield IPv4 Blocklist Community
 
@@ -131,4 +132,41 @@ To guarantee high availability and resilience, the Data-Shield IPv4 Blocklist is
 | Split List A | 30k IPs | [prod_aa_data-shield_ipv4_blocklist.txt](https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_aa_data-shield_ipv4_blocklist.txt) |
 | Split List B | 30k IPs | [prod_ab_data-shield_ipv4_blocklist.txt](https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_ab_data-shield_ipv4_blocklist.txt) |
 | Split List C | 30k IPs | [prod_ac_data-shield_ipv4_blocklist.txt](https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_ac_data-shield_ipv4_blocklist.txt) |
+
+## Integration Tutorials
+
+To ensure the Data-Shield IPv4 Blocklist is operational and effective, it is crucial to apply the filtering rules in the correct direction of traffic flow.
+
+### Deployment Strategy
+
+> [!TIP]
+> **✅ Correct Usage: WAN to LAN (Inbound Traffic)**
+> The blocklist is designed to stop threats *entering* your network from the Internet.
+>
+> * **IPtables:** `sudo iptables -A INPUT -s <IP_ADDRESS> -j DROP`
+> * **NFtables:** `sudo nft add rule inet filter input ip saddr <IP_ADDRESS> drop`
+
+> [!CAUTION]
+> **⛔ Restricted Usage: LAN to WAN (Outbound Traffic)**
+> Do not apply these rules to outgoing traffic (from your internal network to the Internet).
+>
+> * **IPtables:** `sudo iptables -A OUTPUT -d <IP_ADDRESS> -j DROP`
+> * **NFtables:** `sudo nft add rule inet filter output ip daddr <IP_ADDRESS> drop`
+
+---
+
+### Community & Vendor Tutorials
+
+A non-exhaustive collection of guides to facilitate integration across various environments.
+
+| **Vendor / Platform** | **Resource Type** | **Capacity Note** |
+| :--- | :---: | :---: |
+| **[Fortinet](https://docs.fortinet.com/document/fortigate/7.4.9/administration-guide/379433/configuring-a-threat-feed#threat-ext)** | Official Guide | ≥ 100k IPs |
+| **[Checkpoint](https://sc1.checkpoint.com/documents/R80.20SP/WebAdminGuides/EN/CP_R80.20SP_Maestro_AdminGuide/Topics-Maestro-AG/IP-Block-Feature.htm)** | Manufacturer's Guide | *TBC* |
+| **[Palo Alto](https://docs.paloaltonetworks.com/network-security/security-policy/administration/objects/external-dynamic-lists/configure-the-firewall-to-access-an-external-dynamic-list#configure-the-firewall-to-access-an-external-dynamic-list-panorama)** | EDL Overview | *TBC* |
+| **[F5 BIG-IP](https://my.f5.com/manage/s/article/K10978895)** | Official Guide | *TBC* |
+| **[Stormshield](https://www.youtube.com/watch?v=yT2oas7M2UM)** | Official Video | *TBC* |
+| **[OPNsense](https://slash-root.fr/opnsense-block-malicious-ips/)** | Slash-Root Guide | ≥ 100k IPs |
+| **[Synology NAS](https://myownserver.org/posts/Automatiser_la_liste_de_blocage.html)** | MyOwnServer Guide | ≥ 100k IPs |
+| **[Linux (NFtables/IPtables)](https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist?tab=readme-ov-file#integration-scripts)** | Duggy Tuxy Tutorials | ≥ 100k IPs |
 
