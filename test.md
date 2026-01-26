@@ -251,3 +251,31 @@ logrotate -d /etc/logrotate.d/blocklist-manager
 ```bash
 sudo ./install_blocklist_manager.sh --uninstall
 ```
+
+## GRC Compliance Model
+
+> [!IMPORTANT]
+> **Regulatory Alignment**
+> To support organizations in their compliance journey, we provide dedicated documentation mapping the Data-Shield IPv4 Blocklist implementation to key standards: **[ISO27001:2022](https://en.wikipedia.org/wiki/ISO/IEC_27001)**, **[NIS2 Directive](https://en.wikipedia.org/wiki/Cyber-security_regulation#NIS_2_Directive)**, and **[GDPR](https://en.wikipedia.org/wiki/General_Data_Protection_Regulation)**.
+
+### Available Documentation
+
+| **Document Title & Link** | **Language** | **Format / Rights** | **Compliance Scope** |
+| :--- | :---: | :---: | :---: |
+| **[GRC Compliance Model (Editable)](/docs/EN_GRC_Compliance_Model_DataShield_IPv4_Blocklist.docx)** | 🇬🇧 EN | `.docx` (Read/Write) | ✅ ISO, NIS2, GDPR |
+| [GRC Compliance Model (Reference)](/docs/EN_GRC_Compliance_Model_DataShield_IPv4_Blocklist.pdf) | 🇬🇧 EN | `.pdf` (Read Only) | ✅ ISO, NIS2, GDPR |
+| **[Modèle de Conformité GRC (Editable)](/docs/FR_Modele_GRC_DataShield_IPv4_Blocklist.docx)** | 🇫🇷 FR | `.docx` (Read/Write) | ✅ ISO, NIS2, GDPR |
+| [Modèle de Conformité GRC (Reference)](/docs/FR_Modele_GRC_DataShield_IPv4_Blocklist.pdf) | 🇫🇷 FR | `.pdf` (Read Only) | ✅ ISO, NIS2, GDPR |
+
+### How to use these resources
+
+> [!NOTE]
+> **Template Flexibility**
+> These documents are designed as templates. They should be reviewed and adapted to accurately reflect your specific infrastructure and security policies.
+
+> [!TIP]
+> **Integration Workflow**
+> 1. **Download** the editable `.docx` version suitable for your region.
+> 2. **Customize** the content to match your specific deployment of the blocklist.
+> 3. **Insert** the finalized document into your organization's GRC registry or Information Security Management System (ISMS).
+
