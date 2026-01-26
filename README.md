@@ -47,7 +47,7 @@
 
 ## Key Features & Benefits
 
-- **Proactive Defense & Reduced Attack Surface** The Data-Shield IPv4 Blocklist Community serves as an essential protective layer for your exposed assets (Web Apps, WordPress, APIs). By blocking malicious traffic early, it significantly reduces the reconnaissance phase and lowers visibility on scanners like **Shodan**.
+- **Proactive Defense & Reduced Attack Surface** The Data-Shield IPv4 Blocklist Community serves as an essential protective layer for your exposed assets (Web Apps, WordPress, Websites, VPS with Linux OS). By blocking malicious traffic early, it significantly reduces the reconnaissance phase and lowers visibility on scanners like **Shodan**.
 
 - **High-Fidelity, Centralized Intelligence** Data is aggregated from a single, verified source fed by global probes and processed via a self-hosted HIDS/SIEM stack. We prioritize **data reliability** to minimize false positives, ensuring your legitimate traffic remains uninterrupted.
 
