@@ -63,3 +63,5 @@
 
 - **Open Source & Community Driven** Accessible to anyone—from hobbyists to enterprise admins. The project is proudly distributed under the [GNU GPLv3 license](/LICENSE), fostering a transparent and collaborative security ecosystem.
 
+- **Professional Plan & Dashboard Control** Designed for SMBs and large enterprises, the **Professional Plan** extends protection to high-value targets such as **DMZs, critical assets, critical assets exposed and APIs**. This tier grants access to a dedicated **Management Dashboard**, allowing for granular control over list configurations and deployment strategies suited for complex environments. See [**official website**](https://duggytuxy.github.io).
+
