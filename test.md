@@ -8,18 +8,26 @@
   <img src="https://img.shields.io/github/last-commit/duggytuxy/Data-Shield_IPv4_Blocklist?label=IPv4%20Blocklist%20Last%20Update&color=informational&style=for-the-badge&logo=github">
 </p>
 
-## Quick Links  
+<div align="center">
+  <a href="https://duggytuxy.github.io/" target="_blank">Website</a>
+  <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+  <a href="https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/issues">Issues Tracker</a>
+  <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+  <a href="https://www.linkedin.com/in/laurent-minne/" target="_blank">Linkedin</a>
+  <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+  <a href="https://tryhackme.com/p/duggytuxy" target="_blank">TryHackMe</a>
+  <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+  <a href="https://ko-fi.com/laurentmduggytuxy" target="_blank">Ko-Fi</a>
+  <br />
+</div>
 
-| Platform | Link |
-|---|---|
-| **GitHub** | <https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist> |
-| **GitLab** | <https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist> |
-| **Bitbucket** | <https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/src/main/> |
-| **Codeberg** | <https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist> |
-| **LinkedIn** | <https://www.linkedin.com/in/laurent-minne/> |
-| **TryHackMe** | <https://tryhackme.com/p/duggytuxy> |
-| **Ko‑Fi** | <https://ko-fi.com/laurentmduggytuxy> |
-| **Issue Tracker** | <https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/issues> |
+<p align="center">
+  <br />
+  <a href="https://ko-fi.com/L4L71HRILD" target="_blank">
+    <img src="https://ko-fi.com/img/githubbutton_sm.svg" alt="Support me on Ko-fi">
+  </a>
+  <br />
+</p>
 
 ## Table of Contents  
 
@@ -32,7 +40,7 @@
 7. [Support the Project](#support-the-project)  
 8. [License](#license) 
 
-## Data‑Shield IPv4 Blocklist Community?  
+## Data‑Shield IPv4 Blocklist Community
 
 - **Additional defensive layer** – blocks known malicious IPv4 sources before they reach your perimeter or web applications.  
 - **Open to everyone** – free for any firewall, WAF, or IDS that can consume a plain‑text IP list.  
