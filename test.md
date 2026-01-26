@@ -39,8 +39,7 @@
 6. [Installation & Management Scripts](#installation--management-scripts)  
 7. [GRC Compliance Model](#grc-compliance-model) 
 8. [Roadmap](#roadmap) 
-9. [Support the Project](#support-the-project)  
-L. [License](#license) 
+9. [Support the Project & License](#support-the-project--license)  
 
 # Data‑Shield IPv4 Blocklist Community
 
@@ -176,7 +175,7 @@ A non-exhaustive collection of guides to facilitate integration across various e
 > **Why use this manager?**
 > This solution provides a secure, atomic, and idempotent way to deploy the Data-Shield Blocklist on critical Linux infrastructures. It ensures zero downtime during rule updates and includes strict validation mechanisms.
 
-### Key Capabilities
+#### Key Capabilities
 * **Hardened Security:** Enforces strict TLS 1.2+ verification, sandboxed Systemd execution (`ProtectSystem=full`), and immutable script protection.
 * **High Performance:** Utilizes optimized NFtables sets and performs **atomic updates**, ensuring no traffic is dropped or allowed incorrectly during reloads.
 * **Resilient & Idempotent:** Designed to run safely multiple times. Includes auto-failover to mirrors if the primary source is unreachable.
@@ -192,9 +191,61 @@ A non-exhaustive collection of guides to facilitate integration across various e
 
 ```bash
 # 1. Download the installer
-wget [https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/releases/download/v0.4.0/install_blocklist_manager.sh](https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/releases/download/v0.4.0/install_blocklist_manager.sh)
+wget https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/releases/download/v0.4.0/install_blocklist_manager.sh
 chmod +x install_blocklist_manager.sh
 
 # 2. Run with root privileges
 sudo ./install_blocklist_manager.sh
+```
+***During installation, follow the interactive prompts to select your source (Official or Custom).***
 
+### 2. Automatic Updates (Systemd)
+
+Once installed, a timer (`blocklist-update.timer`) executes hourly to perform the following cycle:
+
+  - **Audit**: Downloads the list and verifies SHA256 integrity.
+  - **Validate**: Checks IP formats (Strict Regex) and entry counts.
+  - **Apply**: Atomically swaps the NFtables set using a temporary batch file.
+
+### 3. Log Rotation (Highly Recommended)
+
+To prevent disk saturation from the hourly execution logs, it is essential to configure `logrotate`.
+
+> [!IMPORTANT] Why is this necessary?
+
+  - **Disk Space**: Prevents `/var` from filling up indefinitely.
+  - **Security**: Enforces `0640` permissions, adhering to the Principle of Least Privilege.
+  - **Performance**: Uses `delaycompress` to prevent race conditions during writing.
+
+**Quick Setup (Copy & Paste)** Run the following block as root to create the configuration and verify permissions:
+
+```bash
+# 1. Create the configuration file
+cat <<EOF > /etc/logrotate.d/blocklist-manager
+/var/log/nft_blocklist.log
+/var/log/blocklist_manager_install.log {
+    weekly
+    rotate 4
+    compress
+    delaycompress
+    missingok
+    notifempty
+    create 0640 root adm
+}
+EOF
+
+# 2. Secure the file permissions
+chmod 644 /etc/logrotate.d/blocklist-manager
+chown root:root /etc/logrotate.d/blocklist-manager
+
+# 3. Verify configuration (Dry Run)
+logrotate -d /etc/logrotate.d/blocklist-manager
+```
+
+### 4. Uninstallation
+
+> [!NOTE] To cleanly remove the script, services, logs, and firewall rules:
+
+```bash
+sudo ./install_blocklist_manager.sh --uninstall
+```
