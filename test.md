@@ -1,7 +1,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/Open%20Source-100%25-brightgreen?style=for-the-badge&logo=opensourceinitiative">
   <img src="https://img.shields.io/badge/powered%20by-DuggyTuxy-darkred?style=for-the-badge&logo=apachekafka">
-  <img src="https://img.shields.io/badge/Status-Production--Grade-brightgreen?style=for-the-badge&logo=status">
+  <img src="https://img.shields.io/badge/Status-Community--Professional-brightgreen?style=for-the-badge&logo=status">
   <img src="https://img.shields.io/badge/Security-Hardened-blue?style=for-the-badge&logo=security">
   <img src="https://img.shields.io/badge/Platform-Debian%20%7C%20Ubuntu%20%7C%20Fedora-orange?style=for-the-badge&logo=platform">
   <img src="https://img.shields.io/badge/License-GNU_GPLv3-0052cc?style=for-the-badge&logo=license">
@@ -31,33 +31,30 @@
 
 ## Table of Contents  
 
-1. [Why Data‑Shield IPv4 Blocklist?](#why-datashield-ipv4-blocklist)  
-2. [Primary Objectives](#primary-objectives)  
-3. [Production Lists (Mirrors)](#production-lists-mirrors)  
-4. [Integration Tutorials](#integration-tutorials)  
-5. [Installation & Management Scripts](#installation--management-scripts)  
-6. [GRC Compliance Model](#grc-compliance-model)  
-7. [Support the Project](#support-the-project)  
-8. [License](#license) 
+1. [Presentation](#presentation)
+2. [Why Data‑Shield IPv4 Blocklist?](#why-datashield-ipv4-blocklist)  
+3. [Primary Objectives](#primary-objectives)  
+4. [Production Lists (Mirrors)](#production-lists-mirrors)  
+5. [Integration Tutorials](#integration-tutorials)  
+6. [Installation & Management Scripts](#installation--management-scripts)  
+7. [GRC Compliance Model](#grc-compliance-model)  
+8. [Support the Project](#support-the-project)  
+9. [License](#license) 
 
-## Data‑Shield IPv4 Blocklist Community
+# Data‑Shield IPv4 Blocklist Community
 
-- **Additional defensive layer** – blocks known malicious IPv4 sources before they reach your perimeter or web applications.  
-- **Open to everyone** – free for any firewall, WAF, or IDS that can consume a plain‑text IP list.  
-- **Single, curated source** – probes worldwide feed a central HIDS/SIEM; the list is generated from that unified view.  
-- **Easy integration** – each vendor can pull a raw URL; the list is split when necessary to respect vendor limits.  
-- **High data quality** – aggressive false‑positive filtering keeps legitimate traffic untouched.  
-- **Portable IoC enrichment** – compatible with OpenCTI, MISP, and other CTI platforms.  
-- **Frequent updates** – refreshed every **6 hours** to keep pace with fast‑moving threats.  
-- **Limited retention** – entries expire after **15 days**, ensuring the list stays current.  
-- **Performance‑tested** – comparable to commercial feeds while remaining 100 % open source. 
+**The Data-Shield IPv4 Blocklist Community** provides an official, curated registry of IPv4 addresses identified as malicious. Updated continuously, this resource offers vital threat intelligence to bolster your **Firewall** and **WAF** instances, delivering a robust, additional layer of security for your infrastructure.
 
-## Primary Objectives  
+## Key Features & Benefits
 
-| Goal | Metric |
-|---|---|
-| **Latest malicious IP data** | Updated every 6 h |
-| **Noise reduction** | ≤ 50 % false‑positive traffic |
-| **Resource savings** | Lower CPU/RAM consumption on firewalls |
-| **Malicious traffic blocked** | ≈ 95 % of known bot traffic |
-| **Broad vendor compatibility** | OPNsense, Fortinet, Palo Alto, NFtables, pfSense, BunkerWeb |
+- **Proactive Defense & Reduced Attack Surface** - The Data-Shield IPv4 Blocklist Community serves as an essential protective layer for your exposed assets (Web Apps, WordPress, APIs). By blocking malicious traffic early, it significantly reduces the reconnaissance phase and lowers visibility on scanners like **Shodan**.
+
+- **High-Fidelity, Centralized Intelligence** Data is aggregated from a single, verified source fed by global probes and processed via a self-hosted HIDS/SIEM stack. We prioritize **data reliability** to minimize false positives, ensuring your legitimate traffic remains uninterrupted.
+
+- **Seamless Compatibility & Integration** Designed for universal deployment:
+  - **Universal Format**: Easily integrates via a single RAW link into most Firewalls and WAFs.
+  - **Vendor-Agnostic**: Includes split-list logic to accommodate hardware vendors with strict entry-count limitations.
+  - **CTI Ready**: Fully portable for enrichment in Threat Intelligence platforms like OpenCTI and MISP.
+
+- **Freshness & Performance**
+  - 
