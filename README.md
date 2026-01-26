@@ -303,3 +303,7 @@ If you find this project useful, consider supporting its ongoing development:
 - Developed by **Duggy Tuxy (Laurent Minne)**.
 
 "This project is open-source software licensed under the **[GNU GPLv3 License](/LICENSE)**."
+
+## Activity
+
+![Alt](https://repobeats.axiom.co/api/embed/8ead3fb191fc45d23c0953782d4aee4901b85ded.svg "Repobeats analytics image")
