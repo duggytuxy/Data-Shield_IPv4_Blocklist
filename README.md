@@ -281,11 +281,11 @@ sudo ./install_blocklist_manager.sh --uninstall
 
 ## Roadmap
 
-| Objectif | Période |
+| Objective | Target Date |
 | :--- | :---: |
 | Dashboard Optimization | Q1 2026 |
-| Script Fail2ban | Q2 2026 |
-| API | Q3 2026 |
+| Fail2ban Integration | Q2 2026 |
+| API (Wazuh) | Q3 2026 |
 
 ## Support & Sustainability
 
