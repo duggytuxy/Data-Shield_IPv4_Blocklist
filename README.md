@@ -46,7 +46,7 @@
 
 ## Key Features & Benefits
 
-- **Proactive Defense & Reduced Attack Surface** The Data-Shield IPv4 Blocklist Community serves as an essential protective layer for your exposed assets (Web Apps, WordPress, Websites, VPS with Linux OS). By blocking malicious traffic early, it significantly reduces the reconnaissance phase and lowers visibility on scanners like **Shodan**.
+- **Proactive Defense & Reduced Attack Surface** The Data-Shield IPv4 Blocklist Community Community serves as an essential protective layer for your exposed assets (Web Apps, WordPress, Websites, VPS with Linux OS). By blocking malicious traffic early, it significantly reduces the reconnaissance phase and lowers visibility on scanners like **Shodan**.
 
 - **High-Fidelity, Centralized Intelligence** Data is aggregated from a single, verified source fed by global probes and processed via a self-hosted HIDS/SIEM stack. We prioritize **data reliability** to minimize false positives, ensuring your legitimate traffic remains uninterrupted.
 
@@ -74,7 +74,7 @@
 
 ## Production Lists (Mirrors)
 
-To guarantee high availability and resilience, the Data-Shield IPv4 Blocklist is deployed across a robust multi-cloud infrastructure. The data is synchronized every **6 hours** across multiple repositories and a global CDN.
+To guarantee high availability and resilience, the Data-Shield IPv4 Blocklist Community is deployed across a robust multi-cloud infrastructure. The data is synchronized every **6 hours** across multiple repositories and a global CDN.
 
 - **Which list should I use?**
 
@@ -133,7 +133,7 @@ To guarantee high availability and resilience, the Data-Shield IPv4 Blocklist is
 
 ## Integration Tutorials
 
-To ensure the Data-Shield IPv4 Blocklist is operational and effective, it is crucial to apply the filtering rules in the correct direction of traffic flow.
+To ensure the Data-Shield IPv4 Blocklist Community is operational and effective, it is crucial to apply the filtering rules in the correct direction of traffic flow.
 
 ### Deployment Strategy
 
