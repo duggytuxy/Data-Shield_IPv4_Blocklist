@@ -279,6 +279,14 @@ sudo ./install_blocklist_manager.sh --uninstall
 > 2. **Customize** the content to match your specific deployment of the blocklist.
 > 3. **Insert** the finalized document into your organization's GRC registry or Information Security Management System (ISMS).
 
+## Roadmap
+
+| Objectif | Période |
+| :--- | :---: |
+| - [ ] Dashboard Optimization | Q1 2026 |
+| - [ ] Script Fail2ban | Q2 2026 |
+| - [ ] API | Q3 2026 |
+
 ## Support & Sustainability
 
 > [!IMPORTANT]
