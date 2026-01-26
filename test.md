@@ -153,8 +153,6 @@ To ensure the Data-Shield IPv4 Blocklist is operational and effective, it is cru
 > * **IPtables:** `sudo iptables -A OUTPUT -d <IP_ADDRESS> -j DROP`
 > * **NFtables:** `sudo nft add rule inet filter output ip daddr <IP_ADDRESS> drop`
 
----
-
 ### Community & Vendor Tutorials
 
 A non-exhaustive collection of guides to facilitate integration across various environments.
@@ -169,4 +167,34 @@ A non-exhaustive collection of guides to facilitate integration across various e
 | **[OPNsense](https://slash-root.fr/opnsense-block-malicious-ips/)** | Slash-Root Guide | ≥ 100k IPs |
 | **[Synology NAS](https://myownserver.org/posts/Automatiser_la_liste_de_blocage.html)** | MyOwnServer Guide | ≥ 100k IPs |
 | **[Linux (NFtables/IPtables)](https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist?tab=readme-ov-file#integration-scripts)** | Duggy Tuxy Tutorials | ≥ 100k IPs |
+
+## Installation & Management Scripts
+
+### Automated Installation & Management (NFtables)
+
+> [!TIP]
+> **Why use this manager?**
+> This solution provides a secure, atomic, and idempotent way to deploy the Data-Shield Blocklist on critical Linux infrastructures. It ensures zero downtime during rule updates and includes strict validation mechanisms.
+
+### Key Capabilities
+* **Hardened Security:** Enforces strict TLS 1.2+ verification, sandboxed Systemd execution (`ProtectSystem=full`), and immutable script protection.
+* **High Performance:** Utilizes optimized NFtables sets and performs **atomic updates**, ensuring no traffic is dropped or allowed incorrectly during reloads.
+* **Resilient & Idempotent:** Designed to run safely multiple times. Includes auto-failover to mirrors if the primary source is unreachable.
+
+### 1. Quick Deployment
+
+> [!NOTE]
+> **Supported OS:** Debian 11+, Ubuntu 20.04+, Fedora 41+
+
+> [!CAUTION]
+> **Pre-Production Testing Required**
+> Always test these scripts in a lab or staging environment before deploying to production to ensure compatibility with your existing firewall rules.
+
+```bash
+# 1. Download the installer
+wget [https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/releases/download/v0.4.0/install_blocklist_manager.sh](https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/releases/download/v0.4.0/install_blocklist_manager.sh)
+chmod +x install_blocklist_manager.sh
+
+# 2. Run with root privileges
+sudo ./install_blocklist_manager.sh
 
