@@ -39,7 +39,7 @@
 6. [Installation & Management Scripts](#installation--management-scripts)  
 7. [GRC Compliance Model](#grc-compliance-model) 
 8. [Roadmap](#roadmap) 
-9. [Support the Project & License](#support-the-project--license)  
+9. [Support & Sustainability](#support--sustainability)  
 
 # Data‑Shield IPv4 Blocklist Community
 
@@ -279,3 +279,19 @@ sudo ./install_blocklist_manager.sh --uninstall
 > 2. **Customize** the content to match your specific deployment of the blocklist.
 > 3. **Insert** the finalized document into your organization's GRC registry or Information Security Management System (ISMS).
 
+## Support & Sustainability
+
+> [!IMPORTANT]
+> **Help keep the project alive**
+> Developing and maintaining a high-fidelity, real-time blocklist requires significant infrastructure resources and dedicated time. Your contributions are vital to ensure the project remains sustainable, up-to-date, and free for the community.
+
+If you find this project useful, consider supporting its ongoing development:
+
+* ☕ **Ko-Fi:** [https://ko-fi.com/laurentmduggytuxy](https://ko-fi.com/laurentmduggytuxy)
+
+### ⚖️ License & Copyright
+
+**Data-Shield IPv4 Blocklist Community** © 2023–2026  
+Developed by **Duggy Tuxy (Laurent Minne)**.
+
+This project is open-source software licensed under the **[GNU GPLv3 License](/LICENSE)**.
