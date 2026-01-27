@@ -223,7 +223,7 @@ A non-exhaustive collection of guides to facilitate integration across various e
 | **[OPNsense](https://slash-root.fr/opnsense-block-malicious-ips/)** | Slash-Root Guide | ≥ 100k IPs |
 | **[Synology NAS](https://myownserver.org/posts/Automatiser_la_liste_de_blocage.html)** | MyOwnServer Guide | ≥ 100k IPs |
 
-## ⚖️ GRC & Compliance
+## 👩‍⚖️ GRC & Compliance
 
 - **Governance & Operational Efficiency**
   The solution reduces operational noise by up to **50%** and blocks **95%** of malicious bot traffic, significantly freeing up server resources (CPU, RAM). It enforces a strict **WAN-to-LAN configuration** to guarantee system effectiveness while offering 5 official lists (up to 120,000 IPs) adapted to hardware limitations.
