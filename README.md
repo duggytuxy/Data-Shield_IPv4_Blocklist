@@ -162,7 +162,6 @@ A non-exhaustive collection of guides to facilitate integration across various e
 | **[Stormshield](https://www.youtube.com/watch?v=yT2oas7M2UM)** | Official Video | *TBC* |
 | **[OPNsense](https://slash-root.fr/opnsense-block-malicious-ips/)** | Slash-Root Guide | ≥ 100k IPs |
 | **[Synology NAS](https://myownserver.org/posts/Automatiser_la_liste_de_blocage.html)** | MyOwnServer Guide | ≥ 100k IPs |
-| **[Linux (NFtables)](https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist?tab=readme-ov-file#installation--management-scripts)** | Duggy Tuxy Tutorials | ≥ 100k IPs |
 
 ## 🛣️ Roadmap
 
