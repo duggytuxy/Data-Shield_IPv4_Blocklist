@@ -71,7 +71,8 @@
 
 - **Automated, Multi-Channel Delivery** Ensure your defense is always active without manual intervention. Blocklists are automatically updated and distributed via high-availability networks including **GitHub, JSdelivr CDN, BitBucket, Codeberg, and GitLab**, guaranteeing reliable access through standard Raw URLs.
 
-## 📋 Production Lists (for **Web Apps, WordPress, Websites, VPS with Apache, Nginx**)
+## 📋 Production Lists
+>  For **Web Apps, WordPress, Websites, VPS with Apache, Nginx**
 
 To guarantee high availability and resilience, the Data-Shield IPv4 Blocklist Community is deployed across a robust multi-cloud infrastructure. The data is synchronized every **6 hours** across multiple repositories and a global CDN.
 
@@ -130,7 +131,8 @@ To guarantee high availability and resilience, the Data-Shield IPv4 Blocklist Co
 | Split List B | 30k IPs | [prod_ab_data-shield_ipv4_blocklist.txt](https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_ab_data-shield_ipv4_blocklist.txt) |
 | Split List C | 30k IPs | [prod_ac_data-shield_ipv4_blocklist.txt](https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_ac_data-shield_ipv4_blocklist.txt) |
 
-### 🐞 New Production Lists (for **DMZs, critical assets, exposed infrastructure, and APIs**)
+### 🐞 New Production Lists
+>  For **DMZs, critical assets, exposed infrastructure, and APIs**
 
 - **Critical Infrastructure & Specialized Lists** Tailored for SMBs and enterprise environments, we provide **5 dedicated lists** specifically designed to protect high-value targets such as **DMZs, critical assets, exposed infrastructure, and APIs**. This expanded coverage offers granular protection suited for complex environments, ensuring your most sensitive components remain secure.
 
@@ -221,30 +223,30 @@ A non-exhaustive collection of guides to facilitate integration across various e
 | **[OPNsense](https://slash-root.fr/opnsense-block-malicious-ips/)** | Slash-Root Guide | ≥ 100k IPs |
 | **[Synology NAS](https://myownserver.org/posts/Automatiser_la_liste_de_blocage.html)** | MyOwnServer Guide | ≥ 100k IPs |
 
-## 👩‍⚖️ GRC & Compliance
+## ⚖️ GRC & Compliance
 
 - **Governance & Operational Efficiency**
-  The solution reduces operational noise by up to **50%** and blocks **95%** of malicious bot traffic [cite: 11, 179][cite_start], significantly freeing up server resources (CPU, RAM)[cite: 11]. [cite_start]It enforces a strict **WAN-to-LAN configuration** to guarantee system effectiveness [cite: 19, 20] [cite_start]while offering 5 official lists (up to 120,000 IPs) adapted to hardware limitations[cite: 25, 142].
+  The solution reduces operational noise by up to **50%** and blocks **90%** of malicious bot traffic, significantly freeing up server resources (CPU, RAM). It enforces a strict **WAN-to-LAN configuration** to guarantee system effectiveness while offering 5 official lists (up to 120,000 IPs) adapted to hardware limitations.
 
 - **Regulatory Alignment (ISO 27001 & NIS2)**
-  [cite_start]Integration directly supports **ISO 27001:2022** controls (A.8.20 Network Security, A.5.7 Threat Intelligence) by automating perimeter defense against known attacks[cite: 74, 76, 79]. [cite_start]It also meets **NIS2 Directive** requirements for essential entities by providing structured risk management and proportionate technical measures to ensure service resilience[cite: 84, 85, 87].
+  Integration directly supports **ISO 27001:2022** controls (A.8.20 Network Security, A.5.7 Threat Intelligence) by automating perimeter defense against known attacks. It also meets **NIS2 Directive** requirements for essential entities by providing structured risk management and proportionate technical measures to ensure service resilience.
 
 - **GDPR & Privacy Standards**
-  [cite_start]When correctly configured (WAN-to-LAN only), the blocklist operates **outside the scope of GDPR** [cite: 94, 95][cite_start], as blocked IPs belong to external malicious actors with no contractual relationship to your organization[cite: 98]. [cite_start]This ensures a compliance-friendly integration without the need for complex personal data processing documentation[cite: 96, 108].
+  When correctly configured (WAN-to-LAN only), the blocklist operates **outside the scope of GDPR**, as blocked IPs belong to external malicious actors with no contractual relationship to your organization. This ensures a compliance-friendly integration without the need for complex personal data processing documentation.
 
 - **Risk Management & Reliability**
-  [cite_start]We utilize a rigorous behavioral analysis methodology to minimize false positives [cite: 15][cite_start], targeting a rate of less than **2 occurrences per month**[cite: 184]. [cite_start]High availability is guaranteed via 4 independent download sources (GitHub, JSdelivr, GitLab), ensuring continuous protection even during host incidents[cite: 49].
+  We utilize a rigorous behavioral analysis methodology to minimize false positives, targeting a rate of less than **2 occurrences per month**. High availability is guaranteed via 4 independent download sources (GitHub, JSdelivr, GitLab), ensuring continuous protection even during host incidents.
 
 - **Structured Deployment & Community Feedback**
-  [cite_start]Adoption follows a secure, phased approach—from **Observation** (logging only) to **Activation**—ensuring non-regression on critical flows[cite: 111, 118, 128]. [cite_start]The project fosters transparency with a clear process for reporting false positives via GitHub, aiming for collective improvement and resolution within 48 hours[cite: 27, 168].
+  Adoption follows a secure, phased approach—from **Observation** (logging only) to **Activation**—ensuring non-regression on critical flows. The project fosters transparency with a clear process for reporting false positives via GitHub, aiming for collective improvement and resolution within 48 hours.
 
 ## 🛣️ Roadmap
 
 | Objective | Target Date |
 | :--- | :---: |
-| Dashboard Optimization | Q1 2026 |
-| Fail2ban Integration | Q2 2026 |
-| API (Wazuh) | Q3 2026 |
+| Fail2ban Integration | Q1 2026 |
+| API v2 | Q2 2026 |
+| Dashboard Management (SaaS) | Q3 2026 |
 
 ## 🙏 Support & Sustainability
 
