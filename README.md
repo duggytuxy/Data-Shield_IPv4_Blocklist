@@ -176,12 +176,11 @@ A non-exhaustive collection of guides to facilitate integration across various e
 
 > **Help keep the project alive**
 > Developing and maintaining a high-fidelity, real-time blocklist requires significant infrastructure resources and dedicated time. Your contributions are vital to ensure the project remains sustainable, up-to-date, and free for the community.
-
-If you find this project useful, consider supporting its ongoing development:
+> If you find this project useful, consider supporting its ongoing development:
 
 * ☕ **Ko-Fi:** [https://ko-fi.com/laurentmduggytuxy](https://ko-fi.com/laurentmduggytuxy)
 
-### ⚖️ License & Copyright
+## ⚖️ License & Copyright
 
 - **Data-Shield IPv4 Blocklist Community** © 2023–2026  
 - Developed by **Duggy Tuxy (Laurent Minne)**.
