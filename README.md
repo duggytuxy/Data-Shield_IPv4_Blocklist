@@ -121,7 +121,7 @@ To guarantee high availability and resilience, the Data-Shield IPv4 Blocklist Co
 | Split List B | 30k IPs | [prod_ab_data-shield_ipv4_blocklist.txt](https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_ab_data-shield_ipv4_blocklist.txt) |
 | Split List C | 30k IPs | [prod_ac_data-shield_ipv4_blocklist.txt](https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_ac_data-shield_ipv4_blocklist.txt) |
 
-### 🐞 New Production Lists (Soon ...)
+### 🐞 New Production Lists
 >  For **DMZs, critical assets, exposed infrastructure, and APIs**
 
 - **Critical Infrastructure & Specialized Lists** Tailored for SMBs and enterprise environments, we provide **5 dedicated lists** specifically designed to protect high-value targets such as **DMZs, critical assets, exposed infrastructure, and APIs**. This expanded coverage offers granular protection suited for complex environments, ensuring your most sensitive components remain secure.
