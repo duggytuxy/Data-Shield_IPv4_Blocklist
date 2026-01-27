@@ -36,9 +36,9 @@
 3. [Core Objectives & Impact](#core-objectives--impact)  
 4. [Production Lists (Mirrors)](#production-lists-mirrors)  
 5. [Integration Tutorials](#integration-tutorials)  
-6. [Installation & Management Scripts](#installation--management-scripts)  
-7. [Roadmap](#roadmap) 
-8. [Support & Sustainability](#support--sustainability)  
+6. [Roadmap](#roadmap) 
+7. [Support & Sustainability](#support--sustainability)  
+8. [License & Copyright](#license--copyright)
 
 # Data‑Shield IPv4 Blocklist Community
 
@@ -137,14 +137,12 @@ To ensure the Data-Shield IPv4 Blocklist Community is operational and effective,
 
 ### Deployment Strategy
 
-> [!TIP]
 > **✅ Correct Usage: WAN to LAN (Inbound Traffic)**
 > The blocklist is designed to stop threats *entering* your network from the Internet.
 >
 > * **IPtables:** `sudo iptables -A INPUT -s <IP_ADDRESS> -j DROP`
 > * **NFtables:** `sudo nft add rule inet filter input ip saddr <IP_ADDRESS> drop`
 
-> [!CAUTION]
 > **⛔ Restricted Usage: LAN to WAN (Outbound Traffic)**
 > Do not apply these rules to outgoing traffic (from your internal network to the Internet).
 >
@@ -165,91 +163,6 @@ A non-exhaustive collection of guides to facilitate integration across various e
 | **[OPNsense](https://slash-root.fr/opnsense-block-malicious-ips/)** | Slash-Root Guide | ≥ 100k IPs |
 | **[Synology NAS](https://myownserver.org/posts/Automatiser_la_liste_de_blocage.html)** | MyOwnServer Guide | ≥ 100k IPs |
 | **[Linux (NFtables)](https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist?tab=readme-ov-file#installation--management-scripts)** | Duggy Tuxy Tutorials | ≥ 100k IPs |
-
-## Installation & Management Scripts
-
-### Automated Installation & Management (NFtables)
-
-> [!TIP]
-> **Why use this manager?**
-> This solution provides a secure, atomic, and idempotent way to deploy the Data-Shield Blocklist on critical Linux infrastructures. It ensures zero downtime during rule updates and includes strict validation mechanisms.
-
-#### Key Capabilities
-* **Hardened Security:** Enforces strict TLS 1.2+ verification, sandboxed Systemd execution (`ProtectSystem=full`), and immutable script protection.
-* **High Performance:** Utilizes optimized NFtables sets and performs **atomic updates**, ensuring no traffic is dropped or allowed incorrectly during reloads.
-* **Resilient & Idempotent:** Designed to run safely multiple times. Includes auto-failover to mirrors if the primary source is unreachable.
-
-### 1. Quick Deployment
-
-> [!NOTE]
-> **Supported OS:** Debian 11+, Ubuntu 20.04+, Fedora 41+
-
-> [!CAUTION]
-> **Pre-Production Testing Required**
-> Always test these scripts in a lab or staging environment before deploying to production to ensure compatibility with your existing firewall rules.
-
-```bash
-# 1. Download the installer
-wget https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/releases/download/v0.4.0/install_blocklist_manager.sh
-chmod +x install_blocklist_manager.sh
-
-# 2. Run with root privileges
-sudo ./install_blocklist_manager.sh
-```
-***During installation, follow the interactive prompts to select your source (Official or Custom).***
-
-### 2. Automatic Updates (Systemd)
-
-Once installed, a timer (`blocklist-update.timer`) executes hourly to perform the following cycle:
-
-  - **Audit**: Downloads the list and verifies SHA256 integrity.
-  - **Validate**: Checks IP formats (Strict Regex) and entry counts.
-  - **Apply**: Atomically swaps the NFtables set using a temporary batch file.
-
-### 3. Log Rotation (Highly Recommended)
-
-To prevent disk saturation from the hourly execution logs, it is essential to configure `logrotate`.
-
-> [!IMPORTANT]
-> Why is this necessary?
-
-  - **Disk Space**: Prevents `/var` from filling up indefinitely.
-  - **Security**: Enforces `0640` permissions, adhering to the Principle of Least Privilege.
-  - **Performance**: Uses `delaycompress` to prevent race conditions during writing.
-
-**Quick Setup (Copy & Paste)** Run the following block as root to create the configuration and verify permissions:
-
-```bash
-# 1. Create the configuration file
-cat <<EOF > /etc/logrotate.d/blocklist-manager
-/var/log/nft_blocklist.log
-/var/log/blocklist_manager_install.log {
-    weekly
-    rotate 4
-    compress
-    delaycompress
-    missingok
-    notifempty
-    create 0640 root adm
-}
-EOF
-
-# 2. Secure the file permissions
-chmod 644 /etc/logrotate.d/blocklist-manager
-chown root:root /etc/logrotate.d/blocklist-manager
-
-# 3. Verify configuration (Dry Run)
-logrotate -d /etc/logrotate.d/blocklist-manager
-```
-
-### 4. Uninstallation
-
-> [!NOTE] 
-> To cleanly remove the script, services, logs, and firewall rules:
-
-```bash
-sudo ./install_blocklist_manager.sh --uninstall
-```
 
 ## Roadmap
 
