@@ -65,5 +65,5 @@ body:
       options:
         - label: Je certifie que ces logs sont authentiques.
           required: true
-        - label: J'ai vérifié si possible qu'il ne s'agit pas d'un faux positif ex: GoogleBot, IP légitime.
+        - label: J'ai vérifié si possible qu'il ne s'agit pas d'un faux positif ex GoogleBot, IP légitime.
           required: false
