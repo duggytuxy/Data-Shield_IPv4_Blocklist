@@ -29,17 +29,7 @@
   <br />
 </p>
 
-## 📑 Table of Contents  
-
-1. [Presentation](#datashield-ipv4-blocklist-community)
-2. [Key Features & Benefits](#-key-features--benefits)  
-3. [Core Objectives & Impact](#-core-objectives--impact)  
-4. [Production Lists (Mirrors)](#-production-lists-mirrors)  
-5. [Integration Tutorials](#-integration-tutorials)  
-6. [GRC & Compliance](#-grc--compliance)
-6. [Roadmap](#-roadmap) 
-7. [Support & Sustainability](#-support--sustainability)  
-8. [License & Copyright](#-license--copyright)
+![Alt](https://repobeats.axiom.co/api/embed/8ead3fb191fc45d23c0953782d4aee4901b85ded.svg "Repobeats analytics image")
 
 # Data‑Shield IPv4 Blocklist Community
 
@@ -262,7 +252,3 @@ A non-exhaustive collection of guides to facilitate integration across various e
 - Developed by **Duggy Tuxy (Laurent Minne)**.
 
 "This project is open-source software licensed under the **[GNU GPLv3 License](/LICENSE)**."
-
-## 📊 Activity
-
-![Alt](https://repobeats.axiom.co/api/embed/8ead3fb191fc45d23c0953782d4aee4901b85ded.svg "Repobeats analytics image")
