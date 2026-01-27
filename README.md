@@ -235,7 +235,7 @@ A non-exhaustive collection of guides to facilitate integration across various e
   When correctly configured (WAN-to-LAN only), the blocklist operates **outside the scope of GDPR**, as blocked IPs belong to external malicious actors with no contractual relationship to your organization. This ensures a compliance-friendly integration without the need for complex personal data processing documentation.
 
 - **Risk Management & Reliability**
-  We utilize a rigorous behavioral analysis methodology to minimize false positives, targeting a rate of less than **2 occurrences per month**. High availability is guaranteed via 4 independent download sources (GitHub, JSdelivr, GitLab), ensuring continuous protection even during host incidents.
+  We utilize a rigorous behavioral analysis methodology to minimize false positives, targeting a rate of less than **2 occurrences per month**. High availability is guaranteed via 4 independent download sources (GitHub, BitBucket, Codeberg, GitLab), ensuring continuous protection even during host incidents.
 
 - **Structured Deployment & Community Feedback**
   Adoption follows a secure, phased approach—from **Observation** (logging only) to **Activation**—ensuring non-regression on critical flows. The project fosters transparency with a clear process for reporting false positives via GitHub, aiming for collective improvement and resolution within 48 hours.
