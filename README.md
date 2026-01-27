@@ -32,13 +32,13 @@
 ## 📑 Table of Contents  
 
 1. [Presentation](#datashield-ipv4-blocklist-community)
-2. [Key Features & Benefits](#key-features--benefits)  
-3. [Core Objectives & Impact](#core-objectives--impact)  
-4. [Production Lists (Mirrors)](#production-lists-mirrors)  
-5. [Integration Tutorials](#integration-tutorials)  
-6. [Roadmap](#roadmap) 
-7. [Support & Sustainability](#support--sustainability)  
-8. [License & Copyright](#license--copyright)
+2. [Key Features & Benefits](#-key-features--benefits)  
+3. [Core Objectives & Impact](#-core-objectives--impact)  
+4. [Production Lists (Mirrors)](#-production-lists-mirrors)  
+5. [Integration Tutorials](#-integration-tutorials)  
+6. [Roadmap](#-roadmap) 
+7. [Support & Sustainability](#-support--sustainability)  
+8. [License & Copyright](#-license--copyright)
 
 # Data‑Shield IPv4 Blocklist Community
 
