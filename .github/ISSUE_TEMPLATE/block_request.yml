@@ -1,7 +1,8 @@
 name: 🛡️ Demande de blocage d'IP
 description: Signaler une adresse IP malveillante pour ajout à la blocklist.
 title: "[BLOCK] : <IP_ADDRESS>"
-labels: ["report", "triage"]
+labels: ["Block Request", "triage"]
+assignees: []
 body:
   - type: markdown
     attributes:
