@@ -226,7 +226,7 @@ A non-exhaustive collection of guides to facilitate integration across various e
 ## ⚖️ GRC & Compliance
 
 - **Governance & Operational Efficiency**
-  The solution reduces operational noise by up to **50%** and blocks **90%** of malicious bot traffic, significantly freeing up server resources (CPU, RAM). It enforces a strict **WAN-to-LAN configuration** to guarantee system effectiveness while offering 5 official lists (up to 120,000 IPs) adapted to hardware limitations.
+  The solution reduces operational noise by up to **50%** and blocks **95%** of malicious bot traffic, significantly freeing up server resources (CPU, RAM). It enforces a strict **WAN-to-LAN configuration** to guarantee system effectiveness while offering 5 official lists (up to 120,000 IPs) adapted to hardware limitations.
 
 - **Regulatory Alignment (ISO 27001 & NIS2)**
   Integration directly supports **ISO 27001:2022** controls (A.8.20 Network Security, A.5.7 Threat Intelligence) by automating perimeter defense against known attacks. It also meets **NIS2 Directive** requirements for essential entities by providing structured risk management and proportionate technical measures to ensure service resilience.
