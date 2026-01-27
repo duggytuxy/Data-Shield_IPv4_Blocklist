@@ -230,6 +230,8 @@ A non-exhaustive collection of guides to facilitate integration across various e
 - **Structured Deployment & Community Feedback**
   Adoption follows a secure, phased approach—from **Observation** (logging only) to **Activation**—ensuring non-regression on critical flows. The project fosters transparency with a clear process for reporting false positives via GitHub, aiming for collective improvement and resolution within 48 hours.
 
+> **Download the complete GRC Compliance Model** to modify it if necessary and insert it into your information systems security policy, in accordance with your GRC officer [Docx and PDF formats](/docs).
+
 ## 🛣️ Roadmap
 
 | Objective | Target Date |
