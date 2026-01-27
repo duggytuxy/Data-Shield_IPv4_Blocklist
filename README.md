@@ -164,11 +164,11 @@ To guarantee high availability and resilience, the Data-Shield IPv4 Blocklist Co
 
 | **Dataset Variant** | **Entry Cap** | **Raw Link** |
 | :--- | :---: | :--- |
-| **Full List** | ~100k IPs | [prod_critical_data-shield_ipv4_blocklist.txt](https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/raw/4d4c070f22b8cacf44a47e1def12421f240eb040/prod_critical_data-shield_ipv4_blocklist.txt) |
-| Split List A | 30k IPs | [prod_critical_aa_data-shield_ipv4_blocklist.txt](https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/raw/4d4c070f22b8cacf44a47e1def12421f240eb040/prod_critical_aa_data-shield_ipv4_blocklist.txt) |
-| Split List B | 30k IPs | [prod_critical_ab_data-shield_ipv4_blocklist.txt](https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/raw/4d4c070f22b8cacf44a47e1def12421f240eb040/prod_critical_ab_data-shield_ipv4_blocklist.txt) |
-| Split List C | 30k IPs | [prod_critical_ac_data-shield_ipv4_blocklist.txt](https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/raw/4d4c070f22b8cacf44a47e1def12421f240eb040/prod_critical_ac_data-shield_ipv4_blocklist.txt) |
-| Split List D | 30k IPs | [prod_critical_ad_data-shield_ipv4_blocklist.txt](https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/raw/4d4c070f22b8cacf44a47e1def12421f240eb040/prod_critical_ad_data-shield_ipv4_blocklist.txt) |
+| **Full List** | ~100k IPs | [prod_critical_data-shield_ipv4_blocklist.txt](https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/raw/b6611ce50df00aab57a4c5e5bc90ce7a1b45fa4f/prod_critical_data-shield_ipv4_blocklist.txt) |
+| Split List A | 30k IPs | [prod_critical_aa_data-shield_ipv4_blocklist.txt](https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/raw/b6611ce50df00aab57a4c5e5bc90ce7a1b45fa4f/prod_critical_aa_data-shield_ipv4_blocklist.txt) |
+| Split List B | 30k IPs | [prod_critical_ab_data-shield_ipv4_blocklist.txt](https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/raw/b6611ce50df00aab57a4c5e5bc90ce7a1b45fa4f/prod_critical_ab_data-shield_ipv4_blocklist.txt) |
+| Split List C | 30k IPs | [prod_critical_ac_data-shield_ipv4_blocklist.txt](https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/raw/b6611ce50df00aab57a4c5e5bc90ce7a1b45fa4f/prod_critical_ac_data-shield_ipv4_blocklist.txt) |
+| Split List D | 30k IPs | [prod_critical_ad_data-shield_ipv4_blocklist.txt](https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/raw/b6611ce50df00aab57a4c5e5bc90ce7a1b45fa4f/prod_critical_ad_data-shield_ipv4_blocklist.txt) |
 
 #### ✅ Codeberg Repository (Mirror)
 > **[View Official Repository](https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist)**
