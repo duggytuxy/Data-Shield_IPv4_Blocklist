@@ -29,7 +29,7 @@
   <br />
 </p>
 
-## Table of Contents  
+## 📑 Table of Contents  
 
 1. [Presentation](#datashield-ipv4-blocklist-community)
 2. [Key Features & Benefits](#key-features--benefits)  
@@ -44,7 +44,7 @@
 
 **The Data-Shield IPv4 Blocklist Community** provides an official, curated registry of IPv4 addresses identified as malicious. Updated continuously, this resource offers vital threat intelligence to bolster your **Firewall** and **WAF** instances, delivering a robust, additional layer of security for your infrastructure.
 
-## Key Features & Benefits
+## ⚡ Key Features & Benefits
 
 - **Proactive Defense & Reduced Attack Surface** The Data-Shield IPv4 Blocklist Community Community serves as an essential protective layer for your exposed assets (Web Apps, WordPress, Websites, VPS with Linux OS). By blocking malicious traffic early, it significantly reduces the reconnaissance phase and lowers visibility on scanners like **Shodan**.
 
@@ -64,7 +64,7 @@
 
 - **Professional Plan & Management Dashboard** Designed for SMBs and large enterprises, the **Professional Plan** extends protection to high-value targets such as **DMZs, critical assets, critical assets exposed and APIs**. This tier grants access to a dedicated **Management Dashboard**, allowing for granular control over list configurations and deployment strategies suited for complex environments. See [**official website**](https://duggytuxy.github.io).
 
-## Core Objectives & Impact
+## 🎯 Core Objectives & Impact
 
 - **Drastic Noise Reduction & Streamlined Response** By filtering out approximately **95% of malicious bot traffic**, we reduce overall log noise by up to **50%**. This significantly improves the signal-to-noise ratio, allowing **Cybersecurity Incident Responders (CIRs)** to focus on genuine anomalies and critical alerts rather than sifting through automated background noise.
 
@@ -72,7 +72,7 @@
 
 - **Automated, Multi-Channel Delivery** Ensure your defense is always active without manual intervention. Blocklists are automatically updated and distributed via high-availability networks including **GitHub, JSdelivr CDN, BitBucket, Codeberg, and GitLab**, guaranteeing reliable access through standard Raw URLs.
 
-## Production Lists (Mirrors)
+## 📋 Production Lists (Mirrors)
 
 To guarantee high availability and resilience, the Data-Shield IPv4 Blocklist Community is deployed across a robust multi-cloud infrastructure. The data is synchronized every **6 hours** across multiple repositories and a global CDN.
 
@@ -131,7 +131,7 @@ To guarantee high availability and resilience, the Data-Shield IPv4 Blocklist Co
 | Split List B | 30k IPs | [prod_ab_data-shield_ipv4_blocklist.txt](https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_ab_data-shield_ipv4_blocklist.txt) |
 | Split List C | 30k IPs | [prod_ac_data-shield_ipv4_blocklist.txt](https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_ac_data-shield_ipv4_blocklist.txt) |
 
-## Integration Tutorials
+## ⚙️ Integration Tutorials
 
 To ensure the Data-Shield IPv4 Blocklist Community is operational and effective, it is crucial to apply the filtering rules in the correct direction of traffic flow.
 
@@ -164,7 +164,7 @@ A non-exhaustive collection of guides to facilitate integration across various e
 | **[Synology NAS](https://myownserver.org/posts/Automatiser_la_liste_de_blocage.html)** | MyOwnServer Guide | ≥ 100k IPs |
 | **[Linux (NFtables)](https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist?tab=readme-ov-file#installation--management-scripts)** | Duggy Tuxy Tutorials | ≥ 100k IPs |
 
-## Roadmap
+## 🛣️ Roadmap
 
 | Objective | Target Date |
 | :--- | :---: |
@@ -172,9 +172,8 @@ A non-exhaustive collection of guides to facilitate integration across various e
 | Fail2ban Integration | Q2 2026 |
 | API (Wazuh) | Q3 2026 |
 
-## Support & Sustainability
+## 🙏 Support & Sustainability
 
-> [!IMPORTANT]
 > **Help keep the project alive**
 > Developing and maintaining a high-fidelity, real-time blocklist requires significant infrastructure resources and dedicated time. Your contributions are vital to ensure the project remains sustainable, up-to-date, and free for the community.
 
@@ -189,6 +188,6 @@ If you find this project useful, consider supporting its ongoing development:
 
 "This project is open-source software licensed under the **[GNU GPLv3 License](/LICENSE)**."
 
-## Activity
+## 📊 Activity
 
 ![Alt](https://repobeats.axiom.co/api/embed/8ead3fb191fc45d23c0953782d4aee4901b85ded.svg "Repobeats analytics image")
