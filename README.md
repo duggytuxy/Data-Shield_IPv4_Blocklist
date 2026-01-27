@@ -36,6 +36,7 @@
 3. [Core Objectives & Impact](#-core-objectives--impact)  
 4. [Production Lists (Mirrors)](#-production-lists-mirrors)  
 5. [Integration Tutorials](#-integration-tutorials)  
+6. [GRC & Compliance](#-grc--compliance)
 6. [Roadmap](#-roadmap) 
 7. [Support & Sustainability](#-support--sustainability)  
 8. [License & Copyright](#-license--copyright)
@@ -46,7 +47,7 @@
 
 ## ⚡ Key Features & Benefits
 
-- **Proactive Defense & Reduced Attack Surface** The Data-Shield IPv4 Blocklist Community Community serves as an essential protective layer for your exposed assets (Web Apps, WordPress, Websites, VPS with Linux OS). By blocking malicious traffic early, it significantly reduces the reconnaissance phase and lowers visibility on scanners like **Shodan**.
+- **Proactive Defense & Reduced Attack Surface** The Data-Shield IPv4 Blocklist Community Community serves as an essential protective layer for your exposed assets (Web Apps, WordPress, Websites, VPS with Apache, Nginx). By blocking malicious traffic early, it significantly reduces the reconnaissance phase and lowers visibility on scanners like **Shodan**.
 
 - **High-Fidelity, Centralized Intelligence** Data is aggregated from a single, verified source fed by global probes and processed via a self-hosted HIDS/SIEM stack. We prioritize **data reliability** to minimize false positives, ensuring your legitimate traffic remains uninterrupted.
 
@@ -62,8 +63,6 @@
 
 - **Open Source & Community Driven** Accessible to anyone—from hobbyists to enterprise admins. The project is proudly distributed under the [GNU GPLv3 license](/LICENSE), fostering a transparent and collaborative security ecosystem.
 
-- **Professional Plan & Management Dashboard** Designed for SMBs and large enterprises, the **Professional Plan** extends protection to high-value targets such as **DMZs, critical assets, critical assets exposed and APIs**. This tier grants access to a dedicated **Management Dashboard**, allowing for granular control over list configurations and deployment strategies suited for complex environments. See [**official website**](https://duggytuxy.github.io).
-
 ## 🎯 Core Objectives & Impact
 
 - **Drastic Noise Reduction & Streamlined Response** By filtering out approximately **95% of malicious bot traffic**, we reduce overall log noise by up to **50%**. This significantly improves the signal-to-noise ratio, allowing **Cybersecurity Incident Responders (CIRs)** to focus on genuine anomalies and critical alerts rather than sifting through automated background noise.
@@ -72,7 +71,7 @@
 
 - **Automated, Multi-Channel Delivery** Ensure your defense is always active without manual intervention. Blocklists are automatically updated and distributed via high-availability networks including **GitHub, JSdelivr CDN, BitBucket, Codeberg, and GitLab**, guaranteeing reliable access through standard Raw URLs.
 
-## 📋 Production Lists (Mirrors)
+## 📋 Production Lists (for **Web Apps, WordPress, Websites, VPS with Apache, Nginx**)
 
 To guarantee high availability and resilience, the Data-Shield IPv4 Blocklist Community is deployed across a robust multi-cloud infrastructure. The data is synchronized every **6 hours** across multiple repositories and a global CDN.
 
@@ -80,7 +79,7 @@ To guarantee high availability and resilience, the Data-Shield IPv4 Blocklist Co
 
   - **Full List**: Recommended for most modern Firewalls, WAFs, and SIEMs.
   - **Split Lists (A/B/C)**: Designed for legacy hardware or vendors with strict entry limits per object (e.g., max 30k IPs). If used, ensure all 3 parts are ingested.
-
+  
 #### ✅ GitHub Repository (Mirror)
 > **[View Official Repository](https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist)**
 
@@ -131,6 +130,65 @@ To guarantee high availability and resilience, the Data-Shield IPv4 Blocklist Co
 | Split List B | 30k IPs | [prod_ab_data-shield_ipv4_blocklist.txt](https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_ab_data-shield_ipv4_blocklist.txt) |
 | Split List C | 30k IPs | [prod_ac_data-shield_ipv4_blocklist.txt](https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_ac_data-shield_ipv4_blocklist.txt) |
 
+### 🐞 New Production Lists (for **DMZs, critical assets, exposed infrastructure, and APIs**)
+
+- **Critical Infrastructure & Specialized Lists** Tailored for SMBs and enterprise environments, we provide **5 dedicated lists** specifically designed to protect high-value targets such as **DMZs, critical assets, exposed infrastructure, and APIs**. This expanded coverage offers granular protection suited for complex environments, ensuring your most sensitive components remain secure.
+
+#### ✅ GitHub Repository (Mirror)
+> **[View Official Repository](https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist)**
+
+| **Dataset Variant** | **Entry Cap** | **Raw Link** |
+| :--- | :---: | :--- |
+| **Full List** | ~100k IPs | [prod_critical_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_critical_data-shield_ipv4_blocklist.txt) |
+| Split List A | 30k IPs | [prod_critical_aa_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_critical_aa_data-shield_ipv4_blocklist.txt) |
+| Split List B | 30k IPs | [prod_critical_ab_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_critical_ab_data-shield_ipv4_blocklist.txt) |
+| Split List C | 30k IPs | [prod_critical_ac_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_critical_ac_data-shield_ipv4_blocklist.txt) |
+| Split List D | 30k IPs | [prod_critical_ad_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_critical_ad_data-shield_ipv4_blocklist.txt) |
+
+#### ✅ GitLab Repository (Main Source)
+> **[View Official Repository](https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/)**
+
+| **Dataset Variant** | **Entry Cap** | **Raw Link** |
+| :--- | :---: | :--- |
+| **Full List** | ~100k IPs | [prod_critical_data-shield_ipv4_blocklist.txt](https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_critical_data-shield_ipv4_blocklist.txt?ref_type=heads) |
+| Split List A | 30k IPs | [prod_critical_aa_data-shield_ipv4_blocklist.txt](https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_critical_aa_data-shield_ipv4_blocklist.txt?ref_type=heads) |
+| Split List B | 30k IPs | [prod_critical_ab_data-shield_ipv4_blocklist.txt](https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_critical_ab_data-shield_ipv4_blocklist.txt?ref_type=heads) |
+| Split List C | 30k IPs | [prod_critical_ac_data-shield_ipv4_blocklist.txt](https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_critical_ac_data-shield_ipv4_blocklist.txt?ref_type=heads) |
+| Split List D | 30k IPs | [prod_critical_ad_data-shield_ipv4_blocklist.txt](https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_critical_ad_data-shield_ipv4_blocklist.txt?ref_type=heads) |
+
+#### ⚡ jsDelivr CDN (High Performance)
+> **[View CDN Status](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@main/)**
+
+| **Dataset Variant** | **Entry Cap** | **Raw Link** |
+| :--- | :---: | :--- |
+| **Full List** | ~100k IPs | [prod_critical_data-shield_ipv4_blocklist.txt](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@refs/heads/main/prod_critical_data-shield_ipv4_blocklist.txt) |
+| Split List A | 30k IPs | [prod_critical_aa_data-shield_ipv4_blocklist.txt](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@refs/heads/main/prod_critical_aa_data-shield_ipv4_blocklist.txt) |
+| Split List B | 30k IPs | [prod_critical_ab_data-shield_ipv4_blocklist.txt](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@refs/heads/main/prod_critical_ab_data-shield_ipv4_blocklist.txt) |
+| Split List C | 30k IPs | [prod_critical_ac_data-shield_ipv4_blocklist.txt](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@refs/heads/main/prod_critical_ac_data-shield_ipv4_blocklist.txt) |
+| Split List D | 30k IPs | [prod_critical_ad_data-shield_ipv4_blocklist.txt](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@refs/heads/main/prod_critical_ad_data-shield_ipv4_blocklist.txt) |
+
+#### ✅ BitBucket Repository (Mirror)
+> **[View Official Repository](https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/src/main/)**
+
+| **Dataset Variant** | **Entry Cap** | **Raw Link** |
+| :--- | :---: | :--- |
+| **Full List** | ~100k IPs | [prod_critical_data-shield_ipv4_blocklist.txt](https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/raw/99c4b9fd8aa92f0e7d0f7b76cd465d130d752f5d/prod_critical_data-shield_ipv4_blocklist.txt) |
+| Split List A | 30k IPs | [prod_critical_aa_data-shield_ipv4_blocklist.txt](https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/raw/99c4b9fd8aa92f0e7d0f7b76cd465d130d752f5d/prod_critical_aa_data-shield_ipv4_blocklist.txt) |
+| Split List B | 30k IPs | [prod_critical_ab_data-shield_ipv4_blocklist.txt](https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/raw/99c4b9fd8aa92f0e7d0f7b76cd465d130d752f5d/prod_critical_ab_data-shield_ipv4_blocklist.txt) |
+| Split List C | 30k IPs | [prod_critical_ac_data-shield_ipv4_blocklist.txt](https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/raw/99c4b9fd8aa92f0e7d0f7b76cd465d130d752f5d/prod_critical_ac_data-shield_ipv4_blocklist.txt) |
+| Split List D | 30k IPs | [prod_critical_ad_data-shield_ipv4_blocklist.txt](https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/raw/99c4b9fd8aa92f0e7d0f7b76cd465d130d752f5d/prod_critical_ad_data-shield_ipv4_blocklist.txt) |
+
+#### ✅ Codeberg Repository (Mirror)
+> **[View Official Repository](https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist)**
+
+| **Dataset Variant** | **Entry Cap** | **Raw Link** |
+| :--- | :---: | :--- |
+| **Full List** | ~100k IPs | [prod_critical_data-shield_ipv4_blocklist.txt](https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_critical_data-shield_ipv4_blocklist.txt) |
+| Split List A | 30k IPs | [prod_critical_aa_data-shield_ipv4_blocklist.txt](https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_critical_aa_data-shield_ipv4_blocklist.txt) |
+| Split List B | 30k IPs | [prod_critical_ab_data-shield_ipv4_blocklist.txt](https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_critical_ab_data-shield_ipv4_blocklist.txt) |
+| Split List C | 30k IPs | [prod_critical_ac_data-shield_ipv4_blocklist.txt](https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_critical_ac_data-shield_ipv4_blocklist.txt) |
+| Split List D | 30k IPs | [prod_critical_ad_data-shield_ipv4_blocklist.txt](https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_critical_ad_data-shield_ipv4_blocklist.txt) |
+
 ## ⚙️ Integration Tutorials
 
 To ensure the Data-Shield IPv4 Blocklist Community is operational and effective, it is crucial to apply the filtering rules in the correct direction of traffic flow.
@@ -162,6 +220,23 @@ A non-exhaustive collection of guides to facilitate integration across various e
 | **[Stormshield](https://www.youtube.com/watch?v=yT2oas7M2UM)** | Official Video | *TBC* |
 | **[OPNsense](https://slash-root.fr/opnsense-block-malicious-ips/)** | Slash-Root Guide | ≥ 100k IPs |
 | **[Synology NAS](https://myownserver.org/posts/Automatiser_la_liste_de_blocage.html)** | MyOwnServer Guide | ≥ 100k IPs |
+
+## 👩‍⚖️ GRC & Compliance
+
+- **Governance & Operational Efficiency**
+  The solution reduces operational noise by up to **50%** and blocks **95%** of malicious bot traffic [cite: 11, 179][cite_start], significantly freeing up server resources (CPU, RAM)[cite: 11]. [cite_start]It enforces a strict **WAN-to-LAN configuration** to guarantee system effectiveness [cite: 19, 20] [cite_start]while offering 5 official lists (up to 120,000 IPs) adapted to hardware limitations[cite: 25, 142].
+
+- **Regulatory Alignment (ISO 27001 & NIS2)**
+  [cite_start]Integration directly supports **ISO 27001:2022** controls (A.8.20 Network Security, A.5.7 Threat Intelligence) by automating perimeter defense against known attacks[cite: 74, 76, 79]. [cite_start]It also meets **NIS2 Directive** requirements for essential entities by providing structured risk management and proportionate technical measures to ensure service resilience[cite: 84, 85, 87].
+
+- **GDPR & Privacy Standards**
+  [cite_start]When correctly configured (WAN-to-LAN only), the blocklist operates **outside the scope of GDPR** [cite: 94, 95][cite_start], as blocked IPs belong to external malicious actors with no contractual relationship to your organization[cite: 98]. [cite_start]This ensures a compliance-friendly integration without the need for complex personal data processing documentation[cite: 96, 108].
+
+- **Risk Management & Reliability**
+  [cite_start]We utilize a rigorous behavioral analysis methodology to minimize false positives [cite: 15][cite_start], targeting a rate of less than **2 occurrences per month**[cite: 184]. [cite_start]High availability is guaranteed via 4 independent download sources (GitHub, JSdelivr, GitLab), ensuring continuous protection even during host incidents[cite: 49].
+
+- **Structured Deployment & Community Feedback**
+  [cite_start]Adoption follows a secure, phased approach—from **Observation** (logging only) to **Activation**—ensuring non-regression on critical flows[cite: 111, 118, 128]. [cite_start]The project fosters transparency with a clear process for reporting false positives via GitHub, aiming for collective improvement and resolution within 48 hours[cite: 27, 168].
 
 ## 🛣️ Roadmap
 
