@@ -81,7 +81,7 @@ To guarantee high availability and resilience, the Data-Shield IPv4 Blocklist Co
   - **Full List**: Recommended for most modern Firewalls, WAFs, and SIEMs.
   - **Split Lists (A/B/C)**: Designed for legacy hardware or vendors with strict entry limits per object (e.g., max 30k IPs). If used, ensure all 3 parts are ingested.
 
-#### <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" width="20"/> GitHub Repository (Mirror)
+#### ✅ GitHub Repository (Mirror)
 > **[View Official Repository](https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist)**
 
 | **Dataset Variant** | **Entry Cap** | **Raw Link** |
@@ -91,7 +91,7 @@ To guarantee high availability and resilience, the Data-Shield IPv4 Blocklist Co
 | Split List B | 30k IPs | [prod_ab_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ab_data-shield_ipv4_blocklist.txt) |
 | Split List C | 30k IPs | [prod_ac_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ac_data-shield_ipv4_blocklist.txt) |
 
-#### <img src="https://about.gitlab.com/images/press/press-kit-icon.svg" width="20"/> GitLab Repository (Main Source)
+#### ✅ GitLab Repository (Main Source)
 > **[View Official Repository](https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/)**
 
 | **Dataset Variant** | **Entry Cap** | **Raw Link** |
@@ -111,7 +111,7 @@ To guarantee high availability and resilience, the Data-Shield IPv4 Blocklist Co
 | Split List B | 30k IPs | [prod_ab_data-shield_ipv4_blocklist.txt](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@refs/heads/main/prod_ab_data-shield_ipv4_blocklist.txt) |
 | Split List C | 30k IPs | [prod_ac_data-shield_ipv4_blocklist.txt](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@refs/heads/main/prod_ac_data-shield_ipv4_blocklist.txt) |
 
-#### <img src="https://cdn.worldvectorlogo.com/logos/bitbucket.svg" width="20"/> BitBucket Repository (Mirror)
+#### ✅ BitBucket Repository (Mirror)
 > **[View Official Repository](https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/src/main/)**
 
 | **Dataset Variant** | **Entry Cap** | **Raw Link** |
@@ -121,7 +121,7 @@ To guarantee high availability and resilience, the Data-Shield IPv4 Blocklist Co
 | Split List B | 30k IPs | [prod_ab_data-shield_ipv4_blocklist.txt](https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/raw/99c4b9fd8aa92f0e7d0f7b76cd465d130d752f5d/prod_ab_data-shield_ipv4_blocklist.txt) |
 | Split List C | 30k IPs | [prod_ac_data-shield_ipv4_blocklist.txt](https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/raw/99c4b9fd8aa92f0e7d0f7b76cd465d130d752f5d/prod_ac_data-shield_ipv4_blocklist.txt) |
 
-#### <img src="https://codeberg.org/assets/img/logo.svg" width="20"/> Codeberg Repository (Mirror)
+#### ✅ Codeberg Repository (Mirror)
 > **[View Official Repository](https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist)**
 
 | **Dataset Variant** | **Entry Cap** | **Raw Link** |
