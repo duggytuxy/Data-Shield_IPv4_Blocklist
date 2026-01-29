@@ -205,6 +205,7 @@ A non-exhaustive collection of guides to facilitate integration across various e
 
 | **Vendor / Platform** | **Resource Type** | **Capacity Note** |
 | :--- | :---: | :---: |
+| **[BunkerWeb](https://docs.bunkerweb.io/latest/features/#__tabbed_8_1)** | Official Documentation | ≥ 100k IPs |
 | **[Fortinet](https://docs.fortinet.com/document/fortigate/7.4.9/administration-guide/379433/configuring-a-threat-feed#threat-ext)** | Official Guide | ≥ 100k IPs |
 | **[Checkpoint](https://sc1.checkpoint.com/documents/R80.20SP/WebAdminGuides/EN/CP_R80.20SP_Maestro_AdminGuide/Topics-Maestro-AG/IP-Block-Feature.htm)** | Manufacturer's Guide | *TBC* |
 | **[Palo Alto](https://docs.paloaltonetworks.com/network-security/security-policy/administration/objects/external-dynamic-lists/configure-the-firewall-to-access-an-external-dynamic-list#configure-the-firewall-to-access-an-external-dynamic-list-panorama)** | EDL Overview | *TBC* |
