@@ -1,4 +1,15 @@
 #!/bin/bash
+# ==============================================================================
+# SCRIPT: install-datashield.sh
+# AUTHOR: Data-Shield Integration Assistant
+# DATE: 2024-05-20
+# VERSION: 3.3 (Robust Ping Fix)
+# SYSTEM: Ubuntu 24.04+, Debian 13+, RHEL 9+, AlmaLinux, Rocky Linux
+# DESCRIPTION:
+#   Downloads Data-Shield IPv4 blocklists, benchmarks mirrors using native math,
+#   and integrates them into Nftables or IPSet.
+#   Includes auto-update via Cron and specific package handling.
+# ==============================================================================
 
 # --- SAFETY FIRST ---
 set -euo pipefail
@@ -172,10 +183,18 @@ measure_latency() {
     local url="$1"
     local domain=$(echo "$url" | awk -F/ '{print $3}')
     local ping_res
-    # FIX: Use awk 'int' to get integer only (removes decimals), avoiding 'bc' dependency
-    ping_res=$(ping -c 2 -W 1 "$domain" | tail -1 | awk -F '/' '{print int($5)}' 2>/dev/null)
     
-    if [[ -z "$ping_res" ]]; then echo "9999"; else echo "$ping_res"; fi
+    # FIX: Robust Ping Parsing
+    # We use ping -c 3 to be sure. We grep "min/avg/max". We use awk to take the second value (avg).
+    # We strip the decimals by casting to int in awk.
+    ping_res=$(ping -c 3 -W 2 "$domain" | grep "min/avg/max" | awk -F '/' '{print int($5)}' 2>/dev/null)
+    
+    # If ping failed or returned empty, return high penalty
+    if [[ -z "$ping_res" ]] || [[ "$ping_res" -eq 0 ]]; then
+        echo "9999" 
+    else
+        echo "$ping_res"
+    fi
 }
 
 select_mirror() {
@@ -205,22 +224,36 @@ select_mirror() {
     local fastest_time=10000
     local fastest_name=""
     local fastest_url=""
+    local valid_mirror_found=false
 
     for name in "${!URL_MAP[@]}"; do
         url="${URL_MAP[$name]}"
         echo -n "Pinging $name... "
         time=$(measure_latency "$url")
-        echo "${time} ms"
-
-        # FIX: Native bash integer comparison (no 'bc' needed)
-        if (( time < fastest_time )); then
-            fastest_time=$time
-            fastest_name=$name
-            fastest_url=$url
+        
+        if [[ "$time" -eq 9999 ]]; then
+             echo "FAIL (Timeout)"
+        else
+             echo "${time} ms"
+             # FIX: Logic improvement
+             if (( time < fastest_time )); then
+                fastest_time=$time
+                fastest_name=$name
+                fastest_url=$url
+                valid_mirror_found=true
+             fi
         fi
     done
 
-    SELECTED_URL="$fastest_url"
+    # Fallback if all pings failed (ICMP blocked?)
+    if [[ "$valid_mirror_found" == "false" ]]; then
+        log "WARN" "All mirrors unreachable via ping (ICMP blocked?). Defaulting to Codeberg."
+        SELECTED_URL="${URL_MAP[Codeberg]}"
+        fastest_name="Codeberg (Fallback)"
+    else
+        SELECTED_URL="$fastest_url"
+    fi
+
     echo "SELECTED_URL='$SELECTED_URL'" >> "$CONF_FILE"
     log "INFO" "Auto-selected fastest mirror: $fastest_name"
 }
@@ -230,10 +263,13 @@ download_list() {
     log "INFO" "Fetching list from $SELECTED_URL..."
     
     local output_file="$TMP_DIR/blocklist.txt"
-    if curl -sS --retry 3 --connect-timeout 10 "$SELECTED_URL" -o "$output_file"; then
+    # Added -L to follow redirects (GitHub raw often redirects)
+    if curl -sS -L --retry 3 --connect-timeout 10 "$SELECTED_URL" -o "$output_file"; then
         local count=$(wc -l < "$output_file")
         if [[ "$count" -lt 10 ]]; then 
-            log "ERROR" "Downloaded file seems too small ($count lines)."
+            log "ERROR" "Downloaded file seems too small ($count lines). Check URL or Network."
+            # Display file content for debugging if small
+            cat "$output_file"
             exit 1
         fi
         log "INFO" "Download success. Lines: $count"
@@ -330,7 +366,7 @@ MODE="${1:-install}"
 if [[ "$MODE" != "update" ]]; then
     clear
     echo -e "${GREEN}#############################################################"
-    echo -e "#     Data-Shield Community Blocklist Installer (Pro/Secu)    #"
+    echo -e "#     Data-Shield IPv4 Blocklist Community Installer (Pro/Secu)    #"
     echo -e "#############################################################${NC}"
 fi
 
