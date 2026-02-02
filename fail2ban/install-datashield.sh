@@ -86,22 +86,21 @@ install_dependencies() {
     log "INFO" "Checking dependencies..."
     local missing_common=""
 
-    # 1. Mise à jour impérative des dépôts (Fix "Unable to locate package")
+    # 1. Mise à jour impérative des dépôts
     if [[ -f /etc/debian_version ]]; then
-        log "INFO" "Updating apt repositories (Crucial for fresh installs)..."
+        log "INFO" "Updating apt repositories..."
         apt-get update -qq
     fi
 
-    # 2. Outils de base (curl, bc)
+    # 2. Outils de base (curl only, 'bc' removed)
     if ! command -v curl >/dev/null; then missing_common="$missing_common curl"; fi
-    if ! command -v bc >/dev/null; then missing_common="$missing_common bc"; fi
     
     if [[ -n "$missing_common" ]]; then
         if [[ -f /etc/debian_version ]]; then apt-get install -y $missing_common; 
         elif [[ -f /etc/redhat-release ]]; then dnf install -y $missing_common; fi
     fi
 
-    # 3. Installation séparée de IPSET (Si manquant)
+    # 3. Installation séparée de IPSET
     if ! command -v ipset >/dev/null; then
         log "WARN" "Installing package: ipset"
         if [[ -f /etc/debian_version ]]; then
@@ -111,7 +110,7 @@ install_dependencies() {
         fi
     fi
 
-    # 4. Installation séparée de FAIL2BAN (Si manquant)
+    # 4. Installation séparée de FAIL2BAN
     if ! command -v fail2ban-client >/dev/null; then
         log "WARN" "Installing package: fail2ban"
         if [[ -f /etc/debian_version ]]; then
@@ -121,7 +120,7 @@ install_dependencies() {
         fi
     fi
 
-    # 5. Installation de NFTABLES (Si backend nftables détecté)
+    # 5. Installation de NFTABLES
     if [[ "$FIREWALL_BACKEND" == "nftables" ]] && ! command -v nft >/dev/null; then
         log "WARN" "Installing package: nftables"
         if [[ -f /etc/debian_version ]]; then apt-get install -y nftables;
@@ -136,14 +135,12 @@ install_dependencies() {
 # ==============================================================================
 
 select_list_type() {
-    # Mode UPDATE: Charger la config existante
     if [[ "${1:-}" == "update" ]] && [[ -f "$CONF_FILE" ]]; then
         source "$CONF_FILE"
         log "INFO" "Update Mode: Loaded configuration (Type: $LIST_TYPE)"
         return
     fi
 
-    # Mode INSTALL: Interaction utilisateur
     echo -e "\n${BLUE}=== Step 1: Select Blocklist Type ===${NC}"
     echo "1) Standard List (~85,000 IPs) - Recommended for Web Servers"
     echo "2) Critical List (~100,000 IPs) - Recommended for High Security"
@@ -164,7 +161,6 @@ select_list_type() {
         *) log "ERROR" "Invalid choice. Exiting."; exit 1;;
     esac
     
-    # Sauvegarde du choix
     echo "LIST_TYPE='$LIST_TYPE'" > "$CONF_FILE"
     if [[ -n "${CUSTOM_URL:-}" ]]; then
         echo "CUSTOM_URL='$CUSTOM_URL'" >> "$CONF_FILE"
@@ -176,19 +172,19 @@ measure_latency() {
     local url="$1"
     local domain=$(echo "$url" | awk -F/ '{print $3}')
     local ping_res
-    ping_res=$(ping -c 2 -W 1 "$domain" | tail -1 | awk -F '/' '{print $5}' 2>/dev/null)
+    # FIX: Use awk 'int' to get integer only (removes decimals), avoiding 'bc' dependency
+    ping_res=$(ping -c 2 -W 1 "$domain" | tail -1 | awk -F '/' '{print int($5)}' 2>/dev/null)
+    
     if [[ -z "$ping_res" ]]; then echo "9999"; else echo "$ping_res"; fi
 }
 
 select_mirror() {
-    # Mode UPDATE: Utiliser l'URL sauvegardée
     if [[ "${1:-}" == "update" ]] && [[ -f "$CONF_FILE" ]]; then
         source "$CONF_FILE"
         log "INFO" "Update Mode: keeping mirror $SELECTED_URL"
         return
     fi
 
-    # Mode Custom
     if [[ "$LIST_TYPE" == "Custom" ]]; then
         SELECTED_URL="$CUSTOM_URL"
         echo "SELECTED_URL='$SELECTED_URL'" >> "$CONF_FILE"
@@ -216,7 +212,8 @@ select_mirror() {
         time=$(measure_latency "$url")
         echo "${time} ms"
 
-        if (( $(echo "$time < $fastest_time" | bc -l) )); then
+        # FIX: Native bash integer comparison (no 'bc' needed)
+        if (( time < fastest_time )); then
             fastest_time=$time
             fastest_name=$name
             fastest_url=$url
