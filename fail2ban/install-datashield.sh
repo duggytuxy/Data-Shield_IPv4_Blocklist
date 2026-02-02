@@ -116,6 +116,10 @@ install_dependencies() {
         if [[ -f /etc/debian_version ]]; then
             apt-get install -y fail2ban
         elif [[ -f /etc/redhat-release ]]; then
+            # FIX: AlmaLinux/RHEL need EPEL repo for fail2ban
+            log "INFO" "Enabling EPEL repository (Required for Fail2ban)..."
+            # On tente d'installer epel-release, s'il est déjà là, dnf le dira et continuera
+            dnf install -y epel-release || true
             dnf install -y fail2ban
         fi
     fi
@@ -306,9 +310,25 @@ EOF
 
     else
         log "INFO" "Configuring IPSet and Iptables..."
-        ipset create "${SET_NAME}_tmp" hash:ip hashsize 131072 maxelem 200000 -exist
+        
+        # EXPERT LOGIC:
+        # Debian/Ubuntu support explicit 'hashsize' optimization.
+        # RHEL/AlmaLinux kernels often reject it with "Invalid argument", preferring auto-tuning.
+        local ipset_opts="hash:ip maxelem 200000 -exist"
+        
+        if [[ -f /etc/debian_version ]]; then
+            # Optimization for Debian/Ubuntu
+            ipset_opts="hash:ip hashsize 131072 maxelem 200000 -exist"
+        fi
+        
+        # Create temp set with OS-adaptive options
+        ipset create "${SET_NAME}_tmp" $ipset_opts
+        
+        log "INFO" "Loading IPs into temporary set..."
         sed "s/^/add ${SET_NAME}_tmp /" "$FINAL_LIST" | ipset restore
-        ipset create "$SET_NAME" hash:ip hashsize 131072 maxelem 200000 -exist
+        
+        # Create live set with same options
+        ipset create "$SET_NAME" $ipset_opts
         ipset swap "${SET_NAME}_tmp" "$SET_NAME"
         ipset destroy "${SET_NAME}_tmp"
         
