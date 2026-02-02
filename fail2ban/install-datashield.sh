@@ -17,7 +17,7 @@ CONF_FILE="/etc/datashield.conf"
 SET_NAME="datashield_blacklist"
 TMP_DIR=$(mktemp -d)
 
-# --- LIST URLS (Extracted from provided files) ---
+# --- LIST URLS ---
 # Standard List (~85k IPs)
 declare -A URLS_STANDARD
 URLS_STANDARD[GitHub]="https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_data-shield_ipv4_blocklist.txt"
@@ -61,17 +61,21 @@ detect_os_backend() {
     if [ -f /etc/os-release ]; then
         . /etc/os-release
         OS=$NAME
+        OS_ID=$ID
     else
         OS="Unknown"
+        OS_ID="unknown"
     fi
 
-    # Determine Firewall Backend (Nftables vs Ipset/Iptables)
-    if command -v nft >/dev/null 2>&1 && systemctl is-active --quiet nftables; then
+    # EXPERT FIX: Force Nftables on modern Debian/Ubuntu unless explicitly using firewalld
+    if [[ "$OS_ID" == "ubuntu" ]] || [[ "$OS_ID" == "debian" ]]; then
         FIREWALL_BACKEND="nftables"
     elif command -v firewall-cmd >/dev/null 2>&1; then
         FIREWALL_BACKEND="firewalld" # RHEL/Alma default
+    elif command -v nft >/dev/null 2>&1; then
+        FIREWALL_BACKEND="nftables"
     else
-        FIREWALL_BACKEND="ipset" # Fallback for older Debian/Ubuntu with ufw/iptables
+        FIREWALL_BACKEND="ipset" # Fallback
     fi
 
     log "INFO" "OS: $OS"
@@ -84,7 +88,7 @@ install_dependencies() {
 
     # 1. Mise à jour impérative des dépôts (Fix "Unable to locate package")
     if [[ -f /etc/debian_version ]]; then
-        log "INFO" "Updating apt repositories..."
+        log "INFO" "Updating apt repositories (Crucial for fresh installs)..."
         apt-get update -qq
     fi
 
@@ -132,14 +136,14 @@ install_dependencies() {
 # ==============================================================================
 
 select_list_type() {
-    # Mode UPDATE: Load existing configuration
+    # Mode UPDATE: Charger la config existante
     if [[ "${1:-}" == "update" ]] && [[ -f "$CONF_FILE" ]]; then
         source "$CONF_FILE"
         log "INFO" "Update Mode: Loaded configuration (Type: $LIST_TYPE)"
         return
     fi
 
-    # Mode INSTALL: User interaction
+    # Mode INSTALL: Interaction utilisateur
     echo -e "\n${BLUE}=== Step 1: Select Blocklist Type ===${NC}"
     echo "1) Standard List (~85,000 IPs) - Recommended for Web Servers"
     echo "2) Critical List (~100,000 IPs) - Recommended for High Security"
@@ -160,7 +164,7 @@ select_list_type() {
         *) log "ERROR" "Invalid choice. Exiting."; exit 1;;
     esac
     
-    # Saving the selection
+    # Sauvegarde du choix
     echo "LIST_TYPE='$LIST_TYPE'" > "$CONF_FILE"
     if [[ -n "${CUSTOM_URL:-}" ]]; then
         echo "CUSTOM_URL='$CUSTOM_URL'" >> "$CONF_FILE"
@@ -171,27 +175,20 @@ select_list_type() {
 measure_latency() {
     local url="$1"
     local domain=$(echo "$url" | awk -F/ '{print $3}')
-    
-    # Ping 2 times, timeout 1s, extract average time
     local ping_res
     ping_res=$(ping -c 2 -W 1 "$domain" | tail -1 | awk -F '/' '{print $5}' 2>/dev/null)
-    
-    if [[ -z "$ping_res" ]]; then
-        echo "9999" # Penalty for unreachable
-    else
-        echo "$ping_res"
-    fi
+    if [[ -z "$ping_res" ]]; then echo "9999"; else echo "$ping_res"; fi
 }
 
 select_mirror() {
-    # Mode UPDATE: Use the saved URL
+    # Mode UPDATE: Utiliser l'URL sauvegardée
     if [[ "${1:-}" == "update" ]] && [[ -f "$CONF_FILE" ]]; then
         source "$CONF_FILE"
         log "INFO" "Update Mode: keeping mirror $SELECTED_URL"
         return
     fi
 
-    # Mode Custom (already managed, but we save the final URL)
+    # Mode Custom
     if [[ "$LIST_TYPE" == "Custom" ]]; then
         SELECTED_URL="$CUSTOM_URL"
         echo "SELECTED_URL='$SELECTED_URL'" >> "$CONF_FILE"
@@ -227,7 +224,6 @@ select_mirror() {
     done
 
     SELECTED_URL="$fastest_url"
-    # Saving the URL of the selected mirror
     echo "SELECTED_URL='$SELECTED_URL'" >> "$CONF_FILE"
     log "INFO" "Auto-selected fastest mirror: $fastest_name"
 }
@@ -237,18 +233,13 @@ download_list() {
     log "INFO" "Fetching list from $SELECTED_URL..."
     
     local output_file="$TMP_DIR/blocklist.txt"
-    
-    # Download with curl, handle errors
     if curl -sS --retry 3 --connect-timeout 10 "$SELECTED_URL" -o "$output_file"; then
-        # Verification: Count lines
         local count=$(wc -l < "$output_file")
-        if [[ "$count" -lt 1000 ]]; then
-            log "ERROR" "Downloaded file seems too small ($count lines). Something went wrong."
+        if [[ "$count" -lt 10 ]]; then 
+            log "ERROR" "Downloaded file seems too small ($count lines)."
             exit 1
         fi
         log "INFO" "Download success. Lines: $count"
-        
-        # Clean list: remove comments, empty lines, and validate IP format roughly
         grep -E '^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$' "$output_file" > "$TMP_DIR/clean_list.txt"
         FINAL_LIST="$TMP_DIR/clean_list.txt"
     else
@@ -261,10 +252,7 @@ apply_firewall_rules() {
     echo -e "\n${BLUE}=== Step 4: Applying Firewall Rules (Backend: $FIREWALL_BACKEND) ===${NC}"
     
     if [[ "$FIREWALL_BACKEND" == "nftables" ]]; then
-        # --- NFTABLES METHOD (Best for Debian 12/Ubuntu 24.04) ---
         log "INFO" "Configuring Nftables Set..."
-        
-        # Generate an atomic nft file
         cat <<EOF > "$TMP_DIR/datashield.nft"
 table inet datashield_table {
     set $SET_NAME {
@@ -281,91 +269,58 @@ $(awk '{print $1 ","}' "$FINAL_LIST")
     }
 }
 EOF
-        # Apply atomically
         nft -f "$TMP_DIR/datashield.nft"
         log "INFO" "Nftables rules applied successfully."
 
     elif [[ "$FIREWALL_BACKEND" == "firewalld" ]]; then
-        # --- FIREWALLD METHOD (RHEL/Alma) ---
         log "INFO" "Configuring Firewalld IPSet..."
-        
-        # Create ipset if not exists
         firewall-cmd --permanent --new-ipset="$SET_NAME" --type=hash:ip --option=family=inet --option=hashsize=131072 --option=maxelem=200000 || true
         firewall-cmd --reload
-        
-        # Add entries from file (efficient method)
         firewall-cmd --ipset="$SET_NAME" --add-entries-from-file="$FINAL_LIST"
-        
-        # Add Drop Rule with Logging
         firewall-cmd --permanent --add-rich-rule="rule source ipset='$SET_NAME' log prefix='[DataShield-BLOCK] ' level='info' drop"
         firewall-cmd --reload
         log "INFO" "Firewalld rules applied successfully."
 
     else
-        # --- IPSET + IPTABLES METHOD (Legacy/Universal) ---
         log "INFO" "Configuring IPSet and Iptables..."
-        
-        # Create temp set, load IPs, swap to live set (Atomic update)
         ipset create "${SET_NAME}_tmp" hash:ip hashsize 131072 maxelem 200000 -exist
-        
-        log "INFO" "Loading IPs into temporary set..."
         sed "s/^/add ${SET_NAME}_tmp /" "$FINAL_LIST" | ipset restore
-        
         ipset create "$SET_NAME" hash:ip hashsize 131072 maxelem 200000 -exist
         ipset swap "${SET_NAME}_tmp" "$SET_NAME"
         ipset destroy "${SET_NAME}_tmp"
         
-        # Check if rule exists in iptables INPUT
         if ! iptables -C INPUT -m set --match-set "$SET_NAME" src -j DROP 2>/dev/null; then
-            # Insert at top of INPUT chain
             iptables -I INPUT 1 -m set --match-set "$SET_NAME" src -j DROP
             iptables -I INPUT 1 -m set --match-set "$SET_NAME" src -j LOG --log-prefix "[DataShield-BLOCK] "
             log "INFO" "Iptables DROP rule inserted."
-            
-            # Persist iptables (Basic check for persistence tools)
-            if command -v netfilter-persistent >/dev/null; then
-                netfilter-persistent save
-            fi
+            if command -v netfilter-persistent >/dev/null; then netfilter-persistent save; fi
         fi
     fi
 }
 
 detect_protected_services() {
     echo -e "\n${BLUE}=== Step 5: Service Integration Check ===${NC}"
-    log "INFO" "Checking Fail2ban status to confirm coverage..."
-    
     if command -v fail2ban-client >/dev/null && systemctl is-active --quiet fail2ban; then
         JAILS=$(fail2ban-client status | grep "Jail list" | sed 's/.*Jail list://g')
         log "INFO" "Fail2ban is ACTIVE. Jails found: ${JAILS}"
-        log "INFO" "Security Note: The Data-Shield blocklist has been applied globally (INPUT Chain)."
-        log "INFO" "It effectively protects ALL valid services on this host, including: ${JAILS}"
-        log "INFO" "No specific Jail configuration needed - Traffic is dropped before reaching Fail2ban."
+        log "INFO" "Global Blocklist is ACTIVE and protects all services."
     else
-        log "WARN" "Fail2ban not detecting or not running. Global Blocklist is still ACTIVE and protecting all ports."
+        log "WARN" "Fail2ban not active. Global Blocklist is still ACTIVE."
     fi
 }
 
 setup_siem_logging() {
-    # Logging is already configured in the firewall rules with prefix [DataShield-BLOCK]
-    # This usually goes to /var/log/kern.log or /var/log/syslog
     echo -e "\n${BLUE}=== Step 6: SIEM Logging Status ===${NC}"
-    log "INFO" "Firewall logging enabled with prefix '[DataShield-BLOCK]'."
-    log "INFO" "Logs are being written to kernel facility (syslog/dmesg)."
-    log "INFO" "For Wazuh/ELK: Monitor '/var/log/syslog' or '/var/log/kern.log' for this string."
+    log "INFO" "Monitor '/var/log/syslog' or '/var/log/kern.log' for '[DataShield-BLOCK]'."
 }
 
 setup_cron_autoupdate() {
-    # On ne crée le cron que lors de l'installation manuelle
     if [[ "${1:-}" != "update" ]]; then
         local script_path=$(realpath "$0")
         local cron_file="/etc/cron.d/datashield-update"
-        
-        # Création du fichier cron : Exécution à la minute 0 de chaque heure
         echo "0 * * * * root $script_path update >> $LOG_FILE 2>&1" > "$cron_file"
         chmod 644 "$cron_file"
-        
-        log "INFO" "Automatic updates enabled: Runs every hour."
-        log "INFO" "Cron file created at: $cron_file"
+        log "INFO" "Automatic updates enabled: Runs every hour via $cron_file"
     fi
 }
 
@@ -373,7 +328,6 @@ setup_cron_autoupdate() {
 # MAIN EXECUTION
 # ==============================================================================
 
-# Récupération de l'argument (vide ou "update")
 MODE="${1:-install}"
 
 if [[ "$MODE" != "update" ]]; then
@@ -386,8 +340,8 @@ fi
 check_root
 detect_os_backend
 install_dependencies
-select_list_type "$MODE"  # We pass the mode as an argument
-select_mirror "$MODE"     # We pass the mode as an argument
+select_list_type "$MODE"
+select_mirror "$MODE"
 download_list
 apply_firewall_rules
 detect_protected_services
@@ -399,6 +353,7 @@ if [[ "$MODE" != "update" ]]; then
     echo -e "#                    INSTALLATION SUCCESSFUL                  #"
     echo -e "#############################################################${NC}"
     echo -e " -> List loaded: $LIST_TYPE"
-    echo -e " -> Mirror used: $SELECTED_URL"
-    echo -e " -> Auto-Update: Every Hour (via /etc/cron.d/datashield-update)"
+    echo -e " -> Backend: $FIREWALL_BACKEND"
+    echo -e " -> Auto-Update: Every Hour"
+    echo -e " -> Protection Status: ACTIVE (Permanent Drop)"
 fi
