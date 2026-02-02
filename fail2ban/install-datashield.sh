@@ -300,6 +300,13 @@ EOF
         log "INFO" "Nftables rules applied successfully."
 
     elif [[ "$FIREWALL_BACKEND" == "firewalld" ]]; then
+        # --- AJOUT: Démarrage forcé si éteint (Fix AlmaLinux) ---
+        if ! systemctl is-active --quiet firewalld; then
+            log "WARN" "Firewalld service is stopped. Starting it now..."
+            systemctl enable --now firewalld
+        fi
+        # --------------------------------------------------------
+
         log "INFO" "Configuring Firewalld IPSet..."
         firewall-cmd --permanent --new-ipset="$SET_NAME" --type=hash:ip --option=family=inet --option=hashsize=131072 --option=maxelem=200000 || true
         firewall-cmd --reload
