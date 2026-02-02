@@ -18,14 +18,12 @@ SET_NAME="datashield_blacklist"
 TMP_DIR=$(mktemp -d)
 
 # --- LIST URLS ---
-# Standard List (~85k IPs)
 declare -A URLS_STANDARD
 URLS_STANDARD[GitHub]="https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_data-shield_ipv4_blocklist.txt"
 URLS_STANDARD[GitLab]="https://gitlab.com/duggytuxy/data-shield-ipv4-blocklist/-/raw/main/prod_data-shield_ipv4_blocklist.txt"
 URLS_STANDARD[Bitbucket]="https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/raw/HEAD/prod_data-shield_ipv4_blocklist.txt"
 URLS_STANDARD[Codeberg]="https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_data-shield_ipv4_blocklist.txt"
 
-# Critical List (~100k IPs)
 declare -A URLS_CRITICAL
 URLS_CRITICAL[GitHub]="https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_critical_data-shield_ipv4_blocklist.txt"
 URLS_CRITICAL[GitLab]="https://gitlab.com/duggytuxy/data-shield-ipv4-blocklist/-/raw/main/prod_critical_data-shield_ipv4_blocklist.txt"
@@ -118,7 +116,6 @@ install_dependencies() {
         elif [[ -f /etc/redhat-release ]]; then
             # FIX: AlmaLinux/RHEL need EPEL repo for fail2ban
             log "INFO" "Enabling EPEL repository (Required for Fail2ban)..."
-            # On tente d'installer epel-release, s'il est déjà là, dnf le dira et continuera
             dnf install -y epel-release || true
             dnf install -y fail2ban
         fi
@@ -174,19 +171,14 @@ select_list_type() {
 
 measure_latency() {
     local url="$1"
-    
     # EXPERT FIX: Use curl (TCP/HTTP) instead of ping (ICMP)
-    # GitHub/GitLab often block ICMP pings. We measure 'time_connect' (TCP Handshake) instead.
-    # This is the "True" latency for downloading the file.
-    
+    # This solves timeouts on GitHub/GitLab and avoids 'bc' dependency
     local time_sec
-    # -w %{time_connect} gives latency in seconds (e.g., 0.045)
     time_sec=$(curl -o /dev/null -s -w '%{time_connect}\n' --connect-timeout 2 "$url" || echo "error")
     
     if [[ "$time_sec" == "error" ]] || [[ -z "$time_sec" ]]; then
         echo "9999"
     else
-        # Convert seconds to milliseconds (0.045 -> 45) using awk (No 'bc' needed)
         echo "$time_sec" | awk '{print int($1 * 1000)}' 2>/dev/null || echo "9999"
     fi
 }
@@ -206,7 +198,7 @@ select_mirror() {
     fi
 
     echo -e "\n${BLUE}=== Step 2: Selecting Fastest Mirror ===${NC}"
-    log "INFO" "Benchmarking mirrors for latency..."
+    log "INFO" "Benchmarking mirrors for latency (TCP Connect)..."
 
     declare -n URL_MAP
     if [[ "$LIST_TYPE" == "Standard" ]]; then
@@ -222,14 +214,13 @@ select_mirror() {
 
     for name in "${!URL_MAP[@]}"; do
         url="${URL_MAP[$name]}"
-        echo -n "Pinging $name... "
+        echo -n "Connecting to $name... "
         time=$(measure_latency "$url")
         
         if [[ "$time" -eq 9999 ]]; then
              echo "FAIL (Timeout)"
         else
              echo "${time} ms"
-             # FIX: Logic improvement
              if (( time < fastest_time )); then
                 fastest_time=$time
                 fastest_name=$name
@@ -239,9 +230,8 @@ select_mirror() {
         fi
     done
 
-    # Fallback if all pings failed (ICMP blocked?)
     if [[ "$valid_mirror_found" == "false" ]]; then
-        log "WARN" "All mirrors unreachable via ping (ICMP blocked?). Defaulting to Codeberg."
+        log "WARN" "All mirrors unreachable. Defaulting to Codeberg."
         SELECTED_URL="${URL_MAP[Codeberg]}"
         fastest_name="Codeberg (Fallback)"
     else
@@ -257,12 +247,10 @@ download_list() {
     log "INFO" "Fetching list from $SELECTED_URL..."
     
     local output_file="$TMP_DIR/blocklist.txt"
-    # Added -L to follow redirects (GitHub raw often redirects)
     if curl -sS -L --retry 3 --connect-timeout 10 "$SELECTED_URL" -o "$output_file"; then
         local count=$(wc -l < "$output_file")
         if [[ "$count" -lt 10 ]]; then 
             log "ERROR" "Downloaded file seems too small ($count lines). Check URL or Network."
-            # Display file content for debugging if small
             cat "$output_file"
             exit 1
         fi
@@ -309,9 +297,9 @@ EOF
         log "INFO" "Configuring Firewalld IPSet..."
         
         # FIX ALMALINUX EXPERT:
-        # 1. On retire '--option=hashsize=...' qui cause "Invalid argument" sur RHEL/Alma
-        # 2. On garde '--option=family=inet' et 'maxelem'
-        # 3. On supprime l'ancien set potentiellement corrompu avant de recréer
+        # 1. Remove 'hashsize' to avoid "Invalid argument"
+        # 2. Keep 'family=inet' and 'maxelem'
+        # 3. Clean old sets
         firewall-cmd --permanent --delete-ipset="$SET_NAME" 2>/dev/null || true
         firewall-cmd --reload
 
@@ -326,31 +314,28 @@ EOF
     else
         log "INFO" "Configuring IPSet and Iptables..."
         
-        # FIX EXPERT ALMALINUX: 
-        # 1. On force 'family inet' (Obligatoire sur RHEL 9/10 sinon "Invalid Argument")
-        # 2. On fixe hashsize à 65536 (Valeur sûre) pour éviter les erreurs d'allocation noyau
+        # FIX EXPERT ALMALINUX/DEBIAN HYBRID: 
+        # RHEL kernels reject 'hashsize' on some ipset versions. Debian loves it.
         local ipset_opts="hash:ip family inet hashsize 65536 maxelem 200000 -exist"
         
-        # Optimisation spécifique Debian/Ubuntu (plus permissif)
         if [[ -f /etc/debian_version ]]; then
             ipset_opts="hash:ip hashsize 131072 maxelem 200000 -exist"
         fi
         
-        # Nettoyage préventif en cas d'état corrompu ("Invalid Argument")
+        # Clean corrupted states
         ipset destroy "${SET_NAME}_tmp" 2>/dev/null || true
         
-        # Création du Set temporaire
+        # Create temp set
         ipset create "${SET_NAME}_tmp" $ipset_opts
         
         log "INFO" "Loading IPs into temporary set..."
         sed "s/^/add ${SET_NAME}_tmp /" "$FINAL_LIST" | ipset restore
         
-        # Création du Set réel et Swap
+        # Swap to live
         ipset create "$SET_NAME" $ipset_opts
         ipset swap "${SET_NAME}_tmp" "$SET_NAME"
         ipset destroy "${SET_NAME}_tmp"
         
-        # Application de la règle Iptables
         if ! iptables -C INPUT -m set --match-set "$SET_NAME" src -j DROP 2>/dev/null; then
             iptables -I INPUT 1 -m set --match-set "$SET_NAME" src -j DROP
             iptables -I INPUT 1 -m set --match-set "$SET_NAME" src -j LOG --log-prefix "[DataShield-BLOCK] "
@@ -367,7 +352,7 @@ detect_protected_services() {
     if command -v fail2ban-client >/dev/null && ! systemctl is-active --quiet fail2ban; then
         log "WARN" "Fail2ban is installed but stopped. Starting service..."
         systemctl enable --now fail2ban || true
-        sleep 2 # Wait for startup
+        sleep 2
     fi
 
     if command -v fail2ban-client >/dev/null && systemctl is-active --quiet fail2ban; then
@@ -381,7 +366,7 @@ detect_protected_services() {
 
 setup_siem_logging() {
     echo -e "\n${BLUE}=== Step 6: SIEM Logging Status ===${NC}"
-    log "INFO" "Monitor '/var/log/syslog' or '/var/log/kern.log' for '[DataShield-BLOCK]'."
+    log "INFO" "Monitor '/var/log/syslog', '/var/log/messages' or 'journalctl -k' for '[DataShield-BLOCK]'."
 }
 
 setup_cron_autoupdate() {
@@ -398,32 +383,26 @@ uninstall_datashield() {
     echo -e "\n${RED}=== Uninstalling Data-Shield ===${NC}"
     log "WARN" "Starting Uninstallation..."
 
-    # 1. Remove Cron Job
     if [[ -f "/etc/cron.d/datashield-update" ]]; then
         rm -f "/etc/cron.d/datashield-update"
         log "INFO" "Cron job removed."
     fi
 
-    # 2. Clean Firewall (Universal Cleanup)
     log "INFO" "Cleaning firewall rules..."
     
-    # Nftables cleanup
     if command -v nft >/dev/null; then
         nft delete table inet datashield_table 2>/dev/null || true
     fi
 
-    # Firewalld cleanup
     if command -v firewall-cmd >/dev/null && systemctl is-active --quiet firewalld; then
         firewall-cmd --permanent --remove-rich-rule="rule source ipset='$SET_NAME' log prefix='[DataShield-BLOCK] ' level='info' drop" 2>/dev/null || true
         firewall-cmd --permanent --delete-ipset="$SET_NAME" 2>/dev/null || true
         firewall-cmd --reload 2>/dev/null || true
     fi
 
-    # Iptables/IPSet cleanup
     if command -v iptables >/dev/null; then
         iptables -D INPUT -m set --match-set "$SET_NAME" src -j DROP 2>/dev/null || true
         iptables -D INPUT -m set --match-set "$SET_NAME" src -j LOG --log-prefix "[DataShield-BLOCK] " 2>/dev/null || true
-        # Save change if persistent
         if command -v netfilter-persistent >/dev/null; then netfilter-persistent save 2>/dev/null || true; fi
     fi
     
@@ -431,23 +410,20 @@ uninstall_datashield() {
         ipset destroy "$SET_NAME" 2>/dev/null || true
     fi
 
-    # 3. Remove Config & Logs
     rm -f "$CONF_FILE"
     log "INFO" "Configuration file removed."
-    
-    # Optional: remove log file or keep for history? (Here we remove for full clean)
     rm -f "$LOG_FILE"
     
     echo -e "${GREEN}Uninstallation complete. Data-Shield has been removed.${NC}"
     exit 0
 }
+
 # ==============================================================================
 # MAIN EXECUTION
 # ==============================================================================
 
 MODE="${1:-install}"
 
-# Gestion du mode Désinstallation
 if [[ "$MODE" == "uninstall" ]]; then
     check_root
     uninstall_datashield
