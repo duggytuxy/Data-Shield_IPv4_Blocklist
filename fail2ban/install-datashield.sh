@@ -146,7 +146,7 @@ measure_latency() {
 }
 
 select_mirror() {
-    # --- START ADDES: Gestion Custom URL ---
+    # --- START ADDED: Custom URL ---
     if [[ "$LIST_TYPE" == "Custom" ]]; then
         SELECTED_URL="$CUSTOM_URL"
         log "INFO" "Custom URL detected. Skipping mirror benchmark."
