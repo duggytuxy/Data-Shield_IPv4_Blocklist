@@ -80,39 +80,51 @@ detect_os_backend() {
 
 install_dependencies() {
     log "INFO" "Checking dependencies..."
-    local missing_pkgs=""
+    local missing_common=""
 
-    # Common tools
-    if ! command -v curl >/dev/null; then missing_pkgs="$missing_pkgs curl"; fi
-    if ! command -v bc >/dev/null; then missing_pkgs="$missing_pkgs bc"; fi
-
-    # Firewall tools: Check specifically for ipset if backend is not purely nftables-only
-    if ! command -v ipset >/dev/null; then 
-        missing_pkgs="$missing_pkgs ipset"
+    # 1. Mise à jour impérative des dépôts (Fix "Unable to locate package")
+    if [[ -f /etc/debian_version ]]; then
+        log "INFO" "Updating apt repositories..."
+        apt-get update -qq
     fi
 
-    # NEW: Fail2ban check (Requested by User)
-    if ! command -v fail2ban-client >/dev/null; then 
-        missing_pkgs="$missing_pkgs fail2ban"
+    # 2. Outils de base (curl, bc)
+    if ! command -v curl >/dev/null; then missing_common="$missing_common curl"; fi
+    if ! command -v bc >/dev/null; then missing_common="$missing_common bc"; fi
+    
+    if [[ -n "$missing_common" ]]; then
+        if [[ -f /etc/debian_version ]]; then apt-get install -y $missing_common; 
+        elif [[ -f /etc/redhat-release ]]; then dnf install -y $missing_common; fi
     fi
 
-    if [[ -n "$missing_pkgs" ]]; then
-        log "WARN" "Installing missing packages: $missing_pkgs"
-        
+    # 3. Installation séparée de IPSET (Si manquant)
+    if ! command -v ipset >/dev/null; then
+        log "WARN" "Installing package: ipset"
         if [[ -f /etc/debian_version ]]; then
-            # FIX: Update of deposits REQUIRED
-            log "INFO" "Updating apt repositories..."
-            apt-get update -qq
-            
-            # Installation (ipset + fail2ban + others)
-            apt-get install -y $missing_pkgs
-            
+            apt-get install -y ipset
         elif [[ -f /etc/redhat-release ]]; then
-            dnf install -y $missing_pkgs
+            dnf install -y ipset
         fi
-    else
-        log "INFO" "All dependencies are installed."
     fi
+
+    # 4. Installation séparée de FAIL2BAN (Si manquant)
+    if ! command -v fail2ban-client >/dev/null; then
+        log "WARN" "Installing package: fail2ban"
+        if [[ -f /etc/debian_version ]]; then
+            apt-get install -y fail2ban
+        elif [[ -f /etc/redhat-release ]]; then
+            dnf install -y fail2ban
+        fi
+    fi
+
+    # 5. Installation de NFTABLES (Si backend nftables détecté)
+    if [[ "$FIREWALL_BACKEND" == "nftables" ]] && ! command -v nft >/dev/null; then
+        log "WARN" "Installing package: nftables"
+        if [[ -f /etc/debian_version ]]; then apt-get install -y nftables;
+        elif [[ -f /etc/redhat-release ]]; then dnf install -y nftables; fi
+    fi
+
+    log "INFO" "All dependencies check complete."
 }
 
 # ==============================================================================
