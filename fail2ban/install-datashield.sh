@@ -90,15 +90,20 @@ install_dependencies() {
         missing_pkgs="$missing_pkgs ipset"
     fi
 
+    # NEW: Fail2ban check (Requested by User)
+    if ! command -v fail2ban-client >/dev/null; then 
+        missing_pkgs="$missing_pkgs fail2ban"
+    fi
+
     if [[ -n "$missing_pkgs" ]]; then
         log "WARN" "Installing missing packages: $missing_pkgs"
         
         if [[ -f /etc/debian_version ]]; then
-            # FIX: Mise à jour des dépôts OBLIGATOIRE pour trouver le paquet ipset
+            # FIX: Update of deposits REQUIRED
             log "INFO" "Updating apt repositories..."
             apt-get update -qq
             
-            # Installation forcée de ipset
+            # Installation (ipset + fail2ban + others)
             apt-get install -y $missing_pkgs
             
         elif [[ -f /etc/redhat-release ]]; then
