@@ -318,27 +318,31 @@ EOF
     else
         log "INFO" "Configuring IPSet and Iptables..."
         
-        # EXPERT LOGIC:
-        # Debian/Ubuntu support explicit 'hashsize' optimization.
-        # RHEL/AlmaLinux kernels often reject it with "Invalid argument", preferring auto-tuning.
-        local ipset_opts="hash:ip maxelem 200000 -exist"
+        # FIX EXPERT ALMALINUX: 
+        # 1. On force 'family inet' (Obligatoire sur RHEL 9/10 sinon "Invalid Argument")
+        # 2. On fixe hashsize à 65536 (Valeur sûre) pour éviter les erreurs d'allocation noyau
+        local ipset_opts="hash:ip family inet hashsize 65536 maxelem 200000 -exist"
         
+        # Optimisation spécifique Debian/Ubuntu (plus permissif)
         if [[ -f /etc/debian_version ]]; then
-            # Optimization for Debian/Ubuntu
             ipset_opts="hash:ip hashsize 131072 maxelem 200000 -exist"
         fi
         
-        # Create temp set with OS-adaptive options
+        # Nettoyage préventif en cas d'état corrompu ("Invalid Argument")
+        ipset destroy "${SET_NAME}_tmp" 2>/dev/null || true
+        
+        # Création du Set temporaire
         ipset create "${SET_NAME}_tmp" $ipset_opts
         
         log "INFO" "Loading IPs into temporary set..."
         sed "s/^/add ${SET_NAME}_tmp /" "$FINAL_LIST" | ipset restore
         
-        # Create live set with same options
+        # Création du Set réel et Swap
         ipset create "$SET_NAME" $ipset_opts
         ipset swap "${SET_NAME}_tmp" "$SET_NAME"
         ipset destroy "${SET_NAME}_tmp"
         
+        # Application de la règle Iptables
         if ! iptables -C INPUT -m set --match-set "$SET_NAME" src -j DROP 2>/dev/null; then
             iptables -I INPUT 1 -m set --match-set "$SET_NAME" src -j DROP
             iptables -I INPUT 1 -m set --match-set "$SET_NAME" src -j LOG --log-prefix "[DataShield-BLOCK] "
