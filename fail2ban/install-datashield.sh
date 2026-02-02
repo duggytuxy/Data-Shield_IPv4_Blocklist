@@ -1,15 +1,4 @@
 #!/bin/bash
-# ==============================================================================
-# SCRIPT: install-datashield.sh
-# AUTHOR: Data-Shield Integration Assistant
-# DATE: 2024-05-20
-# VERSION: 3.3 (Robust Ping Fix)
-# SYSTEM: Ubuntu 24.04+, Debian 13+, RHEL 9+, AlmaLinux, Rocky Linux
-# DESCRIPTION:
-#   Downloads Data-Shield IPv4 blocklists, benchmarks mirrors using native math,
-#   and integrates them into Nftables or IPSet.
-#   Includes auto-update via Cron and specific package handling.
-# ==============================================================================
 
 # --- SAFETY FIRST ---
 set -euo pipefail
