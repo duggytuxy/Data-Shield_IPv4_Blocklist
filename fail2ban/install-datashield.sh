@@ -170,19 +170,20 @@ select_list_type() {
 
 measure_latency() {
     local url="$1"
-    local domain=$(echo "$url" | awk -F/ '{print $3}')
-    local ping_res
     
-    # FIX: 
-    # 1. LC_ALL=C : Force l'anglais pour que "min/avg/max" soit reconnu
-    # 2. -W 3 : Augmente un peu le timeout pour éviter les faux positifs
-    ping_res=$(LC_ALL=C ping -c 3 -W 3 -q "$domain" | grep "min/avg/max" | awk -F '/' '{print int($5)}' 2>/dev/null)
+    # EXPERT FIX: Use curl (TCP/HTTP) instead of ping (ICMP)
+    # GitHub/GitLab often block ICMP pings. We measure 'time_connect' (TCP Handshake) instead.
+    # This is the "True" latency for downloading the file.
     
-    # Si le ping a échoué ou retourné vide
-    if [[ -z "$ping_res" ]] || [[ "$ping_res" -eq 0 ]]; then
-        echo "9999" 
+    local time_sec
+    # -w %{time_connect} gives latency in seconds (e.g., 0.045)
+    time_sec=$(curl -o /dev/null -s -w '%{time_connect}\n' --connect-timeout 2 "$url" || echo "error")
+    
+    if [[ "$time_sec" == "error" ]] || [[ -z "$time_sec" ]]; then
+        echo "9999"
     else
-        echo "$ping_res"
+        # Convert seconds to milliseconds (0.045 -> 45) using awk (No 'bc' needed)
+        echo "$time_sec" | awk '{print int($1 * 1000)}' 2>/dev/null || echo "9999"
     fi
 }
 
@@ -346,16 +347,69 @@ setup_cron_autoupdate() {
     fi
 }
 
+uninstall_datashield() {
+    echo -e "\n${RED}=== Uninstalling Data-Shield ===${NC}"
+    log "WARN" "Starting Uninstallation..."
+
+    # 1. Remove Cron Job
+    if [[ -f "/etc/cron.d/datashield-update" ]]; then
+        rm -f "/etc/cron.d/datashield-update"
+        log "INFO" "Cron job removed."
+    fi
+
+    # 2. Clean Firewall (Universal Cleanup)
+    log "INFO" "Cleaning firewall rules..."
+    
+    # Nftables cleanup
+    if command -v nft >/dev/null; then
+        nft delete table inet datashield_table 2>/dev/null || true
+    fi
+
+    # Firewalld cleanup
+    if command -v firewall-cmd >/dev/null && systemctl is-active --quiet firewalld; then
+        firewall-cmd --permanent --remove-rich-rule="rule source ipset='$SET_NAME' log prefix='[DataShield-BLOCK] ' level='info' drop" 2>/dev/null || true
+        firewall-cmd --permanent --delete-ipset="$SET_NAME" 2>/dev/null || true
+        firewall-cmd --reload 2>/dev/null || true
+    fi
+
+    # Iptables/IPSet cleanup
+    if command -v iptables >/dev/null; then
+        iptables -D INPUT -m set --match-set "$SET_NAME" src -j DROP 2>/dev/null || true
+        iptables -D INPUT -m set --match-set "$SET_NAME" src -j LOG --log-prefix "[DataShield-BLOCK] " 2>/dev/null || true
+        # Save change if persistent
+        if command -v netfilter-persistent >/dev/null; then netfilter-persistent save 2>/dev/null || true; fi
+    fi
+    
+    if command -v ipset >/dev/null; then
+        ipset destroy "$SET_NAME" 2>/dev/null || true
+    fi
+
+    # 3. Remove Config & Logs
+    rm -f "$CONF_FILE"
+    log "INFO" "Configuration file removed."
+    
+    # Optional: remove log file or keep for history? (Here we remove for full clean)
+    rm -f "$LOG_FILE"
+    
+    echo -e "${GREEN}Uninstallation complete. Data-Shield has been removed.${NC}"
+    exit 0
+}
 # ==============================================================================
 # MAIN EXECUTION
 # ==============================================================================
 
 MODE="${1:-install}"
 
+# Gestion du mode Désinstallation
+if [[ "$MODE" == "uninstall" ]]; then
+    check_root
+    uninstall_datashield
+fi
+
 if [[ "$MODE" != "update" ]]; then
     clear
     echo -e "${GREEN}#############################################################"
-    echo -e "#     Data-Shield IPv4 Blocklist Community Installer (Pro/Secu)    #"
+    echo -e "#     Data-Shield Community Blocklist Installer (Pro/Secu)    #"
     echo -e "#############################################################${NC}"
 fi
 
