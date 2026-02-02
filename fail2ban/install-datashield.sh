@@ -184,12 +184,12 @@ measure_latency() {
     local domain=$(echo "$url" | awk -F/ '{print $3}')
     local ping_res
     
-    # FIX: Robust Ping Parsing
-    # We use ping -c 3 to be sure. We grep "min/avg/max". We use awk to take the second value (avg).
-    # We strip the decimals by casting to int in awk.
-    ping_res=$(ping -c 3 -W 2 "$domain" | grep "min/avg/max" | awk -F '/' '{print int($5)}' 2>/dev/null)
+    # FIX: 
+    # 1. LC_ALL=C : Force l'anglais pour que "min/avg/max" soit reconnu
+    # 2. -W 3 : Augmente un peu le timeout pour éviter les faux positifs
+    ping_res=$(LC_ALL=C ping -c 3 -W 3 -q "$domain" | grep "min/avg/max" | awk -F '/' '{print int($5)}' 2>/dev/null)
     
-    # If ping failed or returned empty, return high penalty
+    # Si le ping a échoué ou retourné vide
     if [[ -z "$ping_res" ]] || [[ "$ping_res" -eq 0 ]]; then
         echo "9999" 
     else
