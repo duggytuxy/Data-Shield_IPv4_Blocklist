@@ -13,6 +13,7 @@ NC='\033[0m' # No Color
 
 # --- CONFIGURATION CONSTANTS ---
 LOG_FILE="/var/log/datashield-install.log"
+CONF_FILE="/etc/datashield.conf"
 SET_NAME="datashield_blacklist"
 TMP_DIR=$(mktemp -d)
 
@@ -119,9 +120,17 @@ install_dependencies() {
 # ==============================================================================
 
 select_list_type() {
+    # Mode UPDATE: Load existing configuration
+    if [[ "${1:-}" == "update" ]] && [[ -f "$CONF_FILE" ]]; then
+        source "$CONF_FILE"
+        log "INFO" "Update Mode: Loaded configuration (Type: $LIST_TYPE)"
+        return
+    fi
+
+    # Mode INSTALL: User interaction
     echo -e "\n${BLUE}=== Step 1: Select Blocklist Type ===${NC}"
-    echo "1) Standard List (~85,000 IPs) - Recommended for Web Servers (Apache/Nginx, WP)"
-    echo "2) Critical List (~100,000 IPs) - Recommended for High Security (DMZ, Exposed Assets)"
+    echo "1) Standard List (~85,000 IPs) - Recommended for Web Servers"
+    echo "2) Critical List (~100,000 IPs) - Recommended for High Security"
     echo "3) Custom List (Provide your own .txt URL)"
     read -p "Enter choice [1/2/3]: " choice
 
@@ -131,14 +140,19 @@ select_list_type() {
         3) 
            LIST_TYPE="Custom"
            read -p "Enter the full URL (must start with http/https): " CUSTOM_URL
-           # Basic URL validation
            if [[ ! "$CUSTOM_URL" =~ ^https?:// ]]; then
-               log "ERROR" "Invalid URL format. It must start with http:// or https://"
+               log "ERROR" "Invalid URL format."
                exit 1
            fi
            ;;
         *) log "ERROR" "Invalid choice. Exiting."; exit 1;;
     esac
+    
+    # Saving the selection
+    echo "LIST_TYPE='$LIST_TYPE'" > "$CONF_FILE"
+    if [[ -n "${CUSTOM_URL:-}" ]]; then
+        echo "CUSTOM_URL='$CUSTOM_URL'" >> "$CONF_FILE"
+    fi
     log "INFO" "User selected: $LIST_TYPE Blocklist"
 }
 
@@ -158,14 +172,20 @@ measure_latency() {
 }
 
 select_mirror() {
-    # --- START ADDED: Custom URL ---
-    if [[ "$LIST_TYPE" == "Custom" ]]; then
-        SELECTED_URL="$CUSTOM_URL"
-        log "INFO" "Custom URL detected. Skipping mirror benchmark."
-        echo -e "\n${GREEN}Using Custom Source: $SELECTED_URL${NC}"
+    # Mode UPDATE: Use the saved URL
+    if [[ "${1:-}" == "update" ]] && [[ -f "$CONF_FILE" ]]; then
+        source "$CONF_FILE"
+        log "INFO" "Update Mode: keeping mirror $SELECTED_URL"
         return
     fi
-    # --- END ADDED ---
+
+    # Mode Custom (already managed, but we save the final URL)
+    if [[ "$LIST_TYPE" == "Custom" ]]; then
+        SELECTED_URL="$CUSTOM_URL"
+        echo "SELECTED_URL='$SELECTED_URL'" >> "$CONF_FILE"
+        log "INFO" "Custom URL set: $SELECTED_URL"
+        return
+    fi
 
     echo -e "\n${BLUE}=== Step 2: Selecting Fastest Mirror ===${NC}"
     log "INFO" "Benchmarking mirrors for latency..."
@@ -181,17 +201,12 @@ select_mirror() {
     local fastest_name=""
     local fastest_url=""
 
-    # Associative array to store results for display
-    declare -A results
-
     for name in "${!URL_MAP[@]}"; do
         url="${URL_MAP[$name]}"
         echo -n "Pinging $name... "
         time=$(measure_latency "$url")
-        results[$name]=$time
         echo "${time} ms"
 
-        # Float comparison using bc
         if (( $(echo "$time < $fastest_time" | bc -l) )); then
             fastest_time=$time
             fastest_name=$name
@@ -199,23 +214,10 @@ select_mirror() {
         fi
     done
 
-    echo -e "\n${GREEN}Fastest Mirror Detected: $fastest_name (${fastest_time} ms)${NC}"
-    read -p "Use this mirror? [Y/n]: " confirm
-    confirm=${confirm:-Y}
-
-    if [[ "$confirm" =~ ^[Nn]$ ]]; then
-        echo "Please select a mirror manually:"
-        select name in "${!URL_MAP[@]}"; do
-            if [[ -n "$name" ]]; then
-                SELECTED_URL="${URL_MAP[$name]}"
-                log "INFO" "User manually selected: $name"
-                break
-            fi
-        done
-    else
-        SELECTED_URL="$fastest_url"
-        log "INFO" "Auto-selected fastest mirror: $fastest_name"
-    fi
+    SELECTED_URL="$fastest_url"
+    # Saving the URL of the selected mirror
+    echo "SELECTED_URL='$SELECTED_URL'" >> "$CONF_FILE"
+    log "INFO" "Auto-selected fastest mirror: $fastest_name"
 }
 
 download_list() {
@@ -340,31 +342,51 @@ setup_siem_logging() {
     log "INFO" "For Wazuh/ELK: Monitor '/var/log/syslog' or '/var/log/kern.log' for this string."
 }
 
+setup_cron_autoupdate() {
+    # On ne crée le cron que lors de l'installation manuelle
+    if [[ "${1:-}" != "update" ]]; then
+        local script_path=$(realpath "$0")
+        local cron_file="/etc/cron.d/datashield-update"
+        
+        # Création du fichier cron : Exécution à la minute 0 de chaque heure
+        echo "0 * * * * root $script_path update >> $LOG_FILE 2>&1" > "$cron_file"
+        chmod 644 "$cron_file"
+        
+        log "INFO" "Automatic updates enabled: Runs every hour."
+        log "INFO" "Cron file created at: $cron_file"
+    fi
+}
+
 # ==============================================================================
 # MAIN EXECUTION
 # ==============================================================================
 
-clear
-echo -e "${GREEN}#############################################################"
-echo -e "#     Data-Shield IPv4 Blocklist Community Installer (Pro/Secu)    #"
-echo -e "#############################################################${NC}"
+# Récupération de l'argument (vide ou "update")
+MODE="${1:-install}"
+
+if [[ "$MODE" != "update" ]]; then
+    clear
+    echo -e "${GREEN}#############################################################"
+    echo -e "#     Data-Shield Community Blocklist Installer (Pro/Secu)    #"
+    echo -e "#############################################################${NC}"
+fi
 
 check_root
 detect_os_backend
 install_dependencies
-select_list_type
-select_mirror
+select_list_type "$MODE"  # We pass the mode as an argument
+select_mirror "$MODE"     # We pass the mode as an argument
 download_list
 apply_firewall_rules
 detect_protected_services
 setup_siem_logging
+setup_cron_autoupdate "$MODE"
 
-echo -e "\n${GREEN}#############################################################"
-echo -e "#                    INSTALLATION SUCCESSFUL                  #"
-echo -e "#############################################################${NC}"
-echo -e " -> List loaded: $LIST_TYPE"
-echo -e " -> Backend: $FIREWALL_BACKEND"
-echo -e " -> Mirror used: $SELECTED_URL"
-echo -e " -> Logs: $LOG_FILE"
-echo -e " -> SIEM Integration: Monitor logs for '[DataShield-BLOCK]'"
-echo -e "\nThe system is now protected against known threats."
+if [[ "$MODE" != "update" ]]; then
+    echo -e "\n${GREEN}#############################################################"
+    echo -e "#                    INSTALLATION SUCCESSFUL                  #"
+    echo -e "#############################################################${NC}"
+    echo -e " -> List loaded: $LIST_TYPE"
+    echo -e " -> Mirror used: $SELECTED_URL"
+    echo -e " -> Auto-Update: Every Hour (via /etc/cron.d/datashield-update)"
+fi
