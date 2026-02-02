@@ -83,17 +83,24 @@ install_dependencies() {
 
     # Common tools
     if ! command -v curl >/dev/null; then missing_pkgs="$missing_pkgs curl"; fi
-    if ! command -v bc >/dev/null; then missing_pkgs="$missing_pkgs bc"; fi # for float math in latency check
+    if ! command -v bc >/dev/null; then missing_pkgs="$missing_pkgs bc"; fi
 
-    # Firewall tools
-    if [[ "$FIREWALL_BACKEND" == "ipset" ]] && ! command -v ipset >/dev/null; then
+    # Firewall tools: Check specifically for ipset if backend is not purely nftables-only
+    if ! command -v ipset >/dev/null; then 
         missing_pkgs="$missing_pkgs ipset"
     fi
 
     if [[ -n "$missing_pkgs" ]]; then
         log "WARN" "Installing missing packages: $missing_pkgs"
+        
         if [[ -f /etc/debian_version ]]; then
-            apt-get update -qq && apt-get install -y $missing_pkgs
+            # FIX: Mise à jour des dépôts OBLIGATOIRE pour trouver le paquet ipset
+            log "INFO" "Updating apt repositories..."
+            apt-get update -qq
+            
+            # Installation forcée de ipset
+            apt-get install -y $missing_pkgs
+            
         elif [[ -f /etc/redhat-release ]]; then
             dnf install -y $missing_pkgs
         fi
