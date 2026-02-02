@@ -350,6 +350,14 @@ EOF
 
 detect_protected_services() {
     echo -e "\n${BLUE}=== Step 5: Service Integration Check ===${NC}"
+    
+    # FIX: Force start Fail2ban if installed but not running (Required for RHEL/Alma)
+    if command -v fail2ban-client >/dev/null && ! systemctl is-active --quiet fail2ban; then
+        log "WARN" "Fail2ban is installed but stopped. Starting service..."
+        systemctl enable --now fail2ban || true
+        sleep 2 # Wait for startup
+    fi
+
     if command -v fail2ban-client >/dev/null && systemctl is-active --quiet fail2ban; then
         JAILS=$(fail2ban-client status | grep "Jail list" | sed 's/.*Jail list://g')
         log "INFO" "Fail2ban is ACTIVE. Jails found: ${JAILS}"
