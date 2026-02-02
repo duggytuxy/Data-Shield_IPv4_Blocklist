@@ -300,16 +300,24 @@ EOF
         log "INFO" "Nftables rules applied successfully."
 
     elif [[ "$FIREWALL_BACKEND" == "firewalld" ]]; then
-        # --- AJOUT: Démarrage forcé si éteint (Fix AlmaLinux) ---
+        # FIX: Ensure Firewalld is actually running
         if ! systemctl is-active --quiet firewalld; then
             log "WARN" "Firewalld service is stopped. Starting it now..."
             systemctl enable --now firewalld
         fi
-        # --------------------------------------------------------
 
         log "INFO" "Configuring Firewalld IPSet..."
-        firewall-cmd --permanent --new-ipset="$SET_NAME" --type=hash:ip --option=family=inet --option=hashsize=131072 --option=maxelem=200000 || true
+        
+        # FIX ALMALINUX EXPERT:
+        # 1. On retire '--option=hashsize=...' qui cause "Invalid argument" sur RHEL/Alma
+        # 2. On garde '--option=family=inet' et 'maxelem'
+        # 3. On supprime l'ancien set potentiellement corrompu avant de recréer
+        firewall-cmd --permanent --delete-ipset="$SET_NAME" 2>/dev/null || true
         firewall-cmd --reload
+
+        firewall-cmd --permanent --new-ipset="$SET_NAME" --type=hash:ip --option=family=inet --option=maxelem=200000
+        firewall-cmd --reload
+        
         firewall-cmd --ipset="$SET_NAME" --add-entries-from-file="$FINAL_LIST"
         firewall-cmd --permanent --add-rich-rule="rule source ipset='$SET_NAME' log prefix='[DataShield-BLOCK] ' level='info' drop"
         firewall-cmd --reload
