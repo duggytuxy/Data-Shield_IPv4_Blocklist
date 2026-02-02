@@ -110,11 +110,21 @@ select_list_type() {
     echo -e "\n${BLUE}=== Step 1: Select Blocklist Type ===${NC}"
     echo "1) Standard List (~85,000 IPs) - Recommended for Web Servers (Apache/Nginx, WP)"
     echo "2) Critical List (~100,000 IPs) - Recommended for High Security (DMZ, Exposed Assets)"
-    read -p "Enter choice [1/2]: " choice
+    echo "3) Custom List (Provide your own .txt URL)"
+    read -p "Enter choice [1/2/3]: " choice
 
     case "$choice" in
         1) LIST_TYPE="Standard";;
         2) LIST_TYPE="Critical";;
+        3) 
+           LIST_TYPE="Custom"
+           read -p "Enter the full URL (must start with http/https): " CUSTOM_URL
+           # Basic URL validation
+           if [[ ! "$CUSTOM_URL" =~ ^https?:// ]]; then
+               log "ERROR" "Invalid URL format. It must start with http:// or https://"
+               exit 1
+           fi
+           ;;
         *) log "ERROR" "Invalid choice. Exiting."; exit 1;;
     esac
     log "INFO" "User selected: $LIST_TYPE Blocklist"
@@ -136,6 +146,15 @@ measure_latency() {
 }
 
 select_mirror() {
+    # --- START ADDES: Gestion Custom URL ---
+    if [[ "$LIST_TYPE" == "Custom" ]]; then
+        SELECTED_URL="$CUSTOM_URL"
+        log "INFO" "Custom URL detected. Skipping mirror benchmark."
+        echo -e "\n${GREEN}Using Custom Source: $SELECTED_URL${NC}"
+        return
+    fi
+    # --- END ADDED ---
+
     echo -e "\n${BLUE}=== Step 2: Selecting Fastest Mirror ===${NC}"
     log "INFO" "Benchmarking mirrors for latency..."
 
