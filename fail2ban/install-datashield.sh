@@ -296,18 +296,22 @@ EOF
 
         log "INFO" "Configuring Firewalld IPSet..."
         
-        # FIX ALMALINUX EXPERT:
-        # 1. Remove 'hashsize' to avoid "Invalid argument"
-        # 2. Keep 'family=inet' and 'maxelem'
-        # 3. Clean old sets
+        # 1. Clean old config to avoid conflicts
         firewall-cmd --permanent --delete-ipset="$SET_NAME" 2>/dev/null || true
         firewall-cmd --reload
 
+        # 2. Create Permanent IPSet (No hashsize for Alma/RHEL compatibility)
         firewall-cmd --permanent --new-ipset="$SET_NAME" --type=hash:ip --option=family=inet --option=maxelem=200000
         firewall-cmd --reload
         
-        firewall-cmd --ipset="$SET_NAME" --add-entries-from-file="$FINAL_LIST"
+        # 3. Import IPs to PERMANENT config (Crucial step fixed)
+        log "INFO" "Importing IPs into Firewalld (This may take a moment)..."
+        firewall-cmd --permanent --ipset="$SET_NAME" --add-entries-from-file="$FINAL_LIST"
+        
+        # 4. Add the Drop Rule
         firewall-cmd --permanent --add-rich-rule="rule source ipset='$SET_NAME' log prefix='[DataShield-BLOCK] ' level='info' drop"
+        
+        # 5. Final Reload to apply everything
         firewall-cmd --reload
         log "INFO" "Firewalld rules applied successfully."
 
