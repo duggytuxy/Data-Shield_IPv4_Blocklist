@@ -679,11 +679,27 @@ uninstall_datashield() {
     echo -e "\n${RED}=== Uninstalling Data-Shield ===${NC}"
     log "WARN" "Starting Uninstallation..."
 
+    # 1. Cleaning up Auto-Reporter (New in v4.0)
+    if systemctl is-active --quiet abuse-reporter; then
+        log "INFO" "Stopping AbuseIPDB Reporter service..."
+        systemctl disable --now abuse-reporter 2>/dev/null || true
+        rm -f /etc/systemd/system/abuse-reporter.service
+        systemctl daemon-reload
+        log "INFO" "AbuseIPDB Reporter service removed."
+    fi
+
+    if [[ -f "/usr/local/bin/abuse_reporter.py" ]]; then
+        rm -f "/usr/local/bin/abuse_reporter.py"
+        log "INFO" "Reporter script removed."
+    fi
+
+    # 2. Cleaning up Cron
     if [[ -f "/etc/cron.d/datashield-update" ]]; then
         rm -f "/etc/cron.d/datashield-update"
         log "INFO" "Cron job removed."
     fi
 
+    # 3. Cleaning Firewall Rules
     log "INFO" "Cleaning firewall rules..."
     
     if command -v nft >/dev/null; then
@@ -706,11 +722,13 @@ uninstall_datashield() {
         ipset destroy "$SET_NAME" 2>/dev/null || true
     fi
 
+    # 4. Cleaning Configs
     rm -f "$CONF_FILE"
     log "INFO" "Configuration file removed."
-    rm -f "$LOG_FILE"
     
-    echo -e "${GREEN}Uninstallation complete. Data-Shield has been removed.${NC}"
+    # Note: On ne supprime pas fail2ban ni python3-requests car ils peuvent être utilisés par autre chose.
+    
+    echo -e "${GREEN}Uninstallation complete. Data-Shield and Reporter have been removed.${NC}"
     exit 0
 }
 
