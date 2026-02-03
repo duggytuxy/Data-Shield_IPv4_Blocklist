@@ -426,6 +426,221 @@ EOF
     fi
 }
 
+setup_abuse_reporting() {
+    echo -e "\n${BLUE}=== Step 7: AbuseIPDB Reporting Setup ===${NC}"
+    echo "Would you like to automatically report blocked IPs to AbuseIPDB?"
+    echo "This helps the community and requires a free API Key."
+    read -p "Enable AbuseIPDB reporting? (y/N): " response
+
+    if [[ "$response" =~ ^[Yy]$ ]]; then
+        read -p "Enter your AbuseIPDB API Key: " USER_API_KEY
+        
+        if [[ -z "$USER_API_KEY" ]]; then
+            log "ERROR" "No API Key provided. Skipping reporting setup."
+            return
+        fi
+
+        log "INFO" "Installing Python dependencies..."
+        if [[ -f /etc/debian_version ]]; then
+            apt-get install -y python3-requests
+        elif [[ -f /etc/redhat-release ]]; then
+            dnf install -y python3-requests
+        fi
+
+        log "INFO" "Creating reporter script..."
+        # Utilisation de 'EOF' entre quotes pour éviter que Bash n'interprète les variables Python
+        cat <<'EOF' > /usr/local/bin/abuse_reporter.py
+#!/usr/bin/env python3
+import subprocess
+import select
+import re
+import requests
+import time
+import sys
+
+# --- CONFIGURATION ---
+API_KEY = "PLACEHOLDER_KEY"
+REPORT_INTERVAL = 900  # 15 minutes
+MY_SERVER_NAME = "DataShield-Srv"
+
+# --- DEFINITIONS ---
+reported_cache = {}
+
+def send_report(ip, categories, comment):
+    """Envoie le signalement à AbuseIPDB"""
+    current_time = time.time()
+    
+    if ip in reported_cache:
+        if current_time - reported_cache[ip] < REPORT_INTERVAL:
+            return 
+
+    url = 'https://api.abuseipdb.com/api/v2/report'
+    headers = {'Key': API_KEY, 'Accept': 'application/json'}
+    params = {
+        'ip': ip,
+        'categories': categories,
+        'comment': f"{comment} - Source: {ip}"
+    }
+
+    try:
+        response = requests.post(url, params=params, headers=headers)
+        if response.status_code == 200:
+            print(f"[SUCCESS] Reported {ip} -> Cats [{categories}] : {comment}")
+            reported_cache[ip] = current_time 
+            clean_cache()
+        elif response.status_code == 429:
+            print(f"[LIMIT] API Quota exceeded.")
+        else:
+            print(f"[ERROR] API {response.status_code}: {response.text}")
+    except Exception as e:
+        print(f"[FAIL] Connection error: {e}")
+
+def clean_cache():
+    """Nettoie le cache"""
+    current_time = time.time()
+    to_delete = [ip for ip, ts in reported_cache.items() if current_time - ts > REPORT_INTERVAL]
+    for ip in to_delete:
+        del reported_cache[ip]
+
+def monitor_logs():
+    """Lit le journalctl et applique la logique avancée"""
+    print("🚀 Monitoring logs with Advanced Port Detection...")
+    
+    f = subprocess.Popen(['journalctl', '-k', '-f', '-n', '0'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    p = select.poll()
+    p.register(f.stdout)
+
+    # Regex DataShield (SRC + DPT)
+    regex_ds = re.compile(r"\[DataShield-BLOCK\].*SRC=([\d\.]+).*DPT=(\d+)")
+    # Regex Fail2ban
+    regex_f2b = re.compile(r"fail2ban\.actions.*\[(.*?)\] Ban ([\d\.]+)")
+
+    while True:
+        if p.poll(100):
+            line = f.stdout.readline().decode('utf-8', errors='ignore')
+            if not line:
+                continue
+
+            # --- LOGIQUE DATASHIELD (KERNEL) ---
+            match_ds = regex_ds.search(line)
+            if match_ds:
+                ip = match_ds.group(1)
+                try:
+                    port = int(match_ds.group(2))
+                except ValueError:
+                    port = 0
+                
+                cats = ["14"]
+                attack_type = "Port Scan"
+
+                if port in [80, 443]:
+                    cats.extend(["20", "21"])
+                    attack_type = "Web Attack"
+                elif port in [22, 2222]:
+                    cats.extend(["18", "22"])
+                    attack_type = "SSH Attack"
+                elif port in [53, 5353]:
+                    cats.extend(["1", "2", "20"])
+                    attack_type = "DNS Attack"
+                elif port in [25, 110, 143, 465, 587, 993, 995]:
+                    cats.extend(["11", "17"])
+                    attack_type = "Mail Relay/Spam"
+
+                final_cats = ",".join(cats)
+                send_report(ip, final_cats, f"Blocked by DataShield ({attack_type} on Port {port})")
+
+            # --- LOGIQUE FAIL2BAN ---
+            else:
+                match_f2b = regex_f2b.search(line)
+                if match_f2b:
+                    jail = match_f2b.group(1)
+                    ip = match_f2b.group(2)
+                    
+                    cats = "18"
+                    if "ssh" in jail: cats = "18,22"
+                    elif "nginx" in jail or "apache" in jail: cats = "18,21"
+                    
+                    send_report(ip, cats, f"Banned by Fail2ban (Jail: {jail})")
+
+if __name__ == "__main__":
+    monitor_logs()
+EOF
+
+        # Injection de la clé API
+        sed -i "s/PLACEHOLDER_KEY/$USER_API_KEY/" /usr/local/bin/abuse_reporter.py
+        chmod +x /usr/local/bin/abuse_reporter.py
+
+        log "INFO" "Applying extended Fail2ban configuration (jail.local)..."
+        cat <<EOF > /etc/fail2ban/jail.local
+[DEFAULT]
+bantime = 1h
+findtime = 10m
+maxretry = 5
+ignoreip = 127.0.0.1/8 ::1
+backend = systemd
+
+[sshd]
+enabled = true
+mode = aggressive
+port = ssh
+logpath = %(sshd_log)s
+backend = %(sshd_backend)s
+
+[nginx-http-auth]
+enabled = true
+port = http,https
+logpath = /var/log/nginx/error.log
+
+[nginx-botsearch]
+enabled = true
+port = http,https
+logpath = /var/log/nginx/access.log
+
+[apache-auth]
+enabled = true
+port = http,https
+logpath = %(apache_error_log)s
+
+[apache-badbots]
+enabled = true
+port = http,https
+logpath = %(apache_access_log)s
+
+[mongodb-auth]
+enabled = true
+port = 27017
+logpath = /var/log/mongodb/mongod.log
+EOF
+        if systemctl is-active --quiet fail2ban; then
+            systemctl restart fail2ban
+        fi
+
+        log "INFO" "Creating and starting systemd service..."
+        cat <<EOF > /etc/systemd/system/abuse-reporter.service
+[Unit]
+Description=AbuseIPDB Auto-Reporter (DataShield & Fail2ban)
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/abuse_reporter.py
+Restart=always
+User=root
+ProtectSystem=full
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+        systemctl daemon-reload
+        systemctl enable --now abuse-reporter
+        log "INFO" "AbuseIPDB Reporter is now ACTIVE."
+        
+    else
+        log "INFO" "Skipping AbuseIPDB reporting setup."
+    fi
+}
+
 detect_protected_services() {
     echo -e "\n${BLUE}=== Step 5: Service Integration Check ===${NC}"
     
@@ -527,6 +742,7 @@ download_list
 apply_firewall_rules
 detect_protected_services
 setup_siem_logging
+setup_abuse_reporting
 setup_cron_autoupdate "$MODE"
 
 if [[ "$MODE" != "update" ]]; then
