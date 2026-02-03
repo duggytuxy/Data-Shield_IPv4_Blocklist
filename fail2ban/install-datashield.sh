@@ -752,18 +752,26 @@ fi
 
 check_root
 detect_os_backend
-install_dependencies
-configure_fail2ban
+
+# --- SECTEUR STATIQUE (S'exécute uniquement à l'installation manuelle) ---
+if [[ "$MODE" != "update" ]]; then
+    install_dependencies
+    configure_fail2ban
+fi
+
+# --- SECTEUR DYNAMIQUE (S'exécute tout le temps : Install & Update) ---
 select_list_type "$MODE"
 select_mirror "$MODE"
 download_list
 apply_firewall_rules
 detect_protected_services
-setup_siem_logging
-setup_abuse_reporting
-setup_cron_autoupdate "$MODE"
 
+# --- CONFIGURATION SIEM & REPORTING (Uniquement à l'installation manuelle) ---
 if [[ "$MODE" != "update" ]]; then
+    setup_siem_logging
+    setup_abuse_reporting
+    setup_cron_autoupdate "$MODE"
+    
     echo -e "\n${GREEN}#############################################################"
     echo -e "#                    INSTALLATION SUCCESSFUL                  #"
     echo -e "#############################################################${NC}"
