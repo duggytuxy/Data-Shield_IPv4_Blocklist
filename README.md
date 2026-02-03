@@ -259,18 +259,19 @@ On Enterprise Linux, proper integration with `firewalld` is critical.
 ### How to Install (root)
 
 ```bash
-## For Ubuntu/Debian
+# For Ubuntu/Debian
 apt update && apt upgrade
 
-## For Rocky/AlmaLinux/RHEL
+# For Rocky/AlmaLinux/RHEL
 dnf update
 
-## install script
+# install script
 wget https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/releases/download/v1.0.1-02/install-datashield.sh
-
 chmod +x install-datashield.sh
-
 ./install-datashield.sh
+
+# Check Kernel Logs
+journalctl -k -f | grep "DataShield-BLOCK"
 ```
 
 ### Uninstallation (root)
