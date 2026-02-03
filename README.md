@@ -267,14 +267,16 @@ dnf update
 
 ## install script
 wget https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/releases/download/v1.0.1-02/install-datashield.sh
+
 chmod +x install-datashield.sh
-sudo ./install-datashield.sh
+
+./install-datashield.sh
 ```
 
-### Uninstallation
+### Uninstallation (root)
 
 ```bash
-sudo ./install-datashield.sh uninstall
+./install-datashield.sh uninstall
 ```
 
 ## 👩‍⚖️ GRC & Compliance
