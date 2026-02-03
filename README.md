@@ -214,6 +214,69 @@ A non-exhaustive collection of guides to facilitate integration across various e
 | **[OPNsense](https://slash-root.fr/opnsense-block-malicious-ips/)** | Slash-Root Guide | ≥ 100k IPs |
 | **[Synology NAS](https://myownserver.org/posts/Automatiser_la_liste_de_blocage.html)** | MyOwnServer Guide | ≥ 100k IPs |
 
+## Integration Universal Script for Linux Servers
+
+**First Official Release (v1.0.1-02)**
+
+This release marks a major milestone for the Data-Shield project. After extensive testing across Debian 12/13, Ubuntu 24.04, AlmaLinux 10, and Rocky Linux 10, we have achieved a truly universal script.
+
+Data-Shield transforms your Linux server into a fortress by preemptively blocking over **100,000 known malicious IPs** (botnets, scanners, brute-forcers, etc.) at the network layer, before they even touch your services.
+
+### Key Features in v1.0.1-02
+
+* **Universal OS Support:** Auto-detects and adapts to **Debian, Ubuntu, RHEL, AlmaLinux, and Rocky Linux**.
+* **Intelligent Backend Detection:** Automatically selects the best firewall technology present on your system:
+    * 🔥 **Firewalld** (RHEL/Alma/Rocky native integration)
+    * 🧱 **Nftables** (Modern Debian/Ubuntu standard)
+    * 🛡️ **IPSet/Iptables** (Legacy support)
+* **Smart Mirror Selection:** Replaced ICMP Pings with **TCP/HTTP latency checks** to bypass firewall restrictions on GitHub/GitLab, ensuring you always download from the fastest mirror.
+* **Kernel-Safe Optimization:**
+    * Enables high-performance memory hashing (`hashsize`) on Debian/Ubuntu.
+    * Uses conservative, stability-first settings on RHEL/Rocky kernels to prevent "Invalid Argument" crashes.
+* **Persistence Guaranteed:** Rules are written to disk (XML for Firewalld, persistent saves for Netfilter), surviving reboots instantly.
+* **Auto-Update:** Installs a cron job to refresh the blocklist hourly.
+
+### Technical Deep Dive: Integration Logic
+
+#### 1. The Nftables + Fail2ban Synergy (Debian/Ubuntu)
+Many admins worry that installing a massive blocklist might conflict with Fail2ban. **Data-Shield v1.0.1-02 solves this via layering.**
+* **Data-Shield (Layer 1):** Creates a high-performance Nftables `set` containing ~100k IPs. This acts as a static shield, dropping known bad actors instantly using extremely efficient kernel-level lookups.
+* **Fail2ban (Layer 2):** Continues to monitor logs for *new*, unknown attackers.
+* **Result:** Fail2ban uses less CPU because Data-Shield filters out the "background noise" (99% of automated scans) before Fail2ban even has to parse a log line.
+
+#### 2. The Firewalld + Fail2ban Synergy (RHEL/Alma/Rocky)
+On Enterprise Linux, proper integration with `firewalld` is critical.
+* **Native Sets:** Data-Shield creates a permanent `ipset` type within Firewalld's configuration logic.
+* **Rich Rules:** It applies a "Rich Rule" that drops traffic from this set *before* it reaches your zones or services.
+* **Persistence:** Unlike simple scripts that run `ipset` commands (which vanish on reload), v1.0.1-02 writes the configuration to `/etc/firewalld/`, ensuring the protection persists across service reloads and server reboots.
+
+### Project Objectives
+
+1.  **Noise Reduction:** Drastically reduce the size of system logs (`/var/log/auth.log`, `journalctl`) by blocking scanners at the door.
+2.  **Resource Saving:** Save CPU cycles and bandwidth by dropping packets at the kernel level rather than letting application servers (Nginx, SSHD) handle them.
+3.  **Proactive Security:** Move from a "Reactive" stance (wait for 5 failed logins -> Ban) to a "Proactive" stance (Ban the IP because it attacked a server in another country 10 minutes ago).
+
+### 📦 How to Install (root)
+
+```bash
+## For Ubuntu/Debian
+apt update && apt upgrade
+
+## For Rocky/AlmaLinux/RHEL
+dnf update
+
+## install script
+wget https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/releases/download/v1.0.1-02/install-datashield.sh
+chmod +x install-datashield.sh
+sudo ./install-datashield.sh
+```
+
+### Uninstallation
+
+```bash
+sudo ./install-datashield.sh uninstall
+```
+
 ## 👩‍⚖️ GRC & Compliance
 
 - **Governance & Operational Efficiency**
