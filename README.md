@@ -214,7 +214,7 @@ A non-exhaustive collection of guides to facilitate integration across various e
 | **[OPNsense](https://slash-root.fr/opnsense-block-malicious-ips/)** | Slash-Root Guide | ≥ 100k IPs |
 | **[Synology NAS](https://myownserver.org/posts/Automatiser_la_liste_de_blocage.html)** | MyOwnServer Guide | ≥ 100k IPs |
 
-## Integration Universal Script for Linux Servers
+## 📦 Integration Universal Script for Linux Servers
 
 **First Official Release (v1.0.1-02)**
 
@@ -256,7 +256,7 @@ On Enterprise Linux, proper integration with `firewalld` is critical.
 2.  **Resource Saving:** Save CPU cycles and bandwidth by dropping packets at the kernel level rather than letting application servers (Nginx, SSHD) handle them.
 3.  **Proactive Security:** Move from a "Reactive" stance (wait for 5 failed logins -> Ban) to a "Proactive" stance (Ban the IP because it attacked a server in another country 10 minutes ago).
 
-### 📦 How to Install (root)
+### How to Install (root)
 
 ```bash
 ## For Ubuntu/Debian
