@@ -506,7 +506,7 @@ def monitor_logs():
     """Lit le journalctl et applique la logique avancée"""
     print("🚀 Monitoring logs with Advanced Port Detection...")
     
-    f = subprocess.Popen(['journalctl', '-k', '-f', '-n', '0'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    f = subprocess.Popen(['journalctl', '-f', '-n', '0'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     p = select.poll()
     p.register(f.stdout)
 
