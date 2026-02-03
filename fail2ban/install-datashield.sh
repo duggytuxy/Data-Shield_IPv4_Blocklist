@@ -318,25 +318,31 @@ EOF
     else
         log "INFO" "Configuring IPSet and Iptables..."
         
-        # FIX EXPERT ALMALINUX/DEBIAN HYBRID: 
-        # RHEL kernels reject 'hashsize' on some ipset versions. Debian loves it.
-        local ipset_opts="hash:ip family inet hashsize 65536 maxelem 200000 -exist"
-        
-        if [[ -f /etc/debian_version ]]; then
-            ipset_opts="hash:ip hashsize 131072 maxelem 200000 -exist"
-        fi
-        
-        # Clean corrupted states
+        # Pre-cleanup
         ipset destroy "${SET_NAME}_tmp" 2>/dev/null || true
         
-        # Create temp set
-        ipset create "${SET_NAME}_tmp" $ipset_opts
+        # FIX ROCKY/RHEL IFS ISSUE:
+        # We execute commands directly without using a variable to prevent
+        # the script (with strict IFS) from treating the whole string as a single argument.
+        
+        if [[ -f /etc/debian_version ]]; then
+            # DEBIAN/UBUNTU (Optimization)
+            ipset create "${SET_NAME}_tmp" hash:ip hashsize 131072 maxelem 200000 -exist
+        else
+            # RHEL/ROCKY/ALMA (Strict syntax 'family inet' and standard hashsize)
+            ipset create "${SET_NAME}_tmp" hash:ip family inet hashsize 65536 maxelem 200000 -exist
+        fi
         
         log "INFO" "Loading IPs into temporary set..."
         sed "s/^/add ${SET_NAME}_tmp /" "$FINAL_LIST" | ipset restore
         
-        # Swap to live
-        ipset create "$SET_NAME" $ipset_opts
+        # Create Real Set and Swap (Same separated logic)
+        if [[ -f /etc/debian_version ]]; then
+            ipset create "$SET_NAME" hash:ip hashsize 131072 maxelem 200000 -exist
+        else
+            ipset create "$SET_NAME" hash:ip family inet hashsize 65536 maxelem 200000 -exist
+        fi
+        
         ipset swap "${SET_NAME}_tmp" "$SET_NAME"
         ipset destroy "${SET_NAME}_tmp"
         
