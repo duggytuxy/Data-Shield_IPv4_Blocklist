@@ -229,10 +229,12 @@ Data-Shield transforms your Linux server into a fortress by preemptively blockin
     * 🔥 **Firewalld** (RHEL/Alma/Rocky native integration)
     * 🧱 **Nftables** (Modern Debian/Ubuntu standard)
     * 🛡️ **IPSet/Iptables** (Legacy support)
+	
 * **Smart Mirror Selection:** Replaced ICMP Pings with **TCP/HTTP latency checks** to bypass firewall restrictions on GitHub/GitLab, ensuring you always download from the fastest mirror.
 * **Kernel-Safe Optimization:**
     * Enables high-performance memory hashing (`hashsize`) on Debian/Ubuntu.
     * Uses conservative, stability-first settings on RHEL/Rocky kernels to prevent "Invalid Argument" crashes.
+	
 * **Persistence Guaranteed:** Rules are written to disk (XML for Firewalld, persistent saves for Netfilter), surviving reboots instantly.
 * **Auto-Update:** Installs a cron job to refresh the blocklist hourly.
 
