@@ -355,6 +355,77 @@ EOF
     fi
 }
 
+configure_fail2ban() {
+    # On configure seulement si Fail2ban est installé
+    if command -v fail2ban-client >/dev/null; then
+        log "INFO" "Generating Fail2ban configuration (jail.local)..."
+
+        # Backup de sécurité si une config existe déjà
+        if [[ -f /etc/fail2ban/jail.local ]]; then
+            cp /etc/fail2ban/jail.local /etc/fail2ban/jail.local.bak
+            log "INFO" "Backup of existing config saved to jail.local.bak"
+        fi
+
+        # Écriture de la configuration
+        cat <<EOF > /etc/fail2ban/jail.local
+[DEFAULT]
+# Durée du bannissement (1 heure)
+bantime = 1h
+# Fenêtre de temps pour compter les échecs (10 minutes)
+findtime = 10m
+# Nombre d'échecs avant ban
+maxretry = 5
+# Ne jamais se bannir soi-même (Localhost)
+ignoreip = 127.0.0.1/8 ::1
+# Backend automatique
+backend = systemd
+
+# --- SSH Protection ---
+[sshd]
+enabled = true
+# "mode = aggressive" détecte plus de types d'attaques SSH (DDOS, etc.)
+mode = aggressive
+port = ssh
+logpath = %(sshd_log)s
+backend = %(sshd_backend)s
+
+# --- Web Server Protection (Nginx) ---
+[nginx-http-auth]
+enabled = true
+port = http,https
+logpath = /var/log/nginx/error.log
+
+[nginx-botsearch]
+enabled = true
+port = http,https
+logpath = /var/log/nginx/access.log
+
+# --- Web Server Protection (Apache) ---
+[apache-auth]
+enabled = true
+port = http,https
+logpath = %(apache_error_log)s
+
+[apache-badbots]
+enabled = true
+port = http,https
+logpath = %(apache_access_log)s
+
+# --- Database Protection (MongoDB) ---
+[mongodb-auth]
+enabled = true
+port = 27017
+logpath = /var/log/mongodb/mongod.log
+EOF
+
+        log "INFO" "Fail2ban configured with protections: SSH, Nginx, Apache, MongoDB."
+        
+        # Redémarrage pour appliquer
+        systemctl restart fail2ban
+        sleep 2
+    fi
+}
+
 detect_protected_services() {
     echo -e "\n${BLUE}=== Step 5: Service Integration Check ===${NC}"
     
@@ -449,6 +520,7 @@ fi
 check_root
 detect_os_backend
 install_dependencies
+configure_fail2ban
 select_list_type "$MODE"
 select_mirror "$MODE"
 download_list
