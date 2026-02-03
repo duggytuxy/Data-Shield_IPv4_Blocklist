@@ -303,9 +303,9 @@ journalctl -k -f | grep "DataShield-BLOCK"
 
 | Objective | Target Date |
 | :--- | :---: |
-| Fail2ban Integration | Q1 2026 |
-| API v2 | Q2 2026 |
-| Dashboard Management (SaaS) | Q3 2026 |
+| ~~Fail2ban Integration~~ | Q1 2026 |
+| ~~Global Threat Map~~ | Q2 2026 |
+| API v2 | Q3 2026 |
 
 ## 🙏 Support & Sustainability
 
