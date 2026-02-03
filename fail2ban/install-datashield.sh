@@ -84,13 +84,13 @@ install_dependencies() {
     log "INFO" "Checking dependencies..."
     local missing_common=""
 
-    # 1. Mise à jour impérative des dépôts
+    # 1. Mandatory repository update
     if [[ -f /etc/debian_version ]]; then
         log "INFO" "Updating apt repositories..."
         apt-get update -qq
     fi
 
-    # 2. Outils de base (curl only, 'bc' removed)
+    # 2. Basic tools (curl only, 'bc' removed)
     if ! command -v curl >/dev/null; then missing_common="$missing_common curl"; fi
     
     if [[ -n "$missing_common" ]]; then
@@ -98,7 +98,7 @@ install_dependencies() {
         elif [[ -f /etc/redhat-release ]]; then dnf install -y $missing_common; fi
     fi
 
-    # 3. Installation séparée de IPSET
+    # 3. Separate installation of IPSET
     if ! command -v ipset >/dev/null; then
         log "WARN" "Installing package: ipset"
         if [[ -f /etc/debian_version ]]; then
@@ -108,7 +108,7 @@ install_dependencies() {
         fi
     fi
 
-    # 4. Installation séparée de FAIL2BAN
+    # 4. Separate installation of FAIL2BAN
     if ! command -v fail2ban-client >/dev/null; then
         log "WARN" "Installing package: fail2ban"
         if [[ -f /etc/debian_version ]]; then
@@ -121,7 +121,7 @@ install_dependencies() {
         fi
     fi
 
-    # 5. Installation de NFTABLES
+    # 5. NFTABLES Installation
     if [[ "$FIREWALL_BACKEND" == "nftables" ]] && ! command -v nft >/dev/null; then
         log "WARN" "Installing package: nftables"
         if [[ -f /etc/debian_version ]]; then apt-get install -y nftables;
