@@ -131,6 +131,33 @@ install_dependencies() {
     log "INFO" "All dependencies check complete."
 }
 
+define_ssh_port() {
+    # If in update mode, we keep the existing configuration
+    if [[ "${1:-}" == "update" ]] && [[ -f "$CONF_FILE" ]]; then
+        # Ensure the variable exists, otherwise default to 22
+        if [[ -z "${SSH_PORT:-}" ]]; then SSH_PORT=22; fi
+        log "INFO" "Update Mode: Preserving SSH Port $SSH_PORT"
+        return
+    fi
+
+    echo -e "\n${BLUE}=== Step: SSH Configuration ===${NC}"
+    echo "To ensure Fail2ban and the Reporter monitor the correct port,"
+    read -p "Please enter your current SSH Port [Default: 22]: " input_port
+    
+    # Set default to 22 if input is empty
+    SSH_PORT=${input_port:-22}
+
+    # Validation: Check if input is a valid integer between 1 and 65535
+    if ! [[ "$SSH_PORT" =~ ^[0-9]+$ ]] || [ "$SSH_PORT" -lt 1 ] || [ "$SSH_PORT" -gt 65535 ]; then
+        log "WARN" "Invalid port detected. Defaulting to 22."
+        SSH_PORT=22
+    fi
+
+    # Save the port to the configuration file for future updates
+    echo "SSH_PORT='$SSH_PORT'" >> "$CONF_FILE"
+    log "INFO" "SSH Port configured as: $SSH_PORT"
+}
+
 # ==============================================================================
 # CORE LOGIC
 # ==============================================================================
@@ -294,6 +321,12 @@ EOF
         if ! systemctl is-active --quiet firewalld; then
             log "WARN" "Firewalld service is stopped. Starting it now..."
             systemctl enable --now firewalld
+			# [CRITIQUE] Ouverture du port SSH personnalisé dans FirewallD
+        # Si un port spécifique a été défini (et que ce n'est pas vide), on l'ouvre.
+        if [[ -n "${SSH_PORT:-}" ]]; then
+            log "INFO" "Opening SSH port $SSH_PORT in Firewalld..."
+            firewall-cmd --permanent --add-port="${SSH_PORT}/tcp" 2>/dev/null || true
+            firewall-cmd --reload
         fi
 
         log "INFO" "Configuring Firewalld IPSet..."
@@ -405,7 +438,7 @@ backend = systemd
 enabled = true
 # "mode = aggressive" détecte plus de types d'attaques SSH (DDOS, etc.)
 mode = aggressive
-port = ssh
+port = $SSH_PORT
 logpath = %(sshd_log)s
 backend = %(sshd_backend)s
 
@@ -613,6 +646,9 @@ EOF
 
         # Injection de la clé API
         sed -i "s/PLACEHOLDER_KEY/$USER_API_KEY/" /usr/local/bin/abuse_reporter.py
+		# Injection of the custom SSH port into the Python list
+        # We replace the static [22, 2222] with [22, USER_PORT]
+        sed -i "s/elif port in \[22, 2222\]:/elif port in \[22, $SSH_PORT\]:/" /usr/local/bin/abuse_reporter.py
         chmod +x /usr/local/bin/abuse_reporter.py
 
         log "INFO" "Applying extended Fail2ban configuration (jail.local)..."
@@ -627,7 +663,7 @@ backend = systemd
 [sshd]
 enabled = true
 mode = aggressive
-port = ssh
+port = $SSH_PORT
 logpath = %(sshd_log)s
 backend = %(sshd_backend)s
 
@@ -824,6 +860,7 @@ detect_os_backend
 # --- SECTEUR STATIQUE (S'exécute uniquement à l'installation manuelle) ---
 if [[ "$MODE" != "update" ]]; then
     install_dependencies
+    define_ssh_port "$MODE"  # <--- NEW FUNCTION CALL HERE
     configure_fail2ban
 fi
 
