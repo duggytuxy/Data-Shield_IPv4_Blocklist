@@ -369,15 +369,24 @@ EOF
 configure_fail2ban() {
     # On configure seulement si Fail2ban est installé
     if command -v fail2ban-client >/dev/null; then
-        log "INFO" "Generating Fail2ban configuration (jail.local)..."
+        log "INFO" "Generating Fail2ban configuration..."
 
-        # Backup de sécurité si une config existe déjà
+        # 1. [CRITIQUE] Forcer Fail2ban à parler au système (SYSLOG)
+        # Sans ça, le script Python ne voit PAS les bans !
+        log "INFO" "Setting Fail2ban logtarget to SYSLOG..."
+        cat <<EOF > /etc/fail2ban/fail2ban.local
+[Definition]
+logtarget = SYSLOG
+EOF
+
+        # Backup de sécurité si une config jail existe déjà
         if [[ -f /etc/fail2ban/jail.local ]]; then
             cp /etc/fail2ban/jail.local /etc/fail2ban/jail.local.bak
             log "INFO" "Backup of existing config saved to jail.local.bak"
         fi
 
-        # Écriture de la configuration
+        # 2. Écriture de la configuration des Jails
+        log "INFO" "Writing jail.local configuration..."
         cat <<EOF > /etc/fail2ban/jail.local
 [DEFAULT]
 # Durée du bannissement (1 heure)
@@ -385,10 +394,10 @@ bantime = 1h
 # Fenêtre de temps pour compter les échecs (10 minutes)
 findtime = 10m
 # Nombre d'échecs avant ban
-maxretry = 5
-# Ne jamais se bannir soi-même (Localhost)
+maxretry = 3
+# Ne jamais se bannir soi-même (Localhost + IP Whitelist)
 ignoreip = 127.0.0.1/8 ::1
-# Backend automatique
+# Backend systemd est obligatoire pour bien lire les logs modernes
 backend = systemd
 
 # --- SSH Protection ---
@@ -431,7 +440,7 @@ EOF
 
         log "INFO" "Fail2ban configured with protections: SSH, Nginx, Apache, MongoDB."
         
-        # Redémarrage pour appliquer
+        # Redémarrage pour appliquer les changements (logtarget + jails)
         systemctl restart fail2ban
         sleep 2
     fi
@@ -611,7 +620,7 @@ EOF
 [DEFAULT]
 bantime = 1h
 findtime = 10m
-maxretry = 5
+maxretry = 3
 ignoreip = 127.0.0.1/8 ::1
 backend = systemd
 
