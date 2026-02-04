@@ -825,6 +825,12 @@ download_list
 apply_firewall_rules
 detect_protected_services
 
+# [NOUVEAU] Maintenance préventive du Reporter (Hygiène mémoire)
+if command -v systemctl >/dev/null && systemctl is-active --quiet abuse-reporter; then
+    # On redémarre proprement pour vider le cache et assurer la stabilité
+    systemctl restart abuse-reporter
+fi
+
 # --- CONFIGURATION SIEM & REPORTING (Uniquement à l'installation manuelle) ---
 if [[ "$MODE" != "update" ]]; then
     setup_siem_logging
