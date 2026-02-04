@@ -668,10 +668,33 @@ setup_siem_logging() {
 setup_cron_autoupdate() {
     if [[ "${1:-}" != "update" ]]; then
         local script_path=$(realpath "$0")
+        
+        # 1. Setup du Cron
         local cron_file="/etc/cron.d/datashield-update"
         echo "0 * * * * root $script_path update >> $LOG_FILE 2>&1" > "$cron_file"
         chmod 644 "$cron_file"
         log "INFO" "Automatic updates enabled: Runs every hour via $cron_file"
+
+        # 2. Setup du Logrotate (Universel: Debian/Ubuntu/RHEL/Alma)
+        log "INFO" "Configuring comprehensive log rotation (System & Script)..."
+        cat <<EOF > /etc/logrotate.d/datashield
+/var/log/kern.log
+/var/log/syslog
+/var/log/messages
+$LOG_FILE {
+    daily
+    rotate 7
+    compress
+    delaycompress
+    missingok
+    notifempty
+    sharedscripts
+    postrotate
+        # Recharge rsyslog pour libérer les fichiers systèmes (si rsyslog tourne)
+        systemctl kill -s HUP rsyslog.service >/dev/null 2>&1 || true
+    endscript
+}
+EOF
     fi
 }
 
