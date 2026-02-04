@@ -321,7 +321,9 @@ EOF
         if ! systemctl is-active --quiet firewalld; then
             log "WARN" "Firewalld service is stopped. Starting it now..."
             systemctl enable --now firewalld
-			# [CRITIQUE] Ouverture du port SSH personnalisé dans FirewallD
+		fi
+		
+		# [CRITIQUE] Ouverture du port SSH personnalisé dans FirewallD
         # Si un port spécifique a été défini (et que ce n'est pas vide), on l'ouvre.
         if [[ -n "${SSH_PORT:-}" ]]; then
             log "INFO" "Opening SSH port $SSH_PORT in Firewalld..."
