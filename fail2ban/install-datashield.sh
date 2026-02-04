@@ -571,7 +571,7 @@ def monitor_logs():
                     attack_type = "Telnet IoT Attack"
                 
                 elif port == 445: # SMB
-                    cats.extend(["15", "23"])
+                    cats.extend(["15", "18"])
                     attack_type = "SMB/Ransomware Attempt"
                 
                 elif port == 1433: # MSSQL
