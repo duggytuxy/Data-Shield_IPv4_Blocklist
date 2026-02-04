@@ -533,10 +533,10 @@ def monitor_logs():
                 cats = ["14"]
                 attack_type = "Port Scan"
 
-                if port in [80, 443]:
+                if port in [80, 443, 8443]:
                     cats.extend(["20", "21"])
                     attack_type = "Web Attack"
-                elif port in [22, 2222]:
+                elif port in [22, 2222, 22222]:
                     cats.extend(["18", "22"])
                     attack_type = "SSH Attack"
                 elif port in [53, 5353]:
