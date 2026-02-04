@@ -517,6 +517,7 @@ def monitor_logs():
     """Lit le journalctl et applique la logique avancée"""
     print("🚀 Monitoring logs with Advanced Port Detection...")
     
+    # On retire le -k pour voir aussi les logs applicatifs (Fail2ban) en plus du Kernel
     f = subprocess.Popen(['journalctl', '-f', '-n', '0'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     p = select.poll()
     p.register(f.stdout)
@@ -541,7 +542,8 @@ def monitor_logs():
                 except ValueError:
                     port = 0
                 
-                cats = ["14"] # Port Scan par défaut
+                # Catégorie par défaut : 14 (Port Scan)
+                cats = ["14"]
                 attack_type = "Port Scan"
 
                 # 1. WEB ATTACK (80, 443)
@@ -554,21 +556,24 @@ def monitor_logs():
                     cats.extend(["18", "22"])
                     attack_type = "SSH Attack"
 
-                # 3. TOXIC PORTS (Nouveau !)
+                # 3. TOXIC PORTS & IOT
                 elif port == 23: # Telnet
-                    cats.extend(["18", "23"]) # Brute-Force + IoT Targeted
+                    cats.extend(["18", "23"])
                     attack_type = "Telnet IoT Attack"
+                
                 elif port == 445: # SMB
-                    cats.extend(["15", "23"]) # Hacking + IoT/Worm
+                    cats.extend(["15", "23"])
                     attack_type = "SMB/Ransomware Attempt"
+                
                 elif port == 1433: # MSSQL
-                    cats.extend(["18", "15"]) # Brute-Force + Hacking
+                    cats.extend(["18", "15"])
                     attack_type = "MSSQL Probe"
+                
                 elif port in [3389, 5900]: # RDP / VNC
-                    cats.extend(["18"]) # Brute-Force
+                    cats.extend(["18"])
                     attack_type = "Remote Desktop Attack"
 
-                # 4. DNS & MAIL (Reste inchangé)
+                # 4. DNS & MAIL
                 elif port in [53, 5353]:
                     cats.extend(["1", "2", "20"])
                     attack_type = "DNS Attack"
@@ -586,9 +591,10 @@ def monitor_logs():
                     jail = match_f2b.group(1)
                     ip = match_f2b.group(2)
                     
-                    cats = "18"
+                    cats = "18" # Brute-Force par défaut
                     if "ssh" in jail: cats = "18,22"
                     elif "nginx" in jail or "apache" in jail: cats = "18,21"
+                    elif "mongo" in jail: cats = "18,15"
                     
                     send_report(ip, cats, f"Banned by Fail2ban (Jail: {jail})")
 
