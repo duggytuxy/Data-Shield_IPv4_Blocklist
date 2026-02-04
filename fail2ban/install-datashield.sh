@@ -281,6 +281,8 @@ $(awk '{print $1 ","}' "$FINAL_LIST")
     chain input {
         type filter hook input priority filter - 10; policy accept;
         ip saddr @$SET_NAME log prefix "[DataShield-BLOCK] " flags all drop
+		# Ports Toxiques (LOG + DROP)
+        tcp dport { 23, 445, 1433, 3389, 5900 } log prefix "[DataShield-BLOCK] " flags all drop
     }
 }
 EOF
@@ -310,6 +312,11 @@ EOF
         
         # 4. Add the Drop Rule
         firewall-cmd --permanent --add-rich-rule="rule source ipset='$SET_NAME' log prefix='[DataShield-BLOCK] ' level='info' drop"
+		# Ports Toxiques (LOG + DROP)
+        for port in 23 445 1433 3389 5900; do
+            # On ajoute log prefix + drop dans la même rich rule
+            firewall-cmd --permanent --add-rich-rule="rule port port=\"$port\" protocol=\"tcp\" log prefix=\"[DataShield-BLOCK] \" level=\"info\" drop" 2>/dev/null || true
+        done
         
         # 5. Final Reload to apply everything
         firewall-cmd --reload
@@ -349,6 +356,10 @@ EOF
         if ! iptables -C INPUT -m set --match-set "$SET_NAME" src -j DROP 2>/dev/null; then
             iptables -I INPUT 1 -m set --match-set "$SET_NAME" src -j DROP
             iptables -I INPUT 1 -m set --match-set "$SET_NAME" src -j LOG --log-prefix "[DataShield-BLOCK] "
+			# Ports Toxiques (LOG + DROP)
+            # On insère des règles spécifiques pour ces ports
+            iptables -I INPUT 2 -p tcp -m multiport --dports 23,445,1433,3389,5900 -j DROP
+            iptables -I INPUT 2 -p tcp -m multiport --dports 23,445,1433,3389,5900 -j LOG --log-prefix "[DataShield-BLOCK] "
             log "INFO" "Iptables DROP rule inserted."
             if command -v netfilter-persistent >/dev/null; then netfilter-persistent save; fi
         fi
@@ -530,15 +541,34 @@ def monitor_logs():
                 except ValueError:
                     port = 0
                 
-                cats = ["14"]
+                cats = ["14"] # Port Scan par défaut
                 attack_type = "Port Scan"
 
-                if port in [80, 443, 8443]:
+                # 1. WEB ATTACK (80, 443)
+                if port in [80, 443]:
                     cats.extend(["20", "21"])
                     attack_type = "Web Attack"
-                elif port in [22, 2222, 22222]:
+
+                # 2. SSH (22, 2222)
+                elif port in [22, 2222]:
                     cats.extend(["18", "22"])
                     attack_type = "SSH Attack"
+
+                # 3. TOXIC PORTS (Nouveau !)
+                elif port == 23: # Telnet
+                    cats.extend(["18", "23"]) # Brute-Force + IoT Targeted
+                    attack_type = "Telnet IoT Attack"
+                elif port == 445: # SMB
+                    cats.extend(["15", "23"]) # Hacking + IoT/Worm
+                    attack_type = "SMB/Ransomware Attempt"
+                elif port == 1433: # MSSQL
+                    cats.extend(["18", "15"]) # Brute-Force + Hacking
+                    attack_type = "MSSQL Probe"
+                elif port in [3389, 5900]: # RDP / VNC
+                    cats.extend(["18"]) # Brute-Force
+                    attack_type = "Remote Desktop Attack"
+
+                # 4. DNS & MAIL (Reste inchangé)
                 elif port in [53, 5353]:
                     cats.extend(["1", "2", "20"])
                     attack_type = "DNS Attack"
