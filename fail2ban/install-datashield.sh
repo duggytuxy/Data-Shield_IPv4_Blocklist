@@ -333,7 +333,7 @@ EOF
 
         log "INFO" "Configuring Firewalld IPSet..."
 		
-		# [FIX] D'abord supprimer la Règle qui utilise l'IPSet (Sinon le delete-ipset échoue)
+		# [FIX] First delete the Rule that uses the IPSet (otherwise delete-ipset will fail)
         firewall-cmd --permanent --remove-rich-rule="rule source ipset='$SET_NAME' log prefix='[DataShield-BLOCK] ' level='info' drop" 2>/dev/null || true
         firewall-cmd --reload
         
