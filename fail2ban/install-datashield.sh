@@ -332,6 +332,10 @@ EOF
         fi
 
         log "INFO" "Configuring Firewalld IPSet..."
+		
+		# [FIX] D'abord supprimer la Règle qui utilise l'IPSet (Sinon le delete-ipset échoue)
+        firewall-cmd --permanent --remove-rich-rule="rule source ipset='$SET_NAME' log prefix='[DataShield-BLOCK] ' level='info' drop" 2>/dev/null || true
+        firewall-cmd --reload
         
         # 1. Clean old config to avoid conflicts
         firewall-cmd --permanent --delete-ipset="$SET_NAME" 2>/dev/null || true
@@ -754,7 +758,7 @@ setup_cron_autoupdate() {
         
         # 1. Setup du Cron
         local cron_file="/etc/cron.d/datashield-update"
-        echo "0 * * * * root $script_path update >> $LOG_FILE 2>&1" > "$cron_file"
+        echo "0 * * * * root $script_path update >/dev/null 2>&1" > "$cron_file"
         chmod 644 "$cron_file"
         log "INFO" "Automatic updates enabled: Runs every hour via $cron_file"
 
