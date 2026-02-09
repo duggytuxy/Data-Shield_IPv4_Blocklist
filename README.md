@@ -252,6 +252,12 @@ On Enterprise Linux, proper integration with `firewalld` is critical.
 * **Rich Rules:** It applies a "Rich Rule" that drops traffic from this set *before* it reaches your zones or services.
 * **Persistence:** Unlike simple scripts that run `ipset` commands (which vanish on reload), v1.0.1-02 writes the configuration to `/etc/firewalld/`, ensuring the protection persists across service reloads and server reboots.
 
+#### 3. AbuseIPDB reporting
+In a community setting, during the script installation phase, it is possible to report triggered and confirmed alerts to ABUSEIPDB in order to keep the database of malicious IP addresses up to date.
+
+* **Enable the option** Just accept the return to the platform.
+* **API key** Insert the platform's API key in order to send and share nuisances, noises, and other malicious IPs to it.
+
 ### Project Objectives
 
 1.  **Noise Reduction:** Drastically reduce the size of system logs (`/var/log/auth.log`, `journalctl`) by blocking scanners at the door.
