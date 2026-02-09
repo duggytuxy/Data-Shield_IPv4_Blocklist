@@ -323,8 +323,8 @@ EOF
             systemctl enable --now firewalld
 		fi
 		
-		# [CRITIQUE] Ouverture du port SSH personnalisé dans FirewallD
-        # Si un port spécifique a été défini (et que ce n'est pas vide), on l'ouvre.
+		# [CRITICAL] Opening custom SSH port in FirewallD
+        # If a specific port is defined (and not empty), open it.
         if [[ -n "${SSH_PORT:-}" ]]; then
             log "INFO" "Opening SSH port $SSH_PORT in Firewalld..."
             firewall-cmd --permanent --add-port="${SSH_PORT}/tcp" 2>/dev/null || true
@@ -353,7 +353,7 @@ EOF
         firewall-cmd --permanent --add-rich-rule="rule source ipset='$SET_NAME' log prefix='[DataShield-BLOCK] ' level='info' drop"
 		# Ports Toxiques (LOG + DROP)
         for port in 23 445 1433 3389 5900; do
-            # On ajoute log prefix + drop dans la même rich rule
+            # Add log prefix + drop in the same rich rule
             firewall-cmd --permanent --add-rich-rule="rule port port=\"$port\" protocol=\"tcp\" log prefix=\"[DataShield-BLOCK] \" level=\"info\" drop" 2>/dev/null || true
         done
         
@@ -396,7 +396,7 @@ EOF
             iptables -I INPUT 1 -m set --match-set "$SET_NAME" src -j DROP
             iptables -I INPUT 1 -m set --match-set "$SET_NAME" src -j LOG --log-prefix "[DataShield-BLOCK] "
 			# Ports Toxiques (LOG + DROP)
-            # On insère des règles spécifiques pour ces ports
+            # Insert specific rules for these ports
             iptables -I INPUT 2 -p tcp -m multiport --dports 23,445,1433,3389,5900 -j DROP
             iptables -I INPUT 2 -p tcp -m multiport --dports 23,445,1433,3389,5900 -j LOG --log-prefix "[DataShield-BLOCK] "
             log "INFO" "Iptables DROP rule inserted."
@@ -406,43 +406,43 @@ EOF
 }
 
 configure_fail2ban() {
-    # On configure seulement si Fail2ban est installé
+    # Configure only if Fail2ban is installed
     if command -v fail2ban-client >/dev/null; then
         log "INFO" "Generating Fail2ban configuration..."
 
-        # 1. [CRITIQUE] Forcer Fail2ban à parler au système (SYSLOG)
-        # Sans ça, le script Python ne voit PAS les bans !
+        # 1. [CRITIQUE] Force Fail2ban to talk to system (SYSLOG)
+        # Without this, Python script does NOT see bans!
         log "INFO" "Setting Fail2ban logtarget to SYSLOG..."
         cat <<EOF > /etc/fail2ban/fail2ban.local
 [Definition]
 logtarget = SYSLOG
 EOF
 
-        # Backup de sécurité si une config jail existe déjà
+        # Safety backup if jail config exists
         if [[ -f /etc/fail2ban/jail.local ]]; then
             cp /etc/fail2ban/jail.local /etc/fail2ban/jail.local.bak
             log "INFO" "Backup of existing config saved to jail.local.bak"
         fi
 
-        # 2. Écriture de la configuration des Jails
+        # 2. Writing Jail configuration
         log "INFO" "Writing jail.local configuration..."
         cat <<EOF > /etc/fail2ban/jail.local
 [DEFAULT]
-# Durée du bannissement (1 heure)
+# Ban duration (1 hour)
 bantime = 1h
-# Fenêtre de temps pour compter les échecs (10 minutes)
+# Time window to count failures (10 minutes)
 findtime = 10m
-# Nombre d'échecs avant ban
+# Max retries before ban
 maxretry = 3
-# Ne jamais se bannir soi-même (Localhost + IP Whitelist)
+# Never ban self (Localhost + IP Whitelist)
 ignoreip = 127.0.0.1/8 ::1
-# Backend systemd est obligatoire pour bien lire les logs modernes
+# Backend systemd is mandatory to read modern logs
 backend = systemd
 
 # --- SSH Protection ---
 [sshd]
 enabled = true
-# "mode = aggressive" détecte plus de types d'attaques SSH (DDOS, etc.)
+# "mode = aggressive" detects more SSH attack types (DDOS, etc.)
 mode = aggressive
 port = $SSH_PORT
 logpath = %(sshd_log)s
@@ -479,7 +479,7 @@ EOF
 
         log "INFO" "Fail2ban configured with protections: SSH, Nginx, Apache, MongoDB."
         
-        # Redémarrage pour appliquer les changements (logtarget + jails)
+        # Restart to apply changes (logtarget + jails)
         systemctl restart fail2ban
         sleep 2
     fi
@@ -507,7 +507,7 @@ setup_abuse_reporting() {
         fi
 
         log "INFO" "Creating reporter script..."
-        # Utilisation de 'EOF' entre quotes pour éviter que Bash n'interprète les variables Python
+        # Use 'EOF' in quotes to avoid Bash interpreting Python variables
         cat <<'EOF' > /usr/local/bin/abuse_reporter.py
 #!/usr/bin/env python3
 import subprocess
@@ -526,7 +526,7 @@ MY_SERVER_NAME = "DataShield-Srv"
 reported_cache = {}
 
 def send_report(ip, categories, comment):
-    """Envoie le signalement à AbuseIPDB"""
+    """Sends report to AbuseIPDB"""
     current_time = time.time()
     
     if ip in reported_cache:
@@ -555,17 +555,17 @@ def send_report(ip, categories, comment):
         print(f"[FAIL] Connection error: {e}")
 
 def clean_cache():
-    """Nettoie le cache"""
+    """Cleans the cache"""
     current_time = time.time()
     to_delete = [ip for ip, ts in reported_cache.items() if current_time - ts > REPORT_INTERVAL]
     for ip in to_delete:
         del reported_cache[ip]
 
 def monitor_logs():
-    """Lit le journalctl et applique la logique avancée"""
+    """Reads journalctl and applies advanced logic"""
     print("🚀 Monitoring logs with Advanced Port Detection...")
     
-    # On retire le -k pour voir aussi les logs applicatifs (Fail2ban) en plus du Kernel
+    # Removed -k to see application logs (Fail2ban) as well as Kernel
     f = subprocess.Popen(['journalctl', '-f', '-n', '0'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     p = select.poll()
     p.register(f.stdout)
@@ -581,7 +581,7 @@ def monitor_logs():
             if not line:
                 continue
 
-            # --- LOGIQUE DATASHIELD (KERNEL) ---
+            # --- DATASHIELD LOGIC (KERNEL) ---
             match_ds = regex_ds.search(line)
             if match_ds:
                 ip = match_ds.group(1)
@@ -590,7 +590,7 @@ def monitor_logs():
                 except ValueError:
                     port = 0
                 
-                # Catégorie par défaut : 14 (Port Scan)
+                # Default category: 14 (Port Scan)
                 cats = ["14"]
                 attack_type = "Port Scan"
 
@@ -632,14 +632,14 @@ def monitor_logs():
                 final_cats = ",".join(cats)
                 send_report(ip, final_cats, f"Blocked by DataShield ({attack_type} on Port {port})")
 
-            # --- LOGIQUE FAIL2BAN ---
+            # --- FAIL2BAN LOGIC ---
             else:
                 match_f2b = regex_f2b.search(line)
                 if match_f2b:
                     jail = match_f2b.group(1)
                     ip = match_f2b.group(2)
                     
-                    cats = "18" # Brute-Force par défaut
+                    cats = "18" # Brute-Force default
                     if "ssh" in jail: cats = "18,22"
                     elif "nginx" in jail or "apache" in jail: cats = "18,21"
                     elif "mongo" in jail: cats = "18,15"
@@ -650,7 +650,7 @@ if __name__ == "__main__":
     monitor_logs()
 EOF
 
-        # Injection de la clé API
+        # Inject API Key
         sed -i "s/PLACEHOLDER_KEY/$USER_API_KEY/" /usr/local/bin/abuse_reporter.py
 		# Injection of the custom SSH port into the Python list
         # We replace the static [22, 2222] with [22, USER_PORT]
@@ -756,13 +756,13 @@ setup_cron_autoupdate() {
     if [[ "${1:-}" != "update" ]]; then
         local script_path=$(realpath "$0")
         
-        # 1. Setup du Cron
+        # 1. Setup Cron
         local cron_file="/etc/cron.d/datashield-update"
         echo "0 * * * * root $script_path update >/dev/null 2>&1" > "$cron_file"
         chmod 644 "$cron_file"
         log "INFO" "Automatic updates enabled: Runs every hour via $cron_file"
 
-        # 2. Setup du Logrotate (Universel: Debian/Ubuntu/RHEL/Alma)
+        # 2. Setup Logrotate (Universal: Debian/Ubuntu/RHEL/Alma)
         log "INFO" "Configuring comprehensive log rotation (System & Script)..."
         cat <<EOF > /etc/logrotate.d/datashield
 /var/log/kern.log
@@ -777,7 +777,7 @@ $LOG_FILE {
     notifempty
     sharedscripts
     postrotate
-        # Recharge rsyslog pour libérer les fichiers systèmes (si rsyslog tourne)
+        # Reload rsyslog to release system files (if running)
         systemctl kill -s HUP rsyslog.service >/dev/null 2>&1 || true
     endscript
 }
@@ -836,7 +836,7 @@ uninstall_datashield() {
     rm -f "$CONF_FILE"
     log "INFO" "Configuration file removed."
     
-    # Note: On ne supprime pas fail2ban ni python3-requests car ils peuvent être utilisés par autre chose.
+    # Note: We do not remove fail2ban or python3-requests as they may be used by something else.
     
     echo -e "${GREEN}Uninstallation complete. Data-Shield and Reporter have been removed.${NC}"
     exit 0
@@ -863,27 +863,27 @@ fi
 check_root
 detect_os_backend
 
-# --- SECTEUR STATIQUE (S'exécute uniquement à l'installation manuelle) ---
+# --- STATIC SECTOR (Runs only on manual install) ---
 if [[ "$MODE" != "update" ]]; then
     install_dependencies
     define_ssh_port "$MODE"  # <--- NEW FUNCTION CALL HERE
     configure_fail2ban
 fi
 
-# --- SECTEUR DYNAMIQUE (S'exécute tout le temps : Install & Update) ---
+# --- DYNAMIC SECTOR (Runs always: Install & Update) ---
 select_list_type "$MODE"
 select_mirror "$MODE"
 download_list
 apply_firewall_rules
 detect_protected_services
 
-# [NOUVEAU] Maintenance préventive du Reporter (Hygiène mémoire)
+# [NEW] Preventive Maintenance of Reporter (Memory Hygiene)
 if command -v systemctl >/dev/null && systemctl is-active --quiet abuse-reporter; then
-    # On redémarre proprement pour vider le cache et assurer la stabilité
+    # Restart cleanly to clear cache and ensure stability
     systemctl restart abuse-reporter
 fi
 
-# --- CONFIGURATION SIEM & REPORTING (Uniquement à l'installation manuelle) ---
+# --- SIEM & REPORTING CONFIGURATION (Only on manual install) ---
 if [[ "$MODE" != "update" ]]; then
     setup_siem_logging
     setup_abuse_reporting
