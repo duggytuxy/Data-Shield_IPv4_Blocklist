@@ -12,12 +12,12 @@ BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
 # --- CONFIGURATION CONSTANTS ---
-LOG_FILE="/var/log/datashield-install.log"
-CONF_FILE="/etc/datashield.conf"
-SET_NAME="datashield_blacklist"
+LOG_FILE="/var/log/syswarden-install.log"
+CONF_FILE="/etc/syswarden.conf"
+SET_NAME="syswarden_blacklist"
 TMP_DIR=$(mktemp -d)
 
-# --- LIST URLS ---
+# --- LIST URLS (Source Data remains Data-Shield for now) ---
 declare -A URLS_STANDARD
 URLS_STANDARD[GitHub]="https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_data-shield_ipv4_blocklist.txt"
 URLS_STANDARD[GitLab]="https://gitlab.com/duggytuxy/data-shield-ipv4-blocklist/-/raw/main/prod_data-shield_ipv4_blocklist.txt"
@@ -298,8 +298,8 @@ apply_firewall_rules() {
     
     if [[ "$FIREWALL_BACKEND" == "nftables" ]]; then
         log "INFO" "Configuring Nftables Set..."
-        cat <<EOF > "$TMP_DIR/datashield.nft"
-table inet datashield_table {
+        cat <<EOF > "$TMP_DIR/syswarden.nft"
+table inet syswarden_table {
     set $SET_NAME {
         type ipv4_addr
         flags interval
@@ -310,13 +310,13 @@ $(awk '{print $1 ","}' "$FINAL_LIST")
     }
     chain input {
         type filter hook input priority filter - 10; policy accept;
-        ip saddr @$SET_NAME log prefix "[DataShield-BLOCK] " flags all drop
-		# Ports Toxiques (LOG + DROP)
-        tcp dport { 23, 445, 1433, 3389, 5900 } log prefix "[DataShield-BLOCK] " flags all drop
+        ip saddr @$SET_NAME log prefix "[SysWarden-BLOCK] " flags all drop
+        # Toxic Ports (LOG + DROP)
+        tcp dport { 23, 445, 1433, 3389, 5900 } log prefix "[SysWarden-BLOCK] " flags all drop
     }
 }
 EOF
-        nft -f "$TMP_DIR/datashield.nft"
+        nft -f "$TMP_DIR/syswarden.nft"
         log "INFO" "Nftables rules applied successfully."
 
     elif [[ "$FIREWALL_BACKEND" == "firewalld" ]]; then
@@ -324,9 +324,9 @@ EOF
         if ! systemctl is-active --quiet firewalld; then
             log "WARN" "Firewalld service is stopped. Starting it now..."
             systemctl enable --now firewalld
-		fi
-		
-		# [CRITICAL] Opening custom SSH port in FirewallD
+        fi
+        
+        # [CRITICAL] Opening custom SSH port in FirewallD
         # If a specific port is defined (and not empty), open it.
         if [[ -n "${SSH_PORT:-}" ]]; then
             log "INFO" "Opening SSH port $SSH_PORT in Firewalld..."
@@ -335,9 +335,9 @@ EOF
         fi
 
         log "INFO" "Configuring Firewalld IPSet..."
-		
-		# [FIX] First delete the Rule that uses the IPSet (otherwise delete-ipset will fail)
-        firewall-cmd --permanent --remove-rich-rule="rule source ipset='$SET_NAME' log prefix='[DataShield-BLOCK] ' level='info' drop" 2>/dev/null || true
+        
+        # [FIX] First delete the Rule that uses the IPSet (otherwise delete-ipset will fail)
+        firewall-cmd --permanent --remove-rich-rule="rule source ipset='$SET_NAME' log prefix='[SysWarden-BLOCK] ' level='info' drop" 2>/dev/null || true
         firewall-cmd --reload
         
         # 1. Clean old config to avoid conflicts
@@ -353,11 +353,11 @@ EOF
         firewall-cmd --permanent --ipset="$SET_NAME" --add-entries-from-file="$FINAL_LIST"
         
         # 4. Add the Drop Rule
-        firewall-cmd --permanent --add-rich-rule="rule source ipset='$SET_NAME' log prefix='[DataShield-BLOCK] ' level='info' drop"
-		# Ports Toxiques (LOG + DROP)
+        firewall-cmd --permanent --add-rich-rule="rule source ipset='$SET_NAME' log prefix='[SysWarden-BLOCK] ' level='info' drop"
+        # Toxic Ports (LOG + DROP)
         for port in 23 445 1433 3389 5900; do
             # Add log prefix + drop in the same rich rule
-            firewall-cmd --permanent --add-rich-rule="rule port port=\"$port\" protocol=\"tcp\" log prefix=\"[DataShield-BLOCK] \" level=\"info\" drop" 2>/dev/null || true
+            firewall-cmd --permanent --add-rich-rule="rule port port=\"$port\" protocol=\"tcp\" log prefix=\"[SysWarden-BLOCK] \" level=\"info\" drop" 2>/dev/null || true
         done
         
         # 5. Final Reload to apply everything
@@ -397,11 +397,11 @@ EOF
         
         if ! iptables -C INPUT -m set --match-set "$SET_NAME" src -j DROP 2>/dev/null; then
             iptables -I INPUT 1 -m set --match-set "$SET_NAME" src -j DROP
-            iptables -I INPUT 1 -m set --match-set "$SET_NAME" src -j LOG --log-prefix "[DataShield-BLOCK] "
-			# Ports Toxiques (LOG + DROP)
+            iptables -I INPUT 1 -m set --match-set "$SET_NAME" src -j LOG --log-prefix "[SysWarden-BLOCK] "
+            # Toxic Ports (LOG + DROP)
             # Insert specific rules for these ports
             iptables -I INPUT 2 -p tcp -m multiport --dports 23,445,1433,3389,5900 -j DROP
-            iptables -I INPUT 2 -p tcp -m multiport --dports 23,445,1433,3389,5900 -j LOG --log-prefix "[DataShield-BLOCK] "
+            iptables -I INPUT 2 -p tcp -m multiport --dports 23,445,1433,3389,5900 -j LOG --log-prefix "[SysWarden-BLOCK] "
             log "INFO" "Iptables DROP rule inserted."
             if command -v netfilter-persistent >/dev/null; then netfilter-persistent save; fi
         fi
@@ -511,7 +511,7 @@ setup_abuse_reporting() {
 
         log "INFO" "Creating reporter script..."
         # Use 'EOF' in quotes to avoid Bash interpreting Python variables
-        cat <<'EOF' > /usr/local/bin/abuse_reporter.py
+        cat <<'EOF' > /usr/local/bin/syswarden_reporter.py
 #!/usr/bin/env python3
 import subprocess
 import select
@@ -523,7 +523,7 @@ import sys
 # --- CONFIGURATION ---
 API_KEY = "PLACEHOLDER_KEY"
 REPORT_INTERVAL = 900  # 15 minutes
-MY_SERVER_NAME = "DataShield-Srv"
+MY_SERVER_NAME = "SysWarden-Srv"
 
 # --- DEFINITIONS ---
 reported_cache = {}
@@ -573,8 +573,8 @@ def monitor_logs():
     p = select.poll()
     p.register(f.stdout)
 
-    # Regex DataShield (SRC + DPT)
-    regex_ds = re.compile(r"\[DataShield-BLOCK\].*SRC=([\d\.]+).*DPT=(\d+)")
+    # Regex SysWarden (SRC + DPT)
+    regex_ds = re.compile(r"\[SysWarden-BLOCK\].*SRC=([\d\.]+).*DPT=(\d+)")
     # Regex Fail2ban
     regex_f2b = re.compile(r"fail2ban\.actions.*\[(.*?)\].*?[Bb]an\s+([\d\.]+)", re.IGNORECASE)
 
@@ -584,7 +584,7 @@ def monitor_logs():
             if not line:
                 continue
 
-            # --- DATASHIELD LOGIC (KERNEL) ---
+            # --- SYSWARDEN LOGIC (KERNEL) ---
             match_ds = regex_ds.search(line)
             if match_ds:
                 ip = match_ds.group(1)
@@ -633,7 +633,7 @@ def monitor_logs():
                     attack_type = "Mail Relay/Spam"
 
                 final_cats = ",".join(cats)
-                send_report(ip, final_cats, f"Blocked by DataShield ({attack_type} on Port {port})")
+                send_report(ip, final_cats, f"Blocked by SysWarden ({attack_type} on Port {port})")
 
             # --- FAIL2BAN LOGIC ---
             else:
@@ -654,11 +654,10 @@ if __name__ == "__main__":
 EOF
 
         # Inject API Key
-        sed -i "s/PLACEHOLDER_KEY/$USER_API_KEY/" /usr/local/bin/abuse_reporter.py
+        sed -i "s/PLACEHOLDER_KEY/$USER_API_KEY/" /usr/local/bin/syswarden_reporter.py
         # Injection of the custom SSH port into the Python list
-        # We replace the static [22, 2222] with [22, USER_PORT]
-        sed -i "s/elif port in \[22, 2222\]:/elif port in \[22, $SSH_PORT\]:/" /usr/local/bin/abuse_reporter.py
-        chmod +x /usr/local/bin/abuse_reporter.py
+        sed -i "s/elif port in \[22, 2222\]:/elif port in \[22, $SSH_PORT\]:/" /usr/local/bin/syswarden_reporter.py
+        chmod +x /usr/local/bin/syswarden_reporter.py
 
         # [MODIF] Removal of duplicate jail.local configuration here.
         # We only keep the Fail2ban restart for security reasons.
@@ -667,14 +666,14 @@ EOF
         fi
 
         log "INFO" "Creating and starting systemd service..."
-        cat <<EOF > /etc/systemd/system/abuse-reporter.service
+        cat <<EOF > /etc/systemd/system/syswarden-reporter.service
 [Unit]
-Description=AbuseIPDB Auto-Reporter (DataShield & Fail2ban)
+Description=SysWarden Auto-Reporter (Fail2ban Integration)
 After=network.target
 
 [Service]
 Type=simple
-ExecStart=/usr/local/bin/abuse_reporter.py
+ExecStart=/usr/local/bin/syswarden_reporter.py
 Restart=always
 User=root
 ProtectSystem=full
@@ -684,7 +683,7 @@ WantedBy=multi-user.target
 EOF
 
         systemctl daemon-reload
-        systemctl enable --now abuse-reporter
+        systemctl enable --now syswarden-reporter
         log "INFO" "AbuseIPDB Reporter is now ACTIVE."
         
     else
@@ -713,7 +712,7 @@ detect_protected_services() {
 
 setup_siem_logging() {
     echo -e "\n${BLUE}=== Step 6: SIEM Logging Status ===${NC}"
-    log "INFO" "Monitor '/var/log/syslog', '/var/log/messages' or 'journalctl -k' for '[DataShield-BLOCK]'."
+    log "INFO" "Monitor '/var/log/syslog', '/var/log/messages' or 'journalctl -k' for '[SysWarden-BLOCK]'."
 }
 
 setup_cron_autoupdate() {
@@ -721,14 +720,14 @@ setup_cron_autoupdate() {
         local script_path=$(realpath "$0")
         
         # 1. Setup Cron
-        local cron_file="/etc/cron.d/datashield-update"
+        local cron_file="/etc/cron.d/syswarden-update"
         echo "0 * * * * root $script_path update >/dev/null 2>&1" > "$cron_file"
         chmod 644 "$cron_file"
         log "INFO" "Automatic updates enabled: Runs every hour via $cron_file"
 
         # 2. Setup Logrotate (Universal: Debian/Ubuntu/RHEL/Alma)
         log "INFO" "Configuring comprehensive log rotation (System & Script)..."
-        cat <<EOF > /etc/logrotate.d/datashield
+        cat <<EOF > /etc/logrotate.d/syswarden
 /var/log/kern.log
 /var/log/syslog
 /var/log/messages
@@ -749,27 +748,27 @@ EOF
     fi
 }
 
-uninstall_datashield() {
-    echo -e "\n${RED}=== Uninstalling Data-Shield ===${NC}"
+uninstall_syswarden() {
+    echo -e "\n${RED}=== Uninstalling SysWarden ===${NC}"
     log "WARN" "Starting Uninstallation..."
 
-    # 1. Cleaning up Auto-Reporter (New in v4.0)
-    if systemctl is-active --quiet abuse-reporter; then
-        log "INFO" "Stopping AbuseIPDB Reporter service..."
-        systemctl disable --now abuse-reporter 2>/dev/null || true
-        rm -f /etc/systemd/system/abuse-reporter.service
+    # 1. Cleaning up Auto-Reporter (Rebranded)
+    if systemctl is-active --quiet syswarden-reporter; then
+        log "INFO" "Stopping SysWarden Reporter service..."
+        systemctl disable --now syswarden-reporter 2>/dev/null || true
+        rm -f /etc/systemd/system/syswarden-reporter.service
         systemctl daemon-reload
-        log "INFO" "AbuseIPDB Reporter service removed."
+        log "INFO" "SysWarden Reporter service removed."
     fi
 
-    if [[ -f "/usr/local/bin/abuse_reporter.py" ]]; then
-        rm -f "/usr/local/bin/abuse_reporter.py"
+    if [[ -f "/usr/local/bin/syswarden_reporter.py" ]]; then
+        rm -f "/usr/local/bin/syswarden_reporter.py"
         log "INFO" "Reporter script removed."
     fi
 
     # 2. Cleaning up Cron
-    if [[ -f "/etc/cron.d/datashield-update" ]]; then
-        rm -f "/etc/cron.d/datashield-update"
+    if [[ -f "/etc/cron.d/syswarden-update" ]]; then
+        rm -f "/etc/cron.d/syswarden-update"
         log "INFO" "Cron job removed."
     fi
 
@@ -777,18 +776,18 @@ uninstall_datashield() {
     log "INFO" "Cleaning firewall rules..."
     
     if command -v nft >/dev/null; then
-        nft delete table inet datashield_table 2>/dev/null || true
+        nft delete table inet syswarden_table 2>/dev/null || true
     fi
 
     if command -v firewall-cmd >/dev/null && systemctl is-active --quiet firewalld; then
-        firewall-cmd --permanent --remove-rich-rule="rule source ipset='$SET_NAME' log prefix='[DataShield-BLOCK] ' level='info' drop" 2>/dev/null || true
+        firewall-cmd --permanent --remove-rich-rule="rule source ipset='$SET_NAME' log prefix='[SysWarden-BLOCK] ' level='info' drop" 2>/dev/null || true
         firewall-cmd --permanent --delete-ipset="$SET_NAME" 2>/dev/null || true
         firewall-cmd --reload 2>/dev/null || true
     fi
 
     if command -v iptables >/dev/null; then
         iptables -D INPUT -m set --match-set "$SET_NAME" src -j DROP 2>/dev/null || true
-        iptables -D INPUT -m set --match-set "$SET_NAME" src -j LOG --log-prefix "[DataShield-BLOCK] " 2>/dev/null || true
+        iptables -D INPUT -m set --match-set "$SET_NAME" src -j LOG --log-prefix "[SysWarden-BLOCK] " 2>/dev/null || true
         if command -v netfilter-persistent >/dev/null; then netfilter-persistent save 2>/dev/null || true; fi
     fi
     
@@ -802,7 +801,7 @@ uninstall_datashield() {
     
     # Note: We do not remove fail2ban or python3-requests as they may be used by something else.
     
-    echo -e "${GREEN}Uninstallation complete. Data-Shield and Reporter have been removed.${NC}"
+    echo -e "${GREEN}Uninstallation complete. SysWarden and Reporter have been removed.${NC}"
     exit 0
 }
 
@@ -814,13 +813,13 @@ MODE="${1:-install}"
 
 if [[ "$MODE" == "uninstall" ]]; then
     check_root
-    uninstall_datashield
+    uninstall_syswarden
 fi
 
 if [[ "$MODE" != "update" ]]; then
     clear
     echo -e "${GREEN}#############################################################"
-    echo -e "#     Data-Shield Community Blocklist Installer (Pro/Secu)    #"
+    echo -e "#     SysWarden Community Blocklist Installer (Pro/Secu)    #"
     echo -e "#############################################################${NC}"
 fi
 
@@ -830,7 +829,7 @@ detect_os_backend
 # --- STATIC SECTOR (Runs only on manual install) ---
 if [[ "$MODE" != "update" ]]; then
     install_dependencies
-    define_ssh_port "$MODE"  # <--- NEW FUNCTION CALL HERE
+    define_ssh_port "$MODE"
     configure_fail2ban
 fi
 
@@ -842,9 +841,9 @@ apply_firewall_rules
 detect_protected_services
 
 # [NEW] Preventive Maintenance of Reporter (Memory Hygiene)
-if command -v systemctl >/dev/null && systemctl is-active --quiet abuse-reporter; then
+if command -v systemctl >/dev/null && systemctl is-active --quiet syswarden-reporter; then
     # Restart cleanly to clear cache and ensure stability
-    systemctl restart abuse-reporter
+    systemctl restart syswarden-reporter
 fi
 
 # --- SIEM & REPORTING CONFIGURATION (Only on manual install) ---
@@ -854,7 +853,7 @@ if [[ "$MODE" != "update" ]]; then
     setup_cron_autoupdate "$MODE"
     
     echo -e "\n${GREEN}#############################################################"
-    echo -e "#                    INSTALLATION SUCCESSFUL                  #"
+    echo -e "#                     INSTALLATION SUCCESSFUL                     #"
     echo -e "#############################################################${NC}"
     echo -e " -> List loaded: $LIST_TYPE"
     echo -e " -> Backend: $FIREWALL_BACKEND"
