@@ -655,52 +655,13 @@ EOF
 
         # Inject API Key
         sed -i "s/PLACEHOLDER_KEY/$USER_API_KEY/" /usr/local/bin/abuse_reporter.py
-		# Injection of the custom SSH port into the Python list
+        # Injection of the custom SSH port into the Python list
         # We replace the static [22, 2222] with [22, USER_PORT]
         sed -i "s/elif port in \[22, 2222\]:/elif port in \[22, $SSH_PORT\]:/" /usr/local/bin/abuse_reporter.py
         chmod +x /usr/local/bin/abuse_reporter.py
 
-        log "INFO" "Applying extended Fail2ban configuration (jail.local)..."
-        cat <<EOF > /etc/fail2ban/jail.local
-[DEFAULT]
-bantime = 1h
-findtime = 10m
-maxretry = 3
-ignoreip = 127.0.0.1/8 ::1
-backend = systemd
-
-[sshd]
-enabled = true
-mode = aggressive
-port = $SSH_PORT
-logpath = %(sshd_log)s
-backend = %(sshd_backend)s
-
-[nginx-http-auth]
-enabled = true
-port = http,https
-logpath = /var/log/nginx/error.log
-
-[nginx-botsearch]
-enabled = true
-port = http,https
-logpath = /var/log/nginx/access.log
-
-[apache-auth]
-enabled = true
-port = http,https
-logpath = %(apache_error_log)s
-
-[apache-badbots]
-enabled = true
-port = http,https
-logpath = %(apache_access_log)s
-
-[mongodb-auth]
-enabled = true
-port = 27017
-logpath = /var/log/mongodb/mongod.log
-EOF
+        # [MODIF] Removal of duplicate jail.local configuration here.
+        # We only keep the Fail2ban restart for security reasons.
         if systemctl is-active --quiet fail2ban; then
             systemctl restart fail2ban
         fi
