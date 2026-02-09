@@ -93,6 +93,9 @@ install_dependencies() {
     # 2. Basic tools (curl only, 'bc' removed)
     if ! command -v curl >/dev/null; then missing_common="$missing_common curl"; fi
     
+    # [ADDED] Critical check for the Reporter
+    if ! command -v python3 >/dev/null; then missing_common="$missing_common python3"; fi
+    
     if [[ -n "$missing_common" ]]; then
         if [[ -f /etc/debian_version ]]; then apt-get install -y $missing_common; 
         elif [[ -f /etc/redhat-release ]]; then dnf install -y $missing_common; fi
@@ -573,7 +576,7 @@ def monitor_logs():
     # Regex DataShield (SRC + DPT)
     regex_ds = re.compile(r"\[DataShield-BLOCK\].*SRC=([\d\.]+).*DPT=(\d+)")
     # Regex Fail2ban
-    regex_f2b = re.compile(r"fail2ban\.actions.*\[(.*?)\] Ban ([\d\.]+)")
+    regex_f2b = re.compile(r"fail2ban\.actions.*\[(.*?)\].*?[Bb]an\s+([\d\.]+)", re.IGNORECASE)
 
     while True:
         if p.poll(100):
