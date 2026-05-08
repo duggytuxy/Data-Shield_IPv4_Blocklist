@@ -30,8 +30,6 @@
   <br />
 </p>
 
-![Alt](https://repobeats.axiom.co/api/embed/8ead3fb191fc45d23c0953782d4aee4901b85ded.svg "Repobeats analytics image")
-
 # Data‑Shield IPv4 Blocklist Community
 
 **The Data-Shield IPv4 Blocklist Community** provides an official, curated registry of IPv4 addresses identified as malicious. Updated continuously, this resource offers vital threat intelligence to bolster your **Firewall** and **WAF** instances, delivering a robust, additional layer of security for your infrastructure.
