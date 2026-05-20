@@ -8,8 +8,6 @@
 </p>
 
 <div align="center">
-  <a href="https://duggytuxy.github.io/" target="_blank">Website</a>
-  <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
   <a href="https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/issues">Issues Tracker</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
   <a href="https://github.com/duggytuxy/syswarden">SysWarden</a>
@@ -17,8 +15,6 @@
   <a href="https://www.linkedin.com/in/laurent-minne/" target="_blank">Linkedin</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
   <a href="https://tryhackme.com/p/duggytuxy" target="_blank">TryHackMe</a>
-  <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-  <a href="https://ko-fi.com/laurentmduggytuxy" target="_blank">Ko-Fi</a>
   <br />
 </div>
 
