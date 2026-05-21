@@ -1,4 +1,7 @@
 <p align="center">
+  <a href="https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/actions/workflows/cia-integrity.yml">
+    <img src="https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/actions/workflows/cia-integrity.yml/badge.svg" alt="CIA Triad Integrity Pipeline">
+  </a>
   <img src="https://img.shields.io/badge/Open%20Source-100%25-brightgreen?logo=opensourceinitiative">
   <img src="https://img.shields.io/badge/powered%20by-DuggyTuxy-darkred?logo=apachekafka">
   <img src="https://img.shields.io/badge/Status-Community--Professional-brightgreen?logo=status">
