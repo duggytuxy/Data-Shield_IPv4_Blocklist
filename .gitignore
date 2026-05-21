@@ -1,0 +1,21 @@
+# Local binaries & tools
+shfmt.exe
+
+# SysWarden Build Artifacts (CI/CD & Local)
+dist/
+*.tar.gz
+*.sig
+*.crt
+
+# Obsolete Checksums (Enforces SLSA 3 Attestation usage)
+*.sha256
+
+# Local Execution Traces (If you test the script locally)
+*.log
+tmp/
+
+# OS & Editor configurations (Prevents pushing personal settings)
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

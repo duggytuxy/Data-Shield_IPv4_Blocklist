@@ -1,0 +1,41 @@
+name: CIA Triad Integrity Pipeline
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '**.txt'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '**.txt'
+  schedule:
+    - cron: '0 3 * * *'
+
+# Principle of least privilege (Confidentiality component)
+permissions:
+  contents: read
+
+jobs:
+  security-and-integrity:
+    name: Validate Blocklists and Generate Hashes
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Make validation script executable
+        run: chmod +x .github/scripts/validate_and_hash.sh
+
+      - name: Run Integrity Validation
+        run: .github/scripts/validate_and_hash.sh
+
+      - name: Upload Integrity Artifacts (SHA256)
+        uses: actions/upload-artifact@v4
+        with:
+          name: blocklists-sha256sums
+          path: sha256sums.txt
+          retention-days: 14
