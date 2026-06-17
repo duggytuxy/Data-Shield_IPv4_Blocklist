@@ -1,23 +1,28 @@
 <p align="center">
   <a href="https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/actions/workflows/cia-integrity.yml">
-    <img src="https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/actions/workflows/cia-integrity.yml/badge.svg" alt="CIA Triad Integrity Pipeline">
+    <img src="https://img.shields.io/github/actions/workflow/status/duggytuxy/Data-Shield_IPv4_Blocklist/cia-integrity.yml?style=for-the-badge&label=CIA%20Triad%20Integrity%20Pipeline" alt="CIA Triad Integrity Pipeline">
   </a>
-  <img src="https://img.shields.io/badge/Open%20Source-100%25-brightgreen?logo=opensourceinitiative">
-  <img src="https://img.shields.io/badge/powered%20by-DuggyTuxy-darkred?logo=apachekafka">
-  <img src="https://img.shields.io/badge/Status-Community--Professional-brightgreen?logo=status">
-  <img src="https://img.shields.io/badge/Security-Hardened-blue?logo=security">
-  <img src="https://img.shields.io/badge/License-GNU_GPLv3-0052cc?logo=license">
-  <img src="https://img.shields.io/github/last-commit/duggytuxy/Data-Shield_IPv4_Blocklist?label=IPv4%20Blocklist%20Last%20Update&color=informational&logo=github">
+  <img src="https://img.shields.io/badge/Open%20Source-100%25-brightgreen?style=for-the-badge&logo=opensourceinitiative&logoColor=white">
+  <img src="https://img.shields.io/badge/powered%20by-DuggyTuxy-darkred?style=for-the-badge&logo=apachekafka&logoColor=white">
+  <img src="https://img.shields.io/badge/Status-Community--Professional-brightgreen?style=for-the-badge&logo=statuspage&logoColor=white">
+  <img src="https://img.shields.io/badge/Security-Hardened-blue?style=for-the-badge&logo=springsecurity&logoColor=white">
+  <img src="https://img.shields.io/badge/License-GNU_GPLv3-0052cc?style=for-the-badge&logo=gnu&logoColor=white">
+  <img src="https://img.shields.io/github/last-commit/duggytuxy/Data-Shield_IPv4_Blocklist?label=IPv4%20Blocklist%20Last%20Update&color=informational&logo=github&style=for-the-badge&logoColor=white">
 </p>
 
 <div align="center">
-  <a href="https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/issues">Issues Tracker</a>
-  <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-  <a href="https://github.com/duggytuxy/syswarden">SysWarden</a>
-  <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-  <a href="https://www.linkedin.com/in/laurent-minne/" target="_blank">Linkedin</a>
-  <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-  <a href="https://tryhackme.com/p/duggytuxy" target="_blank">TryHackMe</a>
+  <a href="https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/issues">
+    <img src="https://img.shields.io/badge/Issues%20Tracker-informational?style=for-the-badge&logo=github&logoColor=white">
+  </a>
+  <a href="https://github.com/duggytuxy/syswarden">
+    <img src="https://img.shields.io/badge/SysWarden-blueviolet?style=for-the-badge&logo=github&logoColor=white">
+  </a>
+  <a href="https://www.linkedin.com/in/laurent-minne/" target="_blank">
+    <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white">
+  </a>
+  <a href="https://tryhackme.com/p/duggytuxy" target="_blank">
+    <img src="https://img.shields.io/badge/TryHackMe-212C42?style=for-the-badge&logo=tryhackme&logoColor=white">
+  </a>
   <br />
 </div>
 
