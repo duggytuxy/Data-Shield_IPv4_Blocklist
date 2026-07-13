@@ -83,7 +83,6 @@ To guarantee high availability and resilience, the Data-Shield IPv4 Blocklist Co
 | Split List A | 30k IPs | [prod_aa_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_aa_data-shield_ipv4_blocklist.txt) |
 | Split List B | 30k IPs | [prod_ab_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ab_data-shield_ipv4_blocklist.txt) |
 | Split List C | 30k IPs | [prod_ac_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ac_data-shield_ipv4_blocklist.txt) |
-| Split List D | 30k IPs | [prod_ad_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_ad_data-shield_ipv4_blocklist.txt) |
 
 #### GitLab Repository (Main Source)
 > **[View Official Repository](https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/)**
@@ -94,7 +93,6 @@ To guarantee high availability and resilience, the Data-Shield IPv4 Blocklist Co
 | Split List A | 30k IPs | [prod_aa_data-shield_ipv4_blocklist.txt](https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_aa_data-shield_ipv4_blocklist.txt?ref_type=heads) |
 | Split List B | 30k IPs | [prod_ab_data-shield_ipv4_blocklist.txt](https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_ab_data-shield_ipv4_blocklist.txt?ref_type=heads) |
 | Split List C | 30k IPs | [prod_ac_data-shield_ipv4_blocklist.txt](https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_ac_data-shield_ipv4_blocklist.txt?ref_type=heads) |
-| Split List D | 30k IPs | [prod_ad_data-shield_ipv4_blocklist.txt](https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_ad_data-shield_ipv4_blocklist.txt?ref_type=heads) |
 
 #### jsDelivr CDN (High Performance)
 > **[View CDN Status](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@main/)**
@@ -105,7 +103,6 @@ To guarantee high availability and resilience, the Data-Shield IPv4 Blocklist Co
 | Split List A | 30k IPs | [prod_aa_data-shield_ipv4_blocklist.txt](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@refs/heads/main/prod_aa_data-shield_ipv4_blocklist.txt) |
 | Split List B | 30k IPs | [prod_ab_data-shield_ipv4_blocklist.txt](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@refs/heads/main/prod_ab_data-shield_ipv4_blocklist.txt) |
 | Split List C | 30k IPs | [prod_ac_data-shield_ipv4_blocklist.txt](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@refs/heads/main/prod_ac_data-shield_ipv4_blocklist.txt) |
-| Split List D | 30k IPs | [prod_ad_data-shield_ipv4_blocklist.txt](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@refs/heads/main/prod_ad_data-shield_ipv4_blocklist.txt) |
 
 #### BitBucket Repository (Mirror)
 > **[View Official Repository](https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/src/main/)**
@@ -116,7 +113,6 @@ To guarantee high availability and resilience, the Data-Shield IPv4 Blocklist Co
 | Split List A | 30k IPs | [prod_aa_data-shield_ipv4_blocklist.txt](https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/raw/HEAD/prod_aa_data-shield_ipv4_blocklist.txt) |
 | Split List B | 30k IPs | [prod_ab_data-shield_ipv4_blocklist.txt](https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/raw/HEAD/prod_ab_data-shield_ipv4_blocklist.txt) |
 | Split List C | 30k IPs | [prod_ac_data-shield_ipv4_blocklist.txt](https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/raw/HEAD/prod_ac_data-shield_ipv4_blocklist.txt) |
-| Split List D | 30k IPs | [prod_ad_data-shield_ipv4_blocklist.txt](https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/raw/HEAD/prod_ad_data-shield_ipv4_blocklist.txt) |
 
 #### Codeberg Repository (Mirror)
 > **[View Official Repository](https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist)**
@@ -127,7 +123,6 @@ To guarantee high availability and resilience, the Data-Shield IPv4 Blocklist Co
 | Split List A | 30k IPs | [prod_aa_data-shield_ipv4_blocklist.txt](https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_aa_data-shield_ipv4_blocklist.txt) |
 | Split List B | 30k IPs | [prod_ab_data-shield_ipv4_blocklist.txt](https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_ab_data-shield_ipv4_blocklist.txt) |
 | Split List C | 30k IPs | [prod_ac_data-shield_ipv4_blocklist.txt](https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_ac_data-shield_ipv4_blocklist.txt) |
-| Split List D | 30k IPs | [prod_ad_data-shield_ipv4_blocklist.txt](https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_ad_data-shield_ipv4_blocklist.txt) |
 
 ### New Production Lists
 >  For **DMZs, critical assets, exposed infrastructure, and APIs**
@@ -143,7 +138,6 @@ To guarantee high availability and resilience, the Data-Shield IPv4 Blocklist Co
 | Split List A | 30k IPs | [prod_critical_aa_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_critical_aa_data-shield_ipv4_blocklist.txt) |
 | Split List B | 30k IPs | [prod_critical_ab_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_critical_ab_data-shield_ipv4_blocklist.txt) |
 | Split List C | 30k IPs | [prod_critical_ac_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_critical_ac_data-shield_ipv4_blocklist.txt) |
-| Split List D | 30k IPs | [prod_critical_ad_data-shield_ipv4_blocklist.txt](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_critical_ad_data-shield_ipv4_blocklist.txt) |
 
 #### GitLab Repository (Main Source)
 > **[View Official Repository](https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/)**
@@ -154,7 +148,6 @@ To guarantee high availability and resilience, the Data-Shield IPv4 Blocklist Co
 | Split List A | 30k IPs | [prod_critical_aa_data-shield_ipv4_blocklist.txt](https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_critical_aa_data-shield_ipv4_blocklist.txt?ref_type=heads) |
 | Split List B | 30k IPs | [prod_critical_ab_data-shield_ipv4_blocklist.txt](https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_critical_ab_data-shield_ipv4_blocklist.txt?ref_type=heads) |
 | Split List C | 30k IPs | [prod_critical_ac_data-shield_ipv4_blocklist.txt](https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_critical_ac_data-shield_ipv4_blocklist.txt?ref_type=heads) |
-| Split List D | 30k IPs | [prod_critical_ad_data-shield_ipv4_blocklist.txt](https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_critical_ad_data-shield_ipv4_blocklist.txt?ref_type=heads) |
 
 #### jsDelivr CDN (High Performance)
 > **[View CDN Status](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@main/)**
@@ -165,7 +158,6 @@ To guarantee high availability and resilience, the Data-Shield IPv4 Blocklist Co
 | Split List A | 30k IPs | [prod_critical_aa_data-shield_ipv4_blocklist.txt](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@refs/heads/main/prod_critical_aa_data-shield_ipv4_blocklist.txt) |
 | Split List B | 30k IPs | [prod_critical_ab_data-shield_ipv4_blocklist.txt](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@refs/heads/main/prod_critical_ab_data-shield_ipv4_blocklist.txt) |
 | Split List C | 30k IPs | [prod_critical_ac_data-shield_ipv4_blocklist.txt](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@refs/heads/main/prod_critical_ac_data-shield_ipv4_blocklist.txt) |
-| Split List D | 30k IPs | [prod_critical_ad_data-shield_ipv4_blocklist.txt](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@refs/heads/main/prod_critical_ad_data-shield_ipv4_blocklist.txt) |
 
 #### BitBucket Repository (Mirror)
 > **[View Official Repository](https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/src/main/)**
@@ -176,7 +168,6 @@ To guarantee high availability and resilience, the Data-Shield IPv4 Blocklist Co
 | Split List A | 30k IPs | [prod_critical_aa_data-shield_ipv4_blocklist.txt](https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/raw/HEAD/prod_critical_aa_data-shield_ipv4_blocklist.txt) |
 | Split List B | 30k IPs | [prod_critical_ab_data-shield_ipv4_blocklist.txt](https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/raw/HEAD/prod_critical_ab_data-shield_ipv4_blocklist.txt) |
 | Split List C | 30k IPs | [prod_critical_ac_data-shield_ipv4_blocklist.txt](https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/raw/HEAD/prod_critical_ac_data-shield_ipv4_blocklist.txt) |
-| Split List D | 30k IPs | [prod_critical_ad_data-shield_ipv4_blocklist.txt](https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/raw/HEAD/prod_critical_ad_data-shield_ipv4_blocklist.txt) |
 
 #### Codeberg Repository (Mirror)
 > **[View Official Repository](https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist)**
@@ -187,7 +178,6 @@ To guarantee high availability and resilience, the Data-Shield IPv4 Blocklist Co
 | Split List A | 30k IPs | [prod_critical_aa_data-shield_ipv4_blocklist.txt](https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_critical_aa_data-shield_ipv4_blocklist.txt) |
 | Split List B | 30k IPs | [prod_critical_ab_data-shield_ipv4_blocklist.txt](https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_critical_ab_data-shield_ipv4_blocklist.txt) |
 | Split List C | 30k IPs | [prod_critical_ac_data-shield_ipv4_blocklist.txt](https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_critical_ac_data-shield_ipv4_blocklist.txt) |
-| Split List D | 30k IPs | [prod_critical_ad_data-shield_ipv4_blocklist.txt](https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_critical_ad_data-shield_ipv4_blocklist.txt) |
 
 ## Integration Tutorials
 
@@ -234,14 +224,6 @@ A non-exhaustive collection of guides to facilitate integration across various e
   Adoption follows a secure, phased approach—from **Observation** (logging only) to **Activation**—ensuring non-regression on critical flows. The project fosters transparency with a clear process for reporting false positives via GitHub, aiming for collective improvement and resolution within 48 hours.
 
 > **Download the complete GRC Compliance Model** to modify it if necessary and insert it into your information systems security policy, in accordance with your GRC officer [Docx and PDF formats](/docs).
-
-## Roadmap
-
-| Objective | Target Date |
-| :--- | :---: |
-| ~~Fail2ban Integration~~ | Q1 2026 |
-| ~~Global Threat Map~~ | Q2 2026 |
-| API v2 | Q3 2026 |
 
 ## Support & Sustainability
 
