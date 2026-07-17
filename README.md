@@ -20,9 +20,6 @@
   <a href="https://www.linkedin.com/in/laurent-minne/" target="_blank">
     <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=flat&logo=linkedin&logoColor=white">
   </a>
-  <a href="https://tryhackme.com/p/duggytuxy" target="_blank">
-    <img src="https://img.shields.io/badge/TryHackMe-212C42?style=flat&logo=tryhackme&logoColor=white">
-  </a>
   <br />
 </div>
 
