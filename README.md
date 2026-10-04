@@ -199,6 +199,7 @@ A non-exhaustive collection of guides to facilitate integration across various e
 | **[Stormshield](https://www.youtube.com/watch?v=yT2oas7M2UM)** | Official Video | *TBC* |
 | **[OPNsense](https://slash-root.fr/opnsense-block-malicious-ips/)** | Slash-Root Guide | ≥ 100k IPs |
 | **[Synology NAS](https://myownserver.org/posts/Automatiser_la_liste_de_blocage.html)** | MyOwnServer Guide | ≥ 100k IPs |
+| **[UniFi Gateways](docs/unifi.md)** | Community Guide | 100k IPs per dynamic list |
 
 ## GRC & Compliance
 
