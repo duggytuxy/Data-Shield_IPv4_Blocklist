@@ -1,20 +1,20 @@
-name: "❗ Signalement - Faux positif"
-description: "Signaler une adresse IP présente dans la blocklist que vous considérez comme légitime / non-malveillante."
-title: "[FALSE-POSITIVE] {ip} - {contexte}"
+name: "False-positive report"
+description: "Report a blocklisted IP address that you believe is legitimate or non-malicious."
+title: "[FALSE-POSITIVE] {ip} - {context}"
 labels: ["false-positive","triage"]
 assignees: []
 body:
   - type: markdown
     attributes:
       value: |
-        ## 🧾 Résumé
-        Merci de remplir ce formulaire pour signaler un **faux positif**. Fournissez autant d'éléments de preuve que possible (logs anonymisés, ASN, reverse DNS, captures). N'attachez pas d'informations personnelles non anonymisées.
+        ## Summary
+        Please complete this form to report a **false positive**. Provide as much evidence as possible (anonymized logs, ASN, reverse DNS, screenshots). Do not attach personal information that has not been anonymized.
 
   - type: input
     id: ip
     attributes:
-      label: "Adresse IP concernée"
-      description: "Ex : 203.0.113.45"
+      label: "Affected IP address"
+      description: "Example: 203.0.113.45"
       placeholder: "203.0.113.45"
     validations:
       required: true
@@ -22,125 +22,125 @@ body:
   - type: input
     id: file_list
     attributes:
-      label: "Fichier / liste"
-      description: "Ex : prod_data-shield_ipv4_blocklist.txt"
+      label: "File / list"
+      description: "Example: prod_data-shield_ipv4_blocklist.txt"
       placeholder: "prod_data-shield_ipv4_blocklist.txt"
 
   - type: input
     id: observed_at
     attributes:
-      label: "Date / heure observée (UTC)"
-      description: "Format recommandé : YYYY-MM-DD HH:MM (UTC)"
+      label: "Date / time observed (UTC)"
+      description: "Recommended format: YYYY-MM-DD HH:MM (UTC)"
       placeholder: "2025-10-06 09:12"
 
   - type: markdown
     attributes:
       value: |
         ---
-        ## 🔍 Contexte & preuve (indiquez ici autant d'éléments que possible)
+        ## Context and evidence (provide as much detail as possible)
 
   - type: textarea
-    id: contexte_utilisation
+    id: usage_context
     attributes:
-      label: "Contexte d’utilisation de l’IP"
-      description: "ex : serveur web hébergé chez OVH, serveur mail Azure, appliance entreprise, box résidentielle, etc."
-      placeholder: "ex: serveur mail hébergé chez OVH (mx.example.com)"
+      label: "IP usage context"
+      description: "Examples: an OVH-hosted web server, an Azure mail server, an enterprise appliance, or a residential router."
+      placeholder: "e.g. an OVH-hosted mail server (mx.example.com)"
 
   - type: textarea
-    id: pourquoi_fp
+    id: false_positive_reason
     attributes:
-      label: "Pourquoi vous pensez que c’est un faux positif"
-      description: "Expliquez en quelques lignes (activité normale, service légitime, erreurs d'analyse, etc.)"
-      placeholder: "ex: IP correspondant à notre serveur MX, trafic légitime observé"
+      label: "Why you believe this is a false positive"
+      description: "Briefly explain your reasoning, such as normal activity, a legitimate service, or an analysis error."
+      placeholder: "e.g. this IP belongs to our MX server and the observed traffic is legitimate"
 
   - type: textarea
-    id: preuves
+    id: evidence
     attributes:
-      label: "Preuves (logs anonymisés / extraits)"
-      description: "Collez des extraits de logs anonymisés, timestamps (UTC), fréquence d'attaques. Joindre également des captures via 'Attach files' si besoin."
-      placeholder: "ex: 2025-10-06T09:10:12 mail postfix/smtpd[1234]: connect from mail.example.com[203.0.113.45]"
+      label: "Evidence (anonymized logs / excerpts)"
+      description: "Paste anonymized log excerpts, UTC timestamps, and attack frequency. Include screenshots using 'Attach files' if needed."
+      placeholder: "e.g. 2025-10-06T09:10:12 mail postfix/smtpd[1234]: connect from mail.example.com[203.0.113.45]"
     validations:
       required: true
 
   - type: input
-    id: asn_fai
+    id: asn_isp
     attributes:
-      label: "ASN / FAI (si connu)"
-      description: "ex: ASXXXXX - OVH SAS"
+      label: "ASN / ISP (if known)"
+      description: "Example: ASXXXXX - OVH SAS"
       placeholder: "ASXXXXX - OVH SAS"
 
   - type: input
     id: reverse_dns
     attributes:
-      label: "reverse DNS (si connu)"
-      description: "ex: mail.example.com"
+      label: "Reverse DNS (if known)"
+      description: "Example: mail.example.com"
       placeholder: "mail.example.com"
 
   - type: markdown
     attributes:
       value: |
         ---
-        ## ℹ️ Détails techniques utiles
+        ## Additional technical details
 
   - type: input
     id: cidr
     attributes:
-      label: "Plage CIDR associée (si applicable)"
-      description: "ex: 203.0.113.0/24"
+      label: "Associated CIDR range (if applicable)"
+      description: "Example: 203.0.113.0/24"
       placeholder: "203.0.113.0/24"
 
   - type: input
     id: ports_services
     attributes:
-      label: "Ports & services observés"
-      description: "ex: 80 (http), 443 (https), 25 (smtp)"
+      label: "Observed ports and services"
+      description: "Example: 80 (http), 443 (https), 25 (smtp)"
       placeholder: "25 (smtp)"
 
   - type: input
     id: last_activity
     attributes:
-      label: "Dernière activité observée (UTC)"
+      label: "Last observed activity (UTC)"
       description: "YYYY-MM-DD HH:MM"
       placeholder: "2025-10-06 09:12"
 
   - type: textarea
     id: impact
     attributes:
-      label: "Impact opérationnel"
-      description: "Décrivez l'impact (ex: blocage d’accès, interruption service, monitoring affecté)."
+      label: "Operational impact"
+      description: "Describe the impact, such as blocked access, service disruption, or affected monitoring."
 
   - type: markdown
     attributes:
       value: |
         ---
-        ## ✅ Action demandée (cochez la/les options souhaitées)
+        ## Requested action (select all that apply)
 
   - type: checkboxes
     id: actions
     attributes:
-      label: "Mesure(s) demandée(s)"
+      label: "Requested measures"
       options:
-        - label: "Supprimer immédiatement l'IP de la blocklist (urgence)"
-        - label: "Mettre en quarantaine / vérification manuelle avant suppression"
-        - label: "Requalifier comme 'whitelisted' (surveillance passive)"
-        - label: "Autre (préciser dans 'Informations additionnelles')"
+        - label: "Remove the IP from the blocklist immediately (urgent)"
+        - label: "Quarantine / manually review before removal"
+        - label: "Reclassify as whitelisted (passive monitoring)"
+        - label: "Other (specify under 'Additional information')"
 
   - type: textarea
     id: additional_info
     attributes:
-      label: "Informations additionnelles / précisions"
-      description: "Utilisez ce champ pour préciser une option 'Autre' ou donner des détails complémentaires."
+      label: "Additional information / clarification"
+      description: "Use this field to explain an 'Other' selection or provide further details."
 
   - type: markdown
     attributes:
       value: |
         ---
-        ## 🔐 Confidentialité / note importante
-        - Si vous fournissez des logs contenant des données personnelles, veuillez anonymiser (supprimer noms, e-mails, tokens).
-        - Pour toute information sensible, utilisez la voie privée (contact via GitHub) après prise de contact public initial.
-        - Les signalements manifestement abusifs seront documentés et peuvent entraîner des mesures (rejet, blocage de soumissions, signalement à GitHub).
+        ## Privacy / important note
+        - Anonymize any logs containing personal information by removing names, email addresses, and tokens.
+        - For sensitive information, arrange a private channel after initial public contact on GitHub.
+        - Clearly abusive reports will be documented and may result in rejection, restrictions on submissions, or a report to GitHub.
 
   - type: markdown
     attributes:
       value: |
-        Merci : notre équipe va examiner la demande et répondre sous 48h (souvent plus vite).
+        Thank you. Our team will review your request and respond within 48 hours, often sooner.

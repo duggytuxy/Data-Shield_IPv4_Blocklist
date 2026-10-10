@@ -1,5 +1,5 @@
-name: 🛡️ Demande de blocage d'IP
-description: Signaler une adresse IP malveillante pour ajout à la blocklist.
+name: IP block request
+description: Report a malicious IP address for inclusion in the blocklist.
 title: "[BLOCK] : <IP_ADDRESS>"
 labels: ["Block Request", "triage"]
 assignees: []
@@ -7,42 +7,42 @@ body:
   - type: markdown
     attributes:
       value: |
-        ## Signalement d'IP Malveillante
-        Merci de remplir ce formulaire avec précision pour faciliter l'analyse.
+        ## Malicious IP report
+        Please complete this form accurately to help us review your report.
 
   - type: input
     id: ip_address
     attributes:
-      label: Adresse IP cible
-      description: L'adresse IPv4 concernée par le signalement.
-      placeholder: "ex: 192.168.1.1"
+      label: Target IP address
+      description: The IPv4 address covered by this report.
+      placeholder: "e.g. 192.168.1.1"
     validations:
       required: true
 
   - type: dropdown
     id: attack_type
     attributes:
-      label: Type d'attaque
-      description: Sélectionnez la catégorie principale de l'activité malveillante.
+      label: Attack type
+      description: Select the main category of malicious activity.
       options:
         - SSH Brute Force
         - Web Scanner / Crawler (e.g. WP Scan)
         - DDoS / DoS / Flood
         - Exploit Attempt (RCE, SQLi, XSS)
-        - Mail Spam / Relais
+        - Email Spam / Relay Abuse
         - Port Scanning
         - Botnet Activity
-        - Autre
+        - Other
     validations:
       required: true
 
   - type: textarea
     id: logs
     attributes:
-      label: Preuves / Logs (Obligatoire)
+      label: Evidence / logs (required)
       description: |
-        Copiez ici les extraits de logs (Firewall, Nginx, Auth.log, Fail2Ban) prouvant l'attaque.
-        Utilisez des blocs de code pour la lisibilité.
+        Paste log excerpts (firewall, Nginx, auth.log, Fail2Ban) that provide evidence of the attack.
+        Use code blocks for readability.
       placeholder: |
         Jan 27 10:00:00 server sshd[12345]: Failed password for invalid user admin from x.x.x.x port 54321 ssh2
       render: shell
@@ -52,18 +52,18 @@ body:
   - type: textarea
     id: context
     attributes:
-      label: Pourquoi bloquer cette IP ? (Contexte)
-      description: Expliquez brièvement le comportement observé ou la fréquence des attaques.
-      placeholder: "Cette IP a tenté 500 connexions SSH en moins de 1 minute..."
+      label: Why should this IP be blocked? (Context)
+      description: Briefly describe the observed behavior or attack frequency.
+      placeholder: "This IP attempted 500 SSH connections in less than one minute..."
     validations:
       required: true
 
   - type: checkboxes
     id: verification
     attributes:
-      label: Vérifications
+      label: Verification
       options:
-        - label: Je certifie que ces logs sont authentiques.
+        - label: I confirm that these logs are authentic.
           required: true
-        - label: J'ai vérifié si possible qu'il ne s'agit pas d'un faux positif ex GoogleBot, IP légitime.
+        - label: Where possible, I checked that this is not a false positive, such as Googlebot or another legitimate IP address.
           required: false
