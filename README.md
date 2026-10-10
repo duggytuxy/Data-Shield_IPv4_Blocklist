@@ -59,8 +59,6 @@ The entry count changes over time. Check your product's capacity against the act
 
 These are the existing download URLs used by SysWarden. The two filenames and their paths remain unchanged. GitLab manages repository mirroring to Codeberg and Bitbucket. jsDelivr serves a cached copy from GitHub, so CDN refreshes can lag behind publication.
 
-**Mirror status, checked 2026-10-10 UTC:** GitHub, GitLab and Codeberg served identical files. Bitbucket's latest commit was dated 2026-04-11, so use GitHub, GitLab or Codeberg for current data until that mirror resumes synchronization. The Bitbucket links remain available for compatibility.
-
 Use a raw file URL in your firewall's feed configuration. A repository or preview-page URL returns a web page, not the blocklist.
 
 ## Format and updates
