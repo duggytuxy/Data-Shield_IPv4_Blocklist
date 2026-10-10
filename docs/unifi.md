@@ -20,7 +20,7 @@ UniFi Gateways support dynamic IPv4 Network Lists fetched from a URL and refresh
    https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_data-shield_ipv4_blocklist.txt
    ```
 
-6. Set **Update Interval** to **24 Hours**. UniFi offers **24, 48, or 72 hours**; 24 hours is the shortest available interval. Data-Shield publishes updates every 6 hours, so the gateway will fetch the list daily rather than after every feed update.
+6. Set **Update Interval** to **24 Hours**. UniFi offers **24, 48, or 72 hours**; 24 hours is the shortest available interval. Data-Shield publishes updates every 2 hours, so the gateway will fetch the list daily rather than after every feed update.
 7. Click **Update Now** and check that IPv4 addresses appear in the preview. Click **Add** to save the list.
 
 The list is now available for use in firewall policies. Creating the list alone does not block traffic.
