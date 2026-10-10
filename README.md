@@ -1,3 +1,33 @@
+<div align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/data-shield-hero-dark.svg">
+    <img src="assets/data-shield-hero-light.svg" alt="Data-Shield IPv4 Blocklists: a shield with a centered D and four IPv4 nodes" width="100%">
+  </picture>
+</div>
+
+<br>
+
+<div align="center">
+  <a href="https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/actions/workflows/cia-integrity.yml">
+    <img src="https://img.shields.io/github/actions/workflow/status/duggytuxy/Data-Shield_IPv4_Blocklist/cia-integrity.yml?branch=main&amp;style=flat-square&amp;logo=githubactions&amp;logoColor=white&amp;label=Integrity" alt="Blocklist integrity workflow status">
+  </a>
+  <a href="#format-and-updates">
+    <img src="https://img.shields.io/badge/Scheduled-every%202%20hours-006b61?style=flat-square" alt="Generation scheduled every two hours">
+  </a>
+  <a href="https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/commits/main/">
+    <img src="https://img.shields.io/github/last-commit/duggytuxy/Data-Shield_IPv4_Blocklist?style=flat-square&amp;logo=github&amp;logoColor=white&amp;label=Repository%20commit&amp;color=122936" alt="Latest repository commit">
+  </a>
+  <a href="LICENSE">
+    <img src="https://img.shields.io/badge/License-GPLv3-006b61?style=flat-square&amp;logo=gnu&amp;logoColor=white" alt="GNU GPLv3 license">
+  </a>
+  <a href="https://github.com/duggytuxy/syswarden">
+    <img src="https://img.shields.io/badge/SysWarden-Linux%20defense-122936?style=flat-square" alt="Explore SysWarden Linux defense">
+  </a>
+  <a href="https://ko-fi.com/laurentmduggytuxy">
+    <img src="https://img.shields.io/badge/Ko--fi-Support-ff5e5b?style=flat-square&amp;logo=kofi&amp;logoColor=white" alt="Support Data-Shield on Ko-fi">
+  </a>
+</div>
+
 # Data-Shield IPv4 Blocklists
 
 **Two complete lists. Clear choices. Controlled updates.**
@@ -21,8 +51,15 @@ The entry count changes over time. Check your product's capacity against the act
 
 | Destination | Standard | Critical |
 | :--- | :--- | :--- |
-| **GitHub** | [Raw file](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_data-shield_ipv4_blocklist.txt) | [Raw file](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_critical_data-shield_ipv4_blocklist.txt) |
-| **GitLab** | [Raw file](https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_data-shield_ipv4_blocklist.txt) | [Raw file](https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_critical_data-shield_ipv4_blocklist.txt) |
+| **[GitHub](https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist)** | [Raw file](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_data-shield_ipv4_blocklist.txt) | [Raw file](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_critical_data-shield_ipv4_blocklist.txt) |
+| **[GitLab](https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist)** | [Raw file](https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_data-shield_ipv4_blocklist.txt?ref_type=heads) | [Raw file](https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_critical_data-shield_ipv4_blocklist.txt?ref_type=heads) |
+| **[Codeberg](https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist)** | [Raw file](https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_data-shield_ipv4_blocklist.txt) | [Raw file](https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_critical_data-shield_ipv4_blocklist.txt) |
+| **[Bitbucket](https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/src/main/)** | [Raw file](https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/raw/HEAD/prod_data-shield_ipv4_blocklist.txt) | [Raw file](https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/raw/HEAD/prod_critical_data-shield_ipv4_blocklist.txt) |
+| **[jsDelivr CDN](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@main/)** | [Raw file](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@refs/heads/main/prod_data-shield_ipv4_blocklist.txt) | [Raw file](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@refs/heads/main/prod_critical_data-shield_ipv4_blocklist.txt) |
+
+These are the existing download URLs used by SysWarden. The two filenames and their paths remain unchanged. GitLab manages repository mirroring to Codeberg and Bitbucket. jsDelivr serves a cached copy from GitHub, so CDN refreshes can lag behind publication.
+
+**Mirror status, checked 2026-10-10 UTC:** GitHub, GitLab and Codeberg served identical files. Bitbucket's latest commit was dated 2026-04-11, so use GitHub, GitLab or Codeberg for current data until that mirror resumes synchronization. The Bitbucket links remain available for compatibility.
 
 Use a raw file URL in your firewall's feed configuration. A repository or preview-page URL returns a web page, not the blocklist.
 
@@ -32,7 +69,7 @@ Use a raw file URL in your firewall's feed configuration. A repository or previe
 - No headers, comments, ports, CIDR ranges or IPv6 entries.
 - Duplicate addresses removed and addresses sorted numerically.
 - Generation scheduled **every two hours**. A new commit appears only when published file content changes.
-- Both files validated before publication and committed together within each destination. Mirrors may briefly differ while publication completes.
+- Both files validated before publication and committed together on GitHub and GitLab. Downstream mirrors and CDN caches can differ until they refresh.
 - Failed generation checks preserve the last validated files. Failed publication is retried independently.
 
 The public repository distributes the lists and their usage documentation. Review a file's commit history to check when its content last changed. Neither a successful download nor an unchanged commit proves that your firewall has applied the latest available data.
