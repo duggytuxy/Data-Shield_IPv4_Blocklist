@@ -80,7 +80,19 @@ The public repository distributes the lists and their usage documentation. Revie
 4. **Observe before broad enforcement.** Use logging or a limited deployment to inspect matches and identify legitimate services that need exceptions.
 5. **Refresh and monitor.** Configure automatic retrieval where supported. Check fetch failures, truncation warnings and the number of entries actually loaded. Keep the last working rules if a download or import fails.
 
-For UniFi gateways, see the [integration guide](docs/unifi.md). Product refresh intervals can be longer than Data-Shield's generation interval.
+### Platform integration guides
+
+The [Data-Shield website documentation](https://data-shield.eu/docs/) provides setup instructions, copyable feed URLs and commands, capacity checks, and verification steps for five platforms:
+
+| Platform | Integration method |
+| :--- | :--- |
+| **[FortiOS / FortiGate](https://data-shield.eu/docs/fortios/)** | Native HTTPS IP address external feed. |
+| **[UniFi](https://data-shield.eu/docs/unifi/)** | Dynamic IPv4 Network List with zone-based firewall policies. |
+| **[Palo Alto / PAN-OS](https://data-shield.eu/docs/palo-alto/)** | IP External Dynamic List with certificate validation. |
+| **[OPNsense](https://data-shield.eu/docs/opnsense/)** | Regularly refreshed URL table alias. |
+| **[Stormshield / SNS](https://data-shield.eu/docs/stormshield/)** | Validated CSV conversion and manual custom web services import. |
+
+The [UniFi guide in this repository](docs/unifi.md) also remains available. Check the guide for your release and appliance model. Product refresh intervals can be longer than Data-Shield's generation interval; the Stormshield workflow requires a manual import.
 
 IP-based blocking is one layer of protection. It complements application security, patching, authentication, rate limiting and monitoring. It cannot identify every attack, and shared or reassigned addresses can produce false positives.
 
