@@ -82,7 +82,7 @@ The public repository distributes the lists and their usage documentation. Revie
 
 ### Platform integration guides
 
-The [Data-Shield website documentation](https://data-shield.eu/docs/) provides setup instructions, copyable feed URLs and commands, capacity checks, and verification steps for five platforms:
+The [Data-Shield website documentation](https://data-shield.eu/docs/) provides setup instructions, copyable feed URLs and commands, capacity checks, and verification steps for ten platforms:
 
 | Platform | Integration method |
 | :--- | :--- |
@@ -90,6 +90,11 @@ The [Data-Shield website documentation](https://data-shield.eu/docs/) provides s
 | **[UniFi](https://data-shield.eu/docs/unifi/)** | Dynamic IPv4 Network List with zone-based firewall policies. |
 | **[Palo Alto / PAN-OS](https://data-shield.eu/docs/palo-alto/)** | IP External Dynamic List with certificate validation. |
 | **[OPNsense](https://data-shield.eu/docs/opnsense/)** | Regularly refreshed URL table alias. |
+| **[pfSense CE / Plus](https://data-shield.eu/docs/pfsense/)** | Native URL Table (IPs), with daily refresh and capacity checks. |
+| **[Sophos Firewall](https://data-shield.eu/docs/sophos/)** | SFOS 22.0 third-party threat feeds, with entitlement and polling checks. |
+| **[VyOS](https://data-shield.eu/docs/vyos/)** | Native remote groups, with release-specific refresh settings. |
+| **[MikroTik RouterOS](https://data-shield.eu/docs/routeros/)** | RouterOS v7 with a Linux controller for verified complete-feed updates. |
+| **[OpenWrt](https://data-shield.eu/docs/openwrt/)** | OpenWrt 25.12 with native banIP feeds and scheduled two-hour reloads. |
 | **[Stormshield / SNS](https://data-shield.eu/docs/stormshield/)** | Validated CSV conversion and manual custom web services import. |
 
 The [UniFi guide in this repository](docs/unifi.md) also remains available. Check the guide for your release and appliance model. Product refresh intervals can be longer than Data-Shield's generation interval; the Stormshield workflow requires a manual import.
