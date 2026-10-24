@@ -1,5 +1,7 @@
 # UniFi Gateway Integration
 
+The [website edition of this guide](https://data-shield.eu/docs/unifi/) and the [complete platform handbook](https://data-shield.eu/docs/) are also available.
+
 UniFi Gateways support dynamic IPv4 Network Lists fetched from a URL and refreshed automatically. This guide uses the main Data-Shield production list to block incoming traffic from listed IPv4 addresses, both to the gateway itself and to public-facing services.
 
 ## Requirements
