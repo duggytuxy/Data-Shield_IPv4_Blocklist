@@ -82,7 +82,7 @@ The public repository distributes the lists and their usage documentation. Revie
 
 ### Platform integration guides
 
-The [Data-Shield website documentation](https://data-shield.eu/docs/) provides setup instructions, copyable feed URLs and commands, capacity checks, and verification steps for twelve platforms:
+The [Data-Shield website documentation](https://data-shield.eu/docs/) provides setup instructions, copyable feed URLs and commands, capacity checks, and verification steps for fourteen platforms:
 
 | Platform | Integration method |
 | :--- | :--- |
@@ -98,6 +98,10 @@ The [Data-Shield website documentation](https://data-shield.eu/docs/) provides s
 | **[Stormshield / SNS](https://data-shield.eu/docs/stormshield/)** | Validated CSV conversion and manual custom web services import. |
 | **[IPFire](https://data-shield.eu/docs/ipfire/)** | Locally maintained source definitions with native two-hour update eligibility and Core Update persistence checks. |
 | **[F5 BIG-IP / AFM](https://data-shield.eu/docs/f5-big-ip/)** | AFM custom IP Intelligence feeds with two-hour HTTPS polling and scoped source-address enforcement. |
+| **[OpenCTI](https://data-shield.eu/docs/opencti/)** | Headerless CSV feeds for IPv4 observables, with hourly ingestion and explicit provenance. |
+| **[MISP](https://data-shield.eu/docs/misp/)** | Freetext feed caches for attribute correlation, refreshed by dedicated two-hour jobs. |
+
+OpenCTI and MISP provide investigation workflows. Raw IP feeds do not automatically import CVE associations or establish successful exploitation; the guides explain how to preserve dated evidence and verify current membership.
 
 The [UniFi guide in this repository](docs/unifi.md) also remains available. Check the guide for your release and appliance model. Product refresh intervals can be longer than Data-Shield's generation interval; the Stormshield workflow requires a manual import.
 
