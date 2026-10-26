@@ -82,7 +82,7 @@ The public repository distributes the lists and their usage documentation. Revie
 
 ### Platform integration guides
 
-The [Data-Shield website documentation](https://data-shield.eu/docs/) provides setup instructions, copyable feed URLs and commands, capacity checks, and verification steps for ten platforms:
+The [Data-Shield website documentation](https://data-shield.eu/docs/) provides setup instructions, copyable feed URLs and commands, capacity checks, and verification steps for twelve platforms:
 
 | Platform | Integration method |
 | :--- | :--- |
@@ -96,6 +96,8 @@ The [Data-Shield website documentation](https://data-shield.eu/docs/) provides s
 | **[MikroTik RouterOS](https://data-shield.eu/docs/routeros/)** | RouterOS v7 with a Linux controller for verified complete-feed updates. |
 | **[OpenWrt](https://data-shield.eu/docs/openwrt/)** | OpenWrt 25.12 with native banIP feeds and scheduled two-hour reloads. |
 | **[Stormshield / SNS](https://data-shield.eu/docs/stormshield/)** | Validated CSV conversion and manual custom web services import. |
+| **[IPFire](https://data-shield.eu/docs/ipfire/)** | Locally maintained source definitions with native two-hour update eligibility and Core Update persistence checks. |
+| **[F5 BIG-IP / AFM](https://data-shield.eu/docs/f5-big-ip/)** | AFM custom IP Intelligence feeds with two-hour HTTPS polling and scoped source-address enforcement. |
 
 The [UniFi guide in this repository](docs/unifi.md) also remains available. Check the guide for your release and appliance model. Product refresh intervals can be longer than Data-Shield's generation interval; the Stormshield workflow requires a manual import.
 
