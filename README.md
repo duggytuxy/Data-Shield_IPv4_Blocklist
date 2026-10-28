@@ -82,7 +82,7 @@ The public repository distributes the lists and their usage documentation. Revie
 
 ### Platform integration guides
 
-The [Data-Shield website documentation](https://data-shield.eu/docs/) provides setup instructions, copyable feed URLs and commands, capacity checks, and verification steps for fourteen platforms:
+The [Data-Shield website documentation](https://data-shield.eu/docs/) provides setup instructions, copyable feed URLs and commands, capacity checks, and verification steps for sixteen platforms:
 
 | Platform | Integration method |
 | :--- | :--- |
@@ -100,6 +100,8 @@ The [Data-Shield website documentation](https://data-shield.eu/docs/) provides s
 | **[F5 BIG-IP / AFM](https://data-shield.eu/docs/f5-big-ip/)** | AFM custom IP Intelligence feeds with two-hour HTTPS polling and scoped source-address enforcement. |
 | **[OpenCTI](https://data-shield.eu/docs/opencti/)** | Headerless CSV feeds for IPv4 observables, with hourly ingestion and explicit provenance. |
 | **[MISP](https://data-shield.eu/docs/misp/)** | Freetext feed caches for attribute correlation, refreshed by dedicated two-hour jobs. |
+| **[CrowdSec](https://data-shield.eu/docs/crowdsec/)** | Verified two-hour LAPI imports with three-hour ban decisions, local allowlists and bouncer enforcement checks. |
+| **[nftables](https://data-shield.eu/docs/nftables/)** | Verified atomic replacement of dedicated IPv4 sets, with two-hour refresh and persistent last-successful state. |
 
 OpenCTI and MISP provide investigation workflows. Raw IP feeds do not automatically import CVE associations or establish successful exploitation; the guides explain how to preserve dated evidence and verify current membership.
 
