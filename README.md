@@ -21,7 +21,7 @@
     <img src="https://img.shields.io/badge/License-GPLv3-006b61?style=flat-square&amp;logo=gnu&amp;logoColor=white" alt="GNU GPLv3 license">
   </a>
   <a href="https://github.com/duggytuxy/syswarden">
-    <img src="https://img.shields.io/badge/SysWarden-Linux%20defense-122936?style=flat-square" alt="Explore SysWarden Linux defense">
+    <img src="https://img.shields.io/badge/SYSwarden-Linux%20defense-122936?style=flat-square" alt="Explore SYSwarden Linux defense">
   </a>
   <a href="https://ko-fi.com/laurentmduggytuxy">
     <img src="https://img.shields.io/badge/Ko--fi-Support-ff5e5b?style=flat-square&amp;logo=kofi&amp;logoColor=white" alt="Support Data-Shield on Ko-fi">
@@ -57,7 +57,7 @@ The entry count changes over time. Check your product's capacity against the act
 | **[Bitbucket](https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/src/main/)** | [Raw file](https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/raw/HEAD/prod_data-shield_ipv4_blocklist.txt) | [Raw file](https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/raw/HEAD/prod_critical_data-shield_ipv4_blocklist.txt) |
 | **[jsDelivr CDN](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@main/)** | [Raw file](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@refs/heads/main/prod_data-shield_ipv4_blocklist.txt) | [Raw file](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@refs/heads/main/prod_critical_data-shield_ipv4_blocklist.txt) |
 
-These are the existing download URLs used by SysWarden. The two filenames and their paths remain unchanged. GitLab manages repository mirroring to Codeberg and Bitbucket. jsDelivr serves a cached copy from GitHub, so CDN refreshes can lag behind publication.
+These are the existing download URLs used by SYSwarden. The two filenames and their paths remain unchanged. GitLab manages repository mirroring to Codeberg and Bitbucket. jsDelivr serves a cached copy from GitHub, so CDN refreshes can lag behind publication.
 
 Use a raw file URL in your firewall's feed configuration. A repository or preview-page URL returns a web page, not the blocklist.
 
@@ -123,7 +123,7 @@ Do not post credentials, private logs or personal information in a public issue.
 
 Maintained by **Laurent Minne / Duggy Tuxy**. If these lists help protect your services, you can [support their maintenance on Ko-fi](https://ko-fi.com/laurentmduggytuxy).
 
-For Linux host protection, explore [SysWarden](https://syswarden.io) and its [repository](https://github.com/duggytuxy/syswarden).
+For Linux host protection, explore [SYSwarden](https://syswarden.io) and its [repository](https://github.com/duggytuxy/syswarden).
 
 See [contributing](CONTRIBUTING.md), the [code of conduct](CODE_OF_CONDUCT.md), and the [GNU GPLv3 license](LICENSE).
 
