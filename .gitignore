@@ -1,7 +1,7 @@
 # Local binaries & tools
 shfmt.exe
 
-# SysWarden Build Artifacts (CI/CD & Local)
+# SYSwarden Build Artifacts (CI/CD & Local)
 dist/
 *.tar.gz
 *.sig
