@@ -21,7 +21,7 @@
     <img src="https://img.shields.io/badge/License-GPLv3-006b61?style=flat-square&amp;logo=gnu&amp;logoColor=white" alt="GNU GPLv3 license">
   </a>
   <a href="https://github.com/duggytuxy/syswarden">
-    <img src="https://img.shields.io/badge/SysWarden-Linux%20defense-122936?style=flat-square" alt="Explore SYSwarden Linux defense">
+    <img src="https://img.shields.io/badge/SYSwarden-Linux%20defense-122936?style=flat-square" alt="Explore SYSwarden Linux defense">
   </a>
   <a href="https://ko-fi.com/laurentmduggytuxy">
     <img src="https://img.shields.io/badge/Ko--fi-Support-ff5e5b?style=flat-square&amp;logo=kofi&amp;logoColor=white" alt="Support Data-Shield on Ko-fi">
