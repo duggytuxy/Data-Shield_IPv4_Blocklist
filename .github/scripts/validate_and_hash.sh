@@ -1,18 +1,24 @@
 #!/usr/bin/env bash
 #
-# Purpose: Validate IPv4/CIDR formats, deduplicate, and generate SHA256 hashes.
-# Standard: Hardened and universal (Ubuntu, Debian, CentOS, AlmaLinux, Rocky Linux, RHEL).
+# Purpose: Validate IPv4 formats, deduplicate, sort, and generate SHA256 hashes.
+# Standard: Bash + GNU coreutils (Ubuntu, Debian, CentOS, AlmaLinux, Rocky Linux, RHEL).
 
 set -euo pipefail
 
-# Enable nullglob so empty matches yield empty arrays
+# Enable nullglob so unmatched patterns produce an empty array.
 shopt -s nullglob
 
 readonly HASH_FILE="sha256sums.txt"
 readonly TARGET_FILES=(prod_*data-shield_ipv4_blocklist.txt)
 
-# Initialize or clear the hash file safely
->"$HASH_FILE"
+# Create a temporary directory in the current directory.
+# This keeps staged files on the same filesystem as the originals.
+TEMP_DIR="$(mktemp -d "./.cia-integrity.XXXXXX")"
+
+cleanup() {
+    rm -rf -- "$TEMP_DIR"
+}
+trap cleanup EXIT
 
 echo "[INFO] Starting CIA Integrity Workflow..."
 
@@ -21,37 +27,71 @@ if [[ ${#TARGET_FILES[@]} -eq 0 ]]; then
     exit 0
 fi
 
+# Stage and validate every file before modifying any original file.
 for file in "${TARGET_FILES[@]}"; do
-    echo "[INFO] Validating and sanitizing: $file"
+    echo "[INFO] Validating: $file"
 
-    # 1. Sanitize, validate IPv4/CIDR, sort, and deduplicate in a single efficient awk/sort pass
-    # The awk regex checks for standard IPv4 formats and optional CIDR (/0 to /32)
+    STAGED_FILE="$TEMP_DIR/$file"
+
     if ! awk '
-        /^[[:space:]]*#/ || /^[[:space:]]*$/ { next }
         {
-            # Strip leading and trailing whitespace
+            # Remove leading and trailing whitespace.
             gsub(/^[[:space:]]+|[[:space:]]+$/, "")
-            
-            # Strict regex for valid IPv4 and optional CIDR
-            if (match($0, /^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)((\/([0-9]|[1-2][0-9]|3[0-2]))?)$/)) {
+
+            # Reject blank lines.
+            if ($0 == "") {
+                print "[ERROR] Blank line detected." > "/dev/stderr"
+                exit 1
+            }
+
+            # Accept individual IPv4 addresses only.
+            # Reject CIDR, IPv6, hostnames, and malformed addresses.
+            if ($0 ~ /^((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])$/) {
                 print $0
             } else {
-                print "[ERROR] Invalid entry or injection detected: " $0 > "/dev/stderr"
+                print "[ERROR] Invalid IPv4 entry: " $0 > "/dev/stderr"
                 exit 1
             }
         }
-    ' "$file" | sort -u -V >"${file}.tmp"; then
-        echo "[FATAL] Integrity check failed on $file. Pipeline stopped." >&2
-        rm -f "${file}.tmp"
+
+        # Reject completely empty files.
+        END {
+            if (NR == 0) {
+                print "[ERROR] Empty blocklist file." > "/dev/stderr"
+                exit 1
+            }
+        }
+    ' "$file" | sort -u -V > "$STAGED_FILE"; then
+        echo "[FATAL] Validation failed for $file." >&2
+        echo "[INFO] Original files and existing checksum file were not updated." >&2
         exit 1
     fi
 
-    # Replace original file with validated, sorted, and unique content
-    mv "${file}.tmp" "$file"
+    # Preserve original file permissions after the staged file is created.
+    chmod --reference="$file" "$STAGED_FILE"
 
-    # 2. Generate SHA256 checksum for integrity proof
-    sha256sum "$file" >>"$HASH_FILE"
+    echo "[PASS] Validation successful: $file"
 done
 
-echo "[INFO] Integrity check complete. Generated artifacts:"
+# Generate checksums from all validated staged files.
+# The existing checksum file remains untouched until validation succeeds.
+(
+    cd "$TEMP_DIR"
+    sha256sum -- "${TARGET_FILES[@]}"
+) > "$TEMP_DIR/$HASH_FILE"
+
+# All files passed validation. Replace the original blocklists.
+echo "[INFO] All files validated. Updating blocklists..."
+
+for file in "${TARGET_FILES[@]}"; do
+    mv -f -- "$TEMP_DIR/$file" "$file"
+    echo "[PASS] Updated: $file"
+done
+
+# Update the checksum file after successful blocklist replacement.
+mv -f -- "$TEMP_DIR/$HASH_FILE" "$HASH_FILE"
+
+echo
+echo "[INFO] Integrity check complete."
+echo "[INFO] Generated SHA256 checksums:"
 cat "$HASH_FILE"
