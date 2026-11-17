@@ -6,11 +6,21 @@ on:
       - main
     paths:
       - '**.txt'
+      - '.gitattributes'
+      - '.github/scripts/**'
+      - '.github/workflows/cia-integrity.yml'
+      - 'tests/**'
+
   pull_request:
     branches:
       - main
     paths:
       - '**.txt'
+      - '.gitattributes'
+      - '.github/scripts/**'
+      - '.github/workflows/cia-integrity.yml'
+      - 'tests/**'
+
   schedule:
     - cron: '0 3 * * *'
 
@@ -26,6 +36,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Run Validator Tests
+        run: bash tests/test_validate_and_hash.sh
 
       - name: Make validation script executable
         run: chmod +x .github/scripts/validate_and_hash.sh
