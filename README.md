@@ -54,9 +54,9 @@ For devices with per-list entry limits, import every part of one profile as a se
 | Part | Standard | Critical |
 | :--- | :--- | :--- |
 | aa | [Raw Standard aa](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/main/prod_aa-data-shield_ipv4_blocklist.txt) | [Raw Critical aa](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/main/prod_critical_aa_data-shield_ipv4_blocklist.txt) |
-| ab | [Raw Standard ab](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/main/prod_data_ab-shield_ipv4_blocklist.txt) | [Raw Critical ab](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/main/prod_critical_ab_data-shield_ipv4_blocklist.txt) |
-| ac | [Raw Standard ac](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/main/prod_data_ac-shield_ipv4_blocklist.txt) | [Raw Critical ac](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/main/prod_critical_ac_data-shield_ipv4_blocklist.txt) |
-| ad | [Raw Standard ad](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/main/prod_data_ad-shield_ipv4_blocklist.txt) | [Raw Critical ad](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/main/prod_critical_ad_data-shield_ipv4_blocklist.txt) |
+| ab | [Raw Standard ab](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/main/prod_ab-data-shield_ipv4_blocklist.txt) | [Raw Critical ab](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/main/prod_critical_ab_data-shield_ipv4_blocklist.txt) |
+| ac | [Raw Standard ac](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/main/prod_ac-data-shield_ipv4_blocklist.txt) | [Raw Critical ac](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/main/prod_critical_ac_data-shield_ipv4_blocklist.txt) |
+| ad | [Raw Standard ad](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/main/prod_ad-data-shield_ipv4_blocklist.txt) | [Raw Critical ad](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/main/prod_critical_ad_data-shield_ipv4_blocklist.txt) |
 
 The table covers the four parts per profile at rollout. When a profile exceeds 120,000 entries, its next part is `ae`. Check the repository file listing for the current suffixes when updating your firewall configuration.
 
