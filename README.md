@@ -134,7 +134,7 @@ Do not post credentials, private logs or personal information in a public issue.
 
 ## Data-Shield Pro (coming soon)
 
-Data-Shield Pro will cost **€500 per year**. This annual subscription will support the project and give subscribers access to the complete Critical feed and all its split files. Subscriptions open at launch. A launch date has yet to be announced.
+Data-Shield Pro will cost **€50 per month or €500 per year**. Both plans will support the project and give subscribers access to the complete Critical feed and all its split files. Subscriptions open at launch. A launch date has yet to be announced.
 
 Until launch, the complete Critical feed and all its parts are available through their [current public download links](https://data-shield.eu/#downloads). The complete Standard feed and all its parts will stay free and public, with no account required.
 
