@@ -6,11 +6,21 @@ on:
       - main
     paths:
       - '**.txt'
+      - '.gitattributes'
+      - '.github/scripts/**'
+      - '.github/workflows/cia-integrity.yml'
+      - 'tests/**'
+
   pull_request:
     branches:
       - main
     paths:
       - '**.txt'
+      - '.gitattributes'
+      - '.github/scripts/**'
+      - '.github/workflows/cia-integrity.yml'
+      - 'tests/**'
+
   schedule:
     - cron: '0 3 * * *'
 
@@ -25,17 +35,20 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
 
-      - name: Make validation script executable
-        run: chmod +x .github/scripts/validate_and_hash.sh
+      - name: Run Validator Tests
+        run: bash tests/test_validate_and_hash.sh
 
       - name: Run Integrity Validation
-        run: .github/scripts/validate_and_hash.sh
+        run: bash .github/scripts/validate_and_hash.sh --git-head
 
       - name: Upload Integrity Artifacts (SHA256)
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: blocklists-sha256sums
           path: sha256sums.txt
+          if-no-files-found: error
           retention-days: 14
