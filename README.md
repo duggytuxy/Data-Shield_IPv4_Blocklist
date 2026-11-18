@@ -45,7 +45,20 @@ Data-Shield provides maintained IPv4 blocklists for inbound filtering on firewal
 
 Each file is complete and can be used on its own. Applying both lists combines their blocking decisions and may override the exceptions of the profile you intended to use.
 
-The entry count changes over time. Check your product's capacity against the actual file, including whether it silently truncates oversized imports. There is no fixed 100,000-entry cap. Split files are no longer published; existing integrations must use one of the two complete files above.
+The entry count changes over time. Check your product's capacity against the actual file, including whether it silently truncates oversized imports. There is no fixed 100,000-entry cap.
+
+## Split feeds
+
+For devices with per-list entry limits, import every part of one profile as a separate feed and include them all in the same inbound policy. Each part contains up to 30,000 addresses. The publisher commits both complete files and all their parts together. Concatenating the parts of one profile in suffix order reproduces its complete file from the same commit.
+
+| Part | Standard | Critical |
+| :--- | :--- | :--- |
+| aa | [Raw Standard aa](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_aa-data-shield_ipv4_blocklist.txt) | [Raw Critical aa](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_critical_aa_data-shield_ipv4_blocklist.txt) |
+| ab | [Raw Standard ab](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_data_ab-shield_ipv4_blocklist.txt) | [Raw Critical ab](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_critical_ab_data-shield_ipv4_blocklist.txt) |
+| ac | [Raw Standard ac](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_data_ac-shield_ipv4_blocklist.txt) | [Raw Critical ac](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_critical_ac_data-shield_ipv4_blocklist.txt) |
+| ad | [Raw Standard ad](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_data_ad-shield_ipv4_blocklist.txt) | [Raw Critical ad](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_critical_ad_data-shield_ipv4_blocklist.txt) |
+
+The table covers the four parts per profile at rollout. When a profile exceeds 120,000 entries, its next part is `ae`. Check the repository file listing for the current suffixes when updating your firewall configuration.
 
 ## Stable download URLs
 
