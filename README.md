@@ -60,7 +60,7 @@ For devices with per-list entry limits, import every part of one profile as a se
 | ac | [Raw Standard ac](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/main/prod_ac-data-shield_ipv4_blocklist.txt) |
 | ad | [Raw Standard ad](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/main/prod_ad-data-shield_ipv4_blocklist.txt) |
 
-If a Critical generation needs an extra part, it is included in the existing subscription at no extra charge. Data-Shield does not send an email when a part appears. Read the manifest at each refresh and load every part it lists. On a firewall configured with fixed split URLs, add the new part to the same inbound policy. If the complete file fits the device, a single full-feed URL follows future growth.
+If a Critical generation needs an extra part, it is included in the existing subscription at no extra charge. Data-Shield does not send an email when a part appears. [Read the manifest at each refresh](https://data-shield.eu/docs/#split-updates) and load every part it lists. On a firewall configured with fixed split URLs, add the new part to the same inbound policy. If the complete file fits the device, a single full-feed URL follows future growth.
 
 The table covers the first four Standard parts. Check the [Standard downloads](https://data-shield.eu/#split-downloads) for the current set before configuring your firewall.
 
@@ -99,7 +99,7 @@ The public repository distributes Community Standard and its usage documentation
 
 ### Platform integration guides
 
-The [Data-Shield website documentation](https://data-shield.eu/docs/) provides setup instructions, copyable feed URLs and commands, capacity checks, and verification steps for sixteen platforms:
+The [Data-Shield website documentation](https://data-shield.eu/docs/) provides setup instructions, copyable feed URLs and commands, capacity checks, and verification steps for seventeen platforms:
 
 | Platform | Integration method |
 | :--- | :--- |
@@ -115,6 +115,7 @@ The [Data-Shield website documentation](https://data-shield.eu/docs/) provides s
 | **[Stormshield / SNS](https://data-shield.eu/docs/stormshield/)** | Validated CSV conversion and manual custom web services import. |
 | **[IPFire](https://data-shield.eu/docs/ipfire/)** | Locally maintained source definitions with native two-hour update eligibility and Core Update persistence checks. |
 | **[F5 BIG-IP / AFM](https://data-shield.eu/docs/f5-big-ip/)** | AFM custom IP Intelligence feeds with two-hour HTTPS polling and scoped source-address enforcement. |
+| **[Barracuda CloudGen](https://data-shield.eu/docs/barracuda/)** | External feeds through Control Center, with capacity and distribution checks. |
 | **[OpenCTI](https://data-shield.eu/docs/opencti/)** | Headerless CSV feeds for IPv4 observables, with hourly ingestion and explicit provenance. |
 | **[MISP](https://data-shield.eu/docs/misp/)** | Freetext feed caches for attribute correlation, refreshed by dedicated two-hour jobs. |
 | **[CrowdSec](https://data-shield.eu/docs/crowdsec/)** | Verified two-hour LAPI imports with three-hour ban decisions, local allowlists and bouncer enforcement checks. |
