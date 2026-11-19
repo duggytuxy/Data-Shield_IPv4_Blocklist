@@ -152,7 +152,9 @@ Do not post credentials, private logs or personal information in a public issue.
 
 For either plan, reopen the [subscriber portal](https://feeds.data-shield.eu/) within **24 hours of first opening checkout**, using the same browser profile and cookies on the same device. Select **Resume PayPal checkout** to continue. If you already approved in PayPal, select **Check payment status again** on the existing order.
 
-If PayPal cannot find the subscription, **your order stays pending**. Check again in the same browser. If the order is still missing or the session has expired, check PayPal **Activity** and **Automatic payments** before starting another purchase. If you find a Data-Shield entry, use its merchant contact details to ask us to check the original order privately. [Full recovery steps](https://data-shield.eu/docs/#resume-pro-checkout).
+If PayPal cannot find the subscription, **your order stays pending**. If it is still missing or the 24-hour session has expired, choose [Have my order checked](https://feeds.data-shield.eu/support/order). The private form works from another browser, even without a PayPal receipt. Include your `DS-` order reference if you have it, then save the `DSC-` case reference shown after submission. Wait for the review before starting another purchase to avoid paying twice.
+
+If you already paid, support can verify your payment and ownership, then send you a one-use code to recover access on the new device. [Enter your recovery code](https://feeds.data-shield.eu/support/recover) · [Full recovery steps](https://data-shield.eu/docs/#resume-pro-checkout).
 
 ### Test the private manifest
 
