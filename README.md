@@ -141,12 +141,18 @@ Do not post credentials, private logs or personal information in a public issue.
 
 ## Data-Shield Pro access
 
-1. **Choose a subscription.** Open the [subscriber portal](https://feeds.data-shield.eu/) and choose **€50 per month** or **€500 per year**. Both recurring PayPal plans include the same Critical feed and support community maintenance.
+1. **Choose a subscription.** Open the [subscriber portal](https://feeds.data-shield.eu/) and choose **€50 per month** or **€500 per year**. Both recurring PayPal plans include the same Critical feed and support community maintenance. If you already started an order, [resume your existing checkout](#resume-an-interrupted-pro-checkout).
 2. **Approve and confirm.** Approve the subscription in PayPal and return to Data-Shield. The portal verifies the payment. If it shows **Confirming your payment**, use **Check payment status again** on the existing order. After confirmation, the browser opens the [integration guide](https://data-shield.eu/docs/#subscriber-setup).
 3. **Collect your device credential.** Reopen the portal in the same browser used for checkout and claim your token promptly. The checkout browser session lasts 24 hours from when it starts. Choose **Check payment and issue or replace device token**, then **Show device credential**. Save the **Device ID** and **Bearer token** in a password manager. Issuing a replacement invalidates the previous token issued through this browser. **Verify my feed downloads** checks that this device can fetch the feed.
 4. **Connect a device.** Authenticate over HTTPS with the token in the `Authorization: Bearer <device-token>` header. For devices supporting HTTP Basic, use the Device ID as username and the token as password. For appliances that accept only a URL, use a relay on your own network that authenticates upstream and allows access only from your appliance. Keep credentials out of feed URLs, logs and public tickets.
 5. **Choose full or split and verify.** Fetch the private manifest. Its first entry is the complete feed. The remaining entries are its splits in order. Use the complete file if it fits, or import every split into the same inbound policy. Use URLs from one manifest generation. Verify byte sizes, record counts and SHA-256 before switching. Concatenating the parts in order reproduces the complete file byte for byte.
 6. **Migrate and monitor.** Replace previous public Critical URLs with authenticated downloads. Configure a refresh schedule appropriate for your appliance. Monitor the last successful generation and imported count, and retain the previous validated rules if a refresh fails. Standard and its splits keep their public URLs.
+
+### Resume an interrupted Pro checkout
+
+For either plan, reopen the [subscriber portal](https://feeds.data-shield.eu/) within **24 hours of first opening checkout**, using the same browser profile and cookies on the same device. Select **Resume PayPal checkout** to continue. If you already approved in PayPal, select **Check payment status again** on the existing order.
+
+If PayPal cannot find the subscription, **your order stays pending**. Check again in the same browser. If the order is still missing or the session has expired, check PayPal **Activity** and **Automatic payments** before starting another purchase. If you find a Data-Shield entry, use its merchant contact details to ask us to check the original order privately. [Full recovery steps](https://data-shield.eu/docs/#resume-pro-checkout).
 
 ### Test the private manifest
 
