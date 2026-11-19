@@ -29,7 +29,7 @@ The list is now available for use in firewall policies. Creating the list alone 
 
 > **Capacity:** UniFi supports up to **100,000 entries per dynamic list**. If the main list grows beyond this limit, UniFi truncates the excess entries and displays a warning. The imported entries remain available for filtering, but coverage is limited to the first 100,000 entries.
 
-If the complete list exceeds your gateway's capacity, use the [split feed URLs](../README.md#split-feeds). Create one dynamic Network List per part of a single profile, with the same refresh interval for every part. Include all of those lists in the relevant inbound policies. Verify each part imports without truncation and compare the combined entry count with the complete profile from the same generation. Check for additional parts as the profile grows.
+If the complete list exceeds your gateway's capacity, use the [free Standard split URLs](../README.md#split-feeds) or the [private Critical manifest](https://data-shield.eu/docs/#split-updates) for subscribers. Create one dynamic Network List per part of a single profile, with the same refresh interval for every part. Include all of those lists in the relevant inbound policies. Verify each part imports without truncation and compare the combined entry count with the complete profile from the same generation. Check for additional parts as the profile grows.
 
 ## 2. Protect the gateway: External to Gateway
 
