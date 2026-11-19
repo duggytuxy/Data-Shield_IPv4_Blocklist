@@ -60,7 +60,9 @@ For devices with per-list entry limits, import every part of one profile as a se
 | ac | [Raw Standard ac](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/main/prod_ac-data-shield_ipv4_blocklist.txt) |
 | ad | [Raw Standard ad](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/main/prod_ad-data-shield_ipv4_blocklist.txt) |
 
-If a Critical generation needs an extra part, it is included in the existing subscription at no extra charge. Data-Shield does not send an email when a part appears. [Read the manifest at each refresh](https://data-shield.eu/docs/#split-updates) and load every part it lists. On a firewall configured with fixed split URLs, add the new part to the same inbound policy. If the complete file fits the device, a single full-feed URL follows future growth.
+If a Critical generation needs an extra part, it is included in the existing subscription at no extra charge. [Read the manifest at each refresh](https://data-shield.eu/docs/#split-updates) and load every part it lists. On a firewall configured with fixed split URLs, add the new part to the same inbound policy. If the complete file fits the device, a single full-feed URL follows future growth.
+
+**Optional Critical split alerts.** Alerts are off by default. [Open alert settings](https://feeds.data-shield.eu/alerts) to check availability. When enrollment is open, use your checkout browser or an active device token after the 24-hour session expires. One email groups the new split suffixes for a generation and goes to the email address on your paid PayPal subscription. Routine updates do not trigger a message. You can stop alerts using the code from an email in the [unsubscribe form](https://feeds.data-shield.eu/alerts/unsubscribe). [Full setup instructions](https://data-shield.eu/docs/#split-alerts).
 
 The table covers the first four Standard parts. Check the [Standard downloads](https://data-shield.eu/#split-downloads) for the current set before configuring your firewall.
 
