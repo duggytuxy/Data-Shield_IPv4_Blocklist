@@ -13,7 +13,6 @@ import tempfile
 
 PROFILES = {
     "prod_data-shield_ipv4_blocklist.txt": "prod_{}-data-shield_ipv4_blocklist.txt",
-    "prod_critical_data-shield_ipv4_blocklist.txt": "prod_critical_{}_data-shield_ipv4_blocklist.txt",
 }
 PART_SIZE = 30_000
 MAX_RECORDS = 600_000

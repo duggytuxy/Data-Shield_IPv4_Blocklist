@@ -27,7 +27,7 @@ class FeedIntegrityTests(unittest.TestCase):
         self.addCleanup(temporary.cleanup)
         self.root = Path(temporary.name)
         self.sums = self.root / "sha256sums.txt"
-        for name in (STANDARD, CRITICAL, STANDARD_PART.format("aa"), CRITICAL_PART.format("aa")):
+        for name in (STANDARD, STANDARD_PART.format("aa")):
             self.write(name, SAMPLE)
 
     def write(self, name, data):
@@ -89,12 +89,12 @@ class FeedIntegrityTests(unittest.TestCase):
                         "224.0.0.1", "239.255.255.255", "240.0.0.1", "255.255.255.255"):
             with self.subTest(address=address):
                 raw = (address + "\n").encode("ascii")
-                self.write(CRITICAL, raw)
-                self.write(CRITICAL_PART.format("aa"), raw)
+                self.write(STANDARD, raw)
+                self.write(STANDARD_PART.format("aa"), raw)
                 self.assert_rejected()
 
-    def test_both_profiles_and_their_first_parts_are_required(self):
-        for name in (STANDARD, CRITICAL, STANDARD_PART.format("aa"), CRITICAL_PART.format("aa")):
+    def test_standard_and_its_first_part_are_required(self):
+        for name in (STANDARD, STANDARD_PART.format("aa")):
             with self.subTest(name=name):
                 (self.root / name).unlink()
                 self.assert_rejected()
@@ -105,22 +105,24 @@ class FeedIntegrityTests(unittest.TestCase):
 
     def test_exact_part_boundary_and_partial_last_part(self):
         lines = public_lines(30_001)
-        for full, pattern, count in ((STANDARD, STANDARD_PART, 30_000), (CRITICAL, CRITICAL_PART, 30_001)):
-            self.write(full, b"".join(lines[:count]))
-            self.write(pattern.format("aa"), b"".join(lines[:30_000]))
-        self.write(CRITICAL_PART.format("ab"), lines[-1])
+        self.write(STANDARD, b"".join(lines[:30_000]))
+        self.write(STANDARD_PART.format("aa"), b"".join(lines[:30_000]))
+        result = self.run_validator()
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.write(STANDARD, b"".join(lines))
+        self.write(STANDARD_PART.format("ab"), lines[-1])
         result = self.run_validator()
         self.assertEqual(result.returncode, 0, result.stderr)
         expected = {p.name for p in self.root.iterdir() if p != self.sums}
         self.assertEqual({line.split()[1] for line in self.sums.read_text().splitlines()}, expected)
-        self.write(CRITICAL_PART.format("ab"), lines[-2])
+        self.write(STANDARD_PART.format("ab"), lines[-2])
         self.assert_rejected()
-        self.write(CRITICAL_PART.format("ab"), lines[-1])
-        self.write(CRITICAL_PART.format("aa"), b"".join(lines))
+        self.write(STANDARD_PART.format("ab"), lines[-1])
+        self.write(STANDARD_PART.format("aa"), b"".join(lines))
         self.assert_rejected()
 
     def test_reject_holes_stale_parts_and_wrong_names(self):
-        for name in (STANDARD_PART.format("ab"), CRITICAL_PART.format("ad"),
+        for name in (STANDARD_PART.format("ab"), CRITICAL, CRITICAL_PART.format("aa"), CRITICAL_PART.format("ad"),
                      "prod_data_ab-shield_ipv4_blocklist.txt", "prod_b-data-shield_ipv4_blocklist.txt"):
             with self.subTest(name=name):
                 self.write(name, SAMPLE)

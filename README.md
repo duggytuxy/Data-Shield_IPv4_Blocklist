@@ -30,47 +30,49 @@
 
 # Data-Shield IPv4 Blocklists
 
-**Two complete lists. Clear choices. Controlled updates.**
+**Community Standard is free. Data-Shield Pro supports the project and includes Critical.**
 
-Data-Shield provides maintained IPv4 blocklists for inbound filtering on firewalls, gateways and web application firewalls. Choose the policy that fits your environment, import its raw URL, and review its effect on legitimate traffic.
+Data-Shield provides maintained IPv4 blocklists for inbound filtering on firewalls, gateways and web application firewalls. Choose the policy that fits your environment, use the access method below, and review its effect on legitimate traffic.
 
-[Download standard](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_data-shield_ipv4_blocklist.txt) · [Download critical](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_critical_data-shield_ipv4_blocklist.txt) · [Report a false positive](https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/issues/new/choose)
+[Get free Standard](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_data-shield_ipv4_blocklist.txt) · [Compare Standard and Pro](#choose-your-list) · [Set up Pro access](#data-shield-pro-access) · [Open subscriber portal](https://feeds.data-shield.eu/) · [Report a false positive](https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist/issues/new/choose)
 
 ## Choose your list
 
-| Profile | Intended use | File |
+| | Community Standard | Data-Shield Pro |
 | :--- | :--- | :--- |
-| **Standard** | The starting point for Internet-facing services, with reviewed exceptions to reduce avoidable blocking. | [`prod_data-shield_ipv4_blocklist.txt`](prod_data-shield_ipv4_blocklist.txt) |
-| **Critical** | A broader blocking policy for environments that accept stricter ingress filtering. Review the impact before deployment. | [`prod_critical_data-shield_ipv4_blocklist.txt`](prod_critical_data-shield_ipv4_blocklist.txt) |
+| **Inbound filtering** | A starting point for Internet-facing services, with reviewed exceptions. | Critical includes Standard coverage and additional blocked sources for stricter inbound filtering. Both profiles apply the shared whitelist. |
+| **Access and price** | Free through public downloads and mirrors. No account required. | €50 per month or €500 per year via recurring PayPal subscription. The subscription supports project maintenance. |
+| **Feed format** | Complete IPv4 TXT file and all splits, up to 30,000 addresses per part. | Same format and split size. Both billing options include the complete Critical file and all its splits. |
+| **Updates and verification** | Public files, commit history and SHA-256 checksums. | An authenticated manifest identifies one generation and gives the URL, count, byte size and SHA-256 for every file. |
 
-Each file is complete and can be used on its own. Applying both lists combines their blocking decisions and may override the exceptions of the profile you intended to use.
+Choose Critical when additional blocking coverage is worth the higher risk of blocking legitimate traffic. Start in a monitored policy and review matches for your services before broad enforcement. One complete profile covers your chosen policy.
 
 The entry count changes over time. Check your product's capacity against the actual file, including whether it silently truncates oversized imports. There is no fixed 100,000-entry cap.
 
 ## Split feeds
 
-For devices with per-list entry limits, import every part of one profile as a separate feed and include them all in the same inbound policy. Each part contains up to 30,000 addresses. The publisher commits both complete files and all their parts together. Concatenating the parts of one profile in suffix order reproduces its complete file from the same commit.
+For devices with per-list entry limits, import every part of one profile as a separate feed and include them all in the same inbound policy. Each part contains up to 30,000 addresses. The public publisher commits the complete Standard file and all its parts together. Concatenating its parts in suffix order reproduces the complete Standard file from that commit. Subscribers receive the complete Critical feed and its matching parts through the private portal.
 
-| Part | Standard | Critical |
-| :--- | :--- | :--- |
-| aa | [Raw Standard aa](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/main/prod_aa-data-shield_ipv4_blocklist.txt) | [Raw Critical aa](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/main/prod_critical_aa_data-shield_ipv4_blocklist.txt) |
-| ab | [Raw Standard ab](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/main/prod_ab-data-shield_ipv4_blocklist.txt) | [Raw Critical ab](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/main/prod_critical_ab_data-shield_ipv4_blocklist.txt) |
-| ac | [Raw Standard ac](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/main/prod_ac-data-shield_ipv4_blocklist.txt) | [Raw Critical ac](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/main/prod_critical_ac_data-shield_ipv4_blocklist.txt) |
-| ad | [Raw Standard ad](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/main/prod_ad-data-shield_ipv4_blocklist.txt) | [Raw Critical ad](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/main/prod_critical_ad_data-shield_ipv4_blocklist.txt) |
+| Part | Standard |
+| :--- | :--- |
+| aa | [Raw Standard aa](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/main/prod_aa-data-shield_ipv4_blocklist.txt) |
+| ab | [Raw Standard ab](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/main/prod_ab-data-shield_ipv4_blocklist.txt) |
+| ac | [Raw Standard ac](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/main/prod_ac-data-shield_ipv4_blocklist.txt) |
+| ad | [Raw Standard ad](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/main/prod_ad-data-shield_ipv4_blocklist.txt) |
 
-The table covers the four parts per profile at rollout. When a profile exceeds 120,000 entries, its next part is `ae`. Check the repository file listing for the current suffixes when updating your firewall configuration.
+The table covers the first four Standard parts. Check the [Standard downloads](https://data-shield.eu/#split-downloads) for the current set before configuring your firewall.
 
 ## Stable download URLs
 
-| Destination | Standard | Critical |
-| :--- | :--- | :--- |
-| **[GitHub](https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist)** | [Raw file](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_data-shield_ipv4_blocklist.txt) | [Raw file](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_critical_data-shield_ipv4_blocklist.txt) |
-| **[GitLab](https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist)** | [Raw file](https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_data-shield_ipv4_blocklist.txt?ref_type=heads) | [Raw file](https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_critical_data-shield_ipv4_blocklist.txt?ref_type=heads) |
-| **[Codeberg](https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist)** | [Raw file](https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_data-shield_ipv4_blocklist.txt) | [Raw file](https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_critical_data-shield_ipv4_blocklist.txt) |
-| **[Bitbucket](https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/src/main/)** | [Raw file](https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/raw/HEAD/prod_data-shield_ipv4_blocklist.txt) | [Raw file](https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/raw/HEAD/prod_critical_data-shield_ipv4_blocklist.txt) |
-| **[jsDelivr CDN](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@main/)** | [Raw file](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@refs/heads/main/prod_data-shield_ipv4_blocklist.txt) | [Raw file](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@refs/heads/main/prod_critical_data-shield_ipv4_blocklist.txt) |
+| Destination | Standard |
+| :--- | :--- |
+| **[GitHub](https://github.com/duggytuxy/Data-Shield_IPv4_Blocklist)** | [Raw file](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/refs/heads/main/prod_data-shield_ipv4_blocklist.txt) |
+| **[GitLab](https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist)** | [Raw file](https://gitlab.com/duggytuxy/Data-Shield-IPv4-Blocklist/-/raw/main/prod_data-shield_ipv4_blocklist.txt?ref_type=heads) |
+| **[Codeberg](https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist)** | [Raw file](https://codeberg.org/duggytuxy21/Data-Shield_IPv4_Blocklist/raw/branch/main/prod_data-shield_ipv4_blocklist.txt) |
+| **[Bitbucket](https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/src/main/)** | [Raw file](https://bitbucket.org/duggytuxy/data-shield-ipv4-blocklist/raw/HEAD/prod_data-shield_ipv4_blocklist.txt) |
+| **[jsDelivr CDN](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@main/)** | [Raw file](https://cdn.jsdelivr.net/gh/duggytuxy/Data-Shield_IPv4_Blocklist@refs/heads/main/prod_data-shield_ipv4_blocklist.txt) |
 
-These are the existing download URLs used by SYSwarden. The two filenames and their paths remain unchanged. GitLab manages repository mirroring to Codeberg and Bitbucket. jsDelivr serves a cached copy from GitHub, so CDN refreshes can lag behind publication.
+These public URLs distribute the complete Community Standard list. GitLab manages repository mirroring to Codeberg and Bitbucket. jsDelivr serves a cached copy from GitHub, so CDN refreshes can lag behind publication.
 
 Use a raw file URL in your firewall's feed configuration. A repository or preview-page URL returns a web page, not the blocklist.
 
@@ -80,10 +82,10 @@ Use a raw file URL in your firewall's feed configuration. A repository or previe
 - No headers, comments, ports, CIDR ranges or IPv6 entries.
 - Duplicate addresses removed and addresses sorted numerically.
 - Generation scheduled **every two hours**. A new commit appears only when published file content changes.
-- Both files validated before publication and committed together on GitHub and GitLab. Downstream mirrors and CDN caches can differ until they refresh.
+- The complete Standard file and all its parts are validated before publication on GitHub and GitLab. Downstream mirrors and CDN caches can differ until they refresh.
 - Failed generation checks preserve the last validated files. Failed publication is retried independently.
 
-The public repository distributes the lists and their usage documentation. Review a file's commit history to check when its content last changed. Neither a successful download nor an unchanged commit proves that your firewall has applied the latest available data.
+The public repository distributes Community Standard and its usage documentation. Review a file's commit history to check when its content last changed. Neither a successful download nor an unchanged commit proves that your firewall has applied the latest available data.
 
 ## Deployment strategy
 
@@ -132,13 +134,27 @@ IP-based blocking is one layer of protection. It complements application securit
 
 Do not post credentials, private logs or personal information in a public issue. For sensitive evidence or security vulnerabilities, follow the [security policy](SECURITY.md). If access must be restored immediately, apply a narrowly scoped local exception while the report is reviewed.
 
-## Data-Shield Pro (coming soon)
+## Data-Shield Pro access
 
-Data-Shield Pro will cost **€50 per month or €500 per year**. Both plans will support the project and give subscribers access to the complete Critical feed and all its split files.
+1. **Choose a subscription.** Open the [subscriber portal](https://feeds.data-shield.eu/) and choose **€50 per month** or **€500 per year**. Both recurring PayPal plans include the same Critical feed and support community maintenance.
+2. **Approve and confirm.** Approve the subscription in PayPal and return to Data-Shield. The portal verifies the payment. If it shows **Confirming your payment**, use **Check payment status again** on the existing order. After confirmation, the browser opens the [integration guide](https://data-shield.eu/docs/#subscriber-setup).
+3. **Collect your device credential.** Reopen the portal in the same browser used for checkout and claim your token promptly. The checkout browser session lasts 24 hours from when it starts. Choose **Check payment and issue or replace device token**, then **Show device credential**. Save the **Device ID** and **Bearer token** in a password manager. Issuing a replacement invalidates the previous token issued through this browser. **Verify my feed downloads** checks that this device can fetch the feed.
+4. **Connect a device.** Authenticate over HTTPS with the token in the `Authorization: Bearer <device-token>` header. For devices supporting HTTP Basic, use the Device ID as username and the token as password. For appliances that accept only a URL, use a relay on your own network that authenticates upstream and allows access only from your appliance. Keep credentials out of feed URLs, logs and public tickets.
+5. **Choose full or split and verify.** Fetch the private manifest. Its first entry is the complete feed. The remaining entries are its splits in order. Use the complete file if it fits, or import every split into the same inbound policy. Use URLs from one manifest generation. Verify byte sizes, record counts and SHA-256 before switching. Concatenating the parts in order reproduces the complete file byte for byte.
+6. **Migrate and monitor.** Replace previous public Critical URLs with authenticated downloads. Configure a refresh schedule appropriate for your appliance. Monitor the last successful generation and imported count, and retain the previous validated rules if a refresh fails. Standard and its splits keep their public URLs.
 
-Both checkout options passed testing in PayPal Sandbox. Live subscriptions will open at launch. Once your payment is confirmed, your browser will open the [integration guide](https://data-shield.eu/docs/).
+### Test the private manifest
 
-Until launch, the complete Critical feed and all its parts are available through their [current public download links](https://data-shield.eu/#downloads). The complete Standard feed and all its parts will stay free and public, with no account required.
+With curl, replace `YOUR_DEVICE_ID` below with the ID shown by the portal. At curl's password prompt, enter the device token. This keeps the token out of the URL and shell history.
+
+```sh
+curl --fail --silent --show-error --proto '=https' \
+  --user 'YOUR_DEVICE_ID' \
+  --output critical-manifest.json \
+  https://feeds.data-shield.eu/feeds/critical/manifest.json
+```
+
+The JSON contains `generation` and an ordered `files` array. Each `url` is a versioned path on `https://feeds.data-shield.eu` and requires the same device authentication. A scheduled appliance download needs a stable URL so it can move to newer generations. For each desired file, append its `name` to `https://feeds.data-shield.eu/feeds/critical/`. To refresh several parts together, fetch a fresh manifest each time and use its versioned URLs. See the [subscriber integration guide](https://data-shield.eu/docs/#subscriber-setup) for setup and platform instructions.
 
 ## Project and support
 

@@ -79,3 +79,7 @@ Keep the source zone set to **External** for these policies, following the proje
 - Optionally enable logging on the block policies to confirm matching incoming traffic is dropped. A populated list confirms retrieval; firewall logs provide evidence that the policies are matching traffic.
 
 For more information about zone assignments, firewall policies, and rule ordering, see Ubiquiti's [Zone-Based Firewalls in UniFi](https://help.ui.com/hc/en-us/articles/115003173168-Zone-Based-Firewalls-in-UniFi).
+
+### Data-Shield Pro subscribers
+
+For Critical, retrieve the complete feed or each split through the [subscriber portal](https://feeds.data-shield.eu/). If your UniFi release accepts only a URL, use a relay restricted to your gateway that authenticates upstream with its own device credential. Follow the [subscriber integration guide](https://data-shield.eu/docs/#subscriber-setup). Keep the credential out of the feed URL.
