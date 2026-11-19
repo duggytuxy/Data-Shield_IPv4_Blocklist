@@ -60,6 +60,8 @@ For devices with per-list entry limits, import every part of one profile as a se
 | ac | [Raw Standard ac](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/main/prod_ac-data-shield_ipv4_blocklist.txt) |
 | ad | [Raw Standard ad](https://raw.githubusercontent.com/duggytuxy/Data-Shield_IPv4_Blocklist/main/prod_ad-data-shield_ipv4_blocklist.txt) |
 
+If a Critical generation needs an extra part, it is included in the existing subscription at no extra charge. Data-Shield does not send an email when a part appears. Read the manifest at each refresh and load every part it lists. On a firewall configured with fixed split URLs, add the new part to the same inbound policy. If the complete file fits the device, a single full-feed URL follows future growth.
+
 The table covers the first four Standard parts. Check the [Standard downloads](https://data-shield.eu/#split-downloads) for the current set before configuring your firewall.
 
 ## Stable download URLs
