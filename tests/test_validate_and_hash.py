@@ -37,11 +37,11 @@ class FeedIntegrityTests(unittest.TestCase):
         return subprocess.run(["bash", str(VALIDATOR), *args], cwd=self.root,
                               capture_output=True, text=True, timeout=20)
 
-    def assert_rejected(self, *args):
+    def assert_rejected(self, *args, error="Integrity check failed"):
         previous = self.sums.read_bytes() if self.sums.exists() else None
         result = self.run_validator(*args)
         self.assertNotEqual(result.returncode, 0, result.stdout)
-        self.assertIn("Integrity check failed", result.stderr)
+        self.assertIn(error, result.stderr)
         if previous is None:
             self.assertFalse(self.sums.exists())
         else:
@@ -80,6 +80,20 @@ class FeedIntegrityTests(unittest.TestCase):
                 self.write(STANDARD_PART.format("aa"), raw)
                 self.assert_rejected()
                 self.assertEqual((self.root / STANDARD).read_bytes(), raw)
+
+    def test_reject_malformed_ipv4_between_valid_addresses(self):
+        mixed = b"1.1.1.1\n8.8.8.256\n9.9.9.9\n"
+        names = (STANDARD, STANDARD_PART.format("aa"))
+        for name in names:
+            self.write(name, mixed)
+
+        for existing_manifest in (False, True):
+            with self.subTest(existing_manifest=existing_manifest):
+                if existing_manifest:
+                    self.sums.write_text("Previous checksums.\n")
+                self.assert_rejected(error=f"{STANDARD}:2: expected one IPv4 address")
+                for name in names:
+                    self.assertEqual((self.root / name).read_bytes(), mixed)
 
     def test_reject_private_and_special_use_networks(self):
         for address in ("0.0.0.0", "10.255.255.255", "100.64.0.1", "127.0.0.1",
