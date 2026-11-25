@@ -41,11 +41,13 @@ Data-Shield provides maintained IPv4 blocklists for inbound filtering on firewal
 | | Community Standard | Data-Shield Pro |
 | :--- | :--- | :--- |
 | **Inbound filtering** | A starting point for Internet-facing services, with reviewed exceptions. | Critical includes Standard coverage and additional blocked sources for stricter inbound filtering. Both profiles apply the shared whitelist. |
-| **Access and price** | Free through public downloads and mirrors. No account required. | €50 per month or €500 per year via recurring PayPal subscription. The subscription supports project maintenance. |
+| **Access and price** | Free through public downloads and mirrors. No account required. | New subscriptions cost €35 per month or €350 per year through PayPal. The subscription supports project maintenance. |
 | **Feed format** | Complete IPv4 TXT file and all splits, up to 30,000 addresses per part. | Same format and split size. Both billing options include the complete Critical file and all its splits. |
 | **Updates and verification** | Public files, commit history and SHA-256 checksums. | An authenticated manifest identifies one generation and gives the URL, count, byte size and SHA-256 for every file. |
 
 Choose Critical when additional blocking coverage is worth the higher risk of blocking legitimate traffic. Start in a monitored policy and review matches for your services before broad enforcement. One complete profile covers your chosen policy.
+
+[View 20 source IPs from the Pro Critical blocklist](https://data-shield.eu/#observed-sources). Each refresh selects a sample from a verified Critical release. It shows the reported attack types, vectors when available, associated CVEs and the last report time in UTC.
 
 The entry count changes over time. Check your product's capacity against the actual file, including whether it silently truncates oversized imports. There is no fixed 100,000-entry cap.
 
@@ -141,7 +143,7 @@ Do not post credentials, private logs or personal information in a public issue.
 
 ## Data-Shield Pro access
 
-1. **Choose a subscription.** Open the [subscriber portal](https://feeds.data-shield.eu/) and choose **€50 per month** or **€500 per year**. Both recurring PayPal plans include the same Critical feed and support community maintenance. If you already started an order, [resume your existing checkout](#resume-an-interrupted-pro-checkout).
+1. **Choose a subscription.** Open the [subscriber portal](https://feeds.data-shield.eu/) and choose **€35 per month** or **€350 per year**. Both recurring PayPal plans include the same Critical feed and support community maintenance. If you already started an order, [resume your existing checkout](#resume-an-interrupted-pro-checkout).
 2. **Approve and confirm.** Approve the subscription in PayPal and return to Data-Shield. The portal verifies the payment. If it shows **Confirming your payment**, use **Check payment status again** on the existing order. After confirmation, the browser opens the [integration guide](https://data-shield.eu/docs/#subscriber-setup).
 3. **Collect your device credential.** Reopen the portal in the same browser used for checkout and claim your token promptly. The checkout browser session lasts 24 hours from when it starts. Choose **Check payment and issue or replace device token**, then **Show device credential**. Save the **Device ID** and **Bearer token** in a password manager. Issuing a replacement invalidates the previous token issued through this browser. **Verify my feed downloads** checks that this device can fetch the feed.
 4. **Connect a device.** Authenticate over HTTPS with the token in the `Authorization: Bearer <device-token>` header. For devices supporting HTTP Basic, use the Device ID as username and the token as password. For appliances that accept only a URL, use a relay on your own network that authenticates upstream and allows access only from your appliance. Keep credentials out of feed URLs, logs and public tickets.
