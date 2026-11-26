@@ -146,9 +146,31 @@ Do not post credentials, private logs or personal information in a public issue.
 1. **Choose a subscription.** Open the [subscriber portal](https://feeds.data-shield.eu/) and choose **€35 per month** or **€350 per year**. Both recurring PayPal plans include the same Critical feed and support community maintenance. If you already started an order, [resume your existing checkout](#resume-an-interrupted-pro-checkout).
 2. **Approve and confirm.** Approve the subscription in PayPal and return to Data-Shield. The portal verifies the payment. If it shows **Confirming your payment**, use **Check payment status again** on the existing order. After confirmation, the browser opens the [integration guide](https://data-shield.eu/docs/#subscriber-setup).
 3. **Collect your device credential.** Reopen the portal in the same browser used for checkout and claim your token promptly. The checkout browser session lasts 24 hours from when it starts. Choose **Check payment and issue or replace device token**, then **Show device credential**. Save the **Device ID** and **Bearer token** in a password manager. Issuing a replacement invalidates the previous token issued through this browser. **Verify my feed downloads** checks that this device can fetch the feed.
-4. **Connect a device.** Authenticate over HTTPS with the token in the `Authorization: Bearer <device-token>` header. For devices supporting HTTP Basic, use the Device ID as username and the token as password. For appliances that accept only a URL, use a relay on your own network that authenticates upstream and allows access only from your appliance. Keep credentials out of feed URLs, logs and public tickets.
-5. **Choose full or split and verify.** Fetch the private manifest. Its first entry is the complete feed. The remaining entries are its splits in order. Use the complete file if it fits, or import every split into the same inbound policy. Use URLs from one manifest generation. Verify byte sizes, record counts and SHA-256 before switching. Concatenating the parts in order reproduces the complete file byte for byte.
+4. **Connect a device.** Create a named token for each firewall or relay under [Manage firewall and relay tokens](https://feeds.data-shield.eu/language/en/devices). Authenticate over HTTPS with the token in the `Authorization: Bearer <device-token>` header. For HTTP Basic, use the Device ID as the username and the device token as the password. For appliances that accept only a URL, use a relay on your own network that authenticates upstream and allows access only from your appliance. Keep credentials out of feed URLs, logs and public tickets.
+5. **Choose full or split and verify.** The [Critical Pro downloads page](https://feeds.data-shield.eu/language/en/downloads) lists the stable `.txt` URLs for the complete list and every current split. Use the complete file if it fits, or import every split into the same inbound policy. If you operate a manifest-aware relay, use the versioned URLs from one manifest generation and verify the byte sizes, record counts and SHA-256 before switching. Concatenating the parts in order reproduces the complete file byte for byte.
 6. **Migrate and monitor.** Replace previous public Critical URLs with authenticated downloads. Configure a refresh schedule appropriate for your appliance. Monitor the last successful generation and imported count, and retain the previous validated rules if a refresh fails. Standard and its splits keep their public URLs.
+
+### Connect a FortiGate to Critical Pro
+
+1. Open [Critical Pro downloads](https://feeds.data-shield.eu/language/en/downloads). If the feed fits your FortiGate, choose **Copy** beside **Full list** to copy the following stable URL.
+
+   ```text
+   https://feeds.data-shield.eu/feeds/critical/prod_critical_data-shield_ipv4_blocklist.txt
+   ```
+
+   If you need smaller lists, copy the URL of **each** current split and create one connector per split. The URL for split **aa** is shown below.
+
+   ```text
+   https://feeds.data-shield.eu/feeds/critical/prod_critical_aa_data-shield_ipv4_blocklist.txt
+   ```
+
+   FortiOS imports the IPv4 addresses from these `.txt` files. The separate `manifest.json` provides a file inventory and checksums for compatible tools.
+
+2. In FortiOS, open **Security Fabric > External Connectors > Create New** and choose **IP Address**. Enable **Status**, enter a **Name** such as `Data-Shield-Critical`, choose **External Feed** under **Update method** if shown, and paste the chosen `.txt` URL into **URL of external resource**.
+3. Enable **HTTP basic authentication**. Enter this FortiGate's **Device ID** in **Username** and its **Device token** in **Password**, then click **OK**. Use the same pair for all split connectors on this FortiGate. Give each other firewall or relay its own token.
+4. After the first refresh, go back to **Security Fabric > External Connectors**, select the connector and click **Edit**. Check **Last Update** for a recent successful fetch, then click **View Entries** and confirm IPv4 addresses are present. Repeat for every configured split. A bare browser request can return an empty **HTTP 401** response because it sends no device credentials. If the FortiGate itself reports **401**, recheck **HTTP basic authentication**, the Device ID and the current token.
+
+[FortiOS guide in English](https://data-shield.eu/docs/fortios/) · [FortiOS guide in French](https://data-shield.eu/fr/docs/fortios/) · [Fortinet configuration and update history](https://docs.fortinet.com/document/fortigate/7.4.10/administration-guide/379433/configuring-a-threat-feed)
 
 ### Resume an interrupted Pro checkout
 
